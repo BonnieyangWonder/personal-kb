@@ -1,0 +1,24 @@
+{
+  "id": "conv-1778574128791-da5x6bdx1",
+  "providerId": "claude",
+  "title": "Greet user",
+  "titleGenerationStatus": "success",
+  "createdAt": 1778574128791,
+  "updatedAt": 1778576536131,
+  "lastResponseAt": 1778576043017,
+  "sessionId": "1ca1f3d2-1590-46c6-aa5d-9c8b786d72bf",
+  "providerState": {
+    "providerSessionId": "1ca1f3d2-1590-46c6-aa5d-9c8b786d72bf"
+  },
+  "currentNote": "未命名.base",
+  "usage": {
+    "model": "deepseek-v4-pro[1m]",
+    "inputTokens": 68,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 34304,
+    "contextWindow": 1000000,
+    "contextTokens": 34372,
+    "percentage": 3,
+    "contextWindowIsAuthoritative": true
+  }
+}

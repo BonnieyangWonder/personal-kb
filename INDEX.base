@@ -1,0 +1,124 @@
+filters:
+  or:
+    - file.inFolder("entities")
+    - file.inFolder("concepts")
+    - file.inFolder("comparisons")
+    - file.inFolder("queries")
+formulas:
+  type_label: if(type == "entity", "Entity", if(type == "concept", "Concept", if(type == "comparison", "Comparison", "Query")))
+  days_since_update: if(updated, (today() - date(updated)).days, "")
+  backlink_count: file.backlinks.length
+properties:
+  title:
+    displayName: Title
+  type:
+    displayName: Type
+  domain:
+    displayName: Domain
+  tags:
+    displayName: Tags
+  status:
+    displayName: Status
+  created:
+    displayName: Created
+  updated:
+    displayName: Updated
+  formula.type_label:
+    displayName: Type
+  formula.days_since_update:
+    displayName: Days Since Update
+  formula.backlink_count:
+    displayName: Backlinks
+  file.path:
+    displayName: Path
+views:
+  - type: table
+    name: All Pages
+    groupBy:
+      property: type
+      direction: ASC
+    order:
+      - file.name
+      - title
+      - formula.type_label
+      - domain
+      - tags
+      - status
+      - created
+      - updated
+      - formula.days_since_update
+      - formula.backlink_count
+      - file.path
+    sort:
+      - property: updated
+        direction: DESC
+  - type: table
+    name: Entities
+    filters:
+      and:
+        - type == "entity"
+    groupBy:
+      property: domain
+      direction: ASC
+    order:
+      - file.name
+      - title
+      - domain
+      - tags
+      - status
+      - updated
+      - formula.days_since_update
+      - formula.backlink_count
+  - type: table
+    name: Concepts
+    filters:
+      and:
+        - type == "concept"
+    groupBy:
+      property: domain
+      direction: ASC
+    order:
+      - file.name
+      - title
+      - domain
+      - tags
+      - status
+      - updated
+      - formula.days_since_update
+      - formula.backlink_count
+  - type: table
+    name: Comparisons
+    filters:
+      and:
+        - type == "comparison"
+    order:
+      - file.name
+      - title
+      - tags
+      - status
+      - updated
+      - formula.days_since_update
+      - formula.backlink_count
+  - type: table
+    name: Queries
+    filters:
+      and:
+        - type == "query"
+    order:
+      - file.name
+      - title
+      - tags
+      - status
+      - updated
+      - formula.days_since_update
+      - formula.backlink_count
+  - type: table
+    name: Recently Updated
+    order:
+      - updated
+      - file.name
+      - title
+      - formula.type_label
+      - tags
+      - formula.backlink_count
+    limit: 10

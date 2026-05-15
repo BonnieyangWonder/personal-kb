@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "remote": "https://github.com/BonnieyangWonder/personal-kb.git",
+  "branch": "main",
+  "sync": {
+    "autoIntervalMin": 30,
+    "ignorePatterns": [
+      ".DS_Store",
+      ".obsidian/workspace.json",
+      ".obsidian/workspace-mobile.json",
+      ".obsidian/plugins/**",
+      ".obsidian/themes/**",
+      ".trash/**"
+    ]
+  },
+  "ai": {
+    "enabled": true,
+    "silentMode": true,
+    "silentMinConfidence": 3,
+    "deepseekModel": "deepseek-chat",
+    "geminiModel": "gemini-1.5-flash",
+    "sendFilePaths": true,
+    "sendGitMetadata": true,
+    "sendSurroundingContext": true,
+    "excludePatterns": [
+      ".env",
+      ".env.*",
+      "secrets/**",
+      "*.private.md",
+      "private/**",
+      "**/credentials.*"
+    ]
+  },
+  "submodules": []
+}

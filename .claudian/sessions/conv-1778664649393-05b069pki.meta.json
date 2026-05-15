@@ -1,0 +1,24 @@
+{
+  "id": "conv-1778664649393-05b069pki",
+  "providerId": "claude",
+  "title": "Query BigQuery data",
+  "titleGenerationStatus": "success",
+  "createdAt": 1778664649394,
+  "updatedAt": 1778664715454,
+  "lastResponseAt": 1778664674527,
+  "sessionId": "920f42f3-37d9-4dd2-9b45-25abb6e0c2c4",
+  "providerState": {
+    "providerSessionId": "920f42f3-37d9-4dd2-9b45-25abb6e0c2c4"
+  },
+  "currentNote": "SCHEMA.md",
+  "usage": {
+    "model": "deepseek-v4-pro[1m]",
+    "inputTokens": 313,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 23168,
+    "contextWindow": 1000000,
+    "contextTokens": 23481,
+    "percentage": 2,
+    "contextWindowIsAuthoritative": true
+  }
+}
