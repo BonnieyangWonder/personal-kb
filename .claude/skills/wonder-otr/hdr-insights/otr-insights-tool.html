@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDR OTR Insights Tool</title>
+    <style>
+        :root {
+            /* Wonder Brand Colors - Primary */
+            --pesto: #00462A;
+            --romaine: #078F45;
+            --snap-pea: #6FD172;
+            --cucumber: #CCF4CD;
+            --feta: #FAF5EE;
+            --biscuit: #E3D0B8;
+            
+            /* Wonder Brand Colors - Secondary */
+            --popsicle: #37BC96;
+            --marmalade: #FF5600;
+            --couscous: #FED026;
+            --radish: #F088C6;
+            --pomodoro: #E2003F;
+            --celery: #A1D745;
+            --butternut: #FF9846;
+            --ginger: #FFE780;
+            --guava: #FFC0CF;
+            --spicy-mayo: #FF7B61;
+            
+            /* Theme mapping */
+            --bg-primary: var(--pesto);
+            --bg-secondary: #003D25;
+            --bg-tertiary: #005535;
+            --text-primary: var(--feta);
+            --text-secondary: var(--cucumber);
+            --accent-green: var(--romaine);
+            --accent-teal: var(--popsicle);
+            --accent-red: var(--pomodoro);
+            --accent-yellow: var(--couscous);
+            --accent-orange: var(--marmalade);
+            --border-color: var(--romaine);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--snap-pea), var(--popsicle));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--snap-pea);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card-title::before {
+            content: "◆";
+            font-size: 0.8rem;
+            color: var(--romaine);
+        }
+        
+        .definition-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        
+        .definition-table th,
+        .definition-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .definition-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .tier-high { color: var(--pomodoro); }
+        .tier-medium { color: var(--butternut); }
+        .tier-low { color: var(--snap-pea); }
+        
+        .query-section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .query-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .query-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .query-controls {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .control-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        select, input {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.85rem;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--popsicle);
+        }
+        
+        .btn {
+            background: var(--romaine);
+            color: var(--feta);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background: var(--popsicle);
+        }
+        
+        .btn-secondary {
+            background: var(--bg-tertiary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--border-color);
+        }
+        
+        .query-output {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .query-output pre {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        
+        .sql-keyword { color: var(--accent-purple); }
+        .sql-function { color: var(--accent-blue); }
+        .sql-string { color: var(--accent-green); }
+        .sql-number { color: var(--accent-yellow); }
+        .sql-comment { color: var(--text-secondary); font-style: italic; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .tab {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            border-radius: 6px 6px 0 0;
+            transition: all 0.2s;
+        }
+        
+        .tab:hover {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+        
+        .tab.active {
+            color: var(--accent-blue);
+            background: var(--bg-tertiary);
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .metric-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .badge-volume { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); }
+        .badge-otr { background: rgba(34, 197, 94, 0.2); color: var(--accent-green); }
+        .badge-complexity { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); }
+        .badge-timing { background: rgba(234, 179, 8, 0.2); color: var(--accent-yellow); }
+        
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3px solid var(--accent-blue);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-box p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .info-box strong {
+            color: var(--text-primary);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HDR OTR Insights Tool</h1>
+            <p class="subtitle">Rolling 6-Week Analysis with Day-over-Day Comparison • Order & HDR Level</p>
+        </header>
+
+        <!-- Complexity Definitions -->
+        <div class="grid">
+            <div class="card">
+                <h3 class="card-title">Order Complexity Tiers</h3>
+                <table class="definition-table">
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Definition</th>
+                            <th>Sequencer Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tier-high">HIGH</td>
+                            <td>cook_time_range > 6 min<br>OR item_count ≥ 5</td>
+                            <td>Sequencer struggles, ~52% Kitchen OTR</td>
+                        </tr>
+                        <tr>
+                            <td class="tier-medium">MEDIUM</td>
+                            <td>cook_time_range 3-6 min<br>OR item_count 3-4</td>
+                            <td>Sequencer helps, ~55% Kitchen OTR</td>
+                        </tr>
+                        <tr>
+                            <td class="tier-low">LOW</td>
+                            <td>cook_time_range ≤ 3 min<br>AND item_count 1-2</td>
+                            <td>Easy orders, ~64% Kitchen OTR</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Complexity Metrics</h3>
+                <table class="definition-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Calculation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>cook_time_range</td>
+                            <td>MAX(expected_step_time) - MIN(expected_step_time)</td>
+                        </tr>
+                        <tr>
+                            <td>cook_time_stddev</td>
+                            <td>STDDEV_POP(expected_step_time)</td>
+                        </tr>
+                        <tr>
+                            <td>item_count (IPC)</td>
+                            <td>COUNT(DISTINCT order_item_id)</td>
+                        </tr>
+                        <tr>
+                            <td>has_mro</td>
+                            <td>COUNT(DISTINCT restaurant_id) > 1</td>
+                        </tr>
+                        <tr>
+                            <td>has_alm_item</td>
+                            <td>MAX(hot_hold_item_a_la_minute_fl) = 1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Day-over-Day Comparison</h3>
+                <table class="definition-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>What to Watch</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="metric-badge badge-volume">Volume</span></td>
+                            <td>Order count changes (±20% = significant)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="metric-badge badge-complexity">Complexity</span></td>
+                            <td>Avg IPC, % HIGH tier orders</td>
+                        </tr>
+                        <tr>
+                            <td><span class="metric-badge badge-otr">OTR</span></td>
+                            <td>1P All, Delivery, Kitchen Process</td>
+                        </tr>
+                        <tr>
+                            <td><span class="metric-badge badge-timing">Timing</span></td>
+                            <td>Ticket Time, Expo Wait, Handoff</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Query Generator -->
+        <div class="query-section">
+            <div class="query-header">
+                <h2 class="query-title">Query Generator</h2>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('hdr-level')">HDR Level</button>
+                <button class="tab" onclick="switchTab('order-level')">Order Level</button>
+                <button class="tab" onclick="switchTab('day-over-day')">Day-over-Day</button>
+                <button class="tab" onclick="switchTab('complexity')">Complexity Analysis</button>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Rolling 6 Complete Weeks:</strong> Queries use <code>DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 7 WEEK), WEEK(MONDAY))</code> to ensure 6 full weeks of data ending at last Monday.</p>
+            </div>
+
+            <div class="query-controls">
+                <div class="control-group">
+                    <label class="control-label">Population Type</label>
+                    <select id="populationType">
+                        <option value="">All</option>
+                        <option value="Urban">Urban</option>
+                        <option value="Suburban">Suburban</option>
+                        <option value="Big Box">Big Box</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">HDR Class</label>
+                    <select id="hdrClass">
+                        <option value="">All</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2025 New">2025 New</option>
+                        <option value="2026 New">2026 New</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">HDR Name (Optional)</label>
+                    <input type="text" id="hdrName" placeholder="e.g., Yardley">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Complexity Tier</label>
+                    <select id="complexityTier">
+                        <option value="">All</option>
+                        <option value="HIGH">HIGH</option>
+                        <option value="MEDIUM">MEDIUM</option>
+                        <option value="LOW">LOW</option>
+                    </select>
+                </div>
+                <div class="control-group" style="align-self: flex-end;">
+                    <button class="btn" onclick="generateQuery()">Generate Query</button>
+                    <button class="btn btn-secondary" onclick="copyQuery()">Copy</button>
+                </div>
+            </div>
+
+            <!-- Tab Contents -->
+            <div id="hdr-level" class="tab-content active">
+                <div class="query-output">
+                    <pre id="hdr-query"></pre>
+                </div>
+            </div>
+
+            <div id="order-level" class="tab-content">
+                <div class="query-output">
+                    <pre id="order-query"></pre>
+                </div>
+            </div>
+
+            <div id="day-over-day" class="tab-content">
+                <div class="query-output">
+                    <pre id="dod-query"></pre>
+                </div>
+            </div>
+
+            <div id="complexity" class="tab-content">
+                <div class="query-output">
+                    <pre id="complexity-query"></pre>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Wonder OTR Insights Tool • Part of the wonder-otr skill</p>
+            <p>Complexity tiers based on cook_time_range and item_count</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentTab = 'hdr-level';
+
+        function switchTab(tabId) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            
+            currentTab = tabId;
+            generateQuery();
+        }
+
+        function getFilters() {
+            const populationType = document.getElementById('populationType').value;
+            const hdrClass = document.getElementById('hdrClass').value;
+            const hdrName = document.getElementById('hdrName').value;
+            const complexityTier = document.getElementById('complexityTier').value;
+            
+            let filters = [];
+            if (populationType) filters.push(`AND h.population_type = '${populationType}'`);
+            if (hdrClass) filters.push(`AND h.hdr_class = '${hdrClass}'`);
+            if (hdrName) filters.push(`AND h.hdr_name LIKE '%${hdrName}%'`);
+            
+            return filters.join('\n    ');
+        }
+
+        function generateHDRQuery() {
+            const filters = getFilters();
+            return `-- HDR Level Insights: Rolling 6 Complete Weeks
+-- Includes: OTR, Ticket Time, Expo Wait, Complexity Distribution
+
+WITH complexity_metrics AS (
+  SELECT
+    koi.order_id,
+    COUNT(*) AS item_count,
+    MAX(koi.expected_step_time/60) - MIN(koi.expected_step_time/60) AS cook_time_range,
+    STDDEV_POP(koi.expected_step_time/60) AS cook_time_stddev,
+    MAX(CASE WHEN koi.delay_duration_mins > 0 THEN 1 ELSE 0 END) AS has_sequencer_delay,
+    MAX(CASE WHEN koi.hot_hold_item_a_la_minute_fl = 1 THEN 1 ELSE 0 END) AS has_alm,
+    CASE 
+      WHEN MAX(koi.expected_step_time/60) - MIN(koi.expected_step_time/60) > 6 OR COUNT(*) >= 5 THEN 'HIGH'
+      WHEN MAX(koi.expected_step_time/60) - MIN(koi.expected_step_time/60) > 3 OR COUNT(*) >= 3 THEN 'MEDIUM'
+      ELSE 'LOW'
+    END AS complexity_tier
+  FROM \`wonder-dw-prod-brd.orders.hdr_kitchen_order_item\` koi
+  WHERE koi.order_status = 'COMPLETED'
+    AND DATE(koi.order_assigned_to_pod_time) >= DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 7 WEEK), WEEK(MONDAY))
+    AND DATE(koi.order_assigned_to_pod_time) < DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY))
+  GROUP BY 1
+)
+
+SELECT
+  FORMAT_DATE('%F', DATE_TRUNC(o.service_date_et, WEEK(MONDAY))) AS week,
+  h.hdr_name,
+  h.population_type,
+  h.hdr_class,
+  
+  -- Volume
+  COUNT(DISTINCT o.order_id) AS total_orders,
+  COUNT(DISTINCT CASE WHEN o.order_channel IN ('APP','WEB','IN_PERSON') THEN o.order_id END) AS orders_1p,
+  
+  -- OTR (1P)
+  ROUND((1 - SAFE_DIVIDE(
+    COUNT(DISTINCT CASE WHEN o.order_channel IN ('APP','WEB','IN_PERSON') AND ot.on_time_issue THEN o.order_id END),
+    COUNT(DISTINCT CASE WHEN o.order_channel IN ('APP','WEB','IN_PERSON') THEN o.order_id END)
+  )) * 100, 1) AS otr_1p_all,
+  
+  -- Kitchen Process OTR
+  ROUND(AVG(CASE WHEN o.ready_for_pickup_sla_difference <= 2 THEN 1 ELSE 0 END) * 100, 1) AS kitchen_otr,
+  
+  -- Timing
+  ROUND(AVG(o.ticket_time_mins), 1) AS avg_ticket_time,
+  ROUND(AVG(ot.order_level_expo_wait_time), 1) AS avg_expo_wait,
+  ROUND(AVG(o.kitchen_handoff_time_mins), 1) AS avg_handoff,
+  
+  -- Complexity Distribution
+  ROUND(AVG(cm.item_count), 2) AS avg_ipc,
+  ROUND(AVG(cm.cook_time_range), 2) AS avg_cook_range,
+  ROUND(AVG(CASE WHEN cm.complexity_tier = 'HIGH' THEN 1 ELSE 0 END) * 100, 1) AS pct_high_complexity,
+  ROUND(AVG(cm.has_sequencer_delay) * 100, 1) AS pct_sequencer_involved,
+  ROUND(AVG(cm.has_alm) * 100, 1) AS pct_alm_orders
+
+FROM \`wonder-dw-prod-brd.orders.hdr_orders\` o
+JOIN \`wonder-dw-prod-brd.dw.dim_hdrs\` h ON o.hdr_id = h.hdr_id
+LEFT JOIN \`wonder-dw-prod-brd.orders.hdr_on_time_orders\` ot ON o.order_id = ot.order_id
+LEFT JOIN complexity_metrics cm ON o.order_id = cm.order_id
+WHERE o.order_status = 'COMPLETE'
+  AND o.brand_category = 'WONDER_HDR'
+  AND (o.order_business_type <> 'WONDER_SPOT' OR o.order_business_type IS NULL)
+  AND o.service_date_et >= DATE_TRUNC(DATE_SUB(CURRENT_DATE('America/New_York'), INTERVAL 7 WEEK), WEEK(MONDAY))
+  AND o.service_date_et < DATE_TRUNC(CURRENT_DATE('America/New_York'), WEEK(MONDAY))
+  ${filters}
+GROUP BY 1, 2, 3, 4
+ORDER BY week DESC, hdr_name;`;
+        }
+
+        function generateOrderQuery() {
+            const filters = getFilters();
+            const complexityTier = document.getElementById('complexityTier').value;
+            const complexityFilter = complexityTier ? `AND cm.complexity_tier = '${complexityTier}'` : '';
+            
+            return `-- Order Level Insights: Rolling 6 Complete Weeks
+-- Individual order details with complexity and timing breakdown
+
+WITH complexity_metrics AS (
+  SELECT
+    koi.order_id,
+    COUNT(*) AS item_count,
+    MAX(koi.expected_step_time/60) - MIN(koi.expected_step_time/60) AS cook_time_range,
+    STDDEV_POP(koi.expected_step_time/60) AS cook_time_stddev,
+    MAX(CASE WHEN koi.delay_duration_mins > 0 THEN 1 ELSE 0 END) AS has_sequencer_delay,
+    MAX(koi.delay_duration_mins) AS max_sequencer_delay,
+    MAX(CASE WHEN koi.hot_hold_item_a_la_minute_fl = 1 THEN 1 ELSE 0 END) AS has_alm,
+    CASE 
+      WHEN MAX(koi.expected_step_time/60) - MIN(koi.expected_step_time/60) > 6 OR COUNT(*) >= 5 THEN 'HIGH'
+      WHEN MAX(koi.expected_step_time/60) - MIN(koi.expected_step_time/60) > 3 OR COUNT(*) >= 3 THEN 'MEDIUM'
+      ELSE 'LOW'
+    END AS complexity_tier
+  FROM \`wonder-dw-prod-brd.orders.hdr_kitchen_order_item\` koi
+  WHERE koi.order_status = 'COMPLETED'
+    AND DATE(koi.order_assigned_to_pod_time) >= DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 7 WEEK), WEEK(MONDAY))
+    AND DATE(koi.order_assigned_to_pod_time) < DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY))
+  GROUP BY 1
+)
+
+SELECT
+  o.order_id,
+  o.order_number,
+  o.service_date_et,
+  h.hdr_name,
+  h.population_type,
+  o.dining_option,
+  CASE WHEN o.order_channel IN ('APP','WEB','IN_PERSON') THEN '1P' ELSE '3P' END AS channel_type,
+  
+  -- Complexity
+  cm.complexity_tier,
+  cm.item_count,
+  ROUND(cm.cook_time_range, 2) AS cook_time_range_mins,
+  cm.has_sequencer_delay,
+  cm.max_sequencer_delay,
+  cm.has_alm,
+  
+  -- Timing
+  ROUND(o.ticket_time_mins, 1) AS ticket_time,
+  ROUND(o.actual_queue_mins, 1) AS queue_time,
+  ROUND(o.actual_cook_duration_mins, 1) AS cook_time,
+  ROUND(o.actual_packaging_bagging_mins, 1) AS packbag_time,
+  ROUND(ot.order_level_expo_wait_time, 1) AS expo_wait,
+  
+  -- OTR Status
+  ROUND(o.ready_for_pickup_sla_difference, 1) AS kitchen_sla_diff,
+  CASE WHEN o.ready_for_pickup_sla_difference <= 2 THEN 'ON_TIME' ELSE 'LATE' END AS kitchen_status,
+  ot.otr_sla_tier,
+  CASE WHEN ot.on_time_issue THEN 'MISS' ELSE 'ON_TIME' END AS otr_status,
+  
+  -- Delivery (1P only)
+  ROUND(o.courier_response_time_mins, 1) AS courier_response,
+  ROUND(o.kitchen_handoff_time_mins, 1) AS handoff_time,
+  ROUND(o.delivery_sla_difference, 1) AS delivery_sla_diff
+
+FROM \`wonder-dw-prod-brd.orders.hdr_orders\` o
+JOIN \`wonder-dw-prod-brd.dw.dim_hdrs\` h ON o.hdr_id = h.hdr_id
+LEFT JOIN \`wonder-dw-prod-brd.orders.hdr_on_time_orders\` ot ON o.order_id = ot.order_id
+LEFT JOIN complexity_metrics cm ON o.order_id = cm.order_id
+WHERE o.order_status = 'COMPLETE'
+  AND o.brand_category = 'WONDER_HDR'
+  AND (o.order_business_type <> 'WONDER_SPOT' OR o.order_business_type IS NULL)
+  AND o.service_date_et >= DATE_TRUNC(DATE_SUB(CURRENT_DATE('America/New_York'), INTERVAL 7 WEEK), WEEK(MONDAY))
+  AND o.service_date_et < DATE_TRUNC(CURRENT_DATE('America/New_York'), WEEK(MONDAY))
+  ${filters}
+  ${complexityFilter}
+ORDER BY o.service_date_et DESC
+LIMIT 10000;`;
+        }
+
+        function generateDoDQuery() {
+            const filters = getFilters();
+            return `-- Day-over-Day Comparison: Last 14 Days
+-- Track changes in volume, complexity, and performance
+
+WITH daily_metrics AS (
+  SELECT
+    o.service_date_et AS date,
+    h.hdr_name,
+    h.population_type,
+    
+    -- Volume
+    COUNT(DISTINCT o.order_id) AS total_orders,
+    COUNT(DISTINCT CASE WHEN o.order_channel IN ('APP','WEB','IN_PERSON') THEN o.order_id END) AS orders_1p,
+    
+    -- Complexity (from item counts)
+    ROUND(AVG(o.ticket_time_mins / NULLIF(
+      (SELECT COUNT(*) FROM \`wonder-dw-prod-brd.orders.hdr_kitchen_order_item\` k 
+       WHERE k.order_id = o.order_id), 0)
+    ), 2) AS est_items_per_order,
+    
+    -- OTR
+    ROUND((1 - SAFE_DIVIDE(
+      COUNT(DISTINCT CASE WHEN o.order_channel IN ('APP','WEB','IN_PERSON') AND ot.on_time_issue THEN o.order_id END),
+      COUNT(DISTINCT CASE WHEN o.order_channel IN ('APP','WEB','IN_PERSON') THEN o.order_id END)
+    )) * 100, 1) AS otr_1p,
+    
+    -- Kitchen OTR
+    ROUND(AVG(CASE WHEN o.ready_for_pickup_sla_difference <= 2 THEN 1 ELSE 0 END) * 100, 1) AS kitchen_otr,
+    
+    -- Timing
+    ROUND(AVG(o.ticket_time_mins), 1) AS avg_ticket_time,
+    ROUND(AVG(ot.order_level_expo_wait_time), 1) AS avg_expo_wait
+    
+  FROM \`wonder-dw-prod-brd.orders.hdr_orders\` o
+  JOIN \`wonder-dw-prod-brd.dw.dim_hdrs\` h ON o.hdr_id = h.hdr_id
+  LEFT JOIN \`wonder-dw-prod-brd.orders.hdr_on_time_orders\` ot ON o.order_id = ot.order_id
+  WHERE o.order_status = 'COMPLETE'
+    AND o.brand_category = 'WONDER_HDR'
+    AND (o.order_business_type <> 'WONDER_SPOT' OR o.order_business_type IS NULL)
+    AND o.service_date_et >= DATE_SUB(CURRENT_DATE('America/New_York'), INTERVAL 14 DAY)
+    AND o.service_date_et < CURRENT_DATE('America/New_York')
+    ${filters}
+  GROUP BY 1, 2, 3
+)
+
+SELECT
+  date,
+  hdr_name,
+  population_type,
+  total_orders,
+  orders_1p,
+  
+  -- Day-over-Day Changes
+  total_orders - LAG(total_orders) OVER (PARTITION BY hdr_name ORDER BY date) AS volume_change,
+  ROUND((total_orders - LAG(total_orders) OVER (PARTITION BY hdr_name ORDER BY date)) * 100.0 
+    / NULLIF(LAG(total_orders) OVER (PARTITION BY hdr_name ORDER BY date), 0), 1) AS volume_change_pct,
+  
+  otr_1p,
+  otr_1p - LAG(otr_1p) OVER (PARTITION BY hdr_name ORDER BY date) AS otr_change,
+  
+  kitchen_otr,
+  kitchen_otr - LAG(kitchen_otr) OVER (PARTITION BY hdr_name ORDER BY date) AS kitchen_otr_change,
+  
+  avg_ticket_time,
+  avg_ticket_time - LAG(avg_ticket_time) OVER (PARTITION BY hdr_name ORDER BY date) AS ticket_time_change,
+  
+  avg_expo_wait,
+  avg_expo_wait - LAG(avg_expo_wait) OVER (PARTITION BY hdr_name ORDER BY date) AS expo_wait_change
+
+FROM daily_metrics
+ORDER BY hdr_name, date DESC;`;
+        }
+
+        function generateComplexityQuery() {
+            const filters = getFilters();
+            return `-- Complexity Impact Analysis: Rolling 6 Weeks
+-- Compare OTR and timing across complexity tiers (controls for sequencer bias)
+
+WITH complexity_orders AS (
+  SELECT
+    koi.order_id,
+    koi.hdr_id,
+    COUNT(*) AS item_count,
+    MAX(koi.expected_step_time/60) - MIN(koi.expected_step_time/60) AS cook_time_range,
+    STDDEV_POP(koi.expected_step_time/60) AS cook_time_stddev,
+    MAX(CASE WHEN koi.delay_duration_mins > 0 THEN 1 ELSE 0 END) AS has_sequencer_delay,
+    MAX(koi.delay_duration_mins) AS max_delay,
+    MAX(CASE WHEN koi.hot_hold_item_a_la_minute_fl = 1 THEN 1 ELSE 0 END) AS has_alm,
+    CASE 
+      WHEN MAX(koi.expected_step_time/60) - MIN(koi.expected_step_time/60) > 6 OR COUNT(*) >= 5 THEN 'HIGH'
+      WHEN MAX(koi.expected_step_time/60) - MIN(koi.expected_step_time/60) > 3 OR COUNT(*) >= 3 THEN 'MEDIUM'
+      ELSE 'LOW'
+    END AS complexity_tier
+  FROM \`wonder-dw-prod-brd.orders.hdr_kitchen_order_item\` koi
+  WHERE koi.order_status = 'COMPLETED'
+    AND DATE(koi.order_assigned_to_pod_time) >= DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 7 WEEK), WEEK(MONDAY))
+  GROUP BY 1, 2
+)
+
+SELECT
+  co.complexity_tier,
+  co.has_sequencer_delay,
+  h.population_type,
+  
+  -- Volume
+  COUNT(DISTINCT o.order_id) AS orders,
+  ROUND(COUNT(DISTINCT o.order_id) * 100.0 / SUM(COUNT(DISTINCT o.order_id)) OVER(), 1) AS pct_of_total,
+  
+  -- Complexity Stats
+  ROUND(AVG(co.item_count), 2) AS avg_items,
+  ROUND(AVG(co.cook_time_range), 2) AS avg_cook_range,
+  ROUND(AVG(co.cook_time_stddev), 2) AS avg_cook_stddev,
+  
+  -- Sequencer
+  ROUND(AVG(CASE WHEN co.has_sequencer_delay = 1 THEN co.max_delay END), 1) AS avg_seq_delay_when_applied,
+  
+  -- Kitchen Process OTR (within complexity tier)
+  ROUND(AVG(CASE WHEN o.ready_for_pickup_sla_difference <= 2 THEN 1 ELSE 0 END) * 100, 1) AS kitchen_otr,
+  
+  -- 1P OTR
+  ROUND((1 - SAFE_DIVIDE(
+    COUNT(DISTINCT CASE WHEN o.order_channel IN ('APP','WEB','IN_PERSON') AND ot.on_time_issue THEN o.order_id END),
+    COUNT(DISTINCT CASE WHEN o.order_channel IN ('APP','WEB','IN_PERSON') THEN o.order_id END)
+  )) * 100, 1) AS otr_1p,
+  
+  -- Timing
+  ROUND(AVG(o.ticket_time_mins), 1) AS avg_ticket_time,
+  ROUND(AVG(ot.order_level_expo_wait_time), 1) AS avg_expo_wait,
+  ROUND(AVG(o.kitchen_handoff_time_mins), 1) AS avg_handoff
+
+FROM complexity_orders co
+JOIN \`wonder-dw-prod-brd.orders.hdr_orders\` o ON co.order_id = o.order_id
+JOIN \`wonder-dw-prod-brd.dw.dim_hdrs\` h ON o.hdr_id = h.hdr_id
+LEFT JOIN \`wonder-dw-prod-brd.orders.hdr_on_time_orders\` ot ON o.order_id = ot.order_id
+WHERE o.order_status = 'COMPLETE'
+  AND o.brand_category = 'WONDER_HDR'
+  AND (o.order_business_type <> 'WONDER_SPOT' OR o.order_business_type IS NULL)
+  AND o.service_date_et >= DATE_TRUNC(DATE_SUB(CURRENT_DATE('America/New_York'), INTERVAL 7 WEEK), WEEK(MONDAY))
+  AND o.service_date_et < DATE_TRUNC(CURRENT_DATE('America/New_York'), WEEK(MONDAY))
+  ${filters}
+GROUP BY 1, 2, 3
+ORDER BY complexity_tier, has_sequencer_delay, population_type;
+
+-- INTERPRETATION:
+-- Compare rows with SAME complexity_tier but DIFFERENT has_sequencer_delay
+-- If sequencer-involved has WORSE OTR within tier → Sequencer issue
+-- If sequencer-involved has SAME/BETTER OTR within tier → Sequencer helping`;
+        }
+
+        function generateQuery() {
+            let query;
+            switch(currentTab) {
+                case 'hdr-level':
+                    query = generateHDRQuery();
+                    document.getElementById('hdr-query').textContent = query;
+                    break;
+                case 'order-level':
+                    query = generateOrderQuery();
+                    document.getElementById('order-query').textContent = query;
+                    break;
+                case 'day-over-day':
+                    query = generateDoDQuery();
+                    document.getElementById('dod-query').textContent = query;
+                    break;
+                case 'complexity':
+                    query = generateComplexityQuery();
+                    document.getElementById('complexity-query').textContent = query;
+                    break;
+            }
+        }
+
+        function copyQuery() {
+            let queryElement;
+            switch(currentTab) {
+                case 'hdr-level': queryElement = document.getElementById('hdr-query'); break;
+                case 'order-level': queryElement = document.getElementById('order-query'); break;
+                case 'day-over-day': queryElement = document.getElementById('dod-query'); break;
+                case 'complexity': queryElement = document.getElementById('complexity-query'); break;
+            }
+            
+            navigator.clipboard.writeText(queryElement.textContent).then(() => {
+                const btn = event.target;
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = 'Copy', 2000);
+            });
+        }
+
+        // ==========================================
+        // RESULTS ANALYZER & RECOMMENDATIONS ENGINE
+        // ==========================================
+        
+        function showAnalyzer() {
+            document.getElementById('analyzer-modal').style.display = 'flex';
+        }
+        
+        function hideAnalyzer() {
+            document.getElementById('analyzer-modal').style.display = 'none';
+        }
+        
+        function analyzeResults() {
+            const input = document.getElementById('results-input').value.trim();
+            const outputDiv = document.getElementById('analysis-output');
+            
+            if (!input) {
+                outputDiv.innerHTML = '<p class="error">Please paste BigQuery results (JSON format)</p>';
+                return;
+            }
+            
+            let data;
+            try {
+                data = JSON.parse(input);
+            } catch (e) {
+                // Try parsing as newline-delimited JSON from BQ
+                try {
+                    data = input.split('\n').filter(line => line.trim()).map(line => JSON.parse(line));
+                } catch (e2) {
+                    outputDiv.innerHTML = '<p class="error">Invalid JSON. Copy results from BigQuery as JSON format.</p>';
+                    return;
+                }
+            }
+            
+            if (!Array.isArray(data) || data.length === 0) {
+                outputDiv.innerHTML = '<p class="error">No data found. Ensure results are in JSON array format.</p>';
+                return;
+            }
+            
+            const recommendations = generateRecommendations(data);
+            outputDiv.innerHTML = recommendations;
+        }
+        
+        function generateRecommendations(data) {
+            let html = '';
+            
+            // Detect data type based on fields present
+            const sample = data[0];
+            const isHDRLevel = 'hdr_name' in sample && 'otr_1p' in sample;
+            const isDoDLevel = 'otr_change' in sample || 'volume_change_pct' in sample;
+            const isOrderLevel = 'order_id' in sample || 'order_number' in sample;
+            const isComplexity = 'complexity_tier' in sample;
+            
+            // ==== EXECUTIVE SUMMARY ====
+            html += '<div class="rec-section"><h3>📊 Executive Summary</h3>';
+            
+            if (isHDRLevel && !isDoDLevel) {
+                html += analyzeHDRData(data);
+            } else if (isDoDLevel) {
+                html += analyzeDoDData(data);
+            } else if (isComplexity) {
+                html += analyzeComplexityData(data);
+            } else if (isOrderLevel) {
+                html += analyzeOrderData(data);
+            } else {
+                html += '<p>Data structure not recognized. Showing raw summary.</p>';
+                html += '<pre>' + JSON.stringify(data.slice(0, 5), null, 2) + '</pre>';
+            }
+            
+            html += '</div>';
+            return html;
+        }
+        
+        function analyzeHDRData(data) {
+            let html = '';
+            
+            // Calculate network averages
+            const totalOrders = data.reduce((sum, r) => sum + (parseInt(r.orders_1p) || 0), 0);
+            const avgOTR = data.reduce((sum, r) => sum + (parseFloat(r.otr_1p) || 0), 0) / data.length;
+            const avgKitchenOTR = data.reduce((sum, r) => sum + (parseFloat(r.kitchen_otr) || 0), 0) / data.length;
+            const avgTicketTime = data.reduce((sum, r) => sum + (parseFloat(r.avg_ticket_time) || 0), 0) / data.length;
+            const avgHandoff = data.reduce((sum, r) => sum + (parseFloat(r.avg_handoff) || 0), 0) / data.length;
+            
+            html += '<div class="summary-stats">';
+            html += '<div class="stat"><span class="stat-value">' + avgOTR.toFixed(1) + '%</span><span class="stat-label">Avg OTR (1P)</span></div>';
+            html += '<div class="stat"><span class="stat-value">' + avgKitchenOTR.toFixed(1) + '%</span><span class="stat-label">Kitchen OTR</span></div>';
+            html += '<div class="stat"><span class="stat-value">' + avgTicketTime.toFixed(1) + 'm</span><span class="stat-label">Avg Ticket</span></div>';
+            html += '<div class="stat"><span class="stat-value">' + avgHandoff.toFixed(1) + 'm</span><span class="stat-label">Avg Handoff</span></div>';
+            html += '<div class="stat"><span class="stat-value">' + totalOrders.toLocaleString() + '</span><span class="stat-label">Total Orders</span></div>';
+            html += '</div>';
+            
+            // ==== OPS FAILURE LOCATIONS (Profile A) ====
+            const opsFailures = data.filter(r => 
+                parseFloat(r.avg_courier_response || 0) <= 5 && 
+                parseFloat(r.avg_handoff || 0) > 8
+            ).sort((a, b) => parseFloat(b.avg_handoff) - parseFloat(a.avg_handoff));
+            
+            if (opsFailures.length > 0) {
+                html += '<div class="rec-block rec-critical">';
+                html += '<h4>🔴 Profile A: Ops Failures (Fast Drivers, Slow Handoff)</h4>';
+                html += '<p class="rec-insight">These locations have drivers arriving quickly, but food sits in-store. Likely expo bottleneck or "fake bumping".</p>';
+                html += '<table class="rec-table"><tr><th>HDR</th><th>Courier Response</th><th>Handoff</th><th>Gap</th><th>OTR</th></tr>';
+                opsFailures.slice(0, 5).forEach(r => {
+                    const gap = (parseFloat(r.avg_handoff) - parseFloat(r.avg_courier_response || 0)).toFixed(1);
+                    html += '<tr><td>' + r.hdr_name + '</td><td>' + (parseFloat(r.avg_courier_response) || 0).toFixed(1) + 'm</td>';
+                    html += '<td class="tier-high">' + parseFloat(r.avg_handoff).toFixed(1) + 'm</td>';
+                    html += '<td>+' + gap + 'm</td><td>' + parseFloat(r.otr_1p).toFixed(1) + '%</td></tr>';
+                });
+                html += '</table>';
+                html += '<p class="rec-action">⚡ <strong>Action:</strong> Audit KDS procedures. Stop pre-bumping. Focus on expo station flow.</p>';
+                html += '</div>';
+            }
+            
+            // ==== LOGISTICS FAILURE LOCATIONS (Profile B) ====
+            const logisticsFailures = data.filter(r => 
+                parseFloat(r.avg_courier_response || 0) > 15 && 
+                parseFloat(r.avg_handoff || 0) <= 5
+            ).sort((a, b) => parseFloat(b.avg_courier_response) - parseFloat(a.avg_courier_response));
+            
+            if (logisticsFailures.length > 0) {
+                html += '<div class="rec-block rec-warning">';
+                html += '<h4>🟠 Profile B: Logistics Failures (Fast Kitchen, Slow Drivers)</h4>';
+                html += '<p class="rec-insight">These locations have fast kitchen execution, but drivers take too long to arrive. True driver shortage.</p>';
+                html += '<table class="rec-table"><tr><th>HDR</th><th>Courier Response</th><th>Handoff</th><th>Gap</th><th>OTR</th></tr>';
+                logisticsFailures.slice(0, 5).forEach(r => {
+                    const gap = (parseFloat(r.avg_courier_response || 0) - parseFloat(r.avg_handoff)).toFixed(1);
+                    html += '<tr><td>' + r.hdr_name + '</td><td class="tier-high">' + (parseFloat(r.avg_courier_response) || 0).toFixed(1) + 'm</td>';
+                    html += '<td>' + parseFloat(r.avg_handoff).toFixed(1) + 'm</td>';
+                    html += '<td>+' + gap + 'm</td><td>' + parseFloat(r.otr_1p).toFixed(1) + '%</td></tr>';
+                });
+                html += '</table>';
+                html += '<p class="rec-action">⚡ <strong>Action:</strong> Review courier incentives. Adjust dispatch radius for these zones.</p>';
+                html += '</div>';
+            }
+            
+            // ==== LOW OTR LOCATIONS ====
+            const lowOTR = data.filter(r => parseFloat(r.otr_1p) < avgOTR - 5)
+                .sort((a, b) => parseFloat(a.otr_1p) - parseFloat(b.otr_1p));
+            
+            if (lowOTR.length > 0) {
+                html += '<div class="rec-block rec-info">';
+                html += '<h4>📉 Below-Average OTR Locations (> 5pts below network)</h4>';
+                html += '<table class="rec-table"><tr><th>HDR</th><th>OTR</th><th>Kitchen OTR</th><th>Ticket Time</th><th>Likely Issue</th></tr>';
+                lowOTR.slice(0, 8).forEach(r => {
+                    const kitchenOtr = parseFloat(r.kitchen_otr) || 0;
+                    const customerOtr = parseFloat(r.otr_1p) || 0;
+                    let issue = 'Unknown';
+                    if (kitchenOtr > 60 && customerOtr < 85) issue = 'Logistics/Handoff';
+                    else if (kitchenOtr < 55) issue = 'Kitchen Speed';
+                    else if (parseFloat(r.avg_ticket_time) > avgTicketTime + 2) issue = 'Long Ticket Time';
+                    html += '<tr><td>' + r.hdr_name + '</td><td class="tier-high">' + customerOtr.toFixed(1) + '%</td>';
+                    html += '<td>' + kitchenOtr.toFixed(1) + '%</td><td>' + (parseFloat(r.avg_ticket_time) || 0).toFixed(1) + 'm</td>';
+                    html += '<td>' + issue + '</td></tr>';
+                });
+                html += '</table>';
+                html += '</div>';
+            }
+            
+            // ==== TOP PERFORMERS ====
+            const topOTR = data.filter(r => parseFloat(r.otr_1p) >= 95)
+                .sort((a, b) => parseFloat(b.otr_1p) - parseFloat(a.otr_1p));
+            
+            if (topOTR.length > 0) {
+                html += '<div class="rec-block rec-success">';
+                html += '<h4>🏆 Top Performers (OTR ≥ 95%)</h4>';
+                html += '<table class="rec-table"><tr><th>HDR</th><th>OTR</th><th>Kitchen OTR</th><th>Ticket Time</th></tr>';
+                topOTR.slice(0, 5).forEach(r => {
+                    html += '<tr><td>' + r.hdr_name + '</td><td class="tier-low">' + parseFloat(r.otr_1p).toFixed(1) + '%</td>';
+                    html += '<td>' + (parseFloat(r.kitchen_otr) || 0).toFixed(1) + '%</td>';
+                    html += '<td>' + (parseFloat(r.avg_ticket_time) || 0).toFixed(1) + 'm</td></tr>';
+                });
+                html += '</table>';
+                html += '</div>';
+            }
+            
+            return html;
+        }
+        
+        function analyzeDoDData(data) {
+            let html = '';
+            
+            // Find significant changes
+            const significantDeclines = data.filter(r => 
+                parseFloat(r.otr_change || 0) < -3 || 
+                parseFloat(r.volume_change_pct || 0) < -20
+            );
+            
+            const significantImprovements = data.filter(r => 
+                parseFloat(r.otr_change || 0) > 3 || 
+                parseFloat(r.volume_change_pct || 0) > 20
+            );
+            
+            if (significantDeclines.length > 0) {
+                html += '<div class="rec-block rec-critical">';
+                html += '<h4>⚠️ Significant Declines (Day-over-Day)</h4>';
+                html += '<table class="rec-table"><tr><th>Date</th><th>HDR</th><th>OTR Change</th><th>Volume Change</th><th>Ticket Δ</th></tr>';
+                significantDeclines.slice(0, 10).forEach(r => {
+                    const otrChange = parseFloat(r.otr_change || 0);
+                    const volChange = parseFloat(r.volume_change_pct || 0);
+                    html += '<tr><td>' + (r.date || r.service_date_et || '') + '</td>';
+                    html += '<td>' + (r.hdr_name || '') + '</td>';
+                    html += '<td class="' + (otrChange < -3 ? 'tier-high' : '') + '">' + otrChange.toFixed(1) + ' pts</td>';
+                    html += '<td class="' + (volChange < -20 ? 'tier-high' : '') + '">' + volChange.toFixed(1) + '%</td>';
+                    html += '<td>' + (parseFloat(r.ticket_time_change || 0)).toFixed(1) + 'm</td></tr>';
+                });
+                html += '</table>';
+                html += '<p class="rec-action">⚡ <strong>Investigate:</strong> Check for staffing changes, menu issues, or courier platform problems on these dates.</p>';
+                html += '</div>';
+            }
+            
+            if (significantImprovements.length > 0) {
+                html += '<div class="rec-block rec-success">';
+                html += '<h4>📈 Significant Improvements (Day-over-Day)</h4>';
+                html += '<table class="rec-table"><tr><th>Date</th><th>HDR</th><th>OTR Change</th><th>Volume Change</th></tr>';
+                significantImprovements.slice(0, 5).forEach(r => {
+                    html += '<tr><td>' + (r.date || r.service_date_et || '') + '</td>';
+                    html += '<td>' + (r.hdr_name || '') + '</td>';
+                    html += '<td class="tier-low">+' + parseFloat(r.otr_change || 0).toFixed(1) + ' pts</td>';
+                    html += '<td>+' + parseFloat(r.volume_change_pct || 0).toFixed(1) + '%</td></tr>';
+                });
+                html += '</table>';
+                html += '</div>';
+            }
+            
+            return html;
+        }
+        
+        function analyzeComplexityData(data) {
+            let html = '';
+            
+            // Group by complexity tier
+            const byTier = {};
+            data.forEach(r => {
+                const tier = r.complexity_tier || 'UNKNOWN';
+                if (!byTier[tier]) byTier[tier] = [];
+                byTier[tier].push(r);
+            });
+            
+            html += '<div class="summary-stats">';
+            ['LOW', 'MEDIUM', 'HIGH'].forEach(tier => {
+                if (byTier[tier]) {
+                    const tierData = byTier[tier];
+                    const avgOTR = tierData.reduce((s, r) => s + parseFloat(r.otr_1p || r.kitchen_otr || 0), 0) / tierData.length;
+                    const orders = tierData.reduce((s, r) => s + parseInt(r.orders || 0), 0);
+                    const tierClass = tier === 'HIGH' ? 'tier-high' : (tier === 'MEDIUM' ? 'tier-medium' : 'tier-low');
+                    html += '<div class="stat"><span class="stat-value ' + tierClass + '">' + avgOTR.toFixed(1) + '%</span>';
+                    html += '<span class="stat-label">' + tier + ' Complexity OTR</span></div>';
+                }
+            });
+            html += '</div>';
+            
+            // Sequencer impact analysis
+            const withSequencer = data.filter(r => r.has_sequencer_delay == 1 || r.has_sequencer_delay === '1');
+            const withoutSequencer = data.filter(r => r.has_sequencer_delay == 0 || r.has_sequencer_delay === '0');
+            
+            if (withSequencer.length > 0 && withoutSequencer.length > 0) {
+                const avgWithSeq = withSequencer.reduce((s, r) => s + parseFloat(r.kitchen_otr || r.otr_1p || 0), 0) / withSequencer.length;
+                const avgWithoutSeq = withoutSequencer.reduce((s, r) => s + parseFloat(r.kitchen_otr || r.otr_1p || 0), 0) / withoutSequencer.length;
+                const delta = avgWithSeq - avgWithoutSeq;
+                
+                html += '<div class="rec-block ' + (delta < -3 ? 'rec-critical' : 'rec-info') + '">';
+                html += '<h4>🔀 Sequencer Impact Analysis</h4>';
+                html += '<p><strong>With Sequencer Delay:</strong> ' + avgWithSeq.toFixed(1) + '% OTR (' + withSequencer.length + ' groups)</p>';
+                html += '<p><strong>Without Sequencer Delay:</strong> ' + avgWithoutSeq.toFixed(1) + '% OTR (' + withoutSequencer.length + ' groups)</p>';
+                html += '<p><strong>Delta:</strong> <span class="' + (delta < 0 ? 'tier-high' : 'tier-low') + '">' + (delta >= 0 ? '+' : '') + delta.toFixed(1) + ' pts</span></p>';
+                
+                if (delta < -5) {
+                    html += '<p class="rec-action">⚡ <strong>Finding:</strong> Sequencer involvement correlates with WORSE OTR. Investigate sequencer logic for complex orders.</p>';
+                } else if (delta > 2) {
+                    html += '<p class="rec-action">✅ <strong>Finding:</strong> Sequencer is HELPING OTR on complex orders. Continue current approach.</p>';
+                } else {
+                    html += '<p class="rec-action">ℹ️ <strong>Finding:</strong> Sequencer impact is neutral. Focus on other improvement areas.</p>';
+                }
+                html += '</div>';
+            }
+            
+            return html;
+        }
+        
+        function analyzeOrderData(data) {
+            let html = '';
+            
+            const lateOrders = data.filter(r => parseFloat(r.delivery_sla_difference || 0) > 1);
+            const earlyOrders = data.filter(r => parseFloat(r.delivery_sla_difference || 0) < -9);
+            
+            html += '<div class="summary-stats">';
+            html += '<div class="stat"><span class="stat-value">' + data.length + '</span><span class="stat-label">Total Orders</span></div>';
+            html += '<div class="stat"><span class="stat-value tier-high">' + lateOrders.length + '</span><span class="stat-label">Late Orders</span></div>';
+            html += '<div class="stat"><span class="stat-value tier-medium">' + earlyOrders.length + '</span><span class="stat-label">Early Orders</span></div>';
+            html += '</div>';
+            
+            // Force complete analysis
+            const forceComplete = data.filter(r => r.has_force_complete == 1 || r.has_critical_force_complete == 1);
+            if (forceComplete.length > 0) {
+                const fcPct = (forceComplete.length / data.length * 100).toFixed(1);
+                html += '<div class="rec-block rec-warning">';
+                html += '<h4>⚠️ Force Complete Orders: ' + fcPct + '%</h4>';
+                html += '<p>Orders with force complete often indicate kitchen tracking issues or premature bumping.</p>';
+                html += '</div>';
+            }
+            
+            return html;
+        }
+        
+        // Initialize
+        generateQuery();
+    </script>
+    
+    <!-- Analyzer Modal -->
+    <div id="analyzer-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📊 Results Analyzer</h2>
+                <button class="btn btn-close" onclick="hideAnalyzer()">✕</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-instructions">
+                    <strong>Instructions:</strong><br>
+                    1. Run your query in BigQuery<br>
+                    2. Click "Save Results" → "JSON (local file)" or copy as JSON<br>
+                    3. Paste the JSON results below<br>
+                    4. Click "Analyze" for automated recommendations
+                </p>
+                <textarea id="results-input" placeholder="Paste BigQuery JSON results here..."></textarea>
+                <button class="btn btn-analyze" onclick="analyzeResults()">🔍 Analyze & Generate Recommendations</button>
+                <div id="analysis-output" class="analysis-output"></div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: auto;
+            border: 1px solid var(--border-color);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-primary);
+        }
+        
+        .modal-header h2 {
+            color: var(--snap-pea);
+            margin: 0;
+        }
+        
+        .btn-close {
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            padding: 0.25rem 0.5rem;
+        }
+        
+        .btn-close:hover {
+            color: var(--pomodoro);
+            background: transparent;
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .modal-instructions {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        
+        #results-input {
+            width: 100%;
+            height: 200px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            resize: vertical;
+            margin-bottom: 1rem;
+        }
+        
+        .btn-analyze {
+            background: var(--marmalade);
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn-analyze:hover {
+            background: var(--butternut);
+        }
+        
+        .analysis-output {
+            min-height: 100px;
+        }
+        
+        .error {
+            color: var(--pomodoro);
+            padding: 1rem;
+            background: rgba(226, 0, 63, 0.1);
+            border-radius: 8px;
+        }
+        
+        /* Recommendation Styles */
+        .rec-section h3 {
+            color: var(--snap-pea);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .summary-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stat {
+            background: var(--bg-primary);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .stat-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--popsicle);
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        
+        .rec-block {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+        
+        .rec-critical {
+            background: rgba(226, 0, 63, 0.1);
+            border-color: var(--pomodoro);
+        }
+        
+        .rec-warning {
+            background: rgba(255, 152, 70, 0.1);
+            border-color: var(--butternut);
+        }
+        
+        .rec-info {
+            background: rgba(55, 188, 150, 0.1);
+            border-color: var(--popsicle);
+        }
+        
+        .rec-success {
+            background: rgba(111, 209, 114, 0.1);
+            border-color: var(--snap-pea);
+        }
+        
+        .rec-block h4 {
+            margin: 0 0 0.75rem 0;
+            color: var(--text-primary);
+        }
+        
+        .rec-insight {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .rec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.75rem 0;
+            font-size: 0.85rem;
+        }
+        
+        .rec-table th, .rec-table td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .rec-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        
+        .rec-action {
+            margin-top: 0.75rem;
+            padding: 0.5rem;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        /* Analyzer Button in Main UI */
+        .btn-analyzer {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--marmalade);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 4px 20px rgba(255, 86, 0, 0.3);
+            z-index: 100;
+        }
+        
+        .btn-analyzer:hover {
+            background: var(--butternut);
+            transform: translateY(-2px);
+        }
+    </style>
+    
+    <!-- Floating Analyzer Button -->
+    <button class="btn btn-analyzer" onclick="showAnalyzer()">📊 Analyze Results</button>
+</body>
+</html>
+
