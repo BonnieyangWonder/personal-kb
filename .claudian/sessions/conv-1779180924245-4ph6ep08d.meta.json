@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779180924245-4ph6ep08d",
+  "providerId": "claude",
+  "title": "Translate ingredient entry format to Chinese",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779180924245,
+  "updatedAt": 1779181223608,
+  "lastResponseAt": 1779181223608,
+  "sessionId": "2e567077-6601-47b8-a521-296d9019411f",
+  "providerState": {
+    "providerSessionId": "2e567077-6601-47b8-a521-296d9019411f"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 255,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 30208,
+    "contextWindow": 200000,
+    "contextTokens": 30463,
+    "percentage": 15,
+    "contextWindowIsAuthoritative": true
+  }
+}
