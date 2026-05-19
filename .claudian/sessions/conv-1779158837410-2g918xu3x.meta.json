@@ -4,20 +4,19 @@
   "title": "评估任务合理性与目的",
   "titleGenerationStatus": "success",
   "createdAt": 1779158837412,
-  "updatedAt": 1779172589418,
-  "lastResponseAt": 1779172589418,
+  "updatedAt": 1779174316477,
+  "lastResponseAt": 1779174295217,
   "sessionId": "b97abef6-adcb-4b6f-92ec-752607318ad7",
   "providerState": {
     "providerSessionId": "b97abef6-adcb-4b6f-92ec-752607318ad7"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 304,
+    "inputTokens": 155,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 33792,
+    "cacheReadInputTokens": 51456,
     "contextWindow": 200000,
-    "contextTokens": 34096,
-    "percentage": 17,
-    "contextWindowIsAuthoritative": true
+    "contextTokens": 51611,
+    "percentage": 26
   }
 }

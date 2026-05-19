@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779174411560-y9xtjzlj2",
+  "providerId": "claude",
+  "title": "Create Jira story for 41* activation issue",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779174411561,
+  "updatedAt": 1779174976200,
+  "lastResponseAt": 1779174976200,
+  "sessionId": "cd51eace-c3d3-4cd7-9ed0-24db21b1a5f6",
+  "providerState": {
+    "providerSessionId": "cd51eace-c3d3-4cd7-9ed0-24db21b1a5f6"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 200,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 79232,
+    "contextWindow": 200000,
+    "contextTokens": 79432,
+    "percentage": 40,
+    "contextWindowIsAuthoritative": true
+  }
+}
