@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779177445755-wzd74bvny",
+  "providerId": "claude",
+  "title": "Configure PaddleOCR MCP",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779177445756,
+  "updatedAt": 1779177623406,
+  "lastResponseAt": 1779177623406,
+  "sessionId": "56e8b9e7-88aa-4a0b-93bd-7457fdfae326",
+  "providerState": {
+    "providerSessionId": "56e8b9e7-88aa-4a0b-93bd-7457fdfae326"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 136,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 35712,
+    "contextWindow": 200000,
+    "contextTokens": 35848,
+    "percentage": 18,
+    "contextWindowIsAuthoritative": true
+  }
+}
