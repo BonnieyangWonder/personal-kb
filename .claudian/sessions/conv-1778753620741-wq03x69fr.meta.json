@@ -4,20 +4,20 @@
   "title": "Greet the user",
   "titleGenerationStatus": "success",
   "createdAt": 1778753620741,
-  "updatedAt": 1779157512722,
-  "lastResponseAt": 1779157512722,
+  "updatedAt": 1779158806161,
+  "lastResponseAt": 1779158806161,
   "sessionId": "aa846fb9-530a-4c5f-ba4a-6a3303c82b98",
   "providerState": {
     "providerSessionId": "aa846fb9-530a-4c5f-ba4a-6a3303c82b98"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 366,
+    "inputTokens": 807,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 63872,
+    "cacheReadInputTokens": 65408,
     "contextWindow": 200000,
-    "contextTokens": 64238,
-    "percentage": 32,
+    "contextTokens": 66215,
+    "percentage": 33,
     "contextWindowIsAuthoritative": true
   }
 }
