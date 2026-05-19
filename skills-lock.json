@@ -1,70 +1,11 @@
 {
-  "version": "1.0.0",
+  "version": 1,
   "skills": {
-    "cook": {
-      "source": "builtin",
+    "search-company-knowledge": {
+      "source": "registry",
       "version": "1.0.0",
-      "disabled": false
-    },
-    "ask": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
-    },
-    "challenge": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
-    },
-    "ideas": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
-    },
-    "organize": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
-    },
-    "explore": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
-    },
-    "audit": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
-    },
-    "obsidian-cli": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
-    },
-    "obsidian-markdown": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
-    },
-    "obsidian-bases": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
-    },
-    "vault-conventions": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
-    },
-    "defuddle": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
-    },
-    "json-canvas": {
-      "source": "builtin",
-      "version": "1.0.0",
-      "disabled": false
+      "disabled": false,
+      "registryIdentifier": "atlassian/atlassian-mcp-server@search-company-knowledge"
     }
   }
 }
