@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779265986913-bhvh48o17",
+  "providerId": "claude",
+  "title": "Find Jira ticket on masterdata dietary tags",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779265986914,
+  "updatedAt": 1779267025248,
+  "lastResponseAt": 1779266179477,
+  "sessionId": "e5555ab0-504a-49a8-b67d-da535538e1f0",
+  "providerState": {
+    "providerSessionId": "e5555ab0-504a-49a8-b67d-da535538e1f0"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 16702,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 61952,
+    "contextWindow": 200000,
+    "contextTokens": 78654,
+    "percentage": 39,
+    "contextWindowIsAuthoritative": true
+  }
+}
