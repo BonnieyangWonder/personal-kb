@@ -4,6 +4,20 @@
   "title": "Query BigQuery data via bq CLI",
   "titleGenerationStatus": "success",
   "createdAt": 1779262210818,
-  "updatedAt": 1779262217794,
-  "sessionId": null
+  "updatedAt": 1779263522570,
+  "lastResponseAt": 1779263522570,
+  "sessionId": "d9244b7d-b139-4231-a3db-5d91a0d620bd",
+  "providerState": {
+    "providerSessionId": "d9244b7d-b139-4231-a3db-5d91a0d620bd"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 188,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 40064,
+    "contextWindow": 200000,
+    "contextTokens": 40252,
+    "percentage": 20,
+    "contextWindowIsAuthoritative": true
+  }
 }
