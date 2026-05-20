@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779285557965-tj5edifkz",
+  "providerId": "claude",
+  "title": "Print Word on Brother Mac printer",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779285557965,
+  "updatedAt": 1779285580590,
+  "lastResponseAt": 1779285580590,
+  "sessionId": "fc30a586-1d54-4d85-8087-95d1cfd1c7d3",
+  "providerState": {
+    "providerSessionId": "fc30a586-1d54-4d85-8087-95d1cfd1c7d3"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 30773,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 30773,
+    "percentage": 15,
+    "contextWindowIsAuthoritative": true
+  }
+}
