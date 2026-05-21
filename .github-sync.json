@@ -10,7 +10,8 @@
       ".obsidian/workspace-mobile.json",
       ".obsidian/plugins/**",
       ".obsidian/themes/**",
-      ".trash/**"
+      ".trash/**",
+      ".obsidian/**"
     ]
   },
   "ai": {
