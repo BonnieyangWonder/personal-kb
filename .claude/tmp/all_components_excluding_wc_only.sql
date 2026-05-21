@@ -1,11 +1,19 @@
 WITH
--- Items to EXCLUDE: "Cookbook numbers in WC, not on the IK list"
+-- Items to EXCLUDE: ALL cookbook # from the Confluence page (Report 1's target list)
 excluded_items AS (
   SELECT item_num FROM UNNEST([
-    '4000243','4000258','4000259','4000263','4000265','4000281','4000285',
-    '4000304','4000387','4000541','4000544','4000568','4000658','4000824',
-    '4000826','4000834','4000837','4000863','4000864','4000865','4000867',
-    '4000869','4000872','7000026','7000029','7000040'
+    '4000064','4000075','4000104','4000117','4000118','4000242','4000243',
+    '4000258','4000259','4000263','4000265','4000276','4000279','4000281',
+    '4000285','4000304','4000316','4000323','4000330','4000337','4000367',
+    '4000381','4000383','4000387','4000402','4000406','4000414','4000415',
+    '4000416','4000421','4000428','4000430','4000436','4000440','4000451',
+    '4000467','4000474','4000495','4000534','4000541','4000542','4000544',
+    '4000550','4000552','4000558','4000568','4000572','4000573','4000636',
+    '4000644','4000651','4000655','4000656','4000658','4000661','4000823',
+    '4000824','4000826','4000834','4000837','4000843','4000848','4000850',
+    '4000853','4000856','4000860','4000862','4000863','4000864','4000865',
+    '4000866','4000867','4000869','4000872','4000873','7000026','7000029',
+    '7000031','7000034','7000040'
   ]) AS item_num
 ),
 
@@ -219,7 +227,7 @@ LEFT JOIN `wonder-recipe-prod.mongo_batch_recipe_v2.global_appliance_settings` g
   ON d.appliance_config_id = gas._id
 LEFT JOIN item_concepts ic
   ON d.menu_item_number = ic.item_number
--- Exclude items that are WC-only (not on IK list)
+-- Exclude ALL 80 cookbook # from the Confluence page (Report 1 scope)
 WHERE d.matched_item_number NOT IN (SELECT item_num FROM excluded_items)
   OR d.matched_item_number IS NULL
 ORDER BY d.appliance, d.matched_item_number, d.menu_item_number;
