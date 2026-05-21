@@ -1,7 +1,7 @@
 {
   "userName": "",
   "permissionMode": "yolo",
-  "model": "deepseek-v4-flash",
+  "model": "deepseek-v4-pro[1m]",
   "thinkingBudget": "high",
   "effortLevel": "high",
   "serviceTier": "default",
@@ -64,7 +64,7 @@
   },
   "settingsProvider": "claude",
   "savedProviderModel": {
-    "claude": "deepseek-v4-flash"
+    "claude": "deepseek-v4-pro[1m]"
   },
   "savedProviderEffort": {
     "claude": "high"
@@ -76,7 +76,7 @@
   "savedProviderPermissionMode": {
     "claude": "yolo"
   },
-  "lastCustomModel": "deepseek-v4-flash",
+  "lastCustomModel": "deepseek-v4-pro[1m]",
   "maxTabs": 3,
   "tabBarPosition": "input",
   "enableAutoScroll": true,
