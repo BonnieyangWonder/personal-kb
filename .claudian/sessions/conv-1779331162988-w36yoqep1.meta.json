@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779331162988-w36yoqep1",
+  "providerId": "claude",
+  "title": "Translate Chinese text to English",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779331162989,
+  "updatedAt": 1779331167893,
+  "lastResponseAt": 1779331166984,
+  "sessionId": "3406deeb-8984-4b5f-ab01-d707fd5988d7",
+  "providerState": {
+    "providerSessionId": "3406deeb-8984-4b5f-ab01-d707fd5988d7"
+  },
+  "usage": {
+    "model": "deepseek-v4-flash",
+    "inputTokens": 30772,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 30772,
+    "percentage": 15,
+    "contextWindowIsAuthoritative": true
+  }
+}
