@@ -1,7 +1,7 @@
 {
   "userName": "",
   "permissionMode": "yolo",
-  "model": "deepseek-v4-pro",
+  "model": "deepseek-v4-flash",
   "thinkingBudget": "high",
   "effortLevel": "high",
   "serviceTier": "default",
@@ -45,7 +45,8 @@
       "environmentVariables": "",
       "environmentHash": "",
       "installationMethodsByHost": {
-        "Bonnie-M1-Pro-C02GM514Q05N.local": "native-windows"
+        "Bonnie-M1-Pro-C02GM514Q05N.local": "native-windows",
+        "192.168.2.83": "native-windows"
       },
       "wslDistroOverridesByHost": {}
     },
@@ -63,7 +64,7 @@
   },
   "settingsProvider": "claude",
   "savedProviderModel": {
-    "claude": "deepseek-v4-pro"
+    "claude": "deepseek-v4-flash"
   },
   "savedProviderEffort": {
     "claude": "high"
@@ -75,7 +76,7 @@
   "savedProviderPermissionMode": {
     "claude": "yolo"
   },
-  "lastCustomModel": "deepseek-v4-pro",
+  "lastCustomModel": "deepseek-v4-flash",
   "maxTabs": 3,
   "tabBarPosition": "input",
   "enableAutoScroll": true,
