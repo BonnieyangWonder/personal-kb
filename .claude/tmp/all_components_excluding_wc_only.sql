@@ -1,19 +1,11 @@
 WITH
--- Target cookbook item numbers from the Confluence page
-target_items AS (
+-- Items to EXCLUDE: "Cookbook numbers in WC, not on the IK list"
+excluded_items AS (
   SELECT item_num FROM UNNEST([
-    '4000064','4000075','4000104','4000117','4000118','4000242','4000243',
-    '4000258','4000259','4000263','4000265','4000276','4000279','4000281',
-    '4000285','4000304','4000316','4000323','4000330','4000337','4000367',
-    '4000381','4000383','4000387','4000402','4000406','4000414','4000415',
-    '4000416','4000421','4000428','4000430','4000436','4000440','4000451',
-    '4000467','4000474','4000495','4000534','4000541','4000542','4000544',
-    '4000550','4000552','4000558','4000568','4000572','4000573','4000636',
-    '4000644','4000651','4000655','4000656','4000658','4000661','4000823',
-    '4000824','4000826','4000834','4000837','4000843','4000848','4000850',
-    '4000853','4000856','4000860','4000862','4000863','4000864','4000865',
-    '4000866','4000867','4000869','4000872','4000873','7000026','7000029',
-    '7000031','7000034','7000040'
+    '4000243','4000258','4000259','4000263','4000265','4000281','4000285',
+    '4000304','4000387','4000541','4000544','4000568','4000658','4000824',
+    '4000826','4000834','4000837','4000863','4000864','4000865','4000867',
+    '4000869','4000872','7000026','7000029','7000040'
   ]) AS item_num
 ),
 
@@ -95,7 +87,6 @@ lb_substeps AS (
 ),
 
 -- Extract customization option value -> item_number mapping
--- Structure: options[].option_values[].items[].item_number
 cust_option_values AS (
   SELECT
     iv.item_number AS menu_item_number,
@@ -114,31 +105,18 @@ cust_option_values AS (
     AND JSON_EXTRACT_SCALAR(opt_val_item, '$.item_number') IS NOT NULL
 ),
 
--- MATCH TYPE 1: Direct matches (step_related_item IN target_items)
+-- MATCH TYPE 1: Direct matches (ALL step_related_item from sub-steps or procedures)
 direct_matches AS (
   SELECT DISTINCT
     ls.*,
-    ls.step_related_item AS matched_item_number,
+    COALESCE(ls.step_related_item, ls.proc_related_item) AS matched_item_number,
     'DIRECT' AS match_type
   FROM lb_substeps ls
-  JOIN target_items ti ON ti.item_num = ls.step_related_item
-  WHERE ls.step_related_item IS NOT NULL
+  WHERE COALESCE(ls.step_related_item, ls.proc_related_item) IS NOT NULL
 ),
 
--- MATCH TYPE 2: Title matches (step_title contains target item number)
-title_matches AS (
-  SELECT DISTINCT
-    ls.*,
-    ti.item_num AS matched_item_number,
-    'TITLE' AS match_type
-  FROM lb_substeps ls
-  CROSS JOIN target_items ti
-  WHERE ls.step_related_item IS NULL
-    AND ls.step_title LIKE CONCAT('%', ti.item_num, '%')
-),
-
--- MATCH TYPE 3: Indirect via customization option
--- Resolve step/procedure option_value_id -> customization option item_number -> target
+-- MATCH TYPE 2: Indirect via customization option
+-- Resolve step/procedure option_value_id -> customization option item_number
 indirect_matches AS (
   SELECT DISTINCT
     ls.*,
@@ -152,15 +130,13 @@ indirect_matches AS (
       OR
       JSON_EXTRACT_SCALAR(ls.proc_customization_option, '$.option_value_id') = cov.option_value_id
     )
-  JOIN target_items ti ON ti.item_num = cov.mapped_item_number
   WHERE ls.step_related_item IS NULL
+    AND ls.proc_related_item IS NULL
 ),
 
 -- Combine all matches
 all_matches AS (
   SELECT * FROM direct_matches
-  UNION ALL
-  SELECT * FROM title_matches
   UNION ALL
   SELECT * FROM indirect_matches
 ),
@@ -183,7 +159,7 @@ deduped AS (
            activity, appliance, appliance_config_id, restaurant_ids
 )
 
--- Final output
+-- Final output (excluding WC-only items)
 SELECT
   d.matched_item_number AS component_item_number,
   ei.name AS component_item_name,
@@ -243,4 +219,7 @@ LEFT JOIN `wonder-recipe-prod.mongo_batch_recipe_v2.global_appliance_settings` g
   ON d.appliance_config_id = gas._id
 LEFT JOIN item_concepts ic
   ON d.menu_item_number = ic.item_number
+-- Exclude items that are WC-only (not on IK list)
+WHERE d.matched_item_number NOT IN (SELECT item_num FROM excluded_items)
+  OR d.matched_item_number IS NULL
 ORDER BY d.appliance, d.matched_item_number, d.menu_item_number;
