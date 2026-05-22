@@ -2,7 +2,7 @@
   "userName": "",
   "permissionMode": "yolo",
   "model": "deepseek-v4-pro",
-  "thinkingBudget": "high",
+  "thinkingBudget": "xhigh",
   "effortLevel": "high",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
@@ -73,7 +73,7 @@
   },
   "savedProviderServiceTier": {},
   "savedProviderThinkingBudget": {
-    "claude": "high"
+    "claude": "xhigh"
   },
   "savedProviderPermissionMode": {
     "claude": "yolo"
