@@ -4,20 +4,20 @@
   "title": "Analyze nested 7* Recipe item impact",
   "titleGenerationStatus": "success",
   "createdAt": 1779351367441,
-  "updatedAt": 1779421622693,
-  "lastResponseAt": 1779417763268,
+  "updatedAt": 1779429144913,
+  "lastResponseAt": 1779429144913,
   "sessionId": "277f4ada-7454-4805-b293-94b53ad3da11",
   "providerState": {
     "providerSessionId": "277f4ada-7454-4805-b293-94b53ad3da11"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 286,
+    "inputTokens": 4617,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 99200,
+    "cacheReadInputTokens": 117120,
     "contextWindow": 200000,
-    "contextTokens": 99486,
-    "percentage": 50,
+    "contextTokens": 121737,
+    "percentage": 61,
     "contextWindowIsAuthoritative": true
   }
 }

@@ -52,47 +52,37 @@ source: BigQuery (wonder-dw-prod-brd)
 | 7000061  | Chicken Whole Wing, BRFC               | 全鸡翅 (BRFC)       | 1               | 4000901 (Raw Chicken Whole Wing) |
 | 7000029  | Diced Adobo Chicken Thigh [Cooked, 3x] | 阿斗波鸡腿肉丁 [熟制, 3x] | 1               | 4000319 (Adobo Marinade Sauce)   |
 
-## 详细结果
+## 完整查询结果
 
-### Dabba 品牌 — TURBO_OVEN
+以下为 BigQuery 查询的完整输出，共 **25 行**。已补充中文翻译（系统数据库无中文名，为人工翻译）。
 
-| Menu Item | 中文名称 | Ver | Sold | 7* | LB ID | Activity | 40* | Appliance |
-|-----------|----------|-----|------|----|-------|----------|-----|-----------|
-| 8011293 Saag Paneer | 印度菠菜奶酪 | 4 | FOR_SALE | 7000052 Tandoori Paneer | a15607ea | COOK | 4000694 Paneer (Diced) | TURBO_OVEN |
-| 8011298 Chicken Tikka Roll | 鸡肉提卡卷 | 7 | FOR_SALE | 7000051 Tandoori Chicken Thigh | d0d5e753 | COOK | 4000693 Tandoori Chicken Thigh | TURBO_OVEN |
-| 8011303 Chicken Vindaloo | 鸡肉文达卢 | 4 | FOR_SALE | 7000051 Tandoori Chicken Thigh | 30eb5ce3 | COOK | 4000693 Tandoori Chicken Thigh | TURBO_OVEN |
-| 8011304 Chicken Tikka Masala | 鸡肉提卡玛莎拉 | 5 | FOR_SALE | 7000051 Tandoori Chicken Thigh | f8a97aef | COOK | 4000693 Tandoori Chicken Thigh | TURBO_OVEN |
-| 8011305 Butter Chicken | 黄油鸡 | 4 | FOR_SALE | 7000051 Tandoori Chicken Thigh | b891183a | COOK | 4000693 Tandoori Chicken Thigh | TURBO_OVEN |
-| 8011308 Paneer Tikka Masala | 印度奶酪提卡玛莎拉 | 4 | FOR_SALE | 7000052 Tandoori Paneer | 6ad5a45e | COOK | 4000694 Paneer (Diced) | TURBO_OVEN |
-| 8011674 Chicken Toastie | 鸡肉吐司 | 1 | NOT_SOLD | 7000051 Tandoori Chicken Thigh | f0a3eb5c | GARNISH | 4000693 Tandoori Chicken Thigh | — |
-| 8011675 Chicken Tikka Masala Pizza | 鸡肉提卡玛莎拉披萨 | 1 | NOT_SOLD | 7000051 Tandoori Chicken Thigh | 0ccf2d81 | GARNISH | 4000693 Tandoori Chicken Thigh | — |
-| 8011675 Chicken Tikka Masala Pizza | 鸡肉提卡玛莎拉披萨 | 1 | NOT_SOLD | 7000051 Tandoori Chicken Thigh | 34ba53c3 | GARNISH | 4000693 Tandoori Chicken Thigh | — |
-
-### BRFC 品牌 — FRYER
-
-| Menu Item | 中文名称 | Ver | Sold | 7* | LB ID | Activity | 40* | Appliance |
-|-----------|----------|-----|------|----|-------|----------|-----|-----------|
-| 8011487 Hot & Sweet Tender Dog | 甜辣鸡柳热狗 | 4 | FOR_SALE | 7000062 Chicken Tender, BRFC | fbcb7290 | COOK | 4000902 Raw Chicken Tender | FRYER |
-| 8011510 Tender Supreme (3pc) | 至尊鸡柳 3块 | 2 | FOR_SALE | 7000062 Chicken Tender, BRFC | a0eb3814 | GARNISH | 4000902 Raw Chicken Tender | — |
-| 8011510 Tender Supreme (3pc) | 至尊鸡柳 3块 | 2 | FOR_SALE | 7000062 Chicken Tender, BRFC | a58c9be9 | GARNISH | 4000902 Raw Chicken Tender | — |
-| 8011511 2 Piece White (Breast+Wing) | 两块白肉 鸡胸+鸡翅 | 3 | FOR_SALE | 7000058 Chicken Breast, BRFC | 77adc5a6 | GARNISH | 4000898 Raw Chicken Breast | — |
-| 8011511 2 Piece White (Breast+Wing) | 两块白肉 鸡胸+鸡翅 | 3 | FOR_SALE | 7000058 Chicken Breast, BRFC | 9a13cda2 | GARNISH | 4000898 Raw Chicken Breast | — |
-| 8011511 2 Piece White (Breast+Wing) | 两块白肉 鸡胸+鸡翅 | 3 | FOR_SALE | 7000061 Chicken Whole Wing, BRFC | 77adc5a6 | GARNISH | 4000901 Raw Chicken Whole Wing | — |
-| 8011511 2 Piece White (Breast+Wing) | 两块白肉 鸡胸+鸡翅 | 3 | FOR_SALE | 7000061 Chicken Whole Wing, BRFC | 9a13cda2 | GARNISH | 4000901 Raw Chicken Whole Wing | — |
-| 8011512 2 Piece Dark (Thigh+Drum) | 两块深肉 鸡腿+鸡锤 | 2 | FOR_SALE | 7000059 Chicken Thigh, BRFC | 688b1d0f | COOK | 4000899 Raw Chicken Thigh | FRYER |
-| 8011512 2 Piece Dark (Thigh+Drum) | 两块深肉 鸡腿+鸡锤 | 2 | FOR_SALE | 7000059 Chicken Thigh, BRFC | 688b1d0f | GARNISH | 4000899 Raw Chicken Thigh | — |
-| 8011512 2 Piece Dark (Thigh+Drum) | 两块深肉 鸡腿+鸡锤 | 2 | FOR_SALE | 7000059 Chicken Thigh, BRFC | c74bb8dc | COOK | 4000899 Raw Chicken Thigh | FRYER |
-| 8011512 2 Piece Dark (Thigh+Drum) | 两块深肉 鸡腿+鸡锤 | 2 | FOR_SALE | 7000059 Chicken Thigh, BRFC | c74bb8dc | GARNISH | 4000899 Raw Chicken Thigh | — |
-| 8011512 2 Piece Dark (Thigh+Drum) | 两块深肉 鸡腿+鸡锤 | 2 | FOR_SALE | 7000060 Chicken Drumstick, BRFC | 688b1d0f | GARNISH | 4000900 Raw Chicken Drumstick | — |
-| 8011512 2 Piece Dark (Thigh+Drum) | 两块深肉 鸡腿+鸡锤 | 2 | FOR_SALE | 7000060 Chicken Drumstick, BRFC | c74bb8dc | GARNISH | 4000900 Raw Chicken Drumstick | — |
-| 8011517 Royal Tenders (12pc) | 皇家鸡柳 12块 | 2 | FOR_SALE | 7000062 Chicken Tender, BRFC | 44099426 | COOK | 4000902 Raw Chicken Tender | FRYER |
-| 8011517 Royal Tenders (12pc) | 皇家鸡柳 12块 | 2 | FOR_SALE | 7000062 Chicken Tender, BRFC | 76c32d96 | COOK | 4000902 Raw Chicken Tender | FRYER |
-
-### Bellies 品牌 — TURBO_OVEN
-
-| Menu Item | 中文名称 | Ver | Sold | 7* | LB ID | Activity | 40* | Appliance |
-|-----------|----------|-----|------|----|-------|----------|-----|-----------|
-| 8011217 Kids Chicken Bowl, Bellies | 儿童鸡肉碗 | 3 | FOR_SALE | 7000029 Diced Adobo Chicken Thigh | b876ecce | COOK | 4000319 Adobo Marinade Sauce | TURBO_OVEN |
+| # | Menu Item | 中文名 | Ver | Sold | 7\* Item | 7\* 中文 | LB ID | Activity | Step Title | Sub-Step Title | 40\* Item | 40\* 中文 | Appliance |
+|---|-----------|--------|-----|------|----------|---------|-------|----------|------------|---------------|-----------|----------|-----------|
+| 1 | 8011217 Kids Chicken Bowl, Bellies | 儿童鸡肉碗 | 3 | FOR_SALE | 7000029 Diced Adobo Chicken Thigh [Cooked, 3x] | 阿斗波鸡腿肉丁 | b876ecce | COOK | — | (1/2 Scoop) Adobo Chicken | 4000319 Adobo Marinade Sauce | 阿斗波腌料酱 | TURBO_OVEN |
+| 2 | 8011293 Saag Paneer, Dabba | 印度菠菜奶酪 | 4 | FOR_SALE | 7000052 Tandoori Paneer [Marinated, 3x] | 坦都里印度奶酪 | a15607ea | COOK | — | (1 Bag) Tandoori Paneer | 4000694 Paneer (Diced) | 印度奶酪(切丁) | TURBO_OVEN |
+| 3 | 8011298 Chicken Tikka Roll, Dabba | 鸡肉提卡卷 | 7 | FOR_SALE | 7000051 Tandoori Chicken Thigh [Marinated, 3x] | 坦都里鸡腿 | d0d5e753 | COOK | — | (1 Bag) Tandoori Chicken | 4000693 Tandoori Chicken Thigh | 坦都里鸡腿肉 | TURBO_OVEN |
+| 4 | 8011303 Chicken Vindaloo, Dabba | 鸡肉文达卢 | 4 | FOR_SALE | 7000051 Tandoori Chicken Thigh [Marinated, 3x] | 坦都里鸡腿 | 30eb5ce3 | COOK | — | (1 Bag) - Tandoori Chicken | 4000693 Tandoori Chicken Thigh | 坦都里鸡腿肉 | TURBO_OVEN |
+| 5 | 8011304 Chicken Tikka Masala, Dabba | 鸡肉提卡玛莎拉 | 5 | FOR_SALE | 7000051 Tandoori Chicken Thigh [Marinated, 3x] | 坦都里鸡腿 | f8a97aef | COOK | — | (1 Bag) Tandoori Chicken | 4000693 Tandoori Chicken Thigh | 坦都里鸡腿肉 | TURBO_OVEN |
+| 6 | 8011305 Butter Chicken, Dabba | 黄油鸡 | 4 | FOR_SALE | 7000051 Tandoori Chicken Thigh [Marinated, 3x] | 坦都里鸡腿 | b891183a | COOK | — | (1 Bag) - Tandoori Chicken | 4000693 Tandoori Chicken Thigh | 坦都里鸡腿肉 | TURBO_OVEN |
+| 7 | 8011308 Paneer Tikka Masala, Dabba | 印度奶酪提卡玛莎拉 | 4 | FOR_SALE | 7000052 Tandoori Paneer [Marinated, 3x] | 坦都里印度奶酪 | 6ad5a45e | COOK | — | (1 Bag) Tandoori Paneer | 4000694 Paneer (Diced) | 印度奶酪(切丁) | TURBO_OVEN |
+| 8 | 8011487 Hot & Sweet Tender Dog, BRFC | 甜辣鸡柳热狗 | 4 | FOR_SALE | 7000062 Chicken Tender, BRFC | 鸡柳 | fbcb7290 | COOK | — | Tender - BUTTON 1 | 4000902 Raw Chicken Tender | 生鸡柳 | FRYER |
+| 9 | 8011510 Tender Supreme (3pc), BRFC | 至尊鸡柳(3块) | 2 | FOR_SALE | 7000062 Chicken Tender, BRFC | 鸡柳 | a0eb3814 | GARNISH | — | (3 ea) Tender | 4000902 Raw Chicken Tender | 生鸡柳 | — |
+| 10 | 8011510 Tender Supreme (3pc), BRFC | 至尊鸡柳(3块) | 2 | FOR_SALE | 7000062 Chicken Tender, BRFC | 鸡柳 | a58c9be9 | GARNISH | — | (3 ea) Tender | 4000902 Raw Chicken Tender | 生鸡柳 | — |
+| 11 | 8011511 2 Piece White, BRFC | 两块白肉(鸡胸+鸡翅) | 3 | FOR_SALE | 7000058 Chicken Breast, BRFC | 鸡胸肉 | 77adc5a6 | GARNISH | — | (1 ea) Breast | 4000898 Raw Chicken Breast | 生鸡胸肉 | — |
+| 12 | 8011511 2 Piece White, BRFC | 两块白肉(鸡胸+鸡翅) | 3 | FOR_SALE | 7000058 Chicken Breast, BRFC | 鸡胸肉 | 9a13cda2 | GARNISH | — | (1 ea) Breast | 4000898 Raw Chicken Breast | 生鸡胸肉 | — |
+| 13 | 8011511 2 Piece White, BRFC | 两块白肉(鸡胸+鸡翅) | 3 | FOR_SALE | 7000061 Chicken Whole Wing, BRFC | 全鸡翅 | 77adc5a6 | GARNISH | — | (1 ea) Whole Wing | 4000901 Raw Chicken Whole Wing | 生全鸡翅 | — |
+| 14 | 8011511 2 Piece White, BRFC | 两块白肉(鸡胸+鸡翅) | 3 | FOR_SALE | 7000061 Chicken Whole Wing, BRFC | 全鸡翅 | 9a13cda2 | GARNISH | — | (1 ea) Whole Wing | 4000901 Raw Chicken Whole Wing | 生全鸡翅 | — |
+| 15 | 8011512 2 Piece Dark, BRFC | 两块深肉(鸡腿+鸡锤) | 2 | FOR_SALE | 7000059 Chicken Thigh, BRFC | 鸡腿肉 | 688b1d0f | COOK | — | >>>Thigh<<< | 4000899 Raw Chicken Thigh | 生鸡腿肉 | FRYER |
+| 16 | 8011512 2 Piece Dark, BRFC | 两块深肉(鸡腿+鸡锤) | 2 | FOR_SALE | 7000059 Chicken Thigh, BRFC | 鸡腿肉 | 688b1d0f | GARNISH | — | (1 ea) Thigh | 4000899 Raw Chicken Thigh | 生鸡腿肉 | — |
+| 17 | 8011512 2 Piece Dark, BRFC | 两块深肉(鸡腿+鸡锤) | 2 | FOR_SALE | 7000059 Chicken Thigh, BRFC | 鸡腿肉 | c74bb8dc | COOK | — | >>>Thigh<<< | 4000899 Raw Chicken Thigh | 生鸡腿肉 | FRYER |
+| 18 | 8011512 2 Piece Dark, BRFC | 两块深肉(鸡腿+鸡锤) | 2 | FOR_SALE | 7000059 Chicken Thigh, BRFC | 鸡腿肉 | c74bb8dc | GARNISH | — | (1 ea) Thigh | 4000899 Raw Chicken Thigh | 生鸡腿肉 | — |
+| 19 | 8011512 2 Piece Dark, BRFC | 两块深肉(鸡腿+鸡锤) | 2 | FOR_SALE | 7000060 Chicken Drumstick, BRFC | 鸡锤 | 688b1d0f | GARNISH | — | (1 ea) Drumstick | 4000900 Raw Chicken Drumstick | 生鸡锤 | — |
+| 20 | 8011512 2 Piece Dark, BRFC | 两块深肉(鸡腿+鸡锤) | 2 | FOR_SALE | 7000060 Chicken Drumstick, BRFC | 鸡锤 | c74bb8dc | GARNISH | — | (1 ea) Drumstick | 4000900 Raw Chicken Drumstick | 生鸡锤 | — |
+| 21 | 8011517 Royal Tenders (12pc), BRFC | 皇家鸡柳(12块) | 2 | FOR_SALE | 7000062 Chicken Tender, BRFC | 鸡柳 | 44099426 | COOK | — | >>>(6 ea) Tender<<< | 4000902 Raw Chicken Tender | 生鸡柳 | FRYER |
+| 22 | 8011517 Royal Tenders (12pc), BRFC | 皇家鸡柳(12块) | 2 | FOR_SALE | 7000062 Chicken Tender, BRFC | 鸡柳 | 76c32d96 | COOK | — | >>>(6 ea) Tender<<< | 4000902 Raw Chicken Tender | 生鸡柳 | FRYER |
+| 23 | 8011674 Chicken Toastie, Dabba | 鸡肉吐司 | 1 | NOT_SOLD | 7000051 Tandoori Chicken Thigh [Marinated, 3x] | 坦都里鸡腿 | f0a3eb5c | GARNISH | — | Tandoori Chicken | 4000693 Tandoori Chicken Thigh | 坦都里鸡腿肉 | — |
+| 24 | 8011675 Chicken Tikka Masala Pizza, Dabba | 鸡肉提卡玛莎拉披萨 | 1 | NOT_SOLD | 7000051 Tandoori Chicken Thigh [Marinated, 3x] | 坦都里鸡腿 | 0ccf2d81 | GARNISH | — | (1 Bag) - Tandoori Chicken | 4000693 Tandoori Chicken Thigh | 坦都里鸡腿肉 | — |
+| 25 | 8011675 Chicken Tikka Masala Pizza, Dabba | 鸡肉提卡玛莎拉披萨 | 1 | NOT_SOLD | 7000051 Tandoori Chicken Thigh [Marinated, 3x] | 坦都里鸡腿 | 34ba53c3 | GARNISH | — | (1 Bag) Tandoori Chicken | 4000693 Tandoori Chicken Thigh | 坦都里鸡腿肉 | — |
 
 ## 按 Activity × Appliance 交叉分析
 
