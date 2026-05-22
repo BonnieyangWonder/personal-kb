@@ -6,9 +6,13 @@
 
 ## 认证
 
-使用 Basic Auth（API Token）：
-- Email: bonnieyang@xm.wonder.com
-- Token: 已配置在 mcp.json
+两种方式，按优先级：
+
+1. **MCP 工具**：`mcp__atlassian__createJiraIssue` 等（mcp-remote + authv2，有完整 Jira scope）
+2. **REST API + OAuth Token**：从 `~/.mcp-auth/mcp-remote-0.1.37/8d8bab2a93ad41172215aecfb4b6d869_tokens.json` 读取 cached token
+3. **Basic Auth（API Token）**：Email: bonnieyang@xm.wonder.com + Atlassian API token（最后手段）
+
+详细配置和故障排查见 [[create-jira-ticket]] skill。
 
 ## API 端点
 
@@ -17,6 +21,10 @@ https://wonder.atlassian.net/rest/api/2/
 ```
 
 ## 支持的操作
+
+### 0. 创建 Ticket（详见 [[create-jira-ticket]] skill）
+
+三种回退策略：MCP 工具 → REST API + OAuth token → API Token
 
 ### 1. 查询 Ticket
 

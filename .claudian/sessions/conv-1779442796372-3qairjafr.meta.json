@@ -4,20 +4,20 @@
   "title": "Document IK dish type and plating rule business...",
   "titleGenerationStatus": "success",
   "createdAt": 1779442796372,
-  "updatedAt": 1779443219245,
-  "lastResponseAt": 1779443219245,
+  "updatedAt": 1779444686644,
+  "lastResponseAt": 1779444686644,
   "sessionId": "20550593-6371-485d-a875-0a6adc1a382d",
   "providerState": {
     "providerSessionId": "20550593-6371-485d-a875-0a6adc1a382d"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 81,
+    "inputTokens": 5144,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 86656,
+    "cacheReadInputTokens": 92928,
     "contextWindow": 200000,
-    "contextTokens": 86737,
-    "percentage": 43,
+    "contextTokens": 98072,
+    "percentage": 49,
     "contextWindowIsAuthoritative": true
   }
 }

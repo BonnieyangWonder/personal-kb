@@ -30,240 +30,243 @@ sources:
 
 ## 1. Business Background
 
-Wonder 正在将 Infinite Kitchen（IK）自动化设备集成到 hybrid pod 厨房流程中。IK 设备需要知道两个关键信息来正确完成出餐：
+Wonder is integrating Infinite Kitchen (IK) automation equipment into its hybrid pod kitchen workflows. The IK equipment needs two key pieces of information to correctly assemble orders:
 
-1. **用什么容器（碗型）** → **IK Dish Type**
-2. **食材如何摆放（摆盘方式）** → **IK Plating Rule**
+1. **Which container (dish/bowl type) to use** → **IK Dish Type**
+2. **How to arrange ingredients in that container** → **IK Plating Rule**
 
-这两个属性需要在 Cookbook 中配置，并随订单数据传递给 IK 设备和 KDS。
+These two attributes must be configured in Cookbook and passed downstream to the IK equipment and KDS with order data.
 
-IK 设备当前需要支持 6 种包装类型（Dish Type）和 5 种摆盘规则（Plating Rule），且这些配置需要灵活应对不同菜单项、不同 HDR 的差异化需求。
+The IK equipment currently needs to support 6 packaging types (Dish Types) and 5 plating rules. These configurations must flexibly accommodate different menu items and different HDR-specific requirements.
 
-### 关联项目背景
+### Related Project Context
 
-- **Wonder Create**: 让 Influencer 可以自由创建菜单项，需要 Cookbook 自动生成 line build（默认所有 IK Eligible 组件聚合到 IK step）
-- **IK Eligible 组件标记**: 已在 component item 层面标记 `IK Eligible=true/false`，标记为 true 的组件会聚合到 line build 的 IK step 中
-- **KDS 路由逻辑**: KDS 将 IK step 中实际 loaded 在 HDR IK 中的组件发送给 IK 设备，未 loaded 的则路由到 cold pod 做 garnish
+- **Wonder Create**: Enables influencers to freely create menu items; requires Cookbook to auto-generate line builds (defaulting to aggregating all IK Eligible components into an IK step)
+- **IK Eligible Component Flagging**: Already in place at the component item level (`IK Eligible=true/false`). Components marked `true` are aggregated into the IK step in the line build.
+- **KDS Routing Logic**: KDS sends IK step components that are actually loaded in the HDR's IK to the IK equipment; unloaded components are routed to the cold pod as garnish steps.
 
 ---
 
-## 2. IK Dish Type（碗型/容器类型）
+## 2. IK Dish Type
 
-### 2.1 定义
+### 2.1 Definition
 
-IK Dish Type 指 IK 设备在处理订单时需要请求放置的容器类型。不同的菜单项可能需要不同大小和形状的容器。
+IK Dish Type specifies the container type that the IK equipment should request the Team Member to place. Different menu items may require containers of different sizes and shapes.
 
-### 2.2 属性值（枚举）
+### 2.2 Enum Values
 
-| IK Dish Type | 描述 |
+| IK Dish Type | Description |
 |---|---|
-| `48oz Bowl` | 48oz 圆形碗，用于大份沙拉（如 Royal Greens） |
-| `32oz Bowl` | 32oz 圆形碗，用于常规 bowl（如 Yasas、Hanu Poke） |
-| `30oz Oval Metal Bowl` | 30oz 椭圆形金属碗，用于特定 bowl 类型 |
-| `Bellies Bowl` | Bellies 品牌专用碗（如 Bellies Chicken and Rice） |
-| `8oz Cup` | 8oz 小杯，用于 side items（如白米饭、豆类、salsa） |
-| `Reusable Bowl` | 可重复使用碗，用于 burrito、quesadilla、taco 等非碗类食品的 IK 处理 |
+| `48oz Bowl` | 48oz round bowl, used for large salads (e.g., Royal Greens) |
+| `32oz Bowl` | 32oz round bowl, used for standard bowls (e.g., Yasas, Hanu Poke) |
+| `30oz Oval Metal Bowl` | 30oz oval metal bowl, used for specific bowl types |
+| `Bellies Bowl` | Bellies-branded bowl (e.g., Bellies Chicken and Rice) |
+| `8oz Cup` | 8oz small cup, used for side items (e.g., white rice, beans, salsa) |
+| `Reusable Bowl` | Reusable bowl, used for non-bowl items processed through IK (e.g., burritos, quesadillas, tacos) |
 
-### 2.3 配置层级
+### 2.3 Configuration Level
 
-**在 Menu Item 级别配置**（最终设计决策）。
+**Configured at the Menu Item level** (final design decision).
 
-- 不在 component item 级别配置
-- 一个 menu item 只有一个 IK Dish Type
-- IK Dish Type 可能与最终包装不同（例如 quesadilla 用 Reusable Bowl 在 IK 中处理，但最终包装在矩形 pulp bowl 中）
+- NOT configured at the component item level
+- One menu item has exactly one IK Dish Type
+- IK Dish Type may differ from the final packaging (e.g., a quesadilla is processed in a Reusable Bowl in the IK, but is ultimately packaged in a rectangular pulp bowl)
 
-### 2.4 示例
+### 2.4 Examples
 
-| Menu Item | IK Dish Type | 说明 |
+| Menu Item | IK Dish Type | Notes |
 |---|---|---|
-| Royal Greens Cobb Salad | 48oz Bowl | 大份沙拉 |
-| Yasas Bowl | 32oz Bowl | 常规 bowl |
+| Royal Greens Cobb Salad | 48oz Bowl | Large salad |
+| Yasas Bowl | 32oz Bowl | Standard bowl |
 | Hanu Poke Bowl | 32oz Bowl | Poke bowl |
-| Limesalt Bowl | 30oz Oval Metal Bowl | 椭圆碗 |
-| Bellies Chicken and Rice | Bellies Bowl | Bellies 品牌碗 |
-| Limesalt Burrito | Reusable Bowl | 非碗类，IK 处理完后转移到最终包装 |
-| Limesalt Tacos | Reusable Bowl | 同上 |
-| Limesalt Quesadilla | Reusable Bowl | 同上 |
-| Side white rice / brown rice / poke rice | 8oz Cup | Side 小份 |
-| Side corn salsa / pico | Reusable Bowl (8oz Cup at FS) | 特殊：IK 处理用 reusable bowl，但最终打包在 FS 的 4oz cup |
+| Limesalt Bowl | 30oz Oval Metal Bowl | Oval bowl |
+| Bellies Chicken and Rice | Bellies Bowl | Bellies branded |
+| Limesalt Burrito | Reusable Bowl | Non-bowl; transferred to final packaging after IK |
+| Limesalt Tacos | Reusable Bowl | Same as above |
+| Limesalt Quesadilla | Reusable Bowl | Same as above |
+| Side white rice / brown rice / poke rice | 8oz Cup | Small side portion |
+| Side corn salsa / pico | Reusable Bowl (8oz Cup at FS) | Special: IK processes in reusable bowl, but final packaging at FS uses a 4oz cup |
 
 ---
 
-## 3. IK Plating Rule（摆盘规则）
+## 3. IK Plating Rule
 
-### 3.1 定义
+### 3.1 Definition
 
-IK Plating Rule 定义食材在容器中如何排列摆放。这直接影响 IK 设备的 dispensing 行为（单圈/双圈、食材落点位置等）。
+IK Plating Rule defines how ingredients should be arranged and dispensed into the container. This directly affects the IK equipment's dispensing behavior (single lap vs. double lap, ingredient drop positioning, etc.).
 
-### 3.2 属性值（枚举）
+### 3.2 Enum Values
 
-| IK Plating Rule | 描述 | 适用场景 |
+| IK Plating Rule | Description | Use Case |
 |---|---|---|
-| `Layering` | 分层摆放，所有食材按顺序叠放 | 默认规则，适用于大多数 bowl 类型 |
-| `Center` | 居中摆放，所有食材放在碗中央 | burrito、taco、quesadilla 等在 reusable bowl 中处理；side items |
-| `Straight` | 直线排列 | 特定 bowl（如 Limesalt oval bowl）；非分层场景 |
-| `Prelap Center` | 预跑圈后居中摆放 | Double Lap (Action Needed)：先收集特定食材（如 Soba Noodles），跑完一圈后居中摆放，再跑第二圈收集其余食材 |
-| `Prelap Poke Press` | 预跑圈后 Poke Press 摆盘 | Double Lap (Action Needed) + TM 按压：先收集 Poke Rice + Furikake，居中摆放后停在 FS 让 TM 按压，再跑第二圈 |
+| `Layering` | Layered placement — all ingredients dispensed in sequence, stacked | Default rule; applicable to most bowl types |
+| `Center` | Center placement — all ingredients placed in the center of the dish | Burritos, tacos, quesadillas processed in reusable bowls; side items |
+| `Straight` | Straight-line arrangement | Specific bowls (e.g., Limesalt oval bowl); non-layering scenarios |
+| `Prelap Center` | Pre-lap followed by center placement | Double Lap (No Action Needed, no FS stop): first collects specific ingredients (e.g., Soba Noodles), centers them after one lap, then runs a second lap for remaining ingredients |
+| `Prelap Poke Press` | Pre-lap followed by Poke Press placement | Double Lap (Action Needed) + TM press: first collects Poke Rice + Furikake, centers them, stops at FS for TM to press down, then runs a second lap |
 
-### 3.3 IK Plating Rule 与 Double Lap 的关系
+### 3.3 Relationship Between IK Plating Rule and Double Lap
 
 ```
-Prelap Center       → Double Lap (No Action Needed)：碗在 FS 不停止
-                       例：Royal Greens + Soba Noodles
-Prelap Poke Press   → Double Lap (Action Needed)：碗在 FS 停止，TM 按压后继续
-                       例：Hanu Poke Bowl with Poke Rice + Furikake
+Prelap Center       → Double Lap (No Action Needed): Bowl passes through FS without stopping
+                       Example: Royal Greens + Soba Noodles
+Prelap Poke Press   → Double Lap (Action Needed): Bowl stops at FS, TM presses down, then continues
+                       Example: Hanu Poke Bowl with Poke Rice + Furikake
 ```
 
-`Center` / `Layering` / `Straight` → Standard Single Lap（标准单圈）
+`Center` / `Layering` / `Straight` → Standard Single Lap
 
-### 3.4 配置层级
+### 3.4 Configuration Level
 
-**最终决策：在 Menu Item 级别配置默认值，支持 Sub-Step 级别覆盖**。
+**Final decision: Configured at the Menu Item level as a default, with Sub-Step level overrides.**
 
-- **Menu Item 级别**：设置该 menu item 的默认 IK Plating Rule，所有子步骤继承此默认值
-- **Sub-Step 级别**：可针对特定子步骤覆盖默认值（例如某个 component/customization 需要特殊摆盘方式）
+- **Menu Item level**: Sets the default IK Plating Rule for the menu item. All sub-steps inherit this default.
+- **Sub-Step level**: Allows overriding the default for specific sub-steps (e.g., when a particular component/customization requires a different plating method).
 
-### 3.5 配置设计的演进
+### 3.5 Configuration Design Evolution
 
-| 方案 | 提出时间 | 状态 |
+| Proposal | Proposed | Status |
 |---|---|---|
-| Component Item 级别配置 IK Plating Rule | 2026-05-08 (Bonnie 提出) | ❌ 被否决 |
-| Menu Item 级别默认 + Sub-Step 级别覆盖 | 2026-05-08 (Charlie Fox) / 2026-05-12 (Evan Fox 确认) | ✅ 采纳 |
+| Configure IK Plating Rule at Component Item level | 2026-05-08 (Bonnie Yang) | ❌ Rejected |
+| Menu Item level default + Sub-Step level override | 2026-05-08 (Charlie Fox) / 2026-05-12 (Evan Fox confirmed) | ✅ Accepted |
 
-**Component 级别方案被否决的原因**（Charlie Fox, 2026-05-08）：
-- 不能假设同一个 component 在所有使用场景中有相同的 plating rule
-- 也不能假设同一 component 在特定 dish type 下总是相同 plating rule
-- 配置会过于复杂
+**Reason the Component-level approach was rejected** (Charlie Fox, 2026-05-08):
+- Cannot assume the same component uses the same plating rule in all usage contexts
+- Cannot assume the same component always uses the same plating rule even within a specific dish type
+- Configuration would become overly complex
 
-### 3.6 示例
+### 3.6 Examples
 
-#### 示例 1：Royal Greens Cobb Salad 定制加 Soba Noodles
+#### Example 1: Royal Greens Cobb Salad customized with Soba Noodles
 
 ```
 Menu Item Level:
   IK Dish Type: 48oz Bowl
-  IK Plating Rule: Layering (默认)
+  IK Plating Rule: Layering (default)
 
 Sub-Step Level Override:
   Sub-Step: "Choose your Base → Soba Noodles"
-  IK Plating Rule: Prelap Center (覆盖)
-  → IK 先跑一圈收集 Soba Noodles 居中摆放，再跑第二圈收集其余食材
+  IK Plating Rule: Prelap Center (override)
+  → IK runs first lap collecting Soba Noodles and centers them,
+    then runs second lap collecting the remaining ingredients
 ```
 
-#### 示例 2：Hanu Poke Bowl with Poke Rice
+#### Example 2: Hanu Poke Bowl with Poke Rice
 
 ```
 Menu Item Level:
   IK Dish Type: 32oz Bowl
-  IK Plating Rule: Layering (默认)
+  IK Plating Rule: Layering (default)
 
 Sub-Step Level Override:
   Sub-Step: "Choose your Base → Sushi Rice (Poke Rice)"
-  IK Plating Rule: Prelap Poke Press (覆盖)
-  
+  IK Plating Rule: Prelap Poke Press (override)
+
   Sub-Step: "Crunchy Toppings → Furikake"
-  IK Plating Rule: Prelap Poke Press (覆盖)
-  → IK 先跑一圈收集 Poke Rice + Furikake，居中摆放后停在 FS，TM 按压确认，再跑第二圈
+  IK Plating Rule: Prelap Poke Press (override)
+  → IK runs first lap collecting Poke Rice + Furikake, centers them,
+    stops at FS for TM to press down and confirm, then runs second lap
 ```
 
-#### 示例 3：Limesalt Burrito
+#### Example 3: Limesalt Burrito
 
 ```
 Menu Item Level:
   IK Dish Type: Reusable Bowl
   IK Plating Rule: Center
-  → IK 单圈收集所有食材并居中摆放
+  → IK runs a single lap collecting all ingredients and centers them
 ```
 
 ---
 
-## 4. 与 IK Eligible 的交互规则
+## 4. Interaction Rules with IK Eligible
 
-> **来源：MD-17927 (Bonnie Yang 的业务需求)**
+> **Source: MD-17927 (Bonnie Yang's business requirements)**
 
-### 4.1 核心逻辑
+### 4.1 Core Logic
 
-`IK Eligible` 是触发 IK 对比逻辑的开关：
-- **IK Eligible = true** 的 step → KDS 会比较 sub-step 的 component 是否在 HDR 的 IK 中被 loaded
-- 如果 IK loaded → 发送给 IK 处理
-- 如果 IK 未 loaded → KDS 将其作为 garnish step 发送到 cold pod
+`IK Eligible` acts as the trigger for IK comparison logic:
+- Steps with **IK Eligible = true** → KDS compares the sub-step's component against what is actually loaded in the HDR's IK
+  - If loaded in IK → sent to IK for processing
+  - If not loaded in IK → KDS routes it as a garnish step to the cold pod
+- Steps with **IK Eligible = false** → KDS does not perform the IK comparison
 
-### 4.2 Plating Rule 的必填性规则
+### 4.2 Plating Rule Required vs Optional
 
-| Step 的 IK Eligible | Plating Rule 要求 | 原因 |
+| Step's IK Eligible | Plating Rule Requirement | Rationale |
 |---|---|---|
-| `true` | **必填**（如果 sub-step 映射了 item/customization） | IK 需要知道如何摆盘这些食材 |
-| `false` | **可选**（可为 null） | 该 step 不走 IK，但保留灵活性 |
+| `true` | **Required** (when the sub-step maps to an item/customization) | The IK needs to know how to plate these ingredients |
+| `false` | **Optional** (can be null) | The step does not go through IK, but flexibility is preserved |
 
-### 4.3 设计灵活性考量
+### 4.3 Design Flexibility Considerations
 
-- **不阻止**为 `IK Eligible=false` 的 sub-step 设置 plating rule
-  - 更灵活，KDS 中不会因为非 IK step 携带 plating rule 而出问题
-- 不做 `IK Eligible` true → false 时的自动清除
-  - 目标是有越来越多的 HDR 使用 IK 设备 → 限制没有意义
-  - Cookbook 返回 line build 中存在的任何配置给 KDS
-  - KDS 是否会消费 plating rule 值由 `IK Eligible` flag 决定
-- 如果将来需要 enforcement：在 `IK Eligible` 从 true 改为 false 时做 validation + auto-clear
-
----
-
-## 5. 解决方案设计
-
-### 5.1 Cookbook 侧
-
-1. **Menu Item 新增属性 `IK Dish Type`**
-   - 枚举值：48oz Bowl / 32oz Bowl / 30oz Oval Metal Bowl / Bellies Bowl / 8oz Cup / Reusable Bowl
-   - 在 menu item 创建/编辑页面可配置
-
-2. **Menu Item 新增属性 `IK Plating Rule`（默认值）**
-   - 枚举值：Layering / Center / Straight / Prelap Center / Prelap Poke Press
-   - 作为该 menu item 所有 IK sub-step 的默认 plating rule
-
-3. **Line Build Sub-Step 新增属性 `IK Plating Rule`（可覆盖）**
-   - 默认继承 menu item 级别的 IK Plating Rule
-   - CE/用户可手动修改任意 sub-step 的 plating rule
-   - 不受 component item 的 plating rule 配置影响
-   - 如果 sub-step 属于 `IK Eligible=true` 的 step 且映射了 component/customization → plating rule 必填
-   - 如果 sub-step 属于 `IK Eligible=false` 的 step → plating rule 可选
-
-4. **Cookbook 返回给 KDS 的数据**
-   - 返回所有 line build 中已配置的 IK Dish Type 和 IK Plating Rule
-   - 不根据 IK Eligible 过滤 — 全部透传
-
-### 5.2 KDS 侧
-
-1. **消费 IK Dish Type**：发送给 IK（在 `POST /orders` API 的 `dish_type` 字段）
-2. **消费 IK Plating Rule**：
-   - 只消费 `IK Eligible=true` 的 step 中 sub-step 的 plating rule
-   - 如 `IK Eligible=false` → 忽略 plating rule
-3. **IK order API** 中的数据结构：
-   - Line item 级别：`dish_type`、`plating_rule`
-   - Ingredient 级别：`plating_rule`
-
-### 5.3 IK 设备侧
-
-1. 根据 `dish_type` 选择请求 TM 放置的容器类型
-2. 根据 `plating_rule` 决定：
-   - 单圈还是双圈（Double Lap）
-   - 是否需要在 FS（Finishing Station）停止并等待 TM 交互
-   - 食材在容器中的排列方式（居中/分层/直线）
+- **Do NOT prevent** setting a plating rule on sub-steps where `IK Eligible=false`
+  - More flexible; non-IK steps carrying a plating rule do not cause issues in KDS
+- **Do NOT auto-clear** plating rules when changing `IK Eligible` from true → false
+  - The goal is to have more and more HDRs using IK equipment → such limitations are unnecessary
+  - Cookbook returns whatever configuration exists in the line build to KDS
+  - Whether KDS consumes the plating rule value is determined by the `IK Eligible` flag
+- If enforcement is needed in the future: add validation and auto-clear when `IK Eligible` changes from true → false
 
 ---
 
-## 6. 关键设计决策记录
+## 5. Solution Design
 
-| # | 决策 | 结论 | 决策人 | 日期 |
+### 5.1 Cookbook Side
+
+1. **New Menu Item attribute: `IK Dish Type`**
+   - Enum: 48oz Bowl / 32oz Bowl / 30oz Oval Metal Bowl / Bellies Bowl / 8oz Cup / Reusable Bowl
+   - Configurable on the menu item create/edit page
+
+2. **New Menu Item attribute: `IK Plating Rule` (default)**
+   - Enum: Layering / Center / Straight / Prelap Center / Prelap Poke Press
+   - Serves as the default plating rule for all IK sub-steps of this menu item
+
+3. **New Line Build Sub-Step attribute: `IK Plating Rule` (overrideable)**
+   - Defaults to inheriting the menu item-level IK Plating Rule
+   - CE/user can manually modify the plating rule for any sub-step
+   - Not influenced by component item-level plating rule configuration
+   - If the sub-step belongs to an `IK Eligible=true` step and maps to a component/customization → plating rule is required
+   - If the sub-step belongs to an `IK Eligible=false` step → plating rule is optional
+
+4. **Data returned to KDS from Cookbook**
+   - Returns all configured IK Dish Type and IK Plating Rule values from the line build
+   - No filtering based on IK Eligible — passes through everything
+
+### 5.2 KDS Side
+
+1. **Consuming IK Dish Type**: Sends to IK (in the `dish_type` field of the `POST /orders` API)
+2. **Consuming IK Plating Rule**:
+   - Only consumes plating rules from sub-steps in `IK Eligible=true` steps
+   - If `IK Eligible=false` → ignores the plating rule
+3. **IK order API data structure**:
+   - Line item level: `dish_type`, `plating_rule`
+   - Ingredient level: `plating_rule`
+
+### 5.3 IK Equipment Side
+
+1. Uses `dish_type` to determine which container type to request the TM to place
+2. Uses `plating_rule` to determine:
+   - Single lap vs. Double Lap
+   - Whether to stop at the Finishing Station (FS) and wait for TM interaction
+   - How to arrange ingredients in the container (center / layered / straight)
+
+---
+
+## 6. Key Design Decision Records
+
+| # | Decision | Outcome | Decided By | Date |
 |---|---|---|---|---|
-| 1 | IK Dish Type 配置在哪一层 | **Menu Item 级别** | Bonnie / Evan Fox | 2026-05-12 |
-| 2 | IK Plating Rule 配置在哪一层 | **Menu Item 默认 + Sub-Step 覆盖** (不在 Component 级别) | Charlie Fox / Evan Fox | 2026-05-12 |
-| 3 | IK Eligible=false 时 plating rule 是否必填 | **可选**（不强制清除） | Bonnie Yang | MD-17927 |
-| 4 | IK Eligible true→false 是否自动清除 plating rule | **不清除** | Bonnie Yang | MD-17927 |
-| 5 | Cookbook 是否需要按 IK Eligible 过滤 plating rule | **不过滤**，全量透传给 KDS | Bonnie Yang | MD-17927 |
-| 6 | 是否需要在 Component Item 层支持多 Plating Rule 配置 | **不需要**，简化方案 | Charlie Fox / Evan Fox | 2026-05-12 |
+| 1 | Which level to configure IK Dish Type | **Menu Item level** | Bonnie Yang / Evan Fox | 2026-05-12 |
+| 2 | Which level to configure IK Plating Rule | **Menu Item default + Sub-Step override** (NOT Component level) | Charlie Fox / Evan Fox | 2026-05-12 |
+| 3 | Is plating rule required when IK Eligible=false | **Optional** (no forced clearing) | Bonnie Yang | MD-17927 |
+| 4 | Auto-clear plating rule when IK Eligible changes true→false | **Do NOT auto-clear** | Bonnie Yang | MD-17927 |
+| 5 | Should Cookbook filter plating rule by IK Eligible | **No filtering**, pass through everything to KDS | Bonnie Yang | MD-17927 |
+| 6 | Support multiple plating rule configs at Component Item level | **No**, simplified approach | Charlie Fox / Evan Fox | 2026-05-12 |
 
 ---
 
-## 7. 关联系统与数据流
+## 7. System Context & Data Flow
 
 ```
 Cookbook
@@ -272,37 +275,37 @@ Cookbook
        │
        ▼
 KDS (Kitchen Display System)
-  ├── 获取 IK Eligible 组件的 IK loaded 状态
-  ├── IK Eligible=true → 发送给 IK (含 plating rule)
-  └── IK Eligible=false / 未被 IK loaded → 发送给 cold pod (忽略 plating rule)
+  ├── Retrieves IK loaded status for IK Eligible components
+  ├── IK Eligible=true → sends to IK (with plating rule)
+  └── IK Eligible=false / not IK-loaded → sends to cold pod (ignores plating rule)
        │
        ▼
 IK (Infinite Kitchen)
-  ├── POST /orders: 接收 dish_type, plating_rule, ingredients
-  ├── BPS: 提示 TM 放置对应 dish type
-  └── 执行对应的 plating rule (单圈/双圈/摆盘方式)
+  ├── POST /orders: receives dish_type, plating_rule, ingredients
+  ├── BPS: prompts TM to place the corresponding dish type
+  └── Executes the specified plating rule (single/double lap, placement style)
        │
        ▼
 Finishing Station (FS)
-  ├── Bowl Chit: 打印 QR code, order item info, packaging type, ingredients
-  └── FSO Chit: 仅 FS 食材的 chit
+  ├── Bowl Chit: prints QR code, order item info, packaging type, ingredients
+  └── FSO Chit: chit for FS-only items
 ```
 
 ---
 
-## 8. Plating Rule → IK Journey 映射
+## 8. Plating Rule → IK Journey Mapping
 
-| Plating Rule | IK Journey | TM 交互 |
+| Plating Rule | IK Journey | TM Interaction |
 |---|---|---|
-| `Layering` | Standard Single Lap | 无 |
-| `Center` | Standard Single Lap | 无 |
-| `Straight` | Standard Single Lap | 无 |
-| `Prelap Center` | Double Lap (No Action Needed) | FS 不停止 |
-| `Prelap Poke Press` | Double Lap (Action Needed) | FS 停止，TM 按压确认 |
+| `Layering` | Standard Single Lap | None |
+| `Center` | Standard Single Lap | None |
+| `Straight` | Standard Single Lap | None |
+| `Prelap Center` | Double Lap (No Action Needed) | FS pass-through, no stop |
+| `Prelap Poke Press` | Double Lap (Action Needed) | FS stops, TM presses to confirm |
 
 ---
 
-## 9. 菜单项配置矩阵（完整参考）
+## 9. Menu Item Configuration Matrix (Full Reference)
 
 | Dish Type | Food Item | IK Plating Rule (Menu Item) | Sub-Step Override |
 |---|---|---|---|
@@ -317,61 +320,61 @@ Finishing Station (FS)
 | Reusable Bowl | Limesalt Tacos | Layering | — |
 | Reusable Bowl | Limesalt Quesadilla | Layering | — |
 | 8oz Cup | Side white/brown/poke rice | Center | — |
-| Reusable Bowl | Side corn salsa / pico | Center | (特殊：FS 放入 4oz cup) |
+| Reusable Bowl | Side corn salsa / pico | Center | (Special: transferred to 4oz cup at FS) |
 | Bellies Bowl | Bellies Chicken and Rice | Layering | — |
 | 32oz Bowl | Side salads (various) | Layering | — |
 | 48oz Bowl (default) | New unconfigured items | Layering | — |
 
 ---
 
-## 10. 时间线
+## 10. Timeline
 
-| 里程碑 | 目标日期 |
+| Milestone | Target Date |
 |---|---|
-| Cookbook IK Dish Type & Plating Rule 开发完成 | ~2026-05-25 (6/1 前 1 周) |
-| KDS 端数据透传 | 2026-06-01 |
-| 首次 integration test (IK simulator) | 2026-06-01 |
-| IK lab 全量测试 | 2026-06-15 |
-| MTE 软启动 (Limesalt + Yasas) | 2026-08-10 |
-| 全面 launch | 2026 年 9 月 |
+| Cookbook IK Dish Type & Plating Rule development complete | ~2026-05-25 (1 week before 6/1) |
+| KDS data passthrough | 2026-06-01 |
+| First integration test (IK simulator) | 2026-06-01 |
+| IK lab full test | 2026-06-15 |
+| MTE soft launch (Limesalt + Yasas) | 2026-08-10 |
+| Full launch | September 2026 |
 
 ---
 
-## 11. 依赖项
+## 11. Dependencies
 
-- **Cookbook**: 完成 IK Eligible 组件标记 + IK Step 在 line build 中的支持（已完成，2026-03）
-- **KDS**: IK order dispatch API (`POST /orders`) — `dish_type` 和 `plating_rule` 字段已定义
-- **HDR Portal**: 支持 IK pod type 配置（`ik_code`）
-- **IK 设备**: BPS 更新支持 6 种 dish type 的 pre-placement；支持所有 plating rule 对应的 journey
-
----
-
-## 12. 未解决问题 / 后续迭代
-
-1. **Dish Type 与 Plating Rule 的 cross-validation**: 是否需要在 Cookbook 中做数据录入校验（如某些 plating rule 不适用于某些 dish type）？
-   - 当前决策：MVP 阶段不做限制，IK 侧自行处理不兼容情况
-   - 长期：可能需要上游保护
-2. **IK Dish Type 与最终 Packaging Type 的关系**: Chit 上应显示 packaging type 还是 IK Dish Type？
-   - MVP: 显示 packaging type
-   - 未来: 如果两者不同时才显示 packaging type
-3. **Component Item 级别 plating rule 配置**: 当前被否决，如果后续运营数据的模式显示需要，可能重新考虑
-4. **基于食材数量自动切换 Dish Type**: Wonder Create 可能需要根据食材数量自动推荐 dish type
+- **Cookbook**: IK Eligible component flagging + IK Step support in line build (completed, 2026-03)
+- **KDS**: IK order dispatch API (`POST /orders`) — `dish_type` and `plating_rule` fields are already defined
+- **HDR Portal**: Must support IK pod type configuration (`ik_code`)
+- **IK Equipment**: BPS updates to support pre-placement of all 6 dish types; support for all plating rule journeys
 
 ---
 
-## 13. 参考页面链接
+## 12. Open Questions / Future Iterations
 
-| 页面 | 链接 |
+1. **Cross-validation between Dish Type and Plating Rule**: Should Cookbook enforce data entry validation (e.g., certain plating rules are incompatible with certain dish types)?
+   - Current decision: No restriction for MVP; IK handles incompatible cases on its own
+   - Long term: Upstream protection may be needed
+2. **IK Dish Type vs Final Packaging Type on Chits**: Should the chit show the packaging type or the IK Dish Type?
+   - MVP: Show packaging type
+   - Future: Only show packaging type when it differs from IK Dish Type
+3. **Component Item-level plating rule configuration**: Currently rejected. May be reconsidered if operational data patterns indicate a need.
+4. **Auto-switching Dish Type based on ingredient count**: Wonder Create may need automatic dish type recommendations based on the number of ingredients.
+
+---
+
+## 13. Reference Pages
+
+| Page | Link |
 |---|---|
-| **Jira: MD-17927** (IK Dish Type & Plating Rule 主需求) | [MD-17927](https://wonder.atlassian.net/browse/MD-17927) |
-| **Changing Plating Rules Based on Order Item type** (业务需求 & 示例) | [Confluence](https://wonder.atlassian.net/wiki/spaces/SR/pages/4916084781) |
-| **IK Eligible Component Configured in Line Build** (IK Eligible 配置方案) | [Confluence](https://wonder.atlassian.net/wiki/spaces/RT/pages/5051580475) |
-| **[WIP] IK Integration** (技术集成 & API 定义) | [Confluence](https://wonder.atlassian.net/wiki/spaces/RT/pages/4990074883) |
-| **Double Laps for IK Bowls** (Double Lap journey 需求) | [Confluence](https://wonder.atlassian.net/wiki/spaces/SR/pages/4917067798) |
+| **Jira: MD-17927** (IK Dish Type & Plating Rule primary requirement) | [MD-17927](https://wonder.atlassian.net/browse/MD-17927) |
+| **Changing Plating Rules Based on Order Item type** (business requirements & examples) | [Confluence](https://wonder.atlassian.net/wiki/spaces/SR/pages/4916084781) |
+| **IK Eligible Component Configured in Line Build** (IK Eligible configuration approach) | [Confluence](https://wonder.atlassian.net/wiki/spaces/RT/pages/5051580475) |
+| **[WIP] IK Integration** (technical integration & API definitions) | [Confluence](https://wonder.atlassian.net/wiki/spaces/RT/pages/4990074883) |
+| **Double Laps for IK Bowls** (Double Lap journey requirements) | [Confluence](https://wonder.atlassian.net/wiki/spaces/SR/pages/4917067798) |
 | **Pre-Placing Dishes for Wonder IK** (Dish Type pre-placement) | [Confluence](https://wonder.atlassian.net/wiki/spaces/SR/pages/5116362975) |
-| **[WIP] IK integration at hybrid pods PRD** (整体 PRD) | [Confluence](https://wonder.atlassian.net/wiki/spaces/~712020a23d399f56f34b208584dc6e78d90758/pages/4298440989) |
-| **Chit Updates - MVP** (Chit 设计) | [Confluence](https://wonder.atlassian.net/wiki/spaces/SR/pages/5217583107) |
-| **XM NY Weekly Planning 2026-5-12** (周计划) | [Confluence](https://wonder.atlassian.net/wiki/spaces/RT/pages/5238849564) |
-| **6/15 Integration Test** (集成测试场景) | [Confluence](https://wonder.atlassian.net/wiki/spaces/~712020a23d399f56f34b208584dc6e78d90758/pages/5244518402) |
+| **[WIP] IK integration at hybrid pods PRD** (overall PRD) | [Confluence](https://wonder.atlassian.net/wiki/spaces/~712020a23d399f56f34b208584dc6e78d90758/pages/4298440989) |
+| **Chit Updates - MVP** (Chit design) | [Confluence](https://wonder.atlassian.net/wiki/spaces/SR/pages/5217583107) |
+| **XM NY Weekly Planning 2026-5-12** (weekly planning) | [Confluence](https://wonder.atlassian.net/wiki/spaces/RT/pages/5238849564) |
+| **6/15 Integration Test** (integration test scenarios) | [Confluence](https://wonder.atlassian.net/wiki/spaces/~712020a23d399f56f34b208584dc6e78d90758/pages/5244518402) |
 | **Plating Rules Matrix** (Google Sheet) | [Google Sheets](https://docs.google.com/spreadsheets/d/1W2xdmpeZWBDvkZTFOdCSjFiFrDzvlkIfImOwdltLr-k/edit) |
 | **Reusable Bowl / "For Here" in the IK** | [Confluence](https://wonder.atlassian.net/wiki/spaces/SR/pages/4916969522) |
