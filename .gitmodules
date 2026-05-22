@@ -1,0 +1,4 @@
+[submodule "Z0-Resources/cookbook-business"]
+	path = Z0-Resources/cookbook-business
+	url = https://github.com/chancetop-com/Cookbook-Business-KB.git
+	branch = main

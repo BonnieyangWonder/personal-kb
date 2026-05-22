@@ -32,5 +32,11 @@
       "**/credentials.*"
     ]
   },
-  "submodules": []
+  "submodules": [
+    {
+      "path": "Z0-Resources/cookbook-business",
+      "remote": "https://github.com/chancetop-com/Cookbook-Business-KB.git",
+      "branch": "main"
+    }
+  ]
 }
