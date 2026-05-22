@@ -4,20 +4,19 @@
   "title": "Query cookbook items in menu line builds",
   "titleGenerationStatus": "success",
   "createdAt": 1779265772695,
-  "updatedAt": 1779367925066,
-  "lastResponseAt": 1779367925066,
+  "updatedAt": 1779421622700,
+  "lastResponseAt": 1779421622700,
   "sessionId": "2f9dbc3e-e8e5-4916-bd0d-a2d8fd836854",
   "providerState": {
     "providerSessionId": "2f9dbc3e-e8e5-4916-bd0d-a2d8fd836854"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 214,
+    "inputTokens": 105,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 53760,
+    "cacheReadInputTokens": 65920,
     "contextWindow": 200000,
-    "contextTokens": 53974,
-    "percentage": 27,
-    "contextWindowIsAuthoritative": true
+    "contextTokens": 66025,
+    "percentage": 33
   }
 }

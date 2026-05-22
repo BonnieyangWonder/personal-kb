@@ -19,6 +19,7 @@
     "scrollDownKey": "s",
     "focusInputKey": "i"
   },
+  "requireCommandOrControlEnterToSend": false,
   "locale": "zh-CN",
   "providerConfigs": {
     "claude": {
@@ -45,8 +46,8 @@
       "environmentVariables": "",
       "environmentHash": "",
       "installationMethodsByHost": {
-        "Bonnie-M1-Pro-C02GM514Q05N.local": "native-windows",
-        "192.168.2.83": "native-windows"
+        "192.168.2.83": "native-windows",
+        "device:2054b31b-9975-4d33-ad0f-f27847d2fdeb": "native-windows"
       },
       "wslDistroOverridesByHost": {}
     },
@@ -59,6 +60,7 @@
       "modelAliases": {},
       "preferredThinkingByModel": {},
       "selectedMode": "",
+      "thinkingOptionsByModel": {},
       "visibleModels": []
     }
   },
@@ -77,7 +79,7 @@
     "claude": "yolo"
   },
   "lastCustomModel": "deepseek-v4-pro",
-  "maxTabs": 3,
+  "maxTabs": 5,
   "tabBarPosition": "input",
   "enableAutoScroll": true,
   "deferMathRenderingDuringStreaming": true,
