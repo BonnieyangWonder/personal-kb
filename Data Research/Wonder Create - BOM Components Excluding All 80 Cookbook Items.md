@@ -1,5 +1,5 @@
 ---
-title: Wonder Create - BOM Components Excluding Cookbook List
+title: Wonder Create - BOM Components Excluding All 80 Cookbook Items
 date: 2026-05-21
 updated: 2026-05-22
 project: Wonder Create
@@ -7,18 +7,20 @@ tags: [cookbook, line-build, bom, global-appliance-config, data-research]
 source: BigQuery (wonder-dw-prod-brd, wonder-recipe-prod)
 ---
 
-# Wonder Create - BOM Components Excluding Cookbook List
+# Wonder Create - BOM Components Excluding All 80 Cookbook Items
 
 ## 查询背景
 
-与 [[Wonder Create - Cookbook Line Build Report (Global Config Appliances)]] 使用相同的 menu item 范围（4 品牌、non-dormant、active final version、有 line build），以及相同的 appliance 过滤（TURBO_OVEN、FRYER、PIZZA_CONVEYOR_OVEN、CLAMSHELL），但 **component 匹配逻辑不同**：
+与 [[Wonder Create - Cookbook Line Build Report (Global Config Appliances)]] 使用相同的 menu item 范围，以及相同的 appliance 过滤（TURBO_OVEN、FRYER、PIZZA_CONVEYOR_OVEN、CLAMSHELL），但 **component 匹配逻辑不同**：
 
+- **比对的 4 个品牌**: Royal Greens, Limesalt, Yasas, Hanu Poke
+- **Menu Item 筛选**: `object_type=MENU`, `effective=true`, `deleted=false`, `item_status!=DORMANT`, `version_status=FINAL`, 有 line build
 - **报告 1**: 只找 line build 步骤中映射了 Confluence 页面全部 80 个 cookbook # 的组件
 - **本报告**: 找出 line build COOK 步骤中映射的 **所有** component item，然后 **排除** Confluence 页面中全部的 80 个 cookbook # item
 
 ### 排除列表
 
-排除 [[WC Ingredient Validation vs Cookbook List 2026-05-08]] 页面中列出的**全部 80 个 cookbook #**（涵盖页面中所有 5 张表），包括但不限于 "Cookbook numbers in WC, not on the IK list" 的 26 个。
+排除 [[WC Ingredient Validation vs Cookbook List 2026-05-08]] 页面中列出的**全部 80 个 cookbook #**（涵盖页面中所有 5 张表）。
 
 ## 查询参数
 
