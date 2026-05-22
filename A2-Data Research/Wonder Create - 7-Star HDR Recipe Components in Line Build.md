@@ -43,7 +43,7 @@ source: BigQuery (wonder-dw-prod-brd)
 
 | 7\* Item | Name                                   | 中文名称             | 关联 Menu Items 数 | 关联 40*                           |
 | -------- | -------------------------------------- | ---------------- | --------------- | -------------------------------- |
-| ç        | Tandoori Chicken Thigh [Marinated, 3x] | 坦都里鸡腿 [腌制, 3x]   | 6               | 4000693 (Tandoori Chicken Thigh) |
+| 7000051  | Tandoori Chicken Thigh [Marinated, 3x] | 坦都里鸡腿 [腌制, 3x]   | 6               | 4000693 (Tandoori Chicken Thigh) |
 | 7000052  | Tandoori Paneer [Marinated, 3x]        | 坦都里印度奶酪 [腌制, 3x] | 2               | 4000694 (Paneer (Diced))         |
 | 7000062  | Chicken Tender, BRFC                   | 鸡柳 (BRFC)        | 3               | 4000902 (Raw Chicken Tender)     |
 | 7000059  | Chicken Thigh, BRFC                    | 鸡腿肉 (BRFC)       | 1               | 4000899 (Raw Chicken Thigh)      |
