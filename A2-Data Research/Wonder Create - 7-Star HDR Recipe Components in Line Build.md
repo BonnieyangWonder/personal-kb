@@ -41,16 +41,16 @@ source: BigQuery (wonder-dw-prod-brd)
 
 ## 涉及的 7\* HDR Recipe Items
 
-| 7\* Item | Name | 中文名称 | 关联 Menu Items 数 | 关联 40* |
-|----------|------|----------|-------------------|----------|
-| 7000051 | Tandoori Chicken Thigh [Marinated, 3x] | 坦都里鸡腿 [腌制, 3x] | 6 | 4000693 (Tandoori Chicken Thigh) |
-| 7000052 | Tandoori Paneer [Marinated, 3x] | 坦都里印度奶酪 [腌制, 3x] | 2 | 4000694 (Paneer (Diced)) |
-| 7000062 | Chicken Tender, BRFC | 鸡柳 (BRFC) | 3 | 4000902 (Raw Chicken Tender) |
-| 7000059 | Chicken Thigh, BRFC | 鸡腿肉 (BRFC) | 1 | 4000899 (Raw Chicken Thigh) |
-| 7000060 | Chicken Drumstick, BRFC | 鸡锤 (BRFC) | 1 | 4000900 (Raw Chicken Drumstick) |
-| 7000058 | Chicken Breast, BRFC | 鸡胸肉 (BRFC) | 1 | 4000898 (Raw Chicken Breast) |
-| 7000061 | Chicken Whole Wing, BRFC | 全鸡翅 (BRFC) | 1 | 4000901 (Raw Chicken Whole Wing) |
-| 7000029 | Diced Adobo Chicken Thigh [Cooked, 3x] | 阿斗波鸡腿肉丁 [熟制, 3x] | 1 | 4000319 (Adobo Marinade Sauce) |
+| 7\* Item | Name                                   | 中文名称             | 关联 Menu Items 数 | 关联 40*                           |
+| -------- | -------------------------------------- | ---------------- | --------------- | -------------------------------- |
+| ç        | Tandoori Chicken Thigh [Marinated, 3x] | 坦都里鸡腿 [腌制, 3x]   | 6               | 4000693 (Tandoori Chicken Thigh) |
+| 7000052  | Tandoori Paneer [Marinated, 3x]        | 坦都里印度奶酪 [腌制, 3x] | 2               | 4000694 (Paneer (Diced))         |
+| 7000062  | Chicken Tender, BRFC                   | 鸡柳 (BRFC)        | 3               | 4000902 (Raw Chicken Tender)     |
+| 7000059  | Chicken Thigh, BRFC                    | 鸡腿肉 (BRFC)       | 1               | 4000899 (Raw Chicken Thigh)      |
+| 7000060  | Chicken Drumstick, BRFC                | 鸡锤 (BRFC)        | 1               | 4000900 (Raw Chicken Drumstick)  |
+| 7000058  | Chicken Breast, BRFC                   | 鸡胸肉 (BRFC)       | 1               | 4000898 (Raw Chicken Breast)     |
+| 7000061  | Chicken Whole Wing, BRFC               | 全鸡翅 (BRFC)       | 1               | 4000901 (Raw Chicken Whole Wing) |
+| 7000029  | Diced Adobo Chicken Thigh [Cooked, 3x] | 阿斗波鸡腿肉丁 [熟制, 3x] | 1               | 4000319 (Adobo Marinade Sauce)   |
 
 ## 详细结果
 
