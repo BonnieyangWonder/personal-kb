@@ -4,8 +4,8 @@
   "title": "Support hot holding config on 42 items",
   "titleGenerationStatus": "success",
   "createdAt": 1779438952717,
-  "updatedAt": 1779682358386,
-  "lastResponseAt": 1779682358385,
+  "updatedAt": 1779689708208,
+  "lastResponseAt": 1779688879411,
   "sessionId": "19859a9b-8b40-42fd-ac62-8f9eb7d748a2",
   "providerState": {
     "providerSessionId": "19859a9b-8b40-42fd-ac62-8f9eb7d748a2"
@@ -15,12 +15,12 @@
   ],
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 88,
+    "inputTokens": 347,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 160896,
+    "cacheReadInputTokens": 165888,
     "contextWindow": 200000,
-    "contextTokens": 160984,
-    "percentage": 80,
+    "contextTokens": 166235,
+    "percentage": 83,
     "contextWindowIsAuthoritative": true
   }
 }

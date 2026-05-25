@@ -8,14 +8,14 @@ Compile scattered requirements discussions from Jira tickets and Confluence page
 
 ## Output Directory
 
-**`Z01-Resource/Cookbook-business/` is the dedicated directory for all Cookbook-related business requirements documents.** All biz-req output goes here unless the user specifies a different target directory.
+**`Z01-Resource/CB-business/` is the dedicated directory for all Cookbook-related business requirements documents.** All biz-req output goes here unless the user specifies a different target directory.
 
 ## When to Use
 
 - User provides a Jira ticket + several Confluence reference page links
 - User asks to write a business requirements document for a Cookbook feature
 - Business requirements change over time and the document needs continuous iteration
-- Default output location: `Z01-Resource/Cookbook-business/`
+- Default output location: `Z01-Resource/CB-business/`
 
 ## Workflow
 
@@ -84,4 +84,4 @@ Organize in the following order (flexibly adapt to specific topic):
 
 ## Output
 
-A markdown document placed in `Z01-Resource/Cookbook-business/` (the dedicated Cookbook business requirements directory), with complete frontmatter, wikilink references, and a source page URL matrix. All content in English.
+A markdown document placed in `Z01-Resource/CB-business/` (the dedicated Cookbook business requirements directory), with complete frontmatter, wikilink references, and a source page URL matrix. All content in English.

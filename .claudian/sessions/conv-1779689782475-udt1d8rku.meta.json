@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779689782475-udt1d8rku",
+  "providerId": "claude",
+  "title": "Add preset ID copy to Cookbook",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779689782476,
+  "updatedAt": 1779690336473,
+  "lastResponseAt": 1779690336473,
+  "sessionId": "2067b045-f5cc-47ac-8925-c2f0c7bf71b8",
+  "providerState": {
+    "providerSessionId": "2067b045-f5cc-47ac-8925-c2f0c7bf71b8"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 431,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 68224,
+    "contextWindow": 200000,
+    "contextTokens": 68655,
+    "percentage": 34,
+    "contextWindowIsAuthoritative": true
+  }
+}
