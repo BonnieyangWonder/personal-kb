@@ -1,8 +1,8 @@
 ---
-title: IK Dish Type & IK Plating Rule - Business Requirements
+title: IK Dish Type & IK Plating Rule
 date: 2026-05-08
 created: 2026-05-22
-updated: 2026-05-22
+updated: 2026-05-25
 type: concept
 domain: Cookbook
 status: active
@@ -26,7 +26,7 @@ sources:
   - https://wonder.atlassian.net/wiki/spaces/~712020a23d399f56f34b208584dc6e78d90758/pages/5244518402
 ---
 
-# IK Dish Type & IK Plating Rule — Business Requirements
+# IK Dish Type & IK Plating Rule
 
 ## 1. Business Background
 
@@ -35,7 +35,7 @@ Wonder is integrating Infinite Kitchen (IK) automation equipment into its hybrid
 1. **Which container (dish/bowl type) to use** → **IK Dish Type**
 2. **How to arrange ingredients in that container** → **IK Plating Rule**
 
-These two attributes must be configured in Cookbook and passed downstream to the IK equipment and KDS with order data.
+These two attributes are configured in Cookbook as item master data. When an order is placed via the consumer app/site, KDS receives the order and fetches the corresponding menu item data (including IK Dish Type and IK Plating Rule) from Cookbook, then routes the relevant information to the IK equipment.
 
 The IK equipment currently needs to support 6 packaging types (Dish Types) and 5 plating rules. These configurations must flexibly accommodate different menu items and different HDR-specific requirements.
 
@@ -229,9 +229,9 @@ Menu Item Level:
    - If the sub-step belongs to an `IK Eligible=true` step and maps to a component/customization → plating rule is required
    - If the sub-step belongs to an `IK Eligible=false` step → plating rule is optional
 
-4. **Data returned to KDS from Cookbook**
-   - Returns all configured IK Dish Type and IK Plating Rule values from the line build
-   - No filtering based on IK Eligible — passes through everything
+4. **Data served to KDS when queried**
+   - When KDS fetches a menu item's line build from Cookbook, all configured IK Dish Type and IK Plating Rule values are returned
+   - No filtering based on IK Eligible — Cookbook returns whatever is configured
 
 ### 5.2 KDS Side
 
@@ -269,12 +269,19 @@ Menu Item Level:
 ## 7. System Context & Data Flow
 
 ```
+Consumer App / Site
+  │
+  │ (order placed: contains menu items, customizations)
+  ▼
+KDS (Kitchen Display System)
+  │
+  │ (fetches menu item line build, IK Dish Type, IK Plating Rule)
+  ▼
 Cookbook
   ├── Menu Item: IK Dish Type, IK Plating Rule (default)
   └── Line Build Sub-Step: IK Plating Rule (override)
-       │
-       ▼
-KDS (Kitchen Display System)
+
+KDS (after fetching from Cookbook)
   ├── Retrieves IK loaded status for IK Eligible components
   ├── IK Eligible=true → sends to IK (with plating rule)
   └── IK Eligible=false / not IK-loaded → sends to cold pod (ignores plating rule)
