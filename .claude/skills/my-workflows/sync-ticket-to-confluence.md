@@ -1,52 +1,119 @@
-# Atlassian JIRA + Confluence Sync Command
+# Sync Jira Ticket to Confluence
 
-将 JIRA Ticket 信息同步到 Confluence 页面的标准流程。
+Sync a Jira ticket's full content into a Confluence page. Used for documentation, design reviews, and stakeholder visibility.
 
-## 输入
+## Input
 
-- JIRA Ticket Key（如：MD-17493）
-- 目标 Confluence Space
-- 目标页面标题（可选，默认使用 JIRA Summary）
+- Jira ticket key (e.g., MD-17984)
+- Target Confluence space key
+- Target page title (optional; defaults to Jira summary)
 
-## 输出
+## Output
 
-创建/更新 Confluence 页面，包含：
+Creates or updates a Confluence page containing:
 
-1. **Ticket 基本信息**
-   - Key、标题、类型、状态、优先级
-   - Reporter、Assignee
-   - 创建/更新时间
+1. **Ticket Basic Info**
+   - Key, title, type, status, priority
+   - Reporter, assignee
+   - Created / updated timestamps
 
-2. **需求描述**
-   - 完整的 Description（保留格式）
-   - 子任务列表
+2. **Description**
+   - Full description (preserving formatting)
+   - Sub-task list
 
-3. **技术实现要点**（自动提取）
-   - Context/背景
-   - 新模型设计
-   - 依赖关系
-   - 实施计划
-   - 范围边界（In/Out of Scope）
+3. **Technical Details** (auto-extracted)
+   - Context / background
+   - Implementation plan
+   - Dependencies
+   - Scope boundaries (in / out of scope)
 
-4. **关联信息**
-   - 父级 Epic
-   - 相关子任务
-   - 链接的 PR/Build（如有）
+4. **Related Info**
+   - Parent Epic
+   - Linked subtasks
+   - Related PRs / builds (if available)
 
-## 执行步骤
+## Execution Steps
 
-1. 从 JIRA REST API 获取 ticket 完整信息
-2. 格式化内容为 Confluence Wiki 格式
-3. 检查目标 Confluence 页面是否存在
-   - 存在 → 更新
-   - 不存在 → 创建新页面
-4. 包含相关截图（从 JIRA 附件）
+1. Fetch Jira ticket from REST API (reuse auth from [[create-jira-ticket]])
+2. Convert content to Confluence storage format
+3. Check if target Confluence page exists (MCP `getConfluencePage`)
+   - Exists → MCP `updateConfluencePage`
+   - Doesn't exist → MCP `createConfluencePage`
+4. Include relevant attachments / screenshots from Jira
 
-## API 端点
+## Auth Strategy (same as create-jira-ticket)
 
-- JIRA: `https://wonder.atlassian.net/rest/api/2/issue/{ticketKey}`
-- Confluence: `https://wonder.atlassian.net/wiki/rest/api/`
+### Strategy 1: MCP Tools (preferred for Confluence)
+- `mcp__atlassian__getConfluencePage` — check if page exists
+- `mcp__atlassian__createConfluencePage` — create new
+- `mcp__atlassian__updateConfluencePage` — update existing
 
-## 认证
+### Strategy 2: REST API + Cached OAuth Token (fallback for Jira read)
 
-使用环境变量存储的 API Token（已配置）
+For reading the Jira ticket when MCP Jira tools are unavailable:
+
+```bash
+TOKEN_FILE=$(find ~/.mcp-auth -name "8d8bab2a93ad41172215aecfb4b6d869_tokens.json" 2>/dev/null | head -1)
+TOKEN=$(python3 -c "import json; print(json.load(open('$TOKEN_FILE'))['access_token'])")
+CLOUD_ID="70497edc-9c59-45b2-8e47-e46913d4c6cf"
+API="https://api.atlassian.com/ex/jira/${CLOUD_ID}/rest/api/3"
+
+# Fetch issue
+curl -s -H "Authorization: Bearer $TOKEN" "${API}/issue/MD-17984"
+```
+
+### Strategy 3: Basic Auth + API Token (last resort)
+Requires user to provide their Atlassian API token.
+
+## Confluence Content Format
+
+Use wiki markup when creating via REST API, or ADF when using MCP tools.
+
+### Wiki markup (REST API)
+```
+h1. Ticket: MD-17984
+
+h2. Basic Info
+||Key||MD-17984||
+||Summary||Support Hot Hold configuration...||
+||Type||Story||
+||Status||To Do||
+
+h2. Description
+Full description text here...
+
+h2. References
+- [Related Page|https://wonder.atlassian.net/wiki/...]
+```
+
+### HTML format (MCP tools — preferred)
+Use standard HTML with Confluence-specific elements. See [[atlassian-confluence]] for full syntax.
+
+## Ticket Content Extraction
+
+When fetching a Jira ticket via REST API, key fields to extract:
+
+| Field | API Path | Notes |
+|-------|----------|-------|
+| Summary | `fields.summary` | Page title candidate |
+| Description | `fields.description` | ADF format; convert to wiki/html |
+| Status | `fields.status.name` | |
+| Priority | `fields.priority.name` | |
+| Assignee | `fields.assignee.displayName` | |
+| Reporter | `fields.reporter.displayName` | |
+| Created | `fields.created` | |
+| Updated | `fields.updated` | |
+| Epic Link | `fields.parent.key` | If story has parent epic |
+| Subtasks | `fields.subtasks[].key` | List child issues |
+| Issue Links | `fields.issuelinks[]` | Related PRs, blocks, etc. |
+
+## MCP Architecture Note
+
+Two config sources exist; one can shadow the other:
+
+| File | Config Name | Method | OAuth Scope | Jira Write |
+|------|------------|--------|-------------|------------|
+| `~/.claude/settings.json` | Atlassian-Rovo-MCP | mcp-remote + authv2 | Full | ✅ |
+| `~/.claude.json` | atlassian | HTTP direct | Confluence only | ❌ |
+
+Confluence operations (create/update page) are available in both modes. Jira read for ticket fetching may need the REST API fallback if in HTTP-only mode.

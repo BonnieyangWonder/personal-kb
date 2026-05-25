@@ -76,7 +76,7 @@ IK Dish Type specifies the container type that the IK equipment should request t
 
 - NOT configured at the component item level
 - One menu item has exactly one IK Dish Type
-- IK Dish Type may differ from the final packaging (e.g., a quesadilla is processed in a Reusable Bowl in the IK, but is ultimately packaged in a rectangular pulp bowl)
+- **IK Dish Type** vs. **Packaging Type** are separate concepts. IK Dish Type is the container used during IK processing — it is what the TM places on the belt at the start so the IK can dispense ingredients into it. Packaging Type is the final container the customer receives. These may be the same (e.g., a bowl stays in its bowl), but they can differ: for example, a quesadilla is dispensed into a Reusable Bowl in the IK for ingredient assembly, then at the Finishing Station it is transferred into a rectangular pulp box for the customer. Similarly, a hanu poke bowl may be processed using a Yasas bowl as the IK Dish Type. The Chit should display the Packaging Type; in the future, it may only show the Packaging Type when it differs from the IK Dish Type (per Charlie Fox, 2026-05-12).
 
 ### 2.4 Examples
 
@@ -91,7 +91,7 @@ IK Dish Type specifies the container type that the IK equipment should request t
 | Limesalt Tacos | Reusable Bowl | Same as above |
 | Limesalt Quesadilla | Reusable Bowl | Same as above |
 | Side white rice / brown rice / poke rice | 8oz Cup | Small side portion |
-| Side corn salsa / pico | Reusable Bowl (8oz Cup at FS) | Special: IK processes in reusable bowl, but final packaging at FS uses a 4oz cup |
+| Side corn salsa / pico | Reusable Bowl | IK processes in reusable bowl; at FS, transferred into a 4oz cup for the customer |
 
 ---
 
@@ -105,13 +105,20 @@ IK Plating Rule defines how ingredients should be arranged and dispensed into th
 
 | IK Plating Rule | Description | Use Case |
 |---|---|---|
-| `Layering` | Layered placement — all ingredients dispensed in sequence, stacked | Default rule; applicable to most bowl types |
+| `Layering` | Layered placement — all ingredients dispensed in sequence, stacked | System fallback for new/unconfigured menu items; also used by most bowl types (e.g., Yasas, Royal Greens without soba) |
 | `Center` | Center placement — all ingredients placed in the center of the dish | Burritos, tacos, quesadillas processed in reusable bowls; side items |
 | `Straight` | Straight-line arrangement | Specific bowls (e.g., Limesalt oval bowl); non-layering scenarios |
 | `Prelap Center` | Pre-lap followed by center placement | Double Lap (No Action Needed, no FS stop): first collects specific ingredients (e.g., Soba Noodles), centers them after one lap, then runs a second lap for remaining ingredients |
 | `Prelap Poke Press` | Pre-lap followed by Poke Press placement | Double Lap (Action Needed) + TM press: first collects Poke Rice + Furikake, centers them, stops at FS for TM to press down, then runs a second lap |
 
-### 3.3 Relationship Between IK Plating Rule and Double Lap
+### 3.3 Double Lap & Relationship with IK Plating Rule
+
+**Double Lap** is an IK journey type where the bowl runs two laps around the IK track instead of the standard single lap. It is used when culinary requirements demand that certain ingredients be dispensed and arranged before the rest — for example, pressing poke rice into the bottom of the bowl before toppings are added, or placing soba noodles at the base before layering other ingredients. There are two variants:
+
+- **Double Lap (Action Needed)**: The bowl collects specific ingredients on the first lap, then stops at the Finishing Station for a Team Member interaction (e.g., pressing down poke rice). After the TM confirms on the BPS screen, the bowl runs a second lap to collect the remaining ingredients.
+- **Double Lap (No Action Needed)**: The bowl collects specific ingredients on the first lap, passes through the FS without stopping, and immediately runs a second lap for the remaining ingredients.
+
+The IK Plating Rule determines which Double Lap variant is triggered:
 
 ```
 Prelap Center       → Double Lap (No Action Needed): Bowl passes through FS without stopping
@@ -120,7 +127,7 @@ Prelap Poke Press   → Double Lap (Action Needed): Bowl stops at FS, TM presses
                        Example: Hanu Poke Bowl with Poke Rice + Furikake
 ```
 
-`Center` / `Layering` / `Straight` → Standard Single Lap
+`Center` / `Layering` / `Straight` → Standard Single Lap (bowl runs one lap collecting all ingredients, then stops at FS for bowl swap)
 
 ### 3.4 Configuration Level
 
@@ -148,7 +155,7 @@ Prelap Poke Press   → Double Lap (Action Needed): Bowl stops at FS, TM presses
 ```
 Menu Item Level:
   IK Dish Type: 48oz Bowl
-  IK Plating Rule: Layering (default)
+  IK Plating Rule: Layering
 
 Sub-Step Level Override:
   Sub-Step: "Choose your Base → Soba Noodles"
@@ -162,7 +169,7 @@ Sub-Step Level Override:
 ```
 Menu Item Level:
   IK Dish Type: 32oz Bowl
-  IK Plating Rule: Layering (default)
+  IK Plating Rule: Layering
 
 Sub-Step Level Override:
   Sub-Step: "Choose your Base → Sushi Rice (Poke Rice)"
@@ -261,14 +268,14 @@ Menu Item Level:
 
 ## 6. Key Design Decision Records
 
-| # | Decision | Outcome | Decided By | Date |
-|---|---|---|---|---|
-| 1 | Which level to configure IK Dish Type | **Menu Item level** | Bonnie Yang / Evan Fox | 2026-05-12 |
-| 2 | Which level to configure IK Plating Rule | **Menu Item default + Sub-Step override** (NOT Component level) | Charlie Fox / Evan Fox | 2026-05-12 |
-| 3 | Is plating rule required when IK Eligible=false | **Optional** (no forced clearing) | Bonnie Yang | MD-17927 |
-| 4 | Auto-clear plating rule when IK Eligible changes true→false | **Do NOT auto-clear** | Bonnie Yang | MD-17927 |
-| 5 | Should Cookbook filter plating rule by IK Eligible | **No filtering**, pass through everything to KDS | Bonnie Yang | MD-17927 |
-| 6 | Support multiple plating rule configs at Component Item level | **No**, simplified approach | Charlie Fox / Evan Fox | 2026-05-12 |
+| #   | Decision                                                      | Outcome                                                         | Decided By               | Date       |
+| --- | ------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------ | ---------- |
+| 1   | Which level to configure IK Dish Type                         | **Menu Item level**                                             | Evan Fox                 | 2026-05-12 |
+| 2   | Which level to configure IK Plating Rule                      | **Menu Item default + Sub-Step override** (NOT Component level) | Charlie Fox / Evan Fox   | 2026-05-12 |
+| 3   | Is plating rule required when IK Eligible=false               | **Optional** (no forced clearing)                               | Bonnie Yang              | MD-17927   |
+| 4   | Auto-clear plating rule when IK Eligible changes true→false   | **Do NOT auto-clear**                                           | Bonnie Yang              | MD-17927   |
+| 5   | Should Cookbook filter plating rule by IK Eligible            | **No filtering**, pass through everything to KDS                | Charlie Fox /Bonnie Yang | MD-17927   |
+| 6   | Support multiple plating rule configs at Component Item level | **No**, simplified approach                                     | Charlie Fox / Evan Fox   | 2026-05-12 |
 
 ---
 
