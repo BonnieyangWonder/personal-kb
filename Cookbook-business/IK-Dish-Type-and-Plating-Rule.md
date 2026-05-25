@@ -41,9 +41,15 @@ The IK equipment currently needs to support 6 packaging types (Dish Types) and 5
 
 ### Related Project Context
 
-- **Wonder Create**: Enables influencers to freely create menu items; requires Cookbook to auto-generate line builds (defaulting to aggregating all IK Eligible components into an IK step)
-- **IK Eligible Component Flagging**: Already in place at the component item level (`IK Eligible=true/false`). Components marked `true` are aggregated into the IK step in the line build.
-- **KDS Routing Logic**: KDS sends IK step components that are actually loaded in the HDR's IK to the IK equipment; unloaded components are routed to the cold pod as garnish steps.
+- **Machine Eligible (Component Level)**: Each component item has a `Machine Eligible` attribute that indicates whether the IK equipment module can physically handle this component (e.g., whether it can be dispensed from IK tubes). This is a property of the component itself, independent of any specific menu item.
+
+- **IK Eligible (Line Build Step Level)**: Each step in a menu item's line build has an `IK Eligible` flag that indicates whether that specific step — in the context of the current menu item — can be fulfilled by IK equipment. This is determined by how the component is prepared/used in this menu item and whether the IK equipment module supports that preparation method. For example, a component may be `Machine Eligible=true` at the component level, but if the menu item requires it to be cooked in a turbo oven (which the IK does not support), the CDT configures that step as a Cook step (`IK Eligible=false`) rather than an IK step. Conversely, if the IK equipment can handle the component as used in this menu item, the step is configured as `IK Eligible=true`.
+
+- **IK Step in Line Build**: CDT aggregates components that are both `Machine Eligible=true` and can be fulfilled by IK for the given menu item into an IK step (`Activity=IK step`). Components that require cooking methods unsupported by IK are placed in other activity steps (e.g., Cook with turbo oven). If a `Machine Eligible=true` component should not be served by IK at all for a particular menu item, CDT can manually remove it from the IK step and configure it in another activity step.
+
+- **Wonder Create**: Enables influencers to freely create menu items; requires Cookbook to auto-generate line builds (defaulting to aggregating all `Machine Eligible=true` components into an IK step, with non-Machine Eligible components placed in garnish steps).
+
+- **KDS Routing Logic**: KDS receives the order from the consumer app/site, fetches the line build from Cookbook, checks which IK Eligible step components are actually loaded in the HDR's IK equipment, and routes accordingly — loaded components are sent to IK, unloaded components are routed to the cold pod as garnish steps.
 
 ---
 
@@ -282,8 +288,8 @@ Cookbook
   └── Line Build Sub-Step: IK Plating Rule (override)
 
 KDS (after fetching from Cookbook)
-  ├── Retrieves IK loaded status for IK Eligible components
-  ├── IK Eligible=true → sends to IK (with plating rule)
+  ├── Compares IK Eligible step components against IK-loaded components at the HDR
+  ├── IK Eligible=true & loaded in IK → sends to IK (with plating rule)
   └── IK Eligible=false / not IK-loaded → sends to cold pod (ignores plating rule)
        │
        ▼
@@ -349,7 +355,7 @@ Finishing Station (FS)
 
 ## 11. Dependencies
 
-- **Cookbook**: IK Eligible component flagging + IK Step support in line build (completed, 2026-03)
+- **Cookbook**: `Machine Eligible` attribute on component items + `IK Eligible` flag on line build steps + IK Step (`Activity=IK step`) support in line build (completed, 2026-03)
 - **KDS**: IK order dispatch API (`POST /orders`) — `dish_type` and `plating_rule` fields are already defined
 - **HDR Portal**: Must support IK pod type configuration (`ik_code`)
 - **IK Equipment**: BPS updates to support pre-placement of all 6 dish types; support for all plating rule journeys
