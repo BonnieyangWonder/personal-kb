@@ -15,11 +15,13 @@ All ticket content MUST be in English — summary, description, acceptance crite
 - **Ticket Type**: Story (`10004`) by default for feature requests and enhancements
 
 ### Workflow
-1. User sends stakeholder communications / requirements / background context
-2. Analyze: distill the core request, separate background from ask, identify dependencies
-3. Draft the ticket summary and description
-4. Confirm with user if anything is ambiguous
-5. Create the ticket
+1. User sends ONE message containing: requirements text + screenshots (pasted inline)
+2. Auto-detect: immediately check clipboard for images — the user pastes screenshots alongside their text; do NOT ask them to send screenshots separately
+3. Analyze: distill the core request, separate background from ask, identify dependencies
+4. Draft the ticket summary and description
+5. Confirm with user if anything is ambiguous
+6. If screenshots detected → save from clipboard, upload as attachments, embed in description
+7. Create the ticket
 
 ## Execution Strategy (in priority order)
 
@@ -168,6 +170,51 @@ If the user provides:
 - **Other Jira tickets** → link as `https://wonder.atlassian.net/browse/KEY-####`
 - **Slack threads / docs** → include as inline links if URL is available; otherwise note the source in text
 - **PRDs / design docs** → link with descriptive text
+
+## Screenshots & Attachments
+
+When the user provides system UI screenshots, diagrams, or mockups, attach them to the ticket and embed them in the description.
+
+**Important**: The user sends screenshots IN THE SAME MESSAGE as the ticket request. Always check the clipboard at the start of every ticket creation — the user will paste images inline with their text. Do NOT ask them to resend or send separately.
+
+### Image Sources
+
+| Source | How to handle |
+|--------|---------------|
+| **Clipboard** | `osascript -e 'set pngData to the clipboard as «class PNGf»' -e 'set fileRef to (open for access POSIX file "/tmp/jira-screenshot-N.png" with write permission)' -e 'write pngData to fileRef' -e 'close access fileRef'` |
+| **File path** | Use the provided path directly |
+| **URL** | `curl -sLo /tmp/jira-screenshot-N.png "URL"` |
+
+### Attachment Upload Flow
+
+Step 1: Create the ticket (text-only description with placeholder references like `(see attached screenshots below)`).
+
+Step 2: For each image, upload as an attachment:
+```bash
+curl -s -X POST \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "X-Atlassian-Token: no-check" \
+  -F "file=@/tmp/jira-screenshot-1.png" \
+  "${API}/issue/${ISSUE_KEY}/attachments"
+```
+
+Step 3: Update the description to embed images. In Jira ADF, use `!filename.png!` syntax:
+- Add a paragraph in the description after upload with `!screenshot-1.png!` — Jira renders it inline.
+- For ADF mode, embed in a text node: `{"type":"text","text":"!screenshot-1.png!"}`
+
+Step 4: Update the issue description:
+```bash
+curl -s -X PUT \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  "${API}/issue/${ISSUE_KEY}" \
+  -d '{"fields":{"description":{"type":"doc","version":1,"content":[...]}}}'
+```
+
+### Note
+- MCP `createJiraIssue` tool alone cannot upload attachments → use REST API for attachment steps
+- If MCP was used to create the ticket (Strategy 1), still use REST API for Steps 2-4
+- Label screenshots descriptively: `hot-hold-current-state.png`, `cookbook-42-items.png`, etc.
 
 ## Troubleshooting
 
