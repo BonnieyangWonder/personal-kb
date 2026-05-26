@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779763470659-3qvw2cu1z",
+  "providerId": "claude",
+  "title": "Translate gluten-free tag logic requirement",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779763470660,
+  "updatedAt": 1779763476935,
+  "lastResponseAt": 1779763476708,
+  "sessionId": "79eecc6b-1907-4be0-a041-8e8b80794d68",
+  "providerState": {
+    "providerSessionId": "79eecc6b-1907-4be0-a041-8e8b80794d68"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 23425,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 23425,
+    "percentage": 12,
+    "contextWindowIsAuthoritative": true
+  }
+}
