@@ -31,6 +31,31 @@ Starting from the user-provided entry links, **exhaustively collect** all relate
 6. **Referenced pages**: Links from @mentions in body text, smartlinks, and pages mentioned in comments — fetch them if relevant to the topic.
 7. **External resources**: Google Sheets, Figma links, etc. — fetch if publicly accessible.
 
+### Inaccessible Resources (CRITICAL)
+
+**After completing resource collection, you MUST explicitly report every resource that could not be accessed.** This is a hard requirement — do not silently skip failed fetches.
+
+Access failures include:
+- Jira tickets that return 404 or authentication errors
+- Confluence pages that return 404 or permission errors
+- Slack links that require login / can't be fetched
+- Google Docs/Sheets links that are private
+- Figma links behind authentication
+- Any URL that WebFetch cannot retrieve
+- Footer/inline comments that fail to load
+
+Format the warning clearly before proceeding to Step 2:
+```
+⚠ Unable to access the following resources:
+- <url1> — <reason (e.g., Confluence page not found)>
+- <url2> — <reason (e.g., Slack login required)>
+- <url3> — <reason (e.g., comment fetch failed)>
+
+The compiled document will note these as unverified references.
+```
+
+**Do NOT proceed to Step 2 (Resource Analysis) until the user has seen this list.** If all resources are accessible, explicitly state: "✅ All referenced resources successfully accessed."
+
 ### Step 2: Resource Analysis
 
 Perform three layers of analysis on collected materials:

@@ -4,20 +4,20 @@
   "title": "Analyze preset ID copy requirement in Cookbook",
   "titleGenerationStatus": "success",
   "createdAt": 1779676624058,
-  "updatedAt": 1779679581018,
-  "lastResponseAt": 1779679581018,
+  "updatedAt": 1779695813181,
+  "lastResponseAt": 1779695813181,
   "sessionId": "66f1e23c-aded-43cb-9dd8-94fd84df279b",
   "providerState": {
     "providerSessionId": "66f1e23c-aded-43cb-9dd8-94fd84df279b"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 3160,
+    "inputTokens": 203,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 63232,
+    "cacheReadInputTokens": 130432,
     "contextWindow": 200000,
-    "contextTokens": 66392,
-    "percentage": 33,
+    "contextTokens": 130635,
+    "percentage": 65,
     "contextWindowIsAuthoritative": true
   }
 }

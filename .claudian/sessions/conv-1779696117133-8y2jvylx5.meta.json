@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779696117133-8y2jvylx5",
+  "providerId": "claude",
+  "title": "Fix net weight calculation for 7* items on comp...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779696117134,
+  "updatedAt": 1779700415548,
+  "lastResponseAt": 1779700415548,
+  "sessionId": "a683db91-4cf7-4770-90ce-dcbce12596bc",
+  "providerState": {
+    "providerSessionId": "a683db91-4cf7-4770-90ce-dcbce12596bc"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 83,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 51072,
+    "contextWindow": 200000,
+    "contextTokens": 51155,
+    "percentage": 26,
+    "contextWindowIsAuthoritative": true
+  }
+}

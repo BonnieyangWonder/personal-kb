@@ -1,0 +1,24 @@
+{
+  "id": "conv-1779691138374-usymzs5a1",
+  "providerId": "claude",
+  "title": "Check Confluence access permission",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779691138374,
+  "updatedAt": 1779691947171,
+  "lastResponseAt": 1779691325684,
+  "sessionId": "55a21519-9444-4753-ab39-2a5df4b3eaf8",
+  "providerState": {
+    "providerSessionId": "55a21519-9444-4753-ab39-2a5df4b3eaf8"
+  },
+  "currentNote": "A2-Data Research/Wonder Create Component - Cookbook Line Build Report (Global Config Appliances).md",
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 3197,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 26112,
+    "contextWindow": 200000,
+    "contextTokens": 29309,
+    "percentage": 15,
+    "contextWindowIsAuthoritative": true
+  }
+}

@@ -18,8 +18,10 @@
     "enabled": true,
     "silentMode": true,
     "silentMinConfidence": 3,
-    "deepseekModel": "deepseek-chat",
+    "openaiModel": "gpt-5.5",
     "geminiModel": "gemini-1.5-flash",
+    "claudeModel": "claude-sonnet-4-5",
+    "deepseekModel": "deepseek-chat",
     "sendFilePaths": true,
     "sendGitMetadata": true,
     "sendSurroundingContext": true,
@@ -34,7 +36,7 @@
   },
   "submodules": [
     {
-      "path": "Z0-Resources/cookbook-business",
+      "path": "Z01-Resource/CB-business",
       "remote": "https://github.com/chancetop-com/Cookbook-Business-KB.git",
       "branch": "main"
     }

@@ -41,6 +41,32 @@ Creates or updates a Confluence page containing:
    - Doesn't exist → MCP `createConfluencePage`
 4. Include relevant attachments / screenshots from Jira
 
+### Inaccessible Resources (CRITICAL)
+
+**If ANY step fails due to an inaccessible resource, you MUST explicitly report it to the user.** Do not proceed silently with partial data.
+
+Failure scenarios and required responses:
+
+| Failure | Required Action |
+|---------|-----------------|
+| Jira ticket not found (404) | Report: `⚠ Jira ticket <KEY> not found — verify the ticket key.` |
+| Jira ticket auth error (401/403) | Report: `⚠ Cannot access Jira ticket <KEY> — authentication failed.` |
+| Confluence page fetch error (not "page doesn't exist") | Report: `⚠ Cannot check Confluence page — <reason>.` |
+| Confluence create/update fails | Report: `⚠ Failed to sync to Confluence — <error details>.` |
+| MCP tools unavailable for Confluence | Report: `⚠ Confluence MCP tools not available — cannot create/update page.` |
+| Attachments fail to transfer | Report: `⚠ Could not transfer attachments: <list of failed files>.` |
+
+Format the warning clearly:
+```
+⚠ Sync encountered inaccessible resources:
+- Jira ticket MD-XXXXX — 404 not found
+- Attachment screenshot.png — transfer failed
+
+Sync completed with the following gaps: ...
+```
+
+This is a hard requirement — never suppress or skip these notifications.
+
 ## Auth Strategy (same as create-jira-ticket)
 
 ### Strategy 1: MCP Tools (preferred for Confluence)

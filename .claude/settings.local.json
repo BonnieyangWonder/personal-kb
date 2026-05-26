@@ -1,5 +1,14 @@
 {
   "env": {
     "PATH": "/Users/bonnie/Downloads/google-cloud-sdk/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('/Users/bonnie/.claude.json'\\)\\); print\\(json.dumps\\(d['mcpServers'], indent=2\\)\\)\")",
+      "Bash(uvx --version)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(/bin/zsh -lic 'which uvx 2>&1')",
+      "Bash(python3 *)"
+    ]
   }
 }

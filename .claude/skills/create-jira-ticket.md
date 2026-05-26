@@ -176,6 +176,28 @@ If the user provides:
 - **Slack threads / docs** → include as inline links if URL is available; otherwise note the source in text
 - **PRDs / design docs** → link with descriptive text
 
+### Inaccessible Resources (CRITICAL)
+
+**If ANY referenced resource cannot be accessed, you MUST explicitly list them to the user before creating the ticket.** Do not silently skip them.
+
+Access failures include:
+- Slack links that require login / can't be fetched
+- Confluence pages that return 404 or permission errors
+- Google Docs/Sheets links that are private
+- Figma links behind authentication
+- Any URL that WebFetch cannot retrieve
+
+Format the warning clearly:
+```
+⚠ Unable to access the following references:
+- <url1> — <reason (e.g., Slack login required)>
+- <url2> — <reason (e.g., Confluence page not found)>
+
+Proceeding with ticket creation using only the accessible resources.
+```
+
+This is a hard requirement — never suppress or skip this notification.
+
 ## Screenshots & Attachments
 
 When the user provides system UI screenshots, diagrams, or mockups, attach them to the ticket and embed them in the description.

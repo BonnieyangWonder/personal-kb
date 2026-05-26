@@ -1,0 +1,24 @@
+{
+  "id": "conv-1779692152099-cs4unkio7",
+  "providerId": "claude",
+  "title": "询问Confluence访问权限",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779692152100,
+  "updatedAt": 1779692169866,
+  "lastResponseAt": 1779692162435,
+  "sessionId": "db5cbe00-00d6-441c-a65b-3e553d5868b1",
+  "providerState": {
+    "providerSessionId": "db5cbe00-00d6-441c-a65b-3e553d5868b1"
+  },
+  "currentNote": "A2-Data Research/Wonder Create Component - Cookbook Line Build Report (Global Config Appliances).md",
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 23077,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 23077,
+    "percentage": 12,
+    "contextWindowIsAuthoritative": true
+  }
+}

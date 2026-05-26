@@ -4,20 +4,20 @@
   "title": "Analyze Gluten-Free tag rollback requirements",
   "titleGenerationStatus": "success",
   "createdAt": 1779690177833,
-  "updatedAt": 1779690287101,
-  "lastResponseAt": 1779690287101,
+  "updatedAt": 1779703671961,
+  "lastResponseAt": 1779703671961,
   "sessionId": "9652c49b-22c0-4195-b6a7-35c13215ad5d",
   "providerState": {
     "providerSessionId": "9652c49b-22c0-4195-b6a7-35c13215ad5d"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 8169,
+    "inputTokens": 94,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 43776,
+    "cacheReadInputTokens": 110720,
     "contextWindow": 200000,
-    "contextTokens": 51945,
-    "percentage": 26,
+    "contextTokens": 110814,
+    "percentage": 55,
     "contextWindowIsAuthoritative": true
   }
 }

@@ -1,0 +1,24 @@
+{
+  "id": "conv-1779693176499-i5hax37yx",
+  "providerId": "claude",
+  "title": "Verify Confluence access",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779693176499,
+  "updatedAt": 1779693199160,
+  "lastResponseAt": 1779693197305,
+  "sessionId": "aa90b25c-d267-4913-a1a6-a397e02f7233",
+  "providerState": {
+    "providerSessionId": "aa90b25c-d267-4913-a1a6-a397e02f7233"
+  },
+  "currentNote": "A2-Data Research/Wonder Create Component - Cookbook Line Build Report (Global Config Appliances).md",
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 3824,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 45824,
+    "contextWindow": 200000,
+    "contextTokens": 49648,
+    "percentage": 25,
+    "contextWindowIsAuthoritative": true
+  }
+}
