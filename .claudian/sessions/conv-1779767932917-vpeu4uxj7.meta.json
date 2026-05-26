@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779767932917-vpeu4uxj7",
+  "providerId": "claude",
+  "title": "Write nutrition card tip for frozen inheritance...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779767932918,
+  "updatedAt": 1779767953062,
+  "lastResponseAt": 1779767953062,
+  "sessionId": "b6cd6ea4-8695-4184-83e1-cf93c1993bfb",
+  "providerState": {
+    "providerSessionId": "b6cd6ea4-8695-4184-83e1-cf93c1993bfb"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 23491,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 23491,
+    "percentage": 12,
+    "contextWindowIsAuthoritative": true
+  }
+}
