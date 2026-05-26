@@ -2,3 +2,7 @@
 	path = Z0-Resources/cookbook-business
 	url = https://github.com/chancetop-com/Cookbook-Business-KB.git
 	branch = main
+[submodule "Z01-Resource/CB-business"]
+	path = Z01-Resource/CB-business
+	url = https://github.com/chancetop-com/Cookbook-Business-KB.git
+	branch = main
