@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779867926352-sy5ks1z6x",
+  "providerId": "claude",
+  "title": "Define \"obsolete\" in Chinese",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779867926352,
+  "updatedAt": 1779867935648,
+  "lastResponseAt": 1779867935648,
+  "sessionId": "bb3d2940-8d2d-4438-80b1-292d54d42583",
+  "providerState": {
+    "providerSessionId": "bb3d2940-8d2d-4438-80b1-292d54d42583"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 23402,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 23402,
+    "percentage": 12,
+    "contextWindowIsAuthoritative": true
+  }
+}
