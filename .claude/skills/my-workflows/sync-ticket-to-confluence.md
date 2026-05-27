@@ -1,119 +1,153 @@
 # Sync Jira Ticket to Confluence
 
-Sync a Jira ticket's full content into a Confluence page. Used for documentation, design reviews, and stakeholder visibility.
+Compare a Jira ticket with an existing Confluence page (and its child pages), identify what needs updating, present a before/after diff for review, and update only after user confirmation.
 
 ## Input
 
-- Jira ticket key (e.g., MD-17984)
-- Target Confluence space key
-- Target page title (optional; defaults to Jira summary)
+- **Jira ticket link** (e.g., `https://wonder.atlassian.net/browse/MD-17984`)
+- **Confluence page link** (e.g., `https://wonder.atlassian.net/wiki/spaces/MD/pages/123456789/Page+Title`)
 
-## Output
+## Language Rule (HARD REQUIREMENT)
 
-Creates or updates a Confluence page containing:
+**All content written to Confluence MUST be in English.** This applies to:
+- Page titles
+- Page body content
+- Version comments
+- Any labels or metadata
 
-1. **Ticket Basic Info**
-   - Key, title, type, status, priority
-   - Reporter, assignee
-   - Created / updated timestamps
-
-2. **Description**
-   - Full description (preserving formatting)
-   - Sub-task list
-
-3. **Technical Details** (auto-extracted)
-   - Context / background
-   - Implementation plan
-   - Dependencies
-   - Scope boundaries (in / out of scope)
-
-4. **Related Info**
-   - Parent Epic
-   - Linked subtasks
-   - Related PRs / builds (if available)
+When the Jira ticket description contains Chinese or other non-English content, translate it to English before writing to Confluence. Preserve the original meaning accurately.
 
 ## Execution Steps
 
-1. Fetch Jira ticket from REST API (reuse auth from [[create-jira-ticket]])
-2. Convert content to Confluence storage format
-3. Check if target Confluence page exists (MCP `getConfluencePage`)
-   - Exists → MCP `updateConfluencePage`
-   - Doesn't exist → MCP `createConfluencePage`
-4. Include relevant attachments / screenshots from Jira
+### Phase 1: Fetch Source (Jira)
 
-### Inaccessible Resources (CRITICAL)
+1. Extract the ticket key from the Jira link
+2. Fetch the full Jira ticket via MCP `jira_get_issue` with all fields:
+   - Basic info: summary, status, priority, issuetype, assignee, reporter, created, updated
+   - Description (full ADF content)
+   - Subtasks list
+   - Parent Epic
+   - Issue links
+   - Comments
+   - Attachments (list, not download)
+
+### Phase 2: Fetch Target (Confluence)
+
+1. Extract the page ID from the Confluence link
+2. Fetch the target page via MCP `confluence_get_page`
+3. Fetch ALL child pages via MCP `confluence_get_page_children` (with `include_content: true`)
+4. Build a complete content map: `{page_title: {content, page_id, parent_id}}` for the target page and every descendant
+
+### Phase 3: Compare & Identify Changes
+
+Compare Jira ticket content against the full Confluence page tree. Check for:
+
+| Aspect | What to check |
+|--------|---------------|
+| **Status** | Has the Jira status changed? Is the Confluence page reflecting the current status? |
+| **Description** | Has the Jira description been updated? Are there new sections, changed requirements, updated AC? |
+| **Subtasks** | New subtasks added? Existing ones completed? Status changes? |
+| **Comments** | New comments on Jira that contain important context not yet in Confluence? |
+| **Assignee/Reporter** | Personnel changes? |
+| **Epic/ Links** | New parent Epic? New linked issues? |
+| **Attachments** | New screenshots or files on Jira not in Confluence? |
+| **Child pages** | Do child pages cover content that's now in the Jira description? Are they outdated? |
+
+For each change identified:
+- Note WHICH page(s) need updating (target page or specific child page)
+- Capture the BEFORE content (current Confluence content)
+- Draft the AFTER content (what it should become)
+
+### Phase 4: Present Diff for Review
+
+Present findings in this format:
+
+```
+## 📋 Sync Review: MD-XXXXX → Confluence
+
+### Pages Examined
+- Target: [Page Title] (page_id) — last updated YYYY-MM-DD
+- Child: [Child Page Title] (page_id)
+- Child: [Another Child] (page_id)
+- ... (all child pages)
+
+### Changes Identified: N changes across M pages
+
+---
+
+### Change 1: [Page Title] — Update Status
+**Before:**
+> Status: To Do
+
+**After:**
+> Status: In Progress
+
+---
+
+### Change 2: [Child Page Title] — Add New Acceptance Criteria
+**Before:**
+> (current content or "section does not exist")
+
+**After:**
+> (proposed new content in English)
+
+---
+
+### No Changes Needed
+- [Page/Child Title] — content is up to date
+- ...
+
+---
+
+### Summary
+- X pages to update
+- Y new child pages to create
+- Z pages unchanged
+```
+
+**Wait for user confirmation before proceeding to Phase 5.**
+
+### Phase 5: Apply Updates (after confirmation)
+
+For each confirmed change:
+
+1. **Update existing page** → MCP `confluence_update_page` with the new content
+2. **Create new child page** → MCP `confluence_create_page` under the target parent
+3. **Upload attachments** → MCP `confluence_upload_attachment` (if new Jira attachments found)
+4. Each update should have a version comment like: `Synced from Jira MD-XXXXX — status update`
+
+### Phase 6: Report Completion
+
+```
+## ✅ Sync Complete
+
+- Updated: [Page Title] (link) — status changed, description updated
+- Created: [New Child Page] (link) — new section extracted
+- Unchanged: [list pages that were already up to date]
+```
+
+## Inaccessible Resources (CRITICAL)
 
 **If ANY step fails due to an inaccessible resource, you MUST explicitly report it to the user.** Do not proceed silently with partial data.
 
-Failure scenarios and required responses:
-
 | Failure | Required Action |
 |---------|-----------------|
-| Jira ticket not found (404) | Report: `⚠ Jira ticket <KEY> not found — verify the ticket key.` |
+| Jira ticket not found (404) | Report: `⚠ Jira ticket <KEY> not found — verify the ticket link.` |
+| Confluence page not found (404) | Report: `⚠ Confluence page not found — verify the page link.` |
+| Confluence child pages fetch error | Report: `⚠ Cannot fetch child pages of <page title> — <reason>.` |
 | Jira ticket auth error (401/403) | Report: `⚠ Cannot access Jira ticket <KEY> — authentication failed.` |
-| Confluence page fetch error (not "page doesn't exist") | Report: `⚠ Cannot check Confluence page — <reason>.` |
-| Confluence create/update fails | Report: `⚠ Failed to sync to Confluence — <error details>.` |
-| MCP tools unavailable for Confluence | Report: `⚠ Confluence MCP tools not available — cannot create/update page.` |
-| Attachments fail to transfer | Report: `⚠ Could not transfer attachments: <list of failed files>.` |
+| Confluence create/update fails | Report: `⚠ Failed to update Confluence page <title> — <error details>.` |
 
 Format the warning clearly:
 ```
 ⚠ Sync encountered inaccessible resources:
 - Jira ticket MD-XXXXX — 404 not found
-- Attachment screenshot.png — transfer failed
+- Child pages of "Design Doc" — permission error
 
-Sync completed with the following gaps: ...
+Sync halted. Please verify the links and retry.
 ```
 
 This is a hard requirement — never suppress or skip these notifications.
-
-## Auth Strategy (same as create-jira-ticket)
-
-### Strategy 1: MCP Tools (preferred for Confluence)
-- `mcp__atlassian__getConfluencePage` — check if page exists
-- `mcp__atlassian__createConfluencePage` — create new
-- `mcp__atlassian__updateConfluencePage` — update existing
-
-### Strategy 2: REST API + Cached OAuth Token (fallback for Jira read)
-
-For reading the Jira ticket when MCP Jira tools are unavailable:
-
-```bash
-TOKEN_FILE=$(find ~/.mcp-auth -name "8d8bab2a93ad41172215aecfb4b6d869_tokens.json" 2>/dev/null | head -1)
-TOKEN=$(python3 -c "import json; print(json.load(open('$TOKEN_FILE'))['access_token'])")
-CLOUD_ID="70497edc-9c59-45b2-8e47-e46913d4c6cf"
-API="https://api.atlassian.com/ex/jira/${CLOUD_ID}/rest/api/3"
-
-# Fetch issue
-curl -s -H "Authorization: Bearer $TOKEN" "${API}/issue/MD-17984"
-```
-
-### Strategy 3: Basic Auth + API Token (last resort)
-Requires user to provide their Atlassian API token.
-
-## Confluence Content Format
-
-Use wiki markup when creating via REST API, or ADF when using MCP tools.
-
-### Wiki markup (REST API)
-```
-h1. Ticket: MD-17984
-
-h2. Basic Info
-||Key||MD-17984||
-||Summary||Support Hot Hold configuration...||
-||Type||Story||
-||Status||To Do||
-
-h2. Description
-Full description text here...
-
-h2. References
-- [Related Page|https://wonder.atlassian.net/wiki/...]
-```
-
-### HTML format (MCP tools — preferred)
-Use standard HTML with Confluence-specific elements. See [[atlassian-confluence]] for full syntax.
 
 ## Ticket Content Extraction
 
@@ -132,6 +166,30 @@ When fetching a Jira ticket via REST API, key fields to extract:
 | Epic Link | `fields.parent.key` | If story has parent epic |
 | Subtasks | `fields.subtasks[].key` | List child issues |
 | Issue Links | `fields.issuelinks[]` | Related PRs, blocks, etc. |
+
+## Auth Strategy
+
+MCP tools are the preferred path (configured in `.claude/mcp.json`):
+
+- `mcp__atlassian__jira_get_issue` — fetch Jira ticket
+- `mcp__atlassian__confluence_get_page` — fetch target page
+- `mcp__atlassian__confluence_get_page_children` — fetch all child pages
+- `mcp__atlassian__confluence_update_page` — update existing page
+- `mcp__atlassian__confluence_create_page` — create new child page
+
+### Fallback: REST API + Cached OAuth Token
+
+If MCP tools for Jira are unavailable:
+
+```bash
+TOKEN_FILE=$(find ~/.mcp-auth -name "8d8bab2a93ad41172215aecfb4b6d869_tokens.json" 2>/dev/null | head -1)
+TOKEN=$(python3 -c "import json; print(json.load(open('$TOKEN_FILE'))['access_token'])")
+CLOUD_ID="70497edc-9c59-45b2-8e47-e46913d4c6cf"
+API="https://api.atlassian.com/ex/jira/${CLOUD_ID}/rest/api/3"
+
+# Fetch issue
+curl -s -H "Authorization: Bearer $TOKEN" "${API}/issue/MD-17984"
+```
 
 ## MCP Architecture Note
 
