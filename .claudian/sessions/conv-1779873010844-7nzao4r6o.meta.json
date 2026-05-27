@@ -4,20 +4,20 @@
   "title": "Sync Jira tickets to Confluence",
   "titleGenerationStatus": "success",
   "createdAt": 1779873010844,
-  "updatedAt": 1779873587319,
-  "lastResponseAt": 1779873587319,
+  "updatedAt": 1779874474612,
+  "lastResponseAt": 1779874474612,
   "sessionId": "04d95150-f275-4c53-a9ad-3f14eb8c6863",
   "providerState": {
     "providerSessionId": "04d95150-f275-4c53-a9ad-3f14eb8c6863"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 32236,
+    "inputTokens": 2243,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 86016,
+    "cacheReadInputTokens": 122112,
     "contextWindow": 200000,
-    "contextTokens": 118252,
-    "percentage": 59,
+    "contextTokens": 124355,
+    "percentage": 62,
     "contextWindowIsAuthoritative": true
   }
 }
