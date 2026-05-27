@@ -4,20 +4,20 @@
   "title": "Define \"obsolete\" in Chinese",
   "titleGenerationStatus": "success",
   "createdAt": 1779867926352,
-  "updatedAt": 1779867935648,
-  "lastResponseAt": 1779867935648,
+  "updatedAt": 1779869102230,
+  "lastResponseAt": 1779869102230,
   "sessionId": "bb3d2940-8d2d-4438-80b1-292d54d42583",
   "providerState": {
     "providerSessionId": "bb3d2940-8d2d-4438-80b1-292d54d42583"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 23402,
+    "inputTokens": 350,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 45696,
     "contextWindow": 200000,
-    "contextTokens": 23402,
-    "percentage": 12,
+    "contextTokens": 46046,
+    "percentage": 23,
     "contextWindowIsAuthoritative": true
   }
 }
