@@ -4,20 +4,23 @@
   "title": "Translate Chinese item check to English",
   "titleGenerationStatus": "success",
   "createdAt": 1779955403779,
-  "updatedAt": 1779955418169,
-  "lastResponseAt": 1779955418169,
+  "updatedAt": 1779958012741,
+  "lastResponseAt": 1779958012741,
   "sessionId": "0bd24ddd-dbc3-4114-8466-4e2af3f0c329",
   "providerState": {
     "providerSessionId": "0bd24ddd-dbc3-4114-8466-4e2af3f0c329"
   },
+  "externalContextPaths": [
+    "/Users/bonnie/Desktop/IK"
+  ],
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 23417,
+    "inputTokens": 5030,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 78848,
     "contextWindow": 200000,
-    "contextTokens": 23417,
-    "percentage": 12,
+    "contextTokens": 83878,
+    "percentage": 42,
     "contextWindowIsAuthoritative": true
   }
 }
