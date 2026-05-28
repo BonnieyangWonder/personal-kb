@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779971160289-7wwclg9p3",
+  "providerId": "claude",
+  "title": "Troubleshoot Mac printer connection prints but ...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779971160289,
+  "updatedAt": 1779971747682,
+  "lastResponseAt": 1779971747682,
+  "sessionId": "217056e7-8703-4afd-9388-1e3b80fba743",
+  "providerState": {
+    "providerSessionId": "217056e7-8703-4afd-9388-1e3b80fba743"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 165,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 74112,
+    "contextWindow": 200000,
+    "contextTokens": 74277,
+    "percentage": 37,
+    "contextWindowIsAuthoritative": true
+  }
+}
