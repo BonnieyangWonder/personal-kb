@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779953554167-of05qbag6",
+  "providerId": "claude",
+  "title": "查下现在cookbook系统中attribute=dish type,有那些sub-attribut...",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1779953554167,
+  "updatedAt": 1779955047526,
+  "lastResponseAt": 1779955047526,
+  "sessionId": "6df9fb4f-4081-4d23-a809-5665ce555065",
+  "providerState": {
+    "providerSessionId": "6df9fb4f-4081-4d23-a809-5665ce555065"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 183,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 58880,
+    "contextWindow": 200000,
+    "contextTokens": 59063,
+    "percentage": 30,
+    "contextWindowIsAuthoritative": true
+  }
+}
