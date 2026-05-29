@@ -19,7 +19,7 @@
     "silentMode": true,
     "silentMinConfidence": 3,
     "openaiModel": "gpt-5.5",
-    "geminiModel": "gemini-1.5-flash",
+    "geminiModel": "gemini-2.5-flash",
     "claudeModel": "claude-sonnet-4-5",
     "deepseekModel": "deepseek-chat",
     "sendFilePaths": true,
@@ -39,6 +39,12 @@
       "path": "Z01-Resource/CB-business",
       "remote": "https://github.com/chancetop-com/Cookbook-Business-KB.git",
       "branch": "main"
+    },
+    {
+      "path": "Z01-Resource/CB-bigquery",
+      "remote": "https://github.com/chancetop-com/Cookbook-Business-KB.git",
+      "branch": "bonnie",
+      "upstreamBranch": "main"
     }
   ]
 }

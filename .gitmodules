@@ -3,6 +3,11 @@
 	url = https://github.com/chancetop-com/Cookbook-Business-KB.git
 	branch = main
 [submodule "Z01-Resource/CB-business"]
+	pluginid = 90498974-e825-4f2e-9c8f-6d3b509b7840
 	path = Z01-Resource/CB-business
 	url = https://github.com/chancetop-com/Cookbook-Business-KB.git
 	branch = main
+[submodule "Z01-Resource/CB-bigquery"]
+	path = Z01-Resource/CB-bigquery
+	url = https://github.com/chancetop-com/Cookbook-Business-KB.git
+	branch = bonnie
