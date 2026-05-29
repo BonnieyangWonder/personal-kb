@@ -42,7 +42,7 @@
     },
     {
       "path": "Z01-Resource/CB-bigquery",
-      "remote": "https://github.com/chancetop-com/Cookbook-Business-KB.git",
+      "remote": "https://github.com/chancetop-com/Cookbook-Bigquery-KB.git",
       "branch": "bonnie",
       "upstreamBranch": "main"
     }
