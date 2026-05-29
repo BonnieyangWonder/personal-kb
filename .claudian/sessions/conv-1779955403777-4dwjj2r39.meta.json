@@ -4,8 +4,8 @@
   "title": "Translate Chinese item check to English",
   "titleGenerationStatus": "success",
   "createdAt": 1779955403779,
-  "updatedAt": 1779962882676,
-  "lastResponseAt": 1779962882676,
+  "updatedAt": 1780044447576,
+  "lastResponseAt": 1780044447576,
   "sessionId": "0bd24ddd-dbc3-4114-8466-4e2af3f0c329",
   "providerState": {
     "providerSessionId": "0bd24ddd-dbc3-4114-8466-4e2af3f0c329"
@@ -15,12 +15,12 @@
   ],
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 1141,
+    "inputTokens": 656,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 134784,
+    "cacheReadInputTokens": 138240,
     "contextWindow": 200000,
-    "contextTokens": 135925,
-    "percentage": 68,
+    "contextTokens": 138896,
+    "percentage": 69,
     "contextWindowIsAuthoritative": true
   }
 }
