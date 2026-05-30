@@ -1,0 +1,23 @@
+{
+  "id": "conv-1780143931413-qf51biffi",
+  "providerId": "claude",
+  "title": "Transfer WeChat chat from Win to Mac",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780143931413,
+  "updatedAt": 1780144641825,
+  "lastResponseAt": 1780144641825,
+  "sessionId": "d1e06365-caeb-4fac-bd52-f313c001d446",
+  "providerState": {
+    "providerSessionId": "d1e06365-caeb-4fac-bd52-f313c001d446"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 742,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 46208,
+    "contextWindow": 200000,
+    "contextTokens": 46950,
+    "percentage": 23,
+    "contextWindowIsAuthoritative": true
+  }
+}
