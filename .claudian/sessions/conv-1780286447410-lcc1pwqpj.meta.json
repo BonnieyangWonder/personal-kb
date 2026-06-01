@@ -4,20 +4,20 @@
   "title": "Analyze missing data impact on consumer app",
   "titleGenerationStatus": "success",
   "createdAt": 1780286447410,
-  "updatedAt": 1780295836634,
-  "lastResponseAt": 1780295836634,
+  "updatedAt": 1780297165279,
+  "lastResponseAt": 1780297165279,
   "sessionId": "3b46440a-7a52-4d22-82a9-5d4fc38abed7",
   "providerState": {
     "providerSessionId": "3b46440a-7a52-4d22-82a9-5d4fc38abed7"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 537,
+    "inputTokens": 176,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 47744,
+    "cacheReadInputTokens": 49280,
     "contextWindow": 200000,
-    "contextTokens": 48281,
-    "percentage": 24,
+    "contextTokens": 49456,
+    "percentage": 25,
     "contextWindowIsAuthoritative": true
   }
 }
