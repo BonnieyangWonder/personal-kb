@@ -4,19 +4,19 @@
   "title": "Cook Z01-Resource folder",
   "titleGenerationStatus": "success",
   "createdAt": 1780048782736,
-  "updatedAt": 1780051988023,
-  "lastResponseAt": 1780051988023,
+  "updatedAt": 1780278823410,
+  "lastResponseAt": 1780278823410,
   "sessionId": "f40753e7-6b8d-43b4-82bc-ab88c63154ba",
   "providerState": {
     "providerSessionId": "f40753e7-6b8d-43b4-82bc-ab88c63154ba"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 1456,
+    "inputTokens": 116578,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 115072,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 116528,
+    "contextTokens": 116578,
     "percentage": 58,
     "contextWindowIsAuthoritative": true
   }
