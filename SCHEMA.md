@@ -4,7 +4,9 @@ Knowledge taxonomy and conventions for this vault.
 
 ## Knowledge Domains
 
-_No domains defined yet. The agent adds domains here as knowledge pages are created._
+| Domain | Description |
+|--------|-------------|
+| `cookbook` | Wonder's Cookbook recipe and BOM management system
 
 ## Tag Taxonomy
 
@@ -17,15 +19,18 @@ Tags follow these conventions:
 
 | Tag | Usage | Description |
 |-----|-------|-------------|
-
-_No tags defined yet. The agent adds tags here as knowledge pages are created._
+| `bigquery` | 1 page | BigQuery SQL patterns and data warehousing |
+| `cookbook` | 11 pages | Wonder's Cookbook recipe/BOM management system |
+| `item-lifecycle` | 4 pages | Item status transitions and version workflows |
+| `kitchen-operations` | 2 pages | Kitchen execution, line build, and station operations |
+| `product-development` | 1 page | R&D workflows and automated item creation |
+| `recipe-management` | 4 pages | BOM structure, recipe components, and customization
 
 ## Domain Taxonomy
 
 | Domain | Description |
 |--------|-------------|
-
-_No domains defined yet. The agent adds domains here as knowledge pages are created._
+| `cookbook` | Wonder's Cookbook recipe and BOM management system — item taxonomy, BOM structure, lifecycle, query patterns, and feature-level business rules.
 
 ## Agent Page Conventions
 

@@ -1,0 +1,23 @@
+{
+  "id": "conv-1780281490906-y7x36x7cf",
+  "providerId": "claude",
+  "title": "Check Mac Bluetooth keyboard shortcuts",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780281490906,
+  "updatedAt": 1780282720640,
+  "lastResponseAt": 1780282720640,
+  "sessionId": "df49f3a3-3c1e-4246-ae28-3438e0fdf95c",
+  "providerState": {
+    "providerSessionId": "df49f3a3-3c1e-4246-ae28-3438e0fdf95c"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 40935,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 4736,
+    "contextWindow": 200000,
+    "contextTokens": 45671,
+    "percentage": 23,
+    "contextWindowIsAuthoritative": true
+  }
+}
