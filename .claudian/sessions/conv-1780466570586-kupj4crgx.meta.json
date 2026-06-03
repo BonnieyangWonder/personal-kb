@@ -4,6 +4,20 @@
   "title": "List 9* items for menu components by brand",
   "titleGenerationStatus": "success",
   "createdAt": 1780466570586,
-  "updatedAt": 1780466575424,
-  "sessionId": null
+  "updatedAt": 1780467748908,
+  "lastResponseAt": 1780467748908,
+  "sessionId": "c0114020-f4a8-4c7a-bc1d-f365ba92504f",
+  "providerState": {
+    "providerSessionId": "c0114020-f4a8-4c7a-bc1d-f365ba92504f"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 53,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 100992,
+    "contextWindow": 200000,
+    "contextTokens": 101045,
+    "percentage": 51,
+    "contextWindowIsAuthoritative": true
+  }
 }
