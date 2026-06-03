@@ -68,16 +68,16 @@ Wonder Create 新建 item 时需要知道各 brand 下已有的 non-food package
 
 ### 1.1 盒子 / 碗 + 盖子
 
-| # | 容器 | 盖子 | 使用 Brand（Menu Items） |
-|---|------|------|------------------------|
-| 1 | **9000033** Container, 8.5x6.25", 28oz, Natural, Rectangle, Pulp | **9000034** Lid, Container, 8.5x6.25", 28oz, Clear, Rectangle, PP Plastic | Limesalt (10), El Diez (1) |
-| 2 | **9002087** Bowl, White, Round, Paper, 16oz | **9002088** Lid, Clear, PP, 16oz White Round Bowl | Hanu Poke (2) |
-| 3 | **9002624** Bowl, 16oz, Bellies | **9002626** Lid, 16 Oz, Bowl, Bellies | Bellies (5) |
-| 4 | **9000061** Bowl, 32oz, Natural, Round, Pulp | **9001727** Lid, 32 & 48oz Pulp Bowl, PET, Dome | Limesalt (1), Yasas (7), Royal Greens (34, CUSTOMIZATION) |
-| 5 | **9000726** Bowl, 8oz, Clear, Round, PET Plastic | **9000305** Lid, Bowl, 5.5", 8/12/16oz, Clear, Round, Flat, Plastic | Hanu Poke (1) |
-| 6 | **9001638** Pulp Plus 36 oz Rectangle Container PFAs Free | **9001639** Flat Pulp Lid for Pulp Plus Container | Limesalt (2) |
-| 7 | **9003663** CONT RECT 36 OZ PULP PLUS | **9003662** LID FLAT CLR F/ PULP RECT CONTAINER FOR 30/36oz | Limesalt (2) |
-| 8 | **9000041** Bowl, 48oz, Natural, Round, Pulp | **9001727** Lid, 32 & 48oz Pulp Bowl, PET, Dome | **Royal Greens (47)** |
+| #   | 容器                                                               | 盖子                                                                        | 使用 Brand（Menu Items）                                      |
+| --- | ---------------------------------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------- |
+| 1   | **9000033** Container, 8.5x6.25", 28oz, Natural, Rectangle, Pulp | **9000034** Lid, Container, 8.5x6.25", 28oz, Clear, Rectangle, PP Plastic | Limesalt (10), El Diez (1)                                |
+| 2   | **9002087** Bowl, White, Round, Paper, 16oz                      | **9002088** Lid, Clear, PP, 16oz White Round Bowl                         | Hanu Poke (2)                                             |
+| 3   | **9002624** Bowl, 16oz, Bellies                                  | **9002626** Lid, 16 Oz, Bowl, Bellies                                     | Bellies (5)                                               |
+| 4   | **9000061** Bowl, 32oz, Natural, Round, Pulp                     | **9001727** Lid, 32 & 48oz Pulp Bowl, PET, Dome                           | Limesalt (1), Yasas (7), Royal Greens (34, CUSTOMIZATION) |
+| 5   | **9000726** Bowl, 8oz, Clear, Round, PET Plastic                 | **9000305** Lid, Bowl, 5.5", 8/12/16oz, Clear, Round, Flat, Plastic       | Hanu Poke (1)                                             |
+| 6   | **9001638** Pulp Plus 36 oz Rectangle Container PFAs Free        | **9001639** Flat Pulp Lid for Pulp Plus Container                         | Limesalt (2)                                              |
+| 7   | **9003663** CONT RECT 36 OZ PULP PLUS                            | **9003662** LID FLAT CLR F/ PULP RECT CONTAINER FOR 30/36oz               | Limesalt (2)                                              |
+| 8   | **9000041** Bowl, 48oz, Natural, Round, Pulp                     | **9001727** Lid, 32 & 48oz Pulp Bowl, PET, Dome                           | **Royal Greens (47)**                                     |
 
 > **注意**: 9000061 (32oz) 和 9000041 (48oz) 共用同一个盖子 9001727（Lid, 32 & 48oz Pulp Bowl, PET, Dome）。Royal Greens 的 BOM 主容器为 48oz（9000041+9001727），但 32oz 碗（9000061）也在 customization 中作为备选 bowl size 出现。
 
@@ -107,23 +107,54 @@ Wonder Create 新建 item 时需要知道各 brand 下已有的 non-food package
 
 ## 三、袋子类 (Bags)
 
-| # | Item Number | Name | 使用 Brand（Menu Items） |
-|---|------------|------|------------------------|
-| 1 | **9001961** | Bag, White, Paper, 1#, Window | Limesalt (8) |
-| 2 | **9001889** | Bag, Yasas, Greasepaper, 6x7 | Yasas (8) |
-| 3 | **9000727** | Bag, 6.75 x 6.5", Sandwich, Natural, Kraft | Limesalt (1) |
-| 4 | **9001888** | Bag, Royal Greens, Greasepaper, 6x7 | **Royal Greens (42)** |
+| #   | Item Number | Name                                       | 使用 Brand（Menu Items）  |
+| --- | ----------- | ------------------------------------------ | --------------------- |
+| 1   | **9001961** | Bag, White, Paper, 1#, Window              | Limesalt (8)          |
+| 2   | **9001889** | Bag, Yasas, Greasepaper, 6x7               | Yasas (8)             |
+| 3   | **9000727** | Bag, 6.75 x 6.5", Sandwich, Natural, Kraft | Limesalt (1)          |
+| 4   | **9001888** | Bag, Royal Greens, Greasepaper, 6x7        | **Royal Greens (42)** |
 
 ---
 
 ## 四、其他包装物 (纸、锡纸、勺子、标记牌、独立碗等)
 
-| # | Item Number | Name | 使用 Brand（Menu Items） |
-|---|------------|------|------------------------|
-| 1 | **9000260** | Sheet, 14x16", Foil, Insulated, Honeycomb | Bellies (2), Yasas (5) |
-| 2 | **9001506** | 18x18 Foil Paper | Limesalt (2) |
+| #   | Item Number | Name                                      | 使用 Brand（Menu Items）   |
+| --- | ----------- | ----------------------------------------- | ---------------------- |
+| 1   | **9000260** | Sheet, 14x16", Foil, Insulated, Honeycomb | Bellies (2), Yasas (5) |
+| 2   | **9001506** | 18x18 Foil Paper                          | Limesalt (2)           |
 
 > Royal Greens 未使用此分类中的包装物。
+
+### 9000260 深度分析：Foil Sheet 的真实使用场景
+
+9000260（Sheet, 14x16", Foil, Insulated, Honeycomb）是一种保温隔热箔纸，出现在 2 个 brand 共 7 个 FOR_SALE menu item 中。它**不单独承担主容器角色**，而是作为手持食品的包裹层。
+
+#### 使用的 Menu Items
+
+| Brand | Item # | Name | Type |
+|-------|--------|------|------|
+| Bellies | 8009954 | Cheese Burger, Bellies | MENU |
+| Bellies | 8010061 | Burger, Bellies | MENU |
+| Yasas | 8007402 | Wrap (BYO), Yasas | MENU |
+| Yasas | 8011648 | Harissa Chicken Crunch Sandwich | MENU |
+| Yasas | 8011649 | Grilled Chicken & Avocado Sandwich | MENU |
+| Yasas | 8011650 | Grilled Steak & Feta Sandwich | MENU |
+| Yasas | 8011651 | Za'atar Carrots & Broccoli Pita | MENU |
+
+**规律**：全是手持类 item（burger / sandwich / wrap / pita），无一例外。
+
+#### 与 9000260 配套使用的其他 9\* Container
+
+| Brand | 配套 9\* Container | 特点 | 来源 |
+|-------|-------------------|------|------|
+| **Bellies** | **9002623** Clamshell, Bellies | 品牌定制翻盖盒（自带盖子），分类二 | BOM |
+| **Yasas** | **9002138+9002139** Souffle Cup 2oz + Lid | 酱料杯（分类 1.2），注意：**无 rigid container** | CUSTOMIZATION |
+
+> **关键差异**：Bellies 用 Clamshell 作为主容器 + Foil 包裹保温；Yasas 的 sandwich/wrap/pita **仅靠 Foil Sheet 包裹**，没有任何碗/盒/翻盖类 outer container，仅附加 2oz Souffle Cup 用于配酱。
+
+两个品牌均额外使用了 label（已排除）：Bellies 使用 9002320 Gluten Free Substitution Label，Yasas 使用 9001846 Tamper Evident Label。
+
+> **Wonder Create 启示**：如果新 brand 要做 wrap/sandwich 类手持 item，9000260 是已验证的 foil wrap 方案。但需注意 Yasas 模式（纯 foil wrap + sauce cup）vs Bellies 模式（clamshell + foil wrap）对 outer container 的不同需求。
 
 ---
 
