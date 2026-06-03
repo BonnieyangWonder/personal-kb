@@ -4,7 +4,7 @@ date: 2026-06-03
 updated: 2026-06-03
 project: Wonder Create
 tags: [cookbook, non-food, packaging, data-research]
-source: BigQuery (wonder-recipe-prod)
+source: BigQuery (master_data + wonder-recipe-prod)
 ---
 
 # Wonder Create - Non-Food Packaged 9-Star Items by Brand
@@ -19,50 +19,44 @@ Wonder Create 新建 item 时需要知道各 brand 下已有的 non-food package
 
 | 维度 | 说明 |
 |------|------|
-| **数据源** | `wonder-recipe-prod.recipe_v2`（concepts、menus、effective_items、item_versions、item_customizations_flattened） |
+| **数据源** | `wonder-dw-prod-brd.master_data.item_versions`（`bom_header` JSON → BOM components）+ `wonder-recipe-prod.recipe_v2.item_customizations_flattened`（customization option values） |
 | **Brand 筛选** | 通过 concept → brand-specific menu（concept_count=1）→ menu items 链路，避免 commissary multi-concept menu 的跨品牌污染 |
 | **Menu Item 筛选** | `sold_status = 'FOR_SALE'`, `object_type IN ('MENU', 'RECIPE')`, `deleted = false` |
-| **9\* 来源** | (1) `guest_packaging_items`（BOM 级别 component）; (2) `item_customizations_flattened.option_values[].items[].item_number`（customization option value） |
+| **9\* 来源** | (1) `bom_header.bom_lines[].item_number`（完整 BOM 级 component）; (2) `item_customizations_flattened.option_values[].items[].item_number`（customization option value） |
 | **sub_type 覆盖** | 不限制 sub_type，GUEST_PACKAGING 和 INTERNAL_PACKAGING 均纳入 |
-| **排除** | label 类 9\*（非打包盒/袋子的贴纸标签）; Sleeve / 纸套类 |
+| **排除** | label / tamper evident 贴纸标签类; Sleeve / Wrap Sleeve 纸套类 |
 
-> **注意**: `secure-recipe-prod.recipe_v2` 无访问权限，无法直接查询 `bom_headers` / `bom_lines` / `bom_header` JSON。通过 `guest_packaging_items` 字段 + `item_customizations_flattened` 表覆盖了 BOM component 和 customization option 两个维度的 9\* 使用情况。
+> **v5 更新**: 发现 `wonder-dw-prod-brd.master_data.item_versions` 的 `bom_header` JSON 列包含完整 BOM（含 packaging components），弥补了 `wonder-recipe-prod` 中 `guest_packaging_items` 覆盖率极低的问题。
 
 ## ⚠️ 方法修正记录
 
-**初版查询存在严重 bug**：通过 concept → menus（LIKE '%concept_id%'）→ menu items 的链路，会将 commissary 大菜单（如 "Pitco Items"、"DORA-3528" 等 30+ concept 的菜单）中**所有品牌的 item 都算给目标 brand**。
-
-例如：9001467 (Oval Bowl WC) 被错误地标记为 "Hanu Poke 18 个 menu item 使用"，实际上它是 Yasas 专属的，在 Hanu Poke [ACTIVE] menu 中的使用量为 0。
+**初版查询存在严重 bug**：通过 concept → menus（LIKE '%concept_id%'）→ menu items 的链路，会将 commissary 大菜单中**所有品牌的 item 都算给目标 brand**。
 
 **修正方案**：只使用 **concept_count = 1 的 brand 专属 menu**：
 
-| Brand | Menu Name | Menu ID | Status | Concept Count |
-|-------|-----------|---------|--------|---------------|
-| Hanu Poke | Hanu Poke [ACTIVE] 1.10.2025 | ae48489e-1a67-477a-bedf-1b17d9a79ed5 | ACTIVE | 1 |
-| Bellies | Bellies [Active Menu] 7.18.24 | 707d1f80-8157-456d-9013-d5dca1c97d18 | ACTIVE | 1 |
-| Limesalt | Limesalt [ACTIVE] 2.19.2024 | 7c4d18c3-3d61-4016-97fb-a23c15f3b258 | ACTIVE | 1 |
-| Yasas | Yasas [ACTIVE] 2.19.2024 | 94ec50e9-2bb1-43e3-bb77-95a46c603103 | ACTIVE | 1 |
-| El Diez | El Diez Mexican Bowls | ca5cf454-adba-4709-8c19-8b70cc24f495 | R&D | 1 |
-
-> **注意**: 存在 concept_count=2 的 menu（如 "BOWLDER- RG + Poke + Partner Salads Launch Menu"）包含 Hanu Poke concept，但其中的 item（如 "Kale and Romaine Caesar Salad, BF 3.0"）是 Bobby Flay 的 partner salad，并非 Hanu Poke item。此类 menu 已从 brand-specific 结果中排除。
+| Brand | Menu Name | Menu ID | Status |
+|-------|-----------|---------|--------|
+| Hanu Poke | Hanu Poke [ACTIVE] 1.10.2025 | ae48489e-1a67-477a-bedf-1b17d9a79ed5 | ACTIVE |
+| Bellies | Bellies [Active Menu] 7.18.24 | 707d1f80-8157-456d-9013-d5dca1c97d18 | ACTIVE |
+| Limesalt | Limesalt [ACTIVE] 2.19.2024 | 7c4d18c3-3d61-4016-97fb-a23c15f3b258 | ACTIVE |
+| Yasas | Yasas [ACTIVE] 2.19.2024 | 94ec50e9-2bb1-43e3-bb77-95a46c603103 | ACTIVE |
+| El Diez | El Diez Mexican Bowls | ca5cf454-adba-4709-8c19-8b70cc24f495 | R&D |
 
 ## 各 Brand FOR_SALE Menu Item 数量
 
-| Brand | Brand Menu | FOR_SALE Items | 有 guest_packaging_items | 有 customization 9\* |
-|-------|-----------|---------------|-------------------------|---------------------|
-| Hanu Poke | Hanu Poke [ACTIVE] | 13 | 0 | 9 |
-| Bellies | Bellies [Active Menu] | 14 | 0 | 2 (label only) |
-| Limesalt | Limesalt [ACTIVE] | 31 | 0 | 25 |
-| Yasas | Yasas [ACTIVE] | 22 | 8 | 12 |
-| El Diez | El Diez Mexican Bowls | 8 | 0 | 4 |
-
-> El Diez 目前处于 R&D 状态，尚未上线。
+| Brand | FOR_SALE Items | 数据来源 |
+|-------|---------------|---------|
+| Hanu Poke | 13 | BOM + Customization |
+| Bellies | 14 | BOM + Customization |
+| Limesalt | 31 | BOM + Customization |
+| Yasas | 22 | BOM + Customization |
+| El Diez | 8 | BOM + Customization |
 
 ---
 
 # 9\* Non-Food Packaging Item 分类汇总
 
-> 数据来源：BOM（`guest_packaging_items`）+ Customization（`item_customizations_flattened`）。已排除 label 类和 sleeve/纸套类。
+> 数据来源：BOM（`master_data.item_versions.bom_header.bom_lines`）+ Customization（`item_customizations_flattened`）。已排除 label 和 sleeve 类。
 
 ---
 
@@ -70,53 +64,60 @@ Wonder Create 新建 item 时需要知道各 brand 下已有的 non-food package
 
 ### 1.1 盒子 / 碗 + 盖子
 
-| # | 容器 | 盖子 | 使用 Brand | Menu Items |
-|---|------|------|-----------|------------|
-| 1 | **9001467** Bowl, Pulp Container, 32oz, Oval (WC) | **9001468** Lid, Pulp Container, 32oz, Oval, Pulp (WC) | Yasas（BOM） | 7 |
-
-> 9001467/9001468 仅在 Yasas 的 `guest_packaging_items` 中出现。Hanu Poke、Bellies、Limesalt、El Diez 的 brand menu 均无 BOM 级 guest_packaging_items 数据，因此无法从 wonder-recipe-prod 确定其主包装容器。
+| # | 容器 | 盖子 | 使用 Brand（Menu Items） |
+|---|------|------|------------------------|
+| 1 | **9000033** Container, 8.5x6.25", 28oz, Natural, Rectangle, Pulp | **9000034** Lid, Container, 8.5x6.25", 28oz, Clear, Rectangle, PP Plastic | Limesalt (10), El Diez (1) |
+| 2 | **9002087** Bowl, White, Round, Paper, 16oz | **9002088** Lid, Clear, PP, 16oz White Round Bowl | Hanu Poke (2) |
+| 3 | **9002624** Bowl, 16oz, Bellies | **9002626** Lid, 16 Oz, Bowl, Bellies | Bellies (5) |
+| 4 | **9000061** Bowl, 32oz, Natural, Round, Pulp | **9001727** Lid, 32 & 48oz Pulp Bowl, PET, Dome | Limesalt (1), Yasas (7) |
+| 5 | **9000726** Bowl, 8oz, Clear, Round, PET Plastic | **9000305** Lid, Bowl, 5.5", 8/12/16oz, Clear, Round, Flat, Plastic | Hanu Poke (1) |
+| 6 | **9001638** Pulp Plus 36 oz Rectangle Container PFAs Free | **9001639** Flat Pulp Lid for Pulp Plus Container | Limesalt (2) |
+| 7 | **9003663** CONT RECT 36 OZ PULP PLUS | **9003662** LID FLAT CLR F/ PULP RECT CONTAINER FOR 30/36oz | Limesalt (2) |
 
 ### 1.2 Souffle Cup + Lid
 
-| # | 杯子 | 盖子 | 使用 Brand | Menu Items |
-|---|------|------|-----------|------------|
-| 2 | **9002138** Souffle Cup, 2oz, PP | **9002139** Lid, 2oz Souffle Cup, PET | Hanu Poke（9）、Limesalt（4）、El Diez（1）、Yasas（12） | **26** |
-| 3 | **9002140** Souffle Cup, 4oz, PP | **9002141** Lid, 4oz Souffle Cup, PET | Limesalt（4）、El Diez（1） | 5 |
-
-> Souffle Cup 系列均来自 customization option value（`item_customizations_flattened`），作为 modifier cup 用于酱料/配菜。**2oz Souffle Cup 是唯一跨 4 个 brand 使用的通用包装。**
+| # | 杯子 | 盖子 | 使用 Brand（Menu Items） |
+|---|------|------|------------------------|
+| 8 | **9002138** Souffle Cup, 2oz, PP | **9002139** Lid, 2oz Souffle Cup, PET | Hanu Poke (9), Bellies (2), Limesalt (4), El Diez (1), Yasas (15) |
+| 9 | **9002140** Souffle Cup, 4oz, PP | **9002141** Lid, 4oz Souffle Cup, PET | Limesalt (10), El Diez (6), Yasas (6) |
 
 ---
 
 ## 二、自带盖子的组合容器 (Container & Lid as one item)
 
-| # | Item Number | Name | Sub Type | 使用 Brand | Menu Items |
-|---|------------|------|----------|-----------|------------|
-| 1 | **9000831** | Cup & Lid, 8oz, Soup, Kraft | GUEST_PACKAGING | Limesalt（CUSTOMIZATION） | 2 |
-
-> 9000831 是杯+盖一体的 8oz 汤碗，仅在 Limesalt 的 customization option 中使用。
+| # | Item Number | Name | 使用 Brand（Menu Items） |
+|---|------------|------|------------------------|
+| 1 | **9001868** | Bowl and Lid, Kraft, Round, Paper, 40oz | Hanu Poke (9) |
+| 2 | **9000664** | Container & Lid, 4.5", 16oz, Deli, Black, Round, PP Plastic | Hanu Poke (1), Limesalt (1) |
+| 3 | **9000831** | Cup & Lid, 8oz, Soup, Kraft | Limesalt (4) |
+| 4 | **9002623** | Clamshell, Bellies | Bellies (5) |
+| 5 | **9000624** | Box, 5.7x5x3.25", Clamshell, Brown, Kraft | Limesalt (1), Yasas (1) |
+| 6 | **9000270** | Tray & Lid, 7", 24oz, Black-Gold, Round, Aluminum-Plastic | Yasas (1) |
 
 ---
 
 ## 三、袋子类 (Bags)
 
-| # | Item Number | Name | Sub Type | 使用 Brand | Menu Items |
-|---|------------|------|----------|-----------|------------|
-| 1 | **9001516** | 6x6.5 Greaseproof Paper Bag (PFAS FREE) | GUEST_PACKAGING | Yasas（BOM） | 1 |
-| 2 | **9001889** | Bag, Yasas, Greasepaper, 6x7 | GUEST_PACKAGING | Yasas（CUSTOMIZATION） | 7 |
-
-> 9001516 用于 Mini Pita, Yasas（8005299）；9001889 是 Yasas 品牌定制纸袋，出现在 customization 中，覆盖 7 个 menu item。
+| # | Item Number | Name | 使用 Brand（Menu Items） |
+|---|------------|------|------------------------|
+| 1 | **9001961** | Bag, White, Paper, 1#, Window | Limesalt (8) |
+| 2 | **9001889** | Bag, Yasas, Greasepaper, 6x7 | Yasas (8) |
+| 3 | **9000727** | Bag, 6.75 x 6.5", Sandwich, Natural, Kraft | Limesalt (1) |
 
 ---
 
 ## 四、其他包装物 (纸、锡纸、勺子、标记牌、独立碗等)
 
-> **在当前数据范围内，5 个 brand 的 FOR_SALE menu item 未发现此类 9\* item（已排除 label 和 sleeve）。**
+| # | Item Number | Name | 使用 Brand（Menu Items） |
+|---|------------|------|------------------------|
+| 1 | **9000260** | Sheet, 14x16", Foil, Insulated, Honeycomb | Bellies (2), Yasas (5) |
+| 2 | **9001506** | 18x18 Foil Paper | Limesalt (2) |
 
 ---
 
-## 已排除的 Label 类
+## 已排除项目
 
-> 以下 9\* item 经确认为贴纸标签（非打包盒/袋子），已在上述分类中排除。
+### Label / Tamper Evident 类
 
 | Item # | Name | 出现 Brand | Menu Items |
 |--------|------|-----------|------------|
@@ -127,58 +128,72 @@ Wonder Create 新建 item 时需要知道各 brand 下已有的 non-food package
 | 9001483 | Label, Limesalt, Carnitas, 1.5 Round | Limesalt (17), El Diez (1) | 18 |
 | 9001484 | Label, Limesalt, Cheese, 1.5 Round | Limesalt | 2 |
 | 9001485 | Label, Limesalt, Veggie, 1.5 Round | Limesalt | 16 |
+| 9001748 | Label, Limesalt, Tamper Evident, 1x3 | Limesalt | 2 |
+| 9001846 | Label, Yasas, Tamper Evident, 1x3 | Yasas | 5 |
 | 9002320 | Label, Gluten Free Substitution, 1.5" Round | Bellies | 2 |
+
+### Sleeve / Wrap Sleeve 类
+
+| Item # | Name | 出现 Brand | Menu Items |
+|--------|------|-----------|------------|
+| 9003671 | Limesalt Wrap Sleeves 13 7/8" | Limesalt | 17 |
+| 9003674 | Hanu Poke Wrap Sleeves 13 7/8" | Hanu Poke | 13 |
+| 9003681 | Yasas Wrap Sleeves 13 7/8" | Yasas | 7 |
+| 9003688 | El Diez Wrap Sleeves 13 7/8" | El Diez | 1 |
 
 ---
 
 ## Brand × Packaging Type 交叉汇总
 
-| Brand | Box/Bowl + Lid | Souffle Cup 2oz | Souffle Cup 4oz | Cup & Lid 一体 | 袋子 | 合计 |
-|-------|:---:|:---:|:---:|:---:|:---:|:---:|
-| Hanu Poke | — | 9002138+39 | — | — | — | 2 |
-| Bellies | — | — | — | — | — | 0 |
-| Limesalt | — | 9002138+39 | 9002140+41 | 9000831 | — | 5 |
-| Yasas | 9001467+68 | 9002138+39 | — | — | 9001516, 9001889 | 6 |
-| El Diez | — | 9002138+39 | 9002140+41 | — | — | 4 |
-| **Unique Item 数** | 2 | 2 | 2 | 1 | 2 | **9** |
+| Brand | Box/Bowl + Lid | Souffle Cup 2oz | Souffle Cup 4oz | 自带盖子 | 袋子 | 其他 | 合计（unique items） |
+|-------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Hanu Poke | 9002087+88, 9000726+0305 | 9002138+39 | — | 9001868, 9000664 | — | — | 8 |
+| Bellies | 9002624+26 | 9002138+39 | — | 9002623 | — | 9000260 | 6 |
+| Limesalt | 9000033+34, 9000061+1727, 9001638+39, 9003663+62 | 9002138+39 | 9002140+41 | 9000664, 9000831, 9000624 | 9001961, 9000727 | 9001506 | 17 |
+| Yasas | 9000061+1727 | 9002138+39 | 9002140+41 | 9000270, 9000624 | 9001889 | 9000260 | 10 |
+| El Diez | 9000033+34 | 9002138+39 | 9002140+41 | — | — | — | 6 |
 
 ---
 
 ## 关键发现
 
-### 1. 2oz Souffle Cup 是唯一的跨品牌通用包装
+### 1. 2oz Souffle Cup 是唯一真正的全品牌通用包装
 
-**9002138 + 9002139** (Souffle Cup, 2oz, PP + Lid) 是唯一出现在 4 个 brand（Hanu Poke、Limesalt、El Diez、Yasas）的 9\* non-food item。作为 Wonder Create 的通用 modifier cup 包装，这是最直接的复用选择。
+**9002138 + 9002139** (Souffle Cup, 2oz, PP + Lid) 出现在**全部 5 个 brand**（Hanu Poke 9、Bellies 2、Limesalt 4、El Diez 1、Yasas 15），用于 sauce / modifier cup。作为 Wonder Create 通用 modifier cup 包装的首选。
 
-### 2. Guest Packaging Item 覆盖率极低
+### 2. 4oz Souffle Cup 是第二通用的小容器
 
-只有 **Yasas** 的 8 个 FOR_SALE menu item 在 `guest_packaging_items` 中有数据。Hanu Poke、Bellies、Limesalt、El Diez 的 brand-specific menu 均无 guest_packaging_items。这意味着绝大多数品牌的主包装（container、lid、bag）不在 wonder-recipe-prod 的 `item_versions.guest_packaging_items` 中维护。
+**9002140 + 9002141** (Souffle Cup, 4oz) 在 3 个 brand 使用（Limesalt 10、El Diez 6、Yasas 6），但 Hanu Poke 和 Bellies 未使用（Hanu Poke 用 2oz；Bellies 有品牌定制容器）。
 
-### 3. 9\* Item 主要来源是 Customization Option
+### 3. 各品牌主包装差异大，几乎全是品牌定制
 
-除 Yasas 的 9001467/9001468/9001516 来自 BOM（guest_packaging_items）外，其余所有 9\* item 均来自 `item_customizations_flattened`。Souffle Cup 系列作为 modifier cup 出现在各品牌的 customization options 中。
+| Brand | 主容器 | 特点 |
+|-------|--------|------|
+| Hanu Poke | 9001868 Bowl+Lid 40oz Kraft (9 items) | 品牌主容器是 40oz 纸碗，自带盖子 |
+| Bellies | 9002623 Clamshell (5 items) + 9002624 Bowl 16oz (5 items) | 全部 Bellies 品牌定制 |
+| Limesalt | 9000033+9000034 Container 28oz 矩形 Pulp (10 items) | 使用较多矩形 pulp 容器，配 flat lid |
+| Yasas | 9000061 Bowl 32oz Pulp + 9001727 Dome Lid (7 items) | 32oz 圆形 pulp 碗 + dome 盖 |
+| El Diez | 9000033+9000034 (1 item，R&D) | 与 Limesalt 共用 28oz 矩形容器 |
 
-### 4. 9001467 Oval Bowl (WC) 是 Yasas 专属
+### 4. Limesalt 包装种类最多（17 unique items）
 
-Oval Bowl 32oz WC 及盖子仅在 Yasas brand-specific menu 中使用（7 个 menu item），其他 4 个 brand 均未使用。
+Limesalt 31 个 FOR_SALE item 使用了最多样化的 packaging，包括 3 种不同规格的矩形 pulp 容器（28oz/36oz）、2 种袋子、2 种锡纸，反映了其菜单品类最广（bowl、burrito、quesadilla、soup 等）。
 
-### 5. Bellies 无 Cookbook 层面的 Non-Food Packaging
+### 5. 可用于 Wonder Create 的通用包装推荐
 
-Bellies 是 burger 类 brand，其 14 个 FOR_SALE item 在 Cookbook 中没有 guest_packaging_items，customization 中也无有效的非 label 9\* item。其包装物料可能通过 88\* packaged item 或其他系统管理。
+| 优先级 | 包装 | 理由 |
+|--------|------|------|
+| **高** | 9002138+9002139 Souffle Cup 2oz | 唯一 5 brand 通用，用于酱料杯 |
+| **高** | 9002140+9002141 Souffle Cup 4oz | 3 brand 通用，用于较大份配菜 |
+| **中** | 9000033+9000034 Container 28oz 矩形 Pulp | Limesalt 和 El Diez 共用，矩形 pulp 容器较通用 |
+| **中** | 9000061+9001727 Bowl 32oz Pulp + Dome Lid | Limesalt 和 Yasas 共用，圆形 pulp 碗较通用 |
+| **低** | 品牌定制容器 | 各品牌有专用包装，不适合跨品牌复用 |
 
-### 6. El Diez 处于 R&D 阶段
+### 6. 数据完整性验证
 
-El Diez 仅有一个 R&D status 的 menu（"El Diez Mexican Bowls"），8 个 FOR_SALE item，使用了 2 种 Souffle Cup + Limesalt label（customization 共享），无独立 packaging。
-
-### 7. ⚠️ Cookbook 中的 Non-Food Packaging 数据严重不完整
-
-**这是本次调查最重要的发现。** 大部分品牌的实际包装物料（container、lid、bag、sleeve、marker、foil 等）并未通过 `guest_packaging_items` 或 `item_customizations_flattened` 覆盖。这些数据可能在：
-
-- `secure-recipe-prod.recipe_v2`（**无访问权限**，含 `bom_headers`/`bom_lines`/`bom_header` JSON）— 这是最可能包含完整 BOM 级 packaging 数据的来源
-- 88\* packaged item 的内部 BOM（9\* 作为 88\* 的子 component）
-- 独立于 Cookbook 的 packaging/供应链系统
-
-**这意味着：本报告列出的 9 个 non-food item 只是 Cookbook 中显式记录的冰山一角，并非这些品牌实际使用的全部包装物料。**
+通过与 `master_data.item_versions.bom_header.bom_lines`（BOM JSON）对比验证，`wonder-recipe-prod` 中的 `guest_packaging_items` 数据严重不完整：
+- BOM JSON 包含大量 `guest_packaging_items` 中没有的 9\* item
+- 例如 Bellies 在 `guest_packaging_items` 中为 0，但 BOM JSON 中包含 6 个 9\* item
 
 ---
 
@@ -188,17 +203,16 @@ El Diez 仅有一个 R&D status 的 menu（"El Diez Mexican Bowls"），8 个 FO
 |------|------|------|
 | v1 (初版) | 2026-06-03 | 使用 concept → menus (LIKE) 链路，存在 commissary menu 跨品牌污染 bug |
 | v2 (修正) | 2026-06-03 | 改用 concept_count=1 brand-specific menu；修正 9001467 归属 |
-| v3 (验证) | 2026-06-03 | 修正 customization 查询（JSON_EXTRACT_ARRAY 嵌套 unnest）；修复 Limesalt 计数（6→5）；补充完整 label 列表和 menu item 使用量 |
-| v4 (重构) | 2026-06-03 | 按 packaging 类型分类重组：Container+Lid 配对 / 一体组合容器 / 袋子 / 其他；增加 Brand×Packaging Type 交叉汇总表 |
+| v3 (验证) | 2026-06-03 | 修正 customization 查询 JSON 嵌套 unnest |
+| v4 (重构) | 2026-06-03 | 按 packaging 类型分类重组 |
+| **v5 (BOM 完整版)** | 2026-06-03 | **发现 `master_data.item_versions.bom_header` JSON 含完整 BOM**；数据量从 9 个 unique item 暴增至 27 个；覆盖全部 5 brand 的真实 packaging |
 
 ---
 
-## 查询 SQL（v4）
+## 查询 SQL（v5 最终版）
 
 ```sql
--- Comprehensive: BOM + Customization 9* items across 5 brands
--- Uses concept_count=1 brand-specific menus only
--- NO sub_type filter — includes GUEST_PACKAGING, INTERNAL_PACKAGING, etc.
+-- COMPLETE: BOM (master_data.item_versions.bom_header) + Customization
 WITH brand_menus AS (
   SELECT * FROM UNNEST([
     STRUCT("Hanu Poke" AS brand, "ae48489e-1a67-477a-bedf-1b17d9a79ed5" AS menu_id),
@@ -225,15 +239,14 @@ for_sale_items AS (
 ),
 bom_9x AS (
   SELECT DISTINCT fsi.brand, fsi.item_number AS menu_item_number,
-    JSON_VALUE(gp, "$.item_number") AS comp_item_number, "BOM" AS source
+    JSON_VALUE(bom_line, "$.item_number") AS comp_item_number, "BOM" AS source
   FROM for_sale_items fsi
-  JOIN `wonder-recipe-prod.recipe_v2.item_versions` iv
+  JOIN `wonder-dw-prod-brd.master_data.item_versions` iv
     ON fsi.item_number = iv.item_number
     AND iv.effective = true AND iv.deleted = false AND iv.item_status != "DORMANT",
-  UNNEST(JSON_EXTRACT_ARRAY(iv.guest_packaging_items)) AS gp
-  WHERE JSON_VALUE(gp, "$.item_number") IS NOT NULL
-    AND JSON_VALUE(gp, "$.item_number") != ""
-    AND STARTS_WITH(JSON_VALUE(gp, "$.item_number"), "9")
+  UNNEST(JSON_EXTRACT_ARRAY(iv.bom_header, "$.bom_lines")) AS bom_line
+  WHERE JSON_VALUE(bom_line, "$.item_number") IS NOT NULL
+    AND STARTS_WITH(JSON_VALUE(bom_line, "$.item_number"), "9")
 ),
 cust_9x AS (
   SELECT DISTINCT fsi.brand, fsi.item_number AS menu_item_number,
