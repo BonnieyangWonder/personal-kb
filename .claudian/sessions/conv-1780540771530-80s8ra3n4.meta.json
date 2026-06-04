@@ -1,0 +1,23 @@
+{
+  "id": "conv-1780540771530-80s8ra3n4",
+  "providerId": "claude",
+  "title": "Query rice option customization mapping",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780540771530,
+  "updatedAt": 1780541041467,
+  "lastResponseAt": 1780541041467,
+  "sessionId": "ebd583d2-a2f4-4fe9-a102-e9f8e46912fe",
+  "providerState": {
+    "providerSessionId": "ebd583d2-a2f4-4fe9-a102-e9f8e46912fe"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 360,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 82688,
+    "contextWindow": 200000,
+    "contextTokens": 83048,
+    "percentage": 42,
+    "contextWindowIsAuthoritative": true
+  }
+}
