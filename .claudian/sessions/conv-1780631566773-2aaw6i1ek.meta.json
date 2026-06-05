@@ -4,8 +4,8 @@
   "title": "Analyze Wonder Create packaging materials and 9...",
   "titleGenerationStatus": "success",
   "createdAt": 1780631566773,
-  "updatedAt": 1780631845801,
-  "lastResponseAt": 1780631845801,
+  "updatedAt": 1780640000603,
+  "lastResponseAt": 1780640000603,
   "sessionId": "3f48399c-a44f-4370-987f-8bc207b8fe80",
   "providerState": {
     "providerSessionId": "3f48399c-a44f-4370-987f-8bc207b8fe80"
@@ -13,12 +13,12 @@
   "currentNote": "A2-Data Research/Wonder Create - Non-Food Packaged 9-Star Items by Brand.md",
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 2795,
+    "inputTokens": 159,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 105216,
+    "cacheReadInputTokens": 111744,
     "contextWindow": 200000,
-    "contextTokens": 108011,
-    "percentage": 54,
+    "contextTokens": 111903,
+    "percentage": 56,
     "contextWindowIsAuthoritative": true
   }
 }
