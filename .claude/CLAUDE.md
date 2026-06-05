@@ -6,5 +6,6 @@
 @rules/citation-required.md
 @rules/domain-context.md
 @rules/language-preference.md
+@rules/ticket-workflow.md
 @rules/tool-paths.md
 <!-- Knowlery rule imports:end -->

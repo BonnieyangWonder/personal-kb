@@ -26,13 +26,22 @@ All ticket content MUST be in English — summary, description, acceptance crite
 
 ## Execution Strategy (in priority order)
 
-### Strategy 1: MCP Tool (preferred)
+### Important: MCP vs REST API for Descriptions
 
-If the current session has the `mcp__atlassian__createJiraIssue` tool available, call it directly.
+**The MCP tool converts Markdown to Jira wiki markup (`h2.`), but Jira Cloud's new editor only renders ADF (Atlassian Document Format). Wiki markup headings will appear as literal text — not rendered headings.**
 
-### Strategy 2: REST API + Cached OAuth Token (fallback)
+Therefore:
+- **MCP Tool**: Use for creating tickets with plain-text summary + assignee. Label it as "initial creation."
+- **REST API + ADF**: Use for setting/updating the description with headings, nested lists, inline code, and other rich formatting. This is NOT optional — MCP descriptions won't render headings properly.
+- **Workflow**: Create ticket via MCP (Step 1) → Then immediately update description via REST API with ADF (Step 2).
 
-If the MCP tool is unavailable (filtered due to Confluence-only OAuth scope), use the cached OAuth token on disk to call the REST API directly:
+### Strategy 1: MCP Tool (for ticket creation)
+
+If the current session has the `mcp__atlassian__createJiraIssue` tool available, call it to create the ticket. Then use Strategy 2 to set the properly-formatted description.
+
+### Strategy 2: REST API + Cached OAuth Token (for description + formatting)
+
+Use the cached OAuth token on disk to call the REST API directly. Required for any description with headings, code spans, or nested lists.
 
 ```bash
 TOKEN_FILE=$(find ~/.mcp-auth -name "8d8bab2a93ad41172215aecfb4b6d869_tokens.json" 2>/dev/null | head -1)
@@ -150,23 +159,25 @@ Jira REST API v3 requires Atlassian Document Format.
 
 ## Ticket Structure Template
 
-When creating a ticket, follow this structure:
+When creating a ticket, follow this structure. Section labels MUST use Jira heading format (h2.) so they render as proper headings:
 
 ```
-Background:
+h2. Background
 <Context — what problem is being solved, who requested it, 
 why it matters now>
 
-Request:
+h2. Request
 <The specific ask — what needs to be built, configured, or changed>
 
-References:
+h2. References
 <Links to related Confluence pages, other Jira tickets, PRDs, 
 stakeholder conversations>
 
-Note / Long-term direction:
+h2. Note / Long-term direction
 <Any caveats, future plans, or scope boundaries>
 ```
+
+**Important**: Always use `h2. Section Name` for the template headings — never use plain text like `Background:` or `Request:`. This ensures proper heading rendering in Jira.
 
 ## Linking References
 

@@ -4,20 +4,20 @@
   "title": "Create Cookbook packaging logic ticket",
   "titleGenerationStatus": "success",
   "createdAt": 1780629027414,
-  "updatedAt": 1780629812865,
-  "lastResponseAt": 1780629812865,
+  "updatedAt": 1780631321047,
+  "lastResponseAt": 1780630827432,
   "sessionId": "c54eb43e-fb02-4761-bc60-5d45fe26212c",
   "providerState": {
     "providerSessionId": "c54eb43e-fb02-4761-bc60-5d45fe26212c"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 657,
+    "inputTokens": 735,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 72448,
+    "cacheReadInputTokens": 115072,
     "contextWindow": 200000,
-    "contextTokens": 73105,
-    "percentage": 37,
+    "contextTokens": 115807,
+    "percentage": 58,
     "contextWindowIsAuthoritative": true
   }
 }
