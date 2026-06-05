@@ -4,20 +4,20 @@
   "title": "Analyze Wonder Create packaging materials and 9...",
   "titleGenerationStatus": "success",
   "createdAt": 1780631566773,
-  "updatedAt": 1780641328495,
-  "lastResponseAt": 1780641328495,
+  "updatedAt": 1780644407619,
+  "lastResponseAt": 1780644407619,
   "sessionId": "3f48399c-a44f-4370-987f-8bc207b8fe80",
   "providerState": {
     "providerSessionId": "3f48399c-a44f-4370-987f-8bc207b8fe80"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 397,
+    "inputTokens": 3774,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 111872,
+    "cacheReadInputTokens": 113792,
     "contextWindow": 200000,
-    "contextTokens": 112269,
-    "percentage": 56,
+    "contextTokens": 117566,
+    "percentage": 59,
     "contextWindowIsAuthoritative": true
   }
 }
