@@ -1,0 +1,23 @@
+{
+  "id": "conv-1780890875385-29u8mpbu0",
+  "providerId": "claude",
+  "title": "Fix dietary flag sync for non-Wonder Create",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780890875385,
+  "updatedAt": 1780891249525,
+  "lastResponseAt": 1780891249525,
+  "sessionId": "dae0a789-39ad-4677-9019-792053742817",
+  "providerState": {
+    "providerSessionId": "dae0a789-39ad-4677-9019-792053742817"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 203,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 56192,
+    "contextWindow": 200000,
+    "contextTokens": 56395,
+    "percentage": 28,
+    "contextWindowIsAuthoritative": true
+  }
+}
