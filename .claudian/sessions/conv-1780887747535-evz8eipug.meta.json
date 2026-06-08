@@ -1,0 +1,23 @@
+{
+  "id": "conv-1780887747535-evz8eipug",
+  "providerId": "claude",
+  "title": "Enable Derive ingredients from vendor SKU flag",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780887747535,
+  "updatedAt": 1780887963911,
+  "lastResponseAt": 1780887963911,
+  "sessionId": "a7040a4b-ac63-4a09-98cf-dc96315dd37f",
+  "providerState": {
+    "providerSessionId": "a7040a4b-ac63-4a09-98cf-dc96315dd37f"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 222,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 78080,
+    "contextWindow": 200000,
+    "contextTokens": 78302,
+    "percentage": 39,
+    "contextWindowIsAuthoritative": true
+  }
+}

@@ -4,6 +4,20 @@
   "title": "Add fuzzy search for filter attribute options",
   "titleGenerationStatus": "success",
   "createdAt": 1780886539422,
-  "updatedAt": 1780886549920,
-  "sessionId": null
+  "updatedAt": 1780887683134,
+  "lastResponseAt": 1780887268559,
+  "sessionId": "682042f0-a28e-4f32-aa1b-93a11902b7bb",
+  "providerState": {
+    "providerSessionId": "682042f0-a28e-4f32-aa1b-93a11902b7bb"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 932,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 66560,
+    "contextWindow": 200000,
+    "contextTokens": 67492,
+    "percentage": 34,
+    "contextWindowIsAuthoritative": true
+  }
 }
