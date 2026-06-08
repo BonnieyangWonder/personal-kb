@@ -1,0 +1,23 @@
+{
+  "id": "conv-1780903706263-6u632szun",
+  "providerId": "claude",
+  "title": "Search Cookbook Jira for 40-cost ticket",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780903706263,
+  "updatedAt": 1780904153902,
+  "lastResponseAt": 1780904153902,
+  "sessionId": "bf9dd5f2-9e3f-439d-8af6-5e923a02e103",
+  "providerState": {
+    "providerSessionId": "bf9dd5f2-9e3f-439d-8af6-5e923a02e103"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 388,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 89600,
+    "contextWindow": 200000,
+    "contextTokens": 89988,
+    "percentage": 45,
+    "contextWindowIsAuthoritative": true
+  }
+}
