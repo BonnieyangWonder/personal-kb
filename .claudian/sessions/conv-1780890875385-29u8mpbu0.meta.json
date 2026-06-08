@@ -4,20 +4,20 @@
   "title": "Fix dietary flag sync for non-Wonder Create",
   "titleGenerationStatus": "success",
   "createdAt": 1780890875385,
-  "updatedAt": 1780891249525,
-  "lastResponseAt": 1780891249525,
+  "updatedAt": 1780899169532,
+  "lastResponseAt": 1780899169532,
   "sessionId": "dae0a789-39ad-4677-9019-792053742817",
   "providerState": {
     "providerSessionId": "dae0a789-39ad-4677-9019-792053742817"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 203,
+    "inputTokens": 108,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 56192,
+    "cacheReadInputTokens": 65408,
     "contextWindow": 200000,
-    "contextTokens": 56395,
-    "percentage": 28,
+    "contextTokens": 65516,
+    "percentage": 33,
     "contextWindowIsAuthoritative": true
   }
 }
