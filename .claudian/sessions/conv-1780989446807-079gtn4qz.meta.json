@@ -4,20 +4,20 @@
   "title": "Query 40-item usage in active menu recipes",
   "titleGenerationStatus": "success",
   "createdAt": 1780989446807,
-  "updatedAt": 1780992899479,
-  "lastResponseAt": 1780992899479,
+  "updatedAt": 1780999434355,
+  "lastResponseAt": 1780999434355,
   "sessionId": "ee642dd8-ff5a-49ab-a759-d3198da19c6b",
   "providerState": {
     "providerSessionId": "ee642dd8-ff5a-49ab-a759-d3198da19c6b"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 2751,
+    "inputTokens": 1275,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 108032,
+    "cacheReadInputTokens": 116608,
     "contextWindow": 200000,
-    "contextTokens": 110783,
-    "percentage": 55,
+    "contextTokens": 117883,
+    "percentage": 59,
     "contextWindowIsAuthoritative": true
   }
 }
