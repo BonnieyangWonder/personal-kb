@@ -1,0 +1,23 @@
+{
+  "id": "conv-1780989446807-079gtn4qz",
+  "providerId": "claude",
+  "title": "Query 40-item usage in active menu recipes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780989446807,
+  "updatedAt": 1780989832578,
+  "lastResponseAt": 1780989832578,
+  "sessionId": "ee642dd8-ff5a-49ab-a759-d3198da19c6b",
+  "providerState": {
+    "providerSessionId": "ee642dd8-ff5a-49ab-a759-d3198da19c6b"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 1748,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 103040,
+    "contextWindow": 200000,
+    "contextTokens": 104788,
+    "percentage": 52,
+    "contextWindowIsAuthoritative": true
+  }
+}
