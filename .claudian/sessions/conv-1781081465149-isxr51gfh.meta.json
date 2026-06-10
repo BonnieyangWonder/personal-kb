@@ -4,20 +4,20 @@
   "title": "Find for-sale menu items with varied toppings",
   "titleGenerationStatus": "success",
   "createdAt": 1781081465150,
-  "updatedAt": 1781081616453,
-  "lastResponseAt": 1781081616453,
+  "updatedAt": 1781081872852,
+  "lastResponseAt": 1781081872852,
   "sessionId": "4806610f-9a2f-4ec5-b33b-d3d8e65447ac",
   "providerState": {
     "providerSessionId": "4806610f-9a2f-4ec5-b33b-d3d8e65447ac"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 15669,
+    "inputTokens": 608,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 101632,
+    "cacheReadInputTokens": 119168,
     "contextWindow": 200000,
-    "contextTokens": 117301,
-    "percentage": 59,
+    "contextTokens": 119776,
+    "percentage": 60,
     "contextWindowIsAuthoritative": true
   }
 }
