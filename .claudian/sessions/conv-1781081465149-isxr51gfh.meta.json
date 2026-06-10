@@ -1,0 +1,23 @@
+{
+  "id": "conv-1781081465149-isxr51gfh",
+  "providerId": "claude",
+  "title": "Find for-sale menu items with varied toppings",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781081465150,
+  "updatedAt": 1781081616453,
+  "lastResponseAt": 1781081616453,
+  "sessionId": "4806610f-9a2f-4ec5-b33b-d3d8e65447ac",
+  "providerState": {
+    "providerSessionId": "4806610f-9a2f-4ec5-b33b-d3d8e65447ac"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 15669,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 101632,
+    "contextWindow": 200000,
+    "contextTokens": 117301,
+    "percentage": 59,
+    "contextWindowIsAuthoritative": true
+  }
+}
