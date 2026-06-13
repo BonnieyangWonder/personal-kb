@@ -1,0 +1,22 @@
+{
+  "id": "conv-1781349002815-9wtwzziv0",
+  "providerId": "claude",
+  "title": "Debug local aboss command startup",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781349002815,
+  "updatedAt": 1781349076164,
+  "lastResponseAt": 1781349076164,
+  "sessionId": "7952524b-1cd8-425b-84f8-d959c3b5dd6f",
+  "providerState": {
+    "providerSessionId": "7952524b-1cd8-425b-84f8-d959c3b5dd6f"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 135,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 50048,
+    "contextWindow": 200000,
+    "contextTokens": 50183,
+    "percentage": 25
+  }
+}
