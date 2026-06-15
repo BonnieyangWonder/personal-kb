@@ -4,6 +4,20 @@
   "title": "查询骑手配送袋规格",
   "titleGenerationStatus": "success",
   "createdAt": 1781512923648,
-  "updatedAt": 1781512936561,
-  "sessionId": null
+  "updatedAt": 1781513052747,
+  "lastResponseAt": 1781513052747,
+  "sessionId": "7f6c17a9-af8f-4cbc-921f-ae1b16b92e0c",
+  "providerState": {
+    "providerSessionId": "7f6c17a9-af8f-4cbc-921f-ae1b16b92e0c"
+  },
+  "usage": {
+    "model": "deepseek-v4-pro",
+    "inputTokens": 3009,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 89344,
+    "contextWindow": 200000,
+    "contextTokens": 92353,
+    "percentage": 46,
+    "contextWindowIsAuthoritative": true
+  }
 }
