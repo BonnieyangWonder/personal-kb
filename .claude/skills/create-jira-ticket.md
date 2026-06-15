@@ -22,26 +22,29 @@ All ticket content MUST be in English — summary, description, acceptance crite
 4. Draft the ticket summary and description
 5. Confirm with user if anything is ambiguous
 6. If screenshots detected → save from clipboard, upload as attachments, embed in description
-7. Create the ticket
+7. Create the ticket (MCP for skeleton → REST API with ADF for description)
+8. **Verify**: Read the ticket back. If description headings show raw `h2.` text instead of rendered `##` markdown, the ADF update failed — refresh token and retry. Do NOT proceed until headings render correctly.
 
 ## Execution Strategy (in priority order)
 
-### Important: MCP vs REST API for Descriptions
+### Important: MCP vs REST API for Descriptions — HARD RULE
 
-**The MCP tool converts Markdown to Jira wiki markup (`h2.`), but Jira Cloud's new editor only renders ADF (Atlassian Document Format). Wiki markup headings will appear as literal text — not rendered headings.**
+**The MCP tool converts Markdown to Jira wiki markup (`h2.`), but Jira Cloud only renders ADF (Atlassian Document Format). Wiki markup headings will appear as literal text like `h2. Background` — NOT as bold headings.**
+
+**HARD RULE: MCP description is NEVER acceptable as final state.** The REST API + ADF update (Strategy 2) is MANDATORY for every ticket. If the REST API call fails, you MUST refresh the token and retry. Never settle for MCP-only descriptions.
 
 Therefore:
-- **MCP Tool**: Use for creating tickets with plain-text summary + assignee. Label it as "initial creation."
-- **REST API + ADF**: Use for setting/updating the description with headings, nested lists, inline code, and other rich formatting. This is NOT optional — MCP descriptions won't render headings properly.
-- **Workflow**: Create ticket via MCP (Step 1) → Then immediately update description via REST API with ADF (Step 2).
+- **MCP Tool**: Use ONLY for creating the ticket skeleton (summary + assignee). The description it produces is temporary and will be overwritten.
+- **REST API + ADF**: MANDATORY for the final description. This is NOT optional — headings, bullet lists, and other formatting MUST be delivered via ADF.
+- **Workflow**: Create ticket via MCP (Step 1) → Refresh OAuth token → Update description via REST API with ADF (Step 2) → Verify headings render (Step 3).
 
-### Strategy 1: MCP Tool (for ticket creation)
+### Strategy 1: MCP Tool (for ticket creation ONLY)
 
-If the current session has the `mcp__atlassian__createJiraIssue` tool available, call it to create the ticket. Then use Strategy 2 to set the properly-formatted description.
+If the current session has the `mcp__atlassian__createJiraIssue` tool available, call it to create the ticket skeleton (summary + assignee). The description from MCP is temporary — immediately proceed to Strategy 2 for the ADF description update. **Never stop at Strategy 1.**
 
-### Strategy 2: REST API + Cached OAuth Token (for description + formatting)
+### Strategy 2: REST API + ADF (MANDATORY for final description)
 
-Use the cached OAuth token on disk to call the REST API directly. Required for any description with headings, code spans, or nested lists.
+**Always refresh the OAuth token before calling the REST API.** The cached token is almost certainly expired (1-hour lifetime). Use the refresh flow from the Troubleshooting section, then call the REST API with ADF.
 
 ```bash
 TOKEN_FILE=$(find ~/.mcp-auth -name "8d8bab2a93ad41172215aecfb4b6d869_tokens.json" 2>/dev/null | head -1)
@@ -159,27 +162,51 @@ Jira REST API v3 requires Atlassian Document Format.
 
 ## Ticket Structure Template
 
-When creating a ticket, follow this structure. Section labels MUST use Jira heading format (h2.) so they render as proper headings:
+When creating a ticket, follow this structure. Section headings MUST be rendered as ADF `heading` nodes (level 2) — NOT as `h2.` wiki markup. The final description delivered via REST API must use ADF format for all headings.
 
 ```
-h2. Background
+h2. Background           ← In ADF: {"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"Background"}]}
 <Context — what problem is being solved, who requested it, 
 why it matters now>
 
-h2. Request
+h2. Request              ← In ADF: {"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"Request"}]}
 <The specific ask — what needs to be built, configured, or changed>
 
-h2. References
+h2. References           ← In ADF: {"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"References"}]}
 <Links to related Confluence pages, other Jira tickets, PRDs, 
 stakeholder conversations>
 
-h2. Note / Long-term direction
+h2. Note / Long-term Direction  ← In ADF: {"type":"heading","attrs":{"level":2},...}
 <Any caveats, future plans, or scope boundaries>
 ```
 
-**Important**: Always use `h2. Section Name` for the template headings — never use plain text like `Background:` or `Request:`. This ensures proper heading rendering in Jira.
+**Important**: The `h2.` notation above describes the intended structure only. The actual ticket MUST use ADF heading nodes — `h2.` wiki markup will NOT render as headings in Jira Cloud. Always verify after creation that headings appear as bold rendered text, not raw `h2.` markup.
 
-## Linking References
+## Post-Creation Verification (MANDATORY)
+
+After updating the description via REST API, read the ticket back and verify:
+
+```bash
+# Use MCP get to check the rendered description
+```
+
+Then call `jira_get_issue` with `fields=description` and check:
+
+- ✅ Headings appear as `## Background` (markdown format) → ADF rendered correctly
+- ❌ Headings appear as `h2. Background` (wiki markup) → ADF update failed, refresh token and retry
+
+**If you see `h2.` anywhere in the returned description, the ticket is BROKEN.** Do not show it to the user — fix it first.
+
+## Anti-Patterns (NEVER DO THIS)
+
+| ❌ Anti-Pattern | Why It's Wrong |
+|----------------|----------------|
+| Creating ticket via MCP and stopping | Description uses wiki markup, headings won't render |
+| Using `jira_update_issue` MCP tool for description | Same problem — MCP converts to wiki markup |
+| Accepting 401 on REST API and falling back to MCP | Fix the token, don't downgrade the formatting |
+| Skipping the verification step | You won't know headings are broken |
+
+**The only acceptable final state**: ticket description delivered via REST API with ADF, verified by reading back and confirming `##` headings.
 
 If the user provides:
 - **Confluence page URLs** → extract the page info with MCP tools, link in the References section
@@ -259,7 +286,18 @@ curl -s -X PUT \
 ### Token Expired
 - Access token lifetime: 1 hour
 - Refresh token lifetime: 90 days, auto-rotates on each use
-- If both access and refresh tokens are expired, re-run OAuth:
+- **Always refresh the token before REST API calls** — the cached token is likely expired. Use this refresh flow:
+  ```bash
+  TOKEN_FILE=$(find ~/.mcp-auth -name "8d8bab2a93ad41172215aecfb4b6d869_tokens.json" 2>/dev/null | head -1)
+  REFRESH_TOKEN=$(python3 -c "import json; print(json.load(open('$TOKEN_FILE'))['refresh_token'])")
+  CLIENT_ID=$(python3 -c "import json; print(json.load(open('${TOKEN_FILE%_tokens.json}_client_info.json'))['client_id'])")
+  
+  curl -s -X POST "https://auth.atlassian.com/oauth/token" \
+    -H "Content-Type: application/json" \
+    -d "{\"grant_type\":\"refresh_token\",\"client_id\":\"$CLIENT_ID\",\"refresh_token\":\"$REFRESH_TOKEN\"}" | \
+    python3 -c "import json,sys; d=json.load(sys.stdin); json.dump(d, open('$TOKEN_FILE','w'))"
+  ```
+- If refresh token is also expired, re-run OAuth:
   ```
   npx -y mcp-remote@latest https://mcp.atlassian.com/v1/mcp/authv2
   ```

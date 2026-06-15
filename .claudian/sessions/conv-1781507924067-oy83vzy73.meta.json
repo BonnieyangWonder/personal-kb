@@ -4,20 +4,20 @@
   "title": "Remove hot holding check from vend step",
   "titleGenerationStatus": "success",
   "createdAt": 1781507924073,
-  "updatedAt": 1781508040496,
-  "lastResponseAt": 1781508040496,
+  "updatedAt": 1781510748000,
+  "lastResponseAt": 1781510748000,
   "sessionId": "da18b8ee-cfc6-4c77-8f6a-34845ac1e122",
   "providerState": {
     "providerSessionId": "da18b8ee-cfc6-4c77-8f6a-34845ac1e122"
   },
   "usage": {
     "model": "deepseek-v4-pro",
-    "inputTokens": 557,
+    "inputTokens": 357,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 61056,
+    "cacheReadInputTokens": 79872,
     "contextWindow": 200000,
-    "contextTokens": 61613,
-    "percentage": 31,
+    "contextTokens": 80229,
+    "percentage": 40,
     "contextWindowIsAuthoritative": true
   }
 }
