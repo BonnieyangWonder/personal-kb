@@ -13,6 +13,7 @@
 	url = https://github.com/chancetop-com/Cookbook-Bigquery-KB.git
 	branch = bonnie
 [submodule "Z01-Resource/CB-full-feature"]
+	pluginid = 726ed6f2-78f7-4112-ba0c-9304b966c946
 	path = Z01-Resource/CB-full-feature
 	url = https://github.com/chancetop-com/Cookbook-Full-Feature.git
 	branch = main
