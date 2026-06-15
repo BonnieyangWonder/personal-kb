@@ -45,6 +45,11 @@
       "remote": "https://github.com/chancetop-com/Cookbook-Bigquery-KB.git",
       "branch": "bonnie",
       "upstreamBranch": "main"
+    },
+    {
+      "path": "Z01-Resource/CB-full-feature",
+      "remote": "https://github.com/chancetop-com/Cookbook-Full-Feature.git",
+      "branch": "main"
     }
   ]
 }

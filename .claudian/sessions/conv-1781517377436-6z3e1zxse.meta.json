@@ -1,0 +1,23 @@
+{
+  "id": "conv-1781517377436-6z3e1zxse",
+  "providerId": "claude",
+  "title": "Greet user",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781517377436,
+  "updatedAt": 1781517489327,
+  "lastResponseAt": 1781517489327,
+  "sessionId": "415124eb-7461-41ef-aff4-9aeeb7e1a0b1",
+  "providerState": {
+    "providerSessionId": "415124eb-7461-41ef-aff4-9aeeb7e1a0b1"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 138,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 50432,
+    "contextWindow": 200000,
+    "contextTokens": 50570,
+    "percentage": 25,
+    "contextWindowIsAuthoritative": true
+  }
+}

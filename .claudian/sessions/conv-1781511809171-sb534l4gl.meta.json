@@ -4,9 +4,9 @@
   "title": "Query BigQuery active_menu table",
   "titleGenerationStatus": "success",
   "createdAt": 1781511809171,
-  "updatedAt": 1781511842869,
+  "updatedAt": 1781515617087,
   "lastResponseAt": 1781511842869,
-  "sessionId": "a2fd6fa2-3aaa-47de-9b01-c28b6329f9a5",
+  "sessionId": null,
   "providerState": {
     "providerSessionId": "a2fd6fa2-3aaa-47de-9b01-c28b6329f9a5"
   },
