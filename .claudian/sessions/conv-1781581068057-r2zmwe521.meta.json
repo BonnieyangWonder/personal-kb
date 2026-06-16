@@ -4,20 +4,20 @@
   "title": "Explain \"bowl chit\" meaning in kitchen ops",
   "titleGenerationStatus": "success",
   "createdAt": 1781581068057,
-  "updatedAt": 1781582519776,
-  "lastResponseAt": 1781582519776,
+  "updatedAt": 1781590297046,
+  "lastResponseAt": 1781590297046,
   "sessionId": "42b0a371-8898-4758-a074-c9c739841021",
   "providerState": {
     "providerSessionId": "42b0a371-8898-4758-a074-c9c739841021"
   },
   "usage": {
     "model": "sonnet",
-    "inputTokens": 3271,
+    "inputTokens": 71272,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 93568,
+    "cacheReadInputTokens": 28288,
     "contextWindow": 200000,
-    "contextTokens": 96839,
-    "percentage": 48,
+    "contextTokens": 99560,
+    "percentage": 50,
     "contextWindowIsAuthoritative": true
   }
 }
