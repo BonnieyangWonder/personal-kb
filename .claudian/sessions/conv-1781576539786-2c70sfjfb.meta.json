@@ -1,0 +1,23 @@
+{
+  "id": "conv-1781576539786-2c70sfjfb",
+  "providerId": "claude",
+  "title": "Explain Bellies Bowl in IK dish type",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781576539787,
+  "updatedAt": 1781576695155,
+  "lastResponseAt": 1781576695155,
+  "sessionId": "0b81e473-a720-44ad-bf30-70f63f569db5",
+  "providerState": {
+    "providerSessionId": "0b81e473-a720-44ad-bf30-70f63f569db5"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 3769,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 64896,
+    "contextWindow": 200000,
+    "contextTokens": 68665,
+    "percentage": 34,
+    "contextWindowIsAuthoritative": true
+  }
+}
