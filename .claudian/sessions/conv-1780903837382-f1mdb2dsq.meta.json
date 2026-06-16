@@ -4,20 +4,23 @@
   "title": "Configure Jira email notification triggers",
   "titleGenerationStatus": "success",
   "createdAt": 1780903837382,
-  "updatedAt": 1781517304090,
-  "lastResponseAt": 1780903863018,
-  "sessionId": null,
+  "updatedAt": 1781604687259,
+  "lastResponseAt": 1781604687259,
+  "sessionId": "fbbaf62b-19a4-4b8b-aef8-f7e6438ae1b3",
   "providerState": {
-    "providerSessionId": "493b5e6a-384e-4445-9ec9-d64e1c91e06b"
+    "providerSessionId": "fbbaf62b-19a4-4b8b-aef8-f7e6438ae1b3",
+    "previousProviderSessionIds": [
+      "493b5e6a-384e-4445-9ec9-d64e1c91e06b"
+    ]
   },
   "usage": {
-    "model": "deepseek-v4-pro",
-    "inputTokens": 46039,
+    "model": "sonnet",
+    "inputTokens": 50935,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 46039,
-    "percentage": 23,
+    "contextTokens": 50935,
+    "percentage": 25,
     "contextWindowIsAuthoritative": true
   }
 }
