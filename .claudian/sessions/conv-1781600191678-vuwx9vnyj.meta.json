@@ -1,0 +1,23 @@
+{
+  "id": "conv-1781600191678-vuwx9vnyj",
+  "providerId": "claude",
+  "title": "Analyze hot holding BOM units and servings per ...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781600191678,
+  "updatedAt": 1781600309737,
+  "lastResponseAt": 1781600309737,
+  "sessionId": "9d40ed5a-4842-4f0a-82a4-812ae3ef57e3",
+  "providerState": {
+    "providerSessionId": "9d40ed5a-4842-4f0a-82a4-812ae3ef57e3"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 11036,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 84224,
+    "contextWindow": 200000,
+    "contextTokens": 95260,
+    "percentage": 48,
+    "contextWindowIsAuthoritative": true
+  }
+}
