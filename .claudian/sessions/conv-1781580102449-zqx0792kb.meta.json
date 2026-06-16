@@ -1,0 +1,23 @@
+{
+  "id": "conv-1781580102449-zqx0792kb",
+  "providerId": "claude",
+  "title": "Analyze GF auto-tagging override request",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781580102449,
+  "updatedAt": 1781580732927,
+  "lastResponseAt": 1781580732927,
+  "sessionId": "7fa10473-9281-4a88-a117-384dc7a564ef",
+  "providerState": {
+    "providerSessionId": "7fa10473-9281-4a88-a117-384dc7a564ef"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 892,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 136192,
+    "contextWindow": 200000,
+    "contextTokens": 137084,
+    "percentage": 69,
+    "contextWindowIsAuthoritative": true
+  }
+}
