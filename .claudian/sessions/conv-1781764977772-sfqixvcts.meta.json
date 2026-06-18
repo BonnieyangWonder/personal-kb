@@ -1,0 +1,23 @@
+{
+  "id": "conv-1781764977772-sfqixvcts",
+  "providerId": "claude",
+  "title": "Look up cookbook customization IDs",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781764977772,
+  "updatedAt": 1781765441444,
+  "lastResponseAt": 1781765052183,
+  "sessionId": "716eb4ff-5ca9-42f0-abeb-e9d9fb7a1f85",
+  "providerState": {
+    "providerSessionId": "716eb4ff-5ca9-42f0-abeb-e9d9fb7a1f85"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 590,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 70784,
+    "contextWindow": 200000,
+    "contextTokens": 71374,
+    "percentage": 36,
+    "contextWindowIsAuthoritative": true
+  }
+}

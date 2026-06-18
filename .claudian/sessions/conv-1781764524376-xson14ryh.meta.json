@@ -1,0 +1,23 @@
+{
+  "id": "conv-1781764524376-xson14ryh",
+  "providerId": "claude",
+  "title": "Create ticket for IK line build validations",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781764524376,
+  "updatedAt": 1781765757679,
+  "lastResponseAt": 1781765757679,
+  "sessionId": "8a7380a3-1c47-4331-9397-482f48533176",
+  "providerState": {
+    "providerSessionId": "8a7380a3-1c47-4331-9397-482f48533176"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 200,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 72192,
+    "contextWindow": 200000,
+    "contextTokens": 72392,
+    "percentage": 36,
+    "contextWindowIsAuthoritative": true
+  }
+}
