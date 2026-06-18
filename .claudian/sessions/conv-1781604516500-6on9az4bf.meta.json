@@ -4,19 +4,19 @@
   "title": "Create ticket for IK portion conversion",
   "titleGenerationStatus": "success",
   "createdAt": 1781604516500,
-  "updatedAt": 1781771878144,
-  "lastResponseAt": 1781771878144,
+  "updatedAt": 1781774780079,
+  "lastResponseAt": 1781774780079,
   "sessionId": "8be62def-0b6d-4d26-9fc0-dfa46a93011d",
   "providerState": {
     "providerSessionId": "8be62def-0b6d-4d26-9fc0-dfa46a93011d"
   },
   "usage": {
     "model": "sonnet",
-    "inputTokens": 166,
+    "inputTokens": 51,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 113408,
+    "cacheReadInputTokens": 114176,
     "contextWindow": 200000,
-    "contextTokens": 113574,
+    "contextTokens": 114227,
     "percentage": 57,
     "contextWindowIsAuthoritative": true
   }
