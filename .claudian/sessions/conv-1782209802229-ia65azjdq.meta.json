@@ -4,6 +4,20 @@
   "title": "Analyze menu items with most customizations",
   "titleGenerationStatus": "success",
   "createdAt": 1782209802229,
-  "updatedAt": 1782209809640,
-  "sessionId": null
+  "updatedAt": 1782210253688,
+  "lastResponseAt": 1782210253688,
+  "sessionId": "9baab4bb-6cbf-4354-ba85-31b0dae1a13a",
+  "providerState": {
+    "providerSessionId": "9baab4bb-6cbf-4354-ba85-31b0dae1a13a"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 5124,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 118144,
+    "contextWindow": 200000,
+    "contextTokens": 123268,
+    "percentage": 62,
+    "contextWindowIsAuthoritative": true
+  }
 }
