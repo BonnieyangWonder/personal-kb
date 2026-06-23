@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782208638881-7tudmhy5h",
+  "providerId": "claude",
+  "title": "Check menu item future version status",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782208638882,
+  "updatedAt": 1782209675466,
+  "lastResponseAt": 1782208694169,
+  "sessionId": "a67a02c3-0a43-40d7-91c0-2ce43a5281db",
+  "providerState": {
+    "providerSessionId": "a67a02c3-0a43-40d7-91c0-2ce43a5281db"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 1047,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 71936,
+    "contextWindow": 200000,
+    "contextTokens": 72983,
+    "percentage": 36,
+    "contextWindowIsAuthoritative": true
+  }
+}
