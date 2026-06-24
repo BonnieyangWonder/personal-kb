@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782295746014-bhv6wuzqk",
+  "providerId": "claude",
+  "title": "Create Jira ticket for auto-select plating rule...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782295746014,
+  "updatedAt": 1782295823167,
+  "lastResponseAt": 1782295823167,
+  "sessionId": "0f1f632d-6555-4d4f-8c72-275d79a8c26e",
+  "providerState": {
+    "providerSessionId": "0f1f632d-6555-4d4f-8c72-275d79a8c26e"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 339,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 64128,
+    "contextWindow": 200000,
+    "contextTokens": 64467,
+    "percentage": 32,
+    "contextWindowIsAuthoritative": true
+  }
+}
