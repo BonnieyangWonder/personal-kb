@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782283183718-f966c00ej",
+  "providerId": "claude",
+  "title": "Create Jira ticket for name uniqueness",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782283183719,
+  "updatedAt": 1782283472240,
+  "lastResponseAt": 1782283472240,
+  "sessionId": "82bf9361-b8c4-4df6-bb14-4410ae67b040",
+  "providerState": {
+    "providerSessionId": "82bf9361-b8c4-4df6-bb14-4410ae67b040"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 350,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 64128,
+    "contextWindow": 200000,
+    "contextTokens": 64478,
+    "percentage": 32,
+    "contextWindowIsAuthoritative": true
+  }
+}

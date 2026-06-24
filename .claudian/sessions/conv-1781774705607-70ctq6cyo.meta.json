@@ -4,20 +4,20 @@
   "title": "Review Confluence requirement and plan implemen...",
   "titleGenerationStatus": "success",
   "createdAt": 1781774705607,
-  "updatedAt": 1782196432212,
-  "lastResponseAt": 1782196432212,
+  "updatedAt": 1782283034860,
+  "lastResponseAt": 1782283034860,
   "sessionId": "5490f230-a494-4663-bc76-fbae3132959f",
   "providerState": {
     "providerSessionId": "5490f230-a494-4663-bc76-fbae3132959f"
   },
   "usage": {
     "model": "sonnet",
-    "inputTokens": 1468,
+    "inputTokens": 164,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 191488,
+    "cacheReadInputTokens": 198016,
     "contextWindow": 200000,
-    "contextTokens": 192956,
-    "percentage": 96,
+    "contextTokens": 198180,
+    "percentage": 99,
     "contextWindowIsAuthoritative": true
   }
 }
