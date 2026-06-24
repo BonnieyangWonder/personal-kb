@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782284545307-31jlpyqtu",
+  "providerId": "claude",
+  "title": "Add cooking group at task level",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782284545308,
+  "updatedAt": 1782284707921,
+  "lastResponseAt": 1782284707921,
+  "sessionId": "d9dce622-c9a6-4578-93c4-97eb40217bfd",
+  "providerState": {
+    "providerSessionId": "d9dce622-c9a6-4578-93c4-97eb40217bfd"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 97,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 71040,
+    "contextWindow": 200000,
+    "contextTokens": 71137,
+    "percentage": 36,
+    "contextWindowIsAuthoritative": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782283709780-p6r7hhzg1",
+  "providerId": "claude",
+  "title": "Support copy new item for 7* items",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782283709781,
+  "updatedAt": 1782284298151,
+  "lastResponseAt": 1782284298151,
+  "sessionId": "3f4c6b68-1048-470d-a4d5-ecff66434073",
+  "providerState": {
+    "providerSessionId": "3f4c6b68-1048-470d-a4d5-ecff66434073"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 1906,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 110848,
+    "contextWindow": 200000,
+    "contextTokens": 112754,
+    "percentage": 56,
+    "contextWindowIsAuthoritative": true
+  }
+}
