@@ -4,8 +4,8 @@
   "title": "Plan CB-full-feature doc integration for MD-17891",
   "titleGenerationStatus": "success",
   "createdAt": 1782371110965,
-  "updatedAt": 1782371476371,
-  "lastResponseAt": 1782371476371,
+  "updatedAt": 1782380855699,
+  "lastResponseAt": 1782380855699,
   "sessionId": "ca91387d-7bb9-40f1-a9ac-68ca1cc5184d",
   "providerState": {
     "providerSessionId": "ca91387d-7bb9-40f1-a9ac-68ca1cc5184d",
@@ -432,11 +432,12 @@
   },
   "usage": {
     "model": "sonnet",
-    "inputTokens": 5595,
+    "inputTokens": 150,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 63616,
+    "cacheReadInputTokens": 150784,
     "contextWindow": 200000,
-    "contextTokens": 69211,
-    "percentage": 35
+    "contextTokens": 150934,
+    "percentage": 75,
+    "contextWindowIsAuthoritative": true
   }
 }
