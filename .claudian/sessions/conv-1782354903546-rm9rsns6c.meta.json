@@ -4,20 +4,20 @@
   "title": "Summarize HDR-10589 Cook & Chill requirements",
   "titleGenerationStatus": "success",
   "createdAt": 1782354903547,
-  "updatedAt": 1782354959417,
-  "lastResponseAt": 1782354959417,
+  "updatedAt": 1782360693106,
+  "lastResponseAt": 1782360693106,
   "sessionId": "384fa1a5-8da5-435d-bdb8-c3dac658fa41",
   "providerState": {
     "providerSessionId": "384fa1a5-8da5-435d-bdb8-c3dac658fa41"
   },
   "usage": {
     "model": "sonnet",
-    "inputTokens": 4853,
+    "inputTokens": 1096,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 62976,
+    "cacheReadInputTokens": 86144,
     "contextWindow": 200000,
-    "contextTokens": 67829,
-    "percentage": 34,
+    "contextTokens": 87240,
+    "percentage": 44,
     "contextWindowIsAuthoritative": true
   }
 }
