@@ -25,39 +25,54 @@ Fetch the full Jira ticket via Atlassian MCP tools (`jira_get_issue` with `field
 - Linked Confluence pages or Figma references
 - **Always read the latest ticket description** — it is the authoritative source. Comments may contain outdated discussions.
 
-### Step 2: Explore the Documentation
+### Step 2: Explore the Documentation — Read EVERY Page
 
-Thoroughly explore `Z01-Resource/CB-full-feature/`:
+**Do not skip any page.** You must read the full content of every single `.md` file in `Z01-Resource/CB-full-feature/` and all its sub-directories. This is not optional — a requirement buried in an unexpected page will be missed if you only read "related" pages.
 
-1. Read `README.md` for directory overview
-2. Read `Cookbook Full Features Detail Requirements.md` (the summary index)
-3. Use `find` or `ls -R` to enumerate all sub-directories and files
-4. Read every page that could be related to the ticket's feature area
-5. Pay special attention to:
-   - `01 Fields & Cards in Items.md` — card/item-type matrix
-   - `02Common Features/Item Validations-Missing Info.md` — validation rules
-   - `02Common Features/Publish Version.md` — publish workflow
-   - `02Common Features/Copy Item.md` — copy behavior
-   - `02Common Features/Create new version.md` — version creation
-   - `Item Details/` — all card-specific pages
-   - `Item Details/Item Information/Change History.md` — change tracking
-   - `Item Details/Item Information/Compare Change History.md` — comparison view
+1. **Enumerate all files**: Use `find Z01-Resource/CB-full-feature -name "*.md" | sort` to get the complete file list.
+2. **Read the overview pages first**:
+   - `README.md`
+   - `Cookbook Full Features Detail Requirements.md` (the summary index)
+3. **Read every sub-directory page, without exception**:
+   - `01 Fields & Cards in Items.md`
+   - Every page under `02Common Features/` (including `Backend Features/` sub-directory)
+   - Every page under `Item Details/` (including all sub-directories like `Components/`, `Nutritions/`, `Procedure Card/`, `Item Information/`, `Hot Holding Card/`, `Customization V2/`, `Usages/`, etc.)
+   - Every page under `Item Grid/`
+   - Every page under `Configurations/` (including `Locations/` sub-directory)
+   - Every page under `Menu/`
+   - Every page under `Line Build/`
+   - Every page under `Benchtop Recipe/`
+   - Every page under `Variant-Test Kitchen/`
+   - Every page under `WSKUs & Consumables Grid/`
+   - Every page under `Vendor Items/`
+   - Every page under `Features TBD/` (including `Create Item/Create Ingredient/` sub-directory)
+   - `HDR Consumable Item 40 Detail.md`
+   - `Scheduled changes.md`
+   - `User List.md`
+4. **Compare each page against the ticket**: After reading each page, ask: does this page intersect with any requirement in the ticket? If yes, flag it for potential modification. If no, explicitly note it as "no change needed."
+5. **Pay extra attention to cross-cutting concerns** that span multiple pages:
+   - A new card → affects Fields & Cards matrix, the card's own detail page, validations, publish flow, copy/version creation, change history, and compare change history
+   - A validation rule change → may affect both the validations page and the publish workflow page
+   - A field behavior change → may affect the card's detail page and the item grid page
 
-### Step 3: Analyze & Plan
+**The goal**: after this step, you should have read every page and be able to state — for *each* page — why it does or does not need changes.
+
+### Step 3: Analyze & Plan (internal)
 
 Map ticket requirements to documentation pages. For each page, determine:
 - **Modify existing page** — what exact content to add/change
 - **Create new page** — what the page should contain
-- **No change needed** — pages that are unaffected
+- **No change needed** — pages that are unaffected (track internally for completeness; do NOT include in user review)
 
 ### Step 4: Present Plan for Review (DO NOT EXECUTE YET)
 
-Present a structured plan showing for EACH page:
+Present a structured plan showing **only pages that need changes** (modify or create):
+
 - **Before** — the current content (exact excerpt)
 - **After** — the proposed new content
 - **Rationale** — why this change is needed
 
-Also list pages that were analyzed but do NOT need changes (with reasons).
+**Do NOT list pages that need no changes** — they add noise without value for review. If the user asks whether a specific page was checked, answer directly.
 
 **Critical: Wait for user approval before making ANY edits.**
 
