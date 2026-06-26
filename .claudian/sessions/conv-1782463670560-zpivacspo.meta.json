@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782463670560-zpivacspo",
+  "providerId": "claude",
+  "title": "Check HH eligibility for sub step",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782463670561,
+  "updatedAt": 1782464934601,
+  "lastResponseAt": 1782463817852,
+  "sessionId": "342169dc-4ddb-4c2c-a081-b56ce4ab31fa",
+  "providerState": {
+    "providerSessionId": "342169dc-4ddb-4c2c-a081-b56ce4ab31fa"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 12148,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 118784,
+    "contextWindow": 200000,
+    "contextTokens": 130932,
+    "percentage": 65,
+    "contextWindowIsAuthoritative": true
+  }
+}
