@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782442741293-mtec2zz9z",
+  "providerId": "claude",
+  "title": "Remove default price from customization UI",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782442741294,
+  "updatedAt": 1782443371568,
+  "lastResponseAt": 1782443371568,
+  "sessionId": "eab8386b-3c87-43dd-99df-78b987162b7a",
+  "providerState": {
+    "providerSessionId": "eab8386b-3c87-43dd-99df-78b987162b7a"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 284,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 63104,
+    "contextWindow": 200000,
+    "contextTokens": 63388,
+    "percentage": 32,
+    "contextWindowIsAuthoritative": true
+  }
+}

@@ -4,6 +4,20 @@
   "title": "Auto-suffix duplicate frozen 40°F item names",
   "titleGenerationStatus": "success",
   "createdAt": 1782441919881,
-  "updatedAt": 1782441929403,
-  "sessionId": null
+  "updatedAt": 1782442650989,
+  "lastResponseAt": 1782442624109,
+  "sessionId": "5aff788c-b844-474d-a535-1d61125d57ad",
+  "providerState": {
+    "providerSessionId": "5aff788c-b844-474d-a535-1d61125d57ad"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 655,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 84352,
+    "contextWindow": 200000,
+    "contextTokens": 85007,
+    "percentage": 43,
+    "contextWindowIsAuthoritative": true
+  }
 }

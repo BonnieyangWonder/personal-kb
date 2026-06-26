@@ -125,6 +125,7 @@ ORDER BY bl.manage_inventory DESC, component_id;
 | [reference/datasets-overview.md](reference/datasets-overview.md) | 4 datasets, 70+ tables overview |
 | [schema-reference.md](schema-reference.md) | Complete table schemas |
 | [common-pitfalls.md](common-pitfalls.md) | Common mistakes to avoid |
+| ⭐ **Data Research Patterns** → `Z01-Resource/CB-bigquery/playbooks/data-research-patterns.md` | **MUST read for multi-brand/cross-dataset analysis** — data source selection, brand filtering, BOM+customization UNION, 9* packaging methodology, deep analysis patterns |
 
 ## Key Concepts
 
@@ -182,6 +183,12 @@ AND CURRENT_TIMESTAMP() BETWEEN TIMESTAMP(bl.service_start_time) AND TIMESTAMP(b
 **"What are the storage/logistics requirements?"** → [domains/logistics.md](domains/logistics.md)
 
 **"What packaged items (88*/7*) are in this menu item?"** → [domains/packaged-skus.md](domains/packaged-skus.md)
+
+**"What 9* non-food packaging/container items are used by these brands?"** → ⭐ **Read `Z01-Resource/CB-bigquery/playbooks/data-research-patterns.md` FIRST** — then [domains/packaged-skus.md](domains/packaged-skus.md)
+
+**"Find which brands use X packaging" / "Compare packaging across brands"** → ⭐ **Read `Z01-Resource/CB-bigquery/playbooks/data-research-patterns.md` FIRST**
+
+**"Analyze data across brands/menus" / "Cross-dataset research"** → ⭐ **Read `Z01-Resource/CB-bigquery/playbooks/data-research-patterns.md` FIRST**
 
 **"What are the 40*/41* consumables and WSKUs?"** → [domains/hdr-consumables.md](domains/hdr-consumables.md)
 
