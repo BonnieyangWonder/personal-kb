@@ -4,20 +4,20 @@
   "title": "Check linked items for hot holding instructions",
   "titleGenerationStatus": "success",
   "createdAt": 1782452964641,
-  "updatedAt": 1782454025212,
-  "lastResponseAt": 1782454025212,
+  "updatedAt": 1782455501005,
+  "lastResponseAt": 1782455501005,
   "sessionId": "dd7ab6e9-3e7a-4c9f-b976-4712ddb409e1",
   "providerState": {
     "providerSessionId": "dd7ab6e9-3e7a-4c9f-b976-4712ddb409e1"
   },
   "usage": {
     "model": "sonnet",
-    "inputTokens": 1451,
+    "inputTokens": 602,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 132480,
+    "cacheReadInputTokens": 148224,
     "contextWindow": 200000,
-    "contextTokens": 133931,
-    "percentage": 67,
+    "contextTokens": 148826,
+    "percentage": 74,
     "contextWindowIsAuthoritative": true
   }
 }
