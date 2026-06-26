@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782452964641-mc204skud",
+  "providerId": "claude",
+  "title": "Check linked items for hot holding instructions",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782452964641,
+  "updatedAt": 1782454025212,
+  "lastResponseAt": 1782454025212,
+  "sessionId": "dd7ab6e9-3e7a-4c9f-b976-4712ddb409e1",
+  "providerState": {
+    "providerSessionId": "dd7ab6e9-3e7a-4c9f-b976-4712ddb409e1"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 1451,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 132480,
+    "contextWindow": 200000,
+    "contextTokens": 133931,
+    "percentage": 67,
+    "contextWindowIsAuthoritative": true
+  }
+}
