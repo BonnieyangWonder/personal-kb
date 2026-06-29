@@ -4,8 +4,8 @@
   "title": "Analyze recipe demand forecasting SQL",
   "titleGenerationStatus": "success",
   "createdAt": 1782702690345,
-  "updatedAt": 1782713207144,
-  "lastResponseAt": 1782713207144,
+  "updatedAt": 1782713812465,
+  "lastResponseAt": 1782713812465,
   "sessionId": "6586fc0b-11fa-478f-9b22-11767e2f2578",
   "providerState": {
     "providerSessionId": "6586fc0b-11fa-478f-9b22-11767e2f2578",
@@ -477,12 +477,12 @@
   },
   "usage": {
     "model": "sonnet",
-    "inputTokens": 1331,
+    "inputTokens": 229,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 109312,
+    "cacheReadInputTokens": 126720,
     "contextWindow": 200000,
-    "contextTokens": 110643,
-    "percentage": 55,
+    "contextTokens": 126949,
+    "percentage": 63,
     "contextWindowIsAuthoritative": true
   }
 }
