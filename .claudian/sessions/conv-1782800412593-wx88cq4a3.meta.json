@@ -4,20 +4,20 @@
   "title": "Create ticket for component list ea→g conversion",
   "titleGenerationStatus": "success",
   "createdAt": 1782800412593,
-  "updatedAt": 1782800479309,
-  "lastResponseAt": 1782800479309,
+  "updatedAt": 1782801979766,
+  "lastResponseAt": 1782801979766,
   "sessionId": "ed923dd8-3a46-4e8e-9b1e-1f373b88ff9f",
   "providerState": {
     "providerSessionId": "ed923dd8-3a46-4e8e-9b1e-1f373b88ff9f"
   },
   "usage": {
     "model": "sonnet",
-    "inputTokens": 79,
+    "inputTokens": 537,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 69632,
+    "cacheReadInputTokens": 75904,
     "contextWindow": 200000,
-    "contextTokens": 69711,
-    "percentage": 35,
+    "contextTokens": 76441,
+    "percentage": 38,
     "contextWindowIsAuthoritative": true
   }
 }
