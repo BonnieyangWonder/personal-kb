@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782799885620-g9fwfpyj8",
+  "providerId": "claude",
+  "title": "Create 7★ item ea→g unit conversion ticket",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782799885624,
+  "updatedAt": 1782801138218,
+  "lastResponseAt": 1782801138218,
+  "sessionId": "850cd50d-2e25-4338-955b-edf4ba0f212f",
+  "providerState": {
+    "providerSessionId": "850cd50d-2e25-4338-955b-edf4ba0f212f"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 685,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 78848,
+    "contextWindow": 200000,
+    "contextTokens": 79533,
+    "percentage": 40,
+    "contextWindowIsAuthoritative": true
+  }
+}
