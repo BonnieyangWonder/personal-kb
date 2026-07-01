@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782892760572-lzfxxd1xx",
+  "providerId": "claude",
+  "title": "Query partial select for salad/bowl items",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782892760572,
+  "updatedAt": 1782893994833,
+  "lastResponseAt": 1782893994833,
+  "sessionId": "f6b97d89-9ef1-44ba-87d6-582c392f8315",
+  "providerState": {
+    "providerSessionId": "f6b97d89-9ef1-44ba-87d6-582c392f8315"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 1155,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 120576,
+    "contextWindow": 200000,
+    "contextTokens": 121731,
+    "percentage": 61,
+    "contextWindowIsAuthoritative": true
+  }
+}
