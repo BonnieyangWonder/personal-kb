@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782875855131-0re6jul82",
+  "providerId": "claude",
+  "title": "Compare item sets between A and B groups",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782875855131,
+  "updatedAt": 1782875866001,
+  "lastResponseAt": 1782875866001,
+  "sessionId": "44a590f4-f8d0-4979-836b-2a08629ea34b",
+  "providerState": {
+    "providerSessionId": "44a590f4-f8d0-4979-836b-2a08629ea34b"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 50465,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 50465,
+    "percentage": 25,
+    "contextWindowIsAuthoritative": true
+  }
+}
