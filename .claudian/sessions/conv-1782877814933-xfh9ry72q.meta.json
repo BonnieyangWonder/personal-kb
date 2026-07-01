@@ -4,6 +4,20 @@
   "title": "查詢item 4000052的fulfillment 88* items",
   "titleGenerationStatus": "success",
   "createdAt": 1782877814933,
-  "updatedAt": 1782877831048,
-  "sessionId": null
+  "updatedAt": 1782878858333,
+  "lastResponseAt": 1782878113372,
+  "sessionId": "6b5bae55-88b1-47fc-b435-aeea59eba74e",
+  "providerState": {
+    "providerSessionId": "6b5bae55-88b1-47fc-b435-aeea59eba74e"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 188,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 88192,
+    "contextWindow": 200000,
+    "contextTokens": 88380,
+    "percentage": 44,
+    "contextWindowIsAuthoritative": true
+  }
 }
