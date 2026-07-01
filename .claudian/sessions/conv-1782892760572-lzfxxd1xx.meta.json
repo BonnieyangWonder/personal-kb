@@ -4,20 +4,20 @@
   "title": "Query partial select for salad/bowl items",
   "titleGenerationStatus": "success",
   "createdAt": 1782892760572,
-  "updatedAt": 1782893994833,
-  "lastResponseAt": 1782893994833,
+  "updatedAt": 1782894282668,
+  "lastResponseAt": 1782894282668,
   "sessionId": "f6b97d89-9ef1-44ba-87d6-582c392f8315",
   "providerState": {
     "providerSessionId": "f6b97d89-9ef1-44ba-87d6-582c392f8315"
   },
   "usage": {
     "model": "sonnet",
-    "inputTokens": 1155,
+    "inputTokens": 4827,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 120576,
+    "cacheReadInputTokens": 123776,
     "contextWindow": 200000,
-    "contextTokens": 121731,
-    "percentage": 61,
+    "contextTokens": 128603,
+    "percentage": 64,
     "contextWindowIsAuthoritative": true
   }
 }
