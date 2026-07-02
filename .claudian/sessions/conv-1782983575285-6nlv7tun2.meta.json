@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782983575285-6nlv7tun2",
+  "providerId": "claude",
+  "title": "Find 7* items with hot holding instructions",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782983575285,
+  "updatedAt": 1782984021741,
+  "lastResponseAt": 1782984021741,
+  "sessionId": "f7b4f383-e896-4a9b-9f74-e3bc7142a5d7",
+  "providerState": {
+    "providerSessionId": "f7b4f383-e896-4a9b-9f74-e3bc7142a5d7"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 268,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 86400,
+    "contextWindow": 200000,
+    "contextTokens": 86668,
+    "percentage": 43,
+    "contextWindowIsAuthoritative": true
+  }
+}

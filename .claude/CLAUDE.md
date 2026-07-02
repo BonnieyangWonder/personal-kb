@@ -7,5 +7,6 @@
 @rules/domain-context.md
 @rules/language-preference.md
 @rules/ticket-workflow.md
+@rules/report-paths.md
 @rules/tool-paths.md
 <!-- Knowlery rule imports:end -->
