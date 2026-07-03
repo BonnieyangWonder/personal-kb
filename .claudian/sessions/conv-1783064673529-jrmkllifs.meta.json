@@ -1,0 +1,23 @@
+{
+  "id": "conv-1783064673529-jrmkllifs",
+  "providerId": "claude",
+  "title": "Verify draft versions for 9 menu items",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783064673529,
+  "updatedAt": 1783064774828,
+  "lastResponseAt": 1783064774828,
+  "sessionId": "fa2b995f-9553-4b05-8928-fe85b4a76c71",
+  "providerState": {
+    "providerSessionId": "fa2b995f-9553-4b05-8928-fe85b4a76c71"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 258,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 57728,
+    "contextWindow": 200000,
+    "contextTokens": 57986,
+    "percentage": 29,
+    "contextWindowIsAuthoritative": true
+  }
+}
