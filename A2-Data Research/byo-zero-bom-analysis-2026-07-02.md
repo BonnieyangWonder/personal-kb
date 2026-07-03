@@ -34,10 +34,10 @@ All top 10 items share a common pattern: BOM consists entirely of packaging mate
 
 #### Tier 1: Royal Greens BYO Greens Bowl — Primary ID（85 Option Values）
 
-| # | Item Number | Name | Status | Brands | Options | Total OV |
-|---|-------------|------|--------|--------|---------|----------|
-| 1 | `8010459` | BYO Greens Bowl, Royal Greens BOWLDER- Primary ID | `FOR_SALE` | All 4 | 8 | **85** |
-| 2 | `8011814` | BYO Greens Bowl, Royal Greens BOWLDER - Primary ID (C&C Pilot) | `FOR_SALE` | All 4 | 8 | **85** |
+| #   | Item Number | Name                                                           | Status     | Brands | Options | Total OV |
+| --- | ----------- | -------------------------------------------------------------- | ---------- | ------ | ------- | -------- |
+| 1   | `8010459`   | BYO Greens Bowl, Royal Greens BOWLDER- Primary ID              | `FOR_SALE` | All 4  | 8       | **85**   |
+| 2   | `8011814`   | BYO Greens Bowl, Royal Greens BOWLDER - Primary ID (C&C Pilot) | `FOR_SALE` | All 4  | 8       | **85**   |
 
 **8 Customization Options**:
 
