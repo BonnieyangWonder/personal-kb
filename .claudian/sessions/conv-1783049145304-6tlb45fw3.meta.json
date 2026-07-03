@@ -4,20 +4,20 @@
   "title": "Review CBR-21090 data modifications",
   "titleGenerationStatus": "success",
   "createdAt": 1783049145304,
-  "updatedAt": 1783050132507,
-  "lastResponseAt": 1783050132507,
+  "updatedAt": 1783051047176,
+  "lastResponseAt": 1783051047176,
   "sessionId": "fc99a281-3845-4cfe-9468-5adb07d095c2",
   "providerState": {
     "providerSessionId": "fc99a281-3845-4cfe-9468-5adb07d095c2"
   },
   "usage": {
     "model": "opus",
-    "inputTokens": 192,
+    "inputTokens": 1172,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 77184,
+    "cacheReadInputTokens": 78848,
     "contextWindow": 200000,
-    "contextTokens": 77376,
-    "percentage": 39,
+    "contextTokens": 80020,
+    "percentage": 40,
     "contextWindowIsAuthoritative": true
   }
 }

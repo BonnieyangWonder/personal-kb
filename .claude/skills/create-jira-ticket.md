@@ -5,7 +5,7 @@ Create a Jira issue in the MasterData board. Analyze user-provided requirements,
 ## Ticket Standards
 
 ### Language
-All ticket content MUST be in English — summary, description, acceptance criteria, everything.
+All ticket content MUST be in English — summary, description, acceptance criteria, comments, links, everything. This applies to all Jira-facing content. When confirming with the user about the ticket, present the draft in English.
 
 ### Defaults
 - **Project**: MD (MasterData) — Project Key: `MD`, System ID: `10024`
@@ -23,7 +23,8 @@ All ticket content MUST be in English — summary, description, acceptance crite
 5. Confirm with user if anything is ambiguous
 6. If screenshots detected → save from clipboard, upload as attachments, embed in description
 7. Create the ticket (MCP for skeleton → REST API with ADF for description)
-8. **Verify**: Read the ticket back. If description headings show raw `h2.` text instead of rendered `##` markdown, the ADF update failed — refresh token and retry. Do NOT proceed until headings render correctly.
+8. **Link related tickets**: If the user mentions another ticket (e.g., "关联到 CBR-21090", "link to PROJ-123"), create an issue link with type **Relates** (relates to) — unless the user specifies a different link type. Use `jira_create_issue_link` with `link_type: "Relates"` and the new ticket as `inward_issue_key`, the referenced ticket as `outward_issue_key`.
+9. **Verify**: Read the ticket back. If description headings show raw `h2.` text instead of rendered `##` markdown, the ADF update failed — refresh token and retry. Do NOT proceed until headings render correctly.
 
 ## Execution Strategy (in priority order)
 
