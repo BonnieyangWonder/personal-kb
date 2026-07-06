@@ -1,0 +1,23 @@
+{
+  "id": "conv-1783307096535-cilzxty23",
+  "providerId": "claude",
+  "title": "Build cookbook requirements analysis skill",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783307096537,
+  "updatedAt": 1783307158114,
+  "lastResponseAt": 1783307158114,
+  "sessionId": "c4a44c57-6d3c-4336-bc10-017454521b7b",
+  "providerState": {
+    "providerSessionId": "c4a44c57-6d3c-4336-bc10-017454521b7b"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 4202,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 64128,
+    "contextWindow": 200000,
+    "contextTokens": 68330,
+    "percentage": 34,
+    "contextWindowIsAuthoritative": true
+  }
+}

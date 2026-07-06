@@ -4,20 +4,20 @@
   "title": "Analyze menu items with most customizations",
   "titleGenerationStatus": "success",
   "createdAt": 1782209802229,
-  "updatedAt": 1782983950322,
-  "lastResponseAt": 1782983950322,
+  "updatedAt": 1783306906123,
+  "lastResponseAt": 1783306813712,
   "sessionId": "9baab4bb-6cbf-4354-ba85-31b0dae1a13a",
   "providerState": {
     "providerSessionId": "9baab4bb-6cbf-4354-ba85-31b0dae1a13a"
   },
   "usage": {
     "model": "opus",
-    "inputTokens": 355,
+    "inputTokens": 136,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 152192,
+    "cacheReadInputTokens": 135296,
     "contextWindow": 200000,
-    "contextTokens": 152547,
-    "percentage": 76,
+    "contextTokens": 135432,
+    "percentage": 68,
     "contextWindowIsAuthoritative": true
   }
 }

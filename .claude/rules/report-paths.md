@@ -1,17 +1,18 @@
 # Report Paths
 
-When the user asks to create a report or save analysis results, place the file in the correct directory:
+When the user asks to create a report or save analysis results, place the file in the correct directory **based on the nature of the report, not just exact keyword match**:
 
-| User Says | Directory |
-|-----------|-----------|
-| "data research", "data research报告", "放到data research" | `A2-Data Research/` |
-| "RA rough", "RA rough报告", "放到RA rough", "需求分析" | `A2-RA Rough/` |
+| Report Nature | Trigger Phrases | Directory |
+|---------------|-----------------|-----------|
+| **数据分析报告** — query results, data findings, metrics, SQL analysis, trend reports | "数据分析报告", "数据报告", "data research", "数据research", "data分析", "查询报告", "query result", "放data research" | `A2-Data Research/` |
+| **RA 分析** — 需求分析, requirements analysis, rough/incomplete analysis, 初步评估 | "RA", "RA分析", "RA rough", "ra分析报告", "需求分析", "初步分析", "放RA rough" | `A2-RA Rough/` |
+
+**Decision Rule**: If the user describes the output as a report about data/queries/findings → Data Research. If they describe it as an RA/requirements/rough assessment → RA Rough.
 
 **Naming Convention** (follow existing pattern in each directory):
 - Data Research: `Wonder Create - <Topic>.md` or `<topic>-<date>.md`
 - RA Rough: `YYYY-MM-DD_<Topic>_<描述>.md`
 
 **Do NOT**:
-- Create reports in `queries/` when user says "data research" or "RA rough"
+- Create reports in `queries/` or other knowledge directories when user wants data research or RA rough
 - Use `obsidian create` for these reports (they go in A2- directories, not agent-managed knowledge dirs)
-- Create anywhere else unless the user explicitly names a different location

@@ -1,0 +1,23 @@
+{
+  "id": "conv-1783307179459-1kw1s40jk",
+  "providerId": "claude",
+  "title": "Explain Minimal Service Portion Conversion config",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783307179459,
+  "updatedAt": 1783307253578,
+  "lastResponseAt": 1783307253578,
+  "sessionId": "6be65b91-320e-42f3-83f4-ebe67ae1b30a",
+  "providerState": {
+    "providerSessionId": "6be65b91-320e-42f3-83f4-ebe67ae1b30a"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2399,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 56704,
+    "contextWindow": 200000,
+    "contextTokens": 59103,
+    "percentage": 30,
+    "contextWindowIsAuthoritative": true
+  }
+}
