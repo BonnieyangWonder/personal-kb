@@ -4,20 +4,20 @@
   "title": "Clarify Free Choices customization scope",
   "titleGenerationStatus": "success",
   "createdAt": 1783322920614,
-  "updatedAt": 1783394022614,
-  "lastResponseAt": 1783393561555,
+  "updatedAt": 1783395972370,
+  "lastResponseAt": 1783395972370,
   "sessionId": "d8b47d26-896f-491c-9672-6415a8f7d74f",
   "providerState": {
     "providerSessionId": "d8b47d26-896f-491c-9672-6415a8f7d74f"
   },
   "usage": {
-    "model": "opus[1m]",
-    "inputTokens": 41,
+    "model": "sonnet[1m]",
+    "inputTokens": 2221,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 198016,
+    "cacheReadInputTokens": 201856,
     "contextWindow": 1000000,
-    "contextTokens": 198057,
+    "contextTokens": 204077,
     "percentage": 20,
-    "contextWindowIsAuthoritative": false
+    "contextWindowIsAuthoritative": true
   }
 }
