@@ -1,0 +1,22 @@
+{
+  "id": "conv-1783395232988-u7msc0irj",
+  "providerId": "claude",
+  "title": "Sync Google Calendar to Mac Calendar",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783395232988,
+  "updatedAt": 1783395585174,
+  "lastResponseAt": 1783395585174,
+  "sessionId": "c6bb1465-414d-4b88-bb31-259bce854287",
+  "providerState": {
+    "providerSessionId": "c6bb1465-414d-4b88-bb31-259bce854287"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 172,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 52480,
+    "contextWindow": 1000000,
+    "contextTokens": 52652,
+    "percentage": 5
+  }
+}

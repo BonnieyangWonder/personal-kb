@@ -75,11 +75,15 @@ Move: Projects/random-notes.md → Projects/feature-a/
 
 ### Step 6: Apply Moves (If Confirmed)
 
-Use Obsidian CLI to rename/move files:
+Prefer Obsidian CLI to rename/move files (it updates wikilinks automatically):
 
 ```bash
 obsidian rename file="old-path.md" new_name="new-path.md"
 ```
+
+In headless environments, move the files directly, then check for broken wikilinks
+yourself (moved-page names grepped across the vault) and run `knowlery health` after
+bulk changes.
 
 Always show the full plan before applying. Never move files silently.
 
@@ -98,4 +102,4 @@ Obsidian typically handles wikilink updates on rename automatically, but verify 
 - **Suggest first, act second.** Default to dry_run mode. Show the full plan before making any changes.
 - **Agent directories are sacred.** Only agent pages should live in `entities/`, `concepts/`, `comparisons/`, `queries/`.
 - **User notes are user territory.** Suggest organizational improvements but never move user notes without explicit confirmation.
-- **Obsidian is first workbench.** All note operations go through Obsidian CLI.
+- **Obsidian first, headless second.** Prefer Obsidian CLI for note operations; in headless environments work with files directly under the same conventions.

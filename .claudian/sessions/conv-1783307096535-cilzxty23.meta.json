@@ -4,20 +4,20 @@
   "title": "Build cookbook requirements analysis skill",
   "titleGenerationStatus": "success",
   "createdAt": 1783307096537,
-  "updatedAt": 1783321869002,
+  "updatedAt": 1783394022614,
   "lastResponseAt": 1783321869002,
   "sessionId": "c4a44c57-6d3c-4336-bc10-017454521b7b",
   "providerState": {
     "providerSessionId": "c4a44c57-6d3c-4336-bc10-017454521b7b"
   },
   "usage": {
-    "model": "opus",
+    "model": "opus[1m]",
     "inputTokens": 115,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 70272,
-    "contextWindow": 200000,
+    "contextWindow": 1000000,
     "contextTokens": 70387,
-    "percentage": 35,
-    "contextWindowIsAuthoritative": true
+    "percentage": 7,
+    "contextWindowIsAuthoritative": false
   }
 }

@@ -28,10 +28,34 @@ and distill it into structured, cross-referenced knowledge pages.
 
 ### Incremental Mode (default)
 
-When user runs `/cook` with no arguments:
-1. Read `log.md` for last cook timestamp
-2. Scan for `.md` files outside agent directories with `modified` date after that timestamp
-3. Include any unprocessed files
+When user runs `/cook` with no arguments, get the scope from the deterministic
+staleness report (first transport available):
+
+```bash
+obsidian knowlery:stale
+# or, with Obsidian closed:
+knowlery stale
+# or, with only Node available:
+node .knowlery/bin/query.mjs --stale
+```
+
+The report has three parts:
+
+1. **Stale pages** — compiled pages whose cited sources changed after the page was
+   last written. Re-read only the listed changed sources and fold what changed into
+   those pages.
+2. **Uncooked notes** — user notes cited by no compiled page, most recent first. These
+   are candidate new material; use judgment (or ask) about which are worth compiling —
+   many notes are legitimately never compiled.
+3. **Dangling sources** — pages citing notes that no longer exist. Mention them in the
+   report; fixing them is /audit territory.
+
+Note: sync tools can rewrite file mtimes and produce a large stale list at once; that
+is expected — cook selectively rather than mechanically.
+
+**Fallback (degraded mode).** Only if neither transport is available: scan for `.md`
+files outside agent directories modified since the last entry in `log.md`, and say
+scope detection ran in degraded mode.
 
 ### Full Mode
 
@@ -72,9 +96,23 @@ When user provides a URL:
 - **Updates:** Add new information, bump `updated` date
 - **Contradictions:** Follow Update Policy
 
+**Record aliases (retrieval-aware compiling).** Lexical retrieval can only match what
+is written down. On every page you create or update, record into `aliases` frontmatter:
+
+- colloquial or team nicknames ("colld" for the collector daemon)
+- abbreviations and acronyms (SLO, p95)
+- the **cross-language title** whenever the sources are in a different language than
+  the page (a page compiled from Chinese notes gets its Chinese name as an alias, and
+  vice versa)
+
 **Create page thresholds:**
 - Appears in 2+ notes, OR is central subject of one note
 - Do NOT create for: passing mentions, minor details, out-of-domain topics
+
+**Writing tool:** prefer `obsidian create` when Obsidian is running (it keeps the
+wikilink graph consistent). In headless environments, write the files directly with
+identical frontmatter and naming conventions, and run `knowlery health` (or
+`node .knowlery/bin/query.mjs --stale`) after bulk changes to verify the result.
 
 ### Step 4: Cross-Reference
 - Ensure every new/updated page has at least 2 outbound wikilinks
@@ -91,7 +129,7 @@ After Step 3–4, reconcile agent pages touched this cycle with `SCHEMA.md`:
 
 ### Step 6: Update Navigation
 - `INDEX.base` stays current in Obsidian via its Base query — suggest **`/wiki`** if views, filters, or columns need tuning after large cooks
-- Append entry to `log.md`
+- Append entry to `log.md` (human-readable history only — incremental scope comes from the staleness report, never from this file)
 
 ### Step 7: Report
 Present structured summary (see Output Report Format below). Mention `SCHEMA.md` when you added tags or domains, or say it was unchanged.
@@ -169,6 +207,7 @@ No `owner` frontmatter field needed.
 
 - **Evidence-based**: Every knowledge page cites its sources
 - **Never modify user notes**: User notes are read-only during /cook
+- **Aliases are retrieval**: Record nicknames, abbreviations, and cross-language titles in `aliases` — a name that is not written down cannot be found
 - **SCHEMA.md stays accurate**: New tags or domains on agent pages are reflected in `SCHEMA.md` in the same cook cycle when possible
 - **Thresholds matter**: 2+ mentions or central subject to create a page
 - **Split at 200 lines**: Break large pages into sub-topics

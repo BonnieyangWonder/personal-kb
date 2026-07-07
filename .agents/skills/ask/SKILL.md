@@ -1,9 +1,9 @@
 ---
 name: ask
 description: >
-  Open-ended Q&A against the knowledge base. Uses INDEX.base as the vault Bases wiki index,
-  Obsidian CLI (properties, search, tags, backlinks) to traverse the same graph the Base
-  shows in Obsidian, SCHEMA.md for taxonomy, then reads and synthesizes with citations.
+  Open-ended Q&A against the knowledge base. Locates candidate pages with one call to the
+  deterministic retrieval script (.knowlery/bin/query.mjs), then reads the promising ones
+  with Obsidian CLI and synthesizes an evidence-based answer with citations.
   Use when the user asks questions about vault content like "what is X", "why did we decide Y",
   "explain Z", "what do my notes say about", "summarize what I know about", or any question
   that should be answered from accumulated knowledge rather than general training data.
@@ -26,56 +26,47 @@ Identify the key concepts, entities, and intent in the user's question.
 
 ### Step 2: Locate Relevant Pages
 
-**Do not delegate this workflow to a generic exploration subagent.** Run the Obsidian CLI steps yourself so searches merge and nothing is skipped.
+Run the deterministic retrieval command **once**, using the first transport available:
 
-#### 2a — Wiki index: `INDEX.base` (Bases)
-
-If `INDEX.base` exists, read it first:
+**Transport 1 — Obsidian running (the normal case):**
 
 ```bash
-obsidian read file="INDEX.base"
+obsidian knowlery:query question="<question>"
 ```
 
-**What this is:** The vault's **Obsidian Bases wiki index**. In the app, this file drives a **live, query-backed table** of notes with rich metadata (paths, tags, dates, backlinks, and any columns you add). The bytes on disk are the Base definition (views, filters, formulas); Obsidian **evaluates** that definition into the dynamic index you see in the UI.
-
-**How to use it as an agent:** Parse the definition to learn **which paths and property filters** define "compiled knowledge" in this vault. Then run CLI commands that query the **same scope** — do not treat the YAML as meaningless "config" or assume the vault has no index when you do not see note titles in the read output.
-
-#### 2b — List agent-maintained pages (same scope the Base should cover)
-
-Enumerate compiled pages by v2 frontmatter `type` (high-speed retrieval, same notes the Base is meant to index):
+**Transport 2 — the globally installed Knowlery CLI:**
 
 ```bash
-obsidian properties type=entity
-obsidian properties type=concept
-obsidian properties type=comparison
-obsidian properties type=query
+knowlery query "<question>"
 ```
 
-Use paths and titles from this output as candidates. When helpful, add **`obsidian tags`**, **`obsidian backlinks file="..."`**, or other list commands from `obsidian help` to exploit metadata associations the Base surfaces as columns.
-
-#### 2c — Taxonomy and conventions
-
-Read `SCHEMA.md` when you need the tag taxonomy, domain rules, or agent directory conventions:
+**Transport 3 — always present in the vault, needs only Node:**
 
 ```bash
-obsidian read file="SCHEMA.md"
+node .knowlery/bin/query.mjs "<question>"
 ```
 
-If the question or `SCHEMA.md` points at specific tags, run targeted searches for those tags in addition to plain terms.
+All three run the same engine over the whole vault (compiled pages, user notes, and
+installed knowledge bundles) and print identical output: one line per candidate with
+rank, path, type, score, and a one-line description. Lines starting with
+`evidence via source:` mean the page was boosted because a raw note it cites matched
+the question — read those source notes too.
 
-#### 2d — Search by key concepts
+- Treat the ranked list as your candidate set. Do not re-run per-keyword searches to
+  second-guess it; your judgment belongs in choosing what to read and how to synthesize.
+- If it prints `No confident matches in this vault for: ...`, tell the user the vault
+  does not cover this question and suggest running `/cook` on relevant material.
+  Do not answer from general knowledge.
+- If transport 1 prints `Snapshot warming up`, retry once after a moment or use
+  the next transport.
+- Broad or exploratory questions: add `k=20` (transport 1) / `--k 20` (transports 2-3).
+  Structured output: `json` / `--json`.
 
-For each key concept in the question:
-
-```bash
-obsidian search "<key concept>"
-```
-
-Combine and deduplicate results across queries.
-
-#### 2e — User and source notes outside agent directories
-
-Answers may live in raw notes (e.g. reports, dailies, `Projects/`) that are **not** under `entities/`, `concepts/`, `comparisons/`, or `queries/`. After agent-scope passes, run broader searches (filename keywords, dates, or tags) until you have checked plausible locations or confirmed the vault has no matching note.
+**Fallback (degraded mode).** Only if no transport is available: enumerate
+compiled pages with `obsidian properties type=entity` (and `concept`, `comparison`,
+`query`), run `obsidian search "<key concept>"` per key concept, merge and deduplicate
+the results — and say in your answer that retrieval ran in degraded mode without the
+retrieval engine.
 
 ### Step 3: Read Relevant Pages
 
@@ -87,8 +78,8 @@ obsidian read file="entities/some-page.md"
 
 Prioritize:
 
-- Agent pages in `entities/`, `concepts/`, `comparisons/`, `queries/`
-- Pages with matching tags or domain
+- The top-ranked candidates from Step 2 (the score already accounts for field relevance)
+- Source notes flagged with `evidence via source:` — they carry the original context
 - Pages with `status: reviewed` (over `draft`)
 - Recent pages (higher `updated` date)
 
@@ -159,4 +150,8 @@ Use `obsidian create` to save. Ask the user where they'd like it saved.
 - **Acknowledge gaps**: If the vault doesn't have enough information, say so.
 - **Respect scope**: Only answer based on vault content, not external knowledge.
 - **Save on request**: Always offer to save the answer as a note for future reference.
-- **Bases + CLI:** The wiki index is **`INDEX.base`** in Obsidian; discovery via CLI is **`obsidian properties`** (by `type` and other fields), **`obsidian search`**, and related commands — not a duplicate markdown index file.
+- **One retrieval call:** Candidate location belongs to the retrieval engine —
+  `obsidian knowlery:query question="..."` when Obsidian is running, else
+  `knowlery query "..."` (global CLI), else `node .knowlery/bin/query.mjs "..."`;
+  reading and synthesis are yours. Fall back to `obsidian properties` /
+  `obsidian search` only when no transport can run.

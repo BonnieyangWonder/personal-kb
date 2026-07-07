@@ -1,6 +1,4 @@
 @../KNOWLEDGE.md
-@../SCHEMA.md
-@../INDEX.base
 <!-- Knowlery rule imports:start -->
 @rules/activity-ledger.md
 @rules/citation-required.md

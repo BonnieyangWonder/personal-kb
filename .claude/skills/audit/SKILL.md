@@ -13,18 +13,31 @@ description: >
 Scan the four agent-maintained directories (`entities/`, `concepts/`, `comparisons/`, `queries/`)
 for structural issues.
 
+**Use the deterministic tools first** — they compute several categories exactly:
+
+```bash
+obsidian orphans          # category 1: files with no incoming links
+obsidian unresolved       # category 2: broken wikilinks, with counts
+obsidian deadends         # bonus signal: files with no outgoing links
+obsidian knowlery:stale   # categories 3 and 7 (or: knowlery stale / node .knowlery/bin/query.mjs --stale)
+```
+
+Filter tool output to the four agent directories. Fall back to manual traversal only
+when none of the tools is available.
+
 ## Scan Categories
 
 ### 1. Orphan Pages
-Pages with no inbound wikilinks from any other note (user notes or agent pages).
+Pages with no inbound wikilinks from any other note — from `obsidian orphans`.
 - Severity: **warning** for new pages (< 7 days old), **info** for older
 
 ### 2. Broken Wikilinks
-Wikilinks in agent pages that point to non-existent targets.
+Wikilinks in agent pages that point to non-existent targets — from `obsidian unresolved`.
 - Severity: **warning**
 
 ### 3. Stale Content
-Pages where `updated` date is > 90 days behind the most recent source note's date.
+Compiled pages whose cited sources changed after the page was last written — the
+`Stale pages` section of the staleness report.
 - Severity: **info**
 
 ### 4. Frontmatter Violations
@@ -38,6 +51,11 @@ Tags used in agent pages that are not defined in `SCHEMA.md`.
 ### 6. Oversized Pages
 Pages exceeding ~200 lines — candidates for splitting.
 - Severity: **info**
+
+### 7. Dangling Sources
+Agent pages whose `sources` cite notes that no longer exist — the `Dangling sources`
+section of the staleness report.
+- Severity: **warning**
 
 ## Report Format
 

@@ -13,17 +13,22 @@ Before creating any note:
 
 1. Read `AGENTS.md` — check the knowledge base structure (user notes vs agent-maintained pages)
 2. Decide where the note belongs: **user notes** stay in their existing areas (e.g. `Projects/`, `Daily/`); **agent knowledge pages** live only under `entities/`, `concepts/`, `comparisons/`, or `queries/`
-3. Use `obsidian create` to create notes — never use file write tools directly
+3. Prefer `obsidian create` when Obsidian is running; in headless environments write the file directly, following every convention below
 
 ## Creating Notes
 
-You MUST use `obsidian create` to create notes in the vault:
+Prefer `obsidian create` when Obsidian is running (it keeps the wikilink graph
+consistent):
 
 ```
 obsidian create name="Note Title" content="<frontmatter + content>" silent
 ```
 
 For multiline content use `\n` for newline and `\t` for tab.
+
+In headless environments (Obsidian closed, CLI-initialized workspaces), write the
+`.md` file directly with identical frontmatter and naming conventions, and run
+`knowlery health` after bulk changes.
 
 ## Required Frontmatter
 
