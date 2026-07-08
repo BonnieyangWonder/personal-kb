@@ -1,9 +1,9 @@
 {
   "userName": "",
   "permissionMode": "yolo",
-  "model": "sonnet[1m]",
+  "model": "claude-fable-5",
   "thinkingBudget": "xhigh",
-  "effortLevel": "max",
+  "effortLevel": "high",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
   "titleGenerationModel": "",
@@ -33,7 +33,7 @@
       "enableOpus1M": true,
       "enableSonnet1M": true,
       "customModels": "",
-      "lastModel": "sonnet[1m]",
+      "lastModel": "claude-fable-5",
       "environmentVariables": "",
       "environmentHash": ""
     },
@@ -79,10 +79,10 @@
   },
   "settingsProvider": "claude",
   "savedProviderModel": {
-    "claude": "sonnet[1m]"
+    "claude": "claude-fable-5"
   },
   "savedProviderEffort": {
-    "claude": "max"
+    "claude": "high"
   },
   "savedProviderServiceTier": {},
   "savedProviderThinkingBudget": {},

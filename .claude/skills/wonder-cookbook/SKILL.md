@@ -125,7 +125,7 @@ ORDER BY bl.manage_inventory DESC, component_id;
 | [reference/datasets-overview.md](reference/datasets-overview.md) | 4 datasets, 70+ tables overview |
 | [schema-reference.md](schema-reference.md) | Complete table schemas |
 | [common-pitfalls.md](common-pitfalls.md) | Common mistakes to avoid |
-| ⭐ **Data Research Patterns** → `Z01-Resource/CB-bigquery/playbooks/data-research-patterns.md` | **MUST read for multi-brand/cross-dataset analysis** — data source selection, brand filtering, BOM+customization UNION, 9* packaging methodology, deep analysis patterns |
+| ⭐ **Data Research Patterns** → `Z01-Resource/CB-bigquery/playbooks/data-research-patterns.md` | **MUST read for EVERY data analysis task** — data source selection, brand filtering, BOM+customization UNION, 9* packaging methodology, deep analysis patterns, AND 3 critical customization pitfalls (option_value grouping level, FOR_SALE/FINAL/preset filters, item_versions JSON vs flatten table) |
 
 ## Key Concepts
 
