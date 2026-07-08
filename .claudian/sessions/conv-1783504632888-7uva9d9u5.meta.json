@@ -1,0 +1,23 @@
+{
+  "id": "conv-1783504632888-7uva9d9u5",
+  "providerId": "claude",
+  "title": "Create Jira ticket for customizations feature",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783504632889,
+  "updatedAt": 1783504673950,
+  "lastResponseAt": 1783504673950,
+  "sessionId": "32cf09f0-4725-466e-93e9-4789f45756ba",
+  "providerState": {
+    "providerSessionId": "32cf09f0-4725-466e-93e9-4789f45756ba"
+  },
+  "usage": {
+    "model": "claude-fable-5",
+    "inputTokens": 9126,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 61952,
+    "contextWindow": 200000,
+    "contextTokens": 71078,
+    "percentage": 36,
+    "contextWindowIsAuthoritative": true
+  }
+}
