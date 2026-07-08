@@ -1,0 +1,22 @@
+{
+  "id": "conv-1783493128782-39s06qrgj",
+  "providerId": "claude",
+  "title": "Investigate option count validation dependencies",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783493128782,
+  "updatedAt": 1783493196954,
+  "lastResponseAt": 1783493196954,
+  "sessionId": "f465431b-28d1-4558-82b5-ac1bf70e208a",
+  "providerState": {
+    "providerSessionId": "f465431b-28d1-4558-82b5-ac1bf70e208a"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 29754,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 61184,
+    "contextWindow": 1000000,
+    "contextTokens": 90938,
+    "percentage": 9
+  }
+}

@@ -3,7 +3,7 @@
   "permissionMode": "yolo",
   "model": "sonnet[1m]",
   "thinkingBudget": "xhigh",
-  "effortLevel": "high",
+  "effortLevel": "max",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
   "titleGenerationModel": "",
@@ -82,7 +82,7 @@
     "claude": "sonnet[1m]"
   },
   "savedProviderEffort": {
-    "claude": "high"
+    "claude": "max"
   },
   "savedProviderServiceTier": {},
   "savedProviderThinkingBudget": {},
@@ -91,10 +91,10 @@
   },
   "lastCustomModel": "deepseek-v4-pro",
   "maxTabs": 5,
-  "tabBarPosition": "input",
   "enableAutoScroll": true,
   "deferMathRenderingDuringStreaming": true,
   "expandFileEditsByDefault": false,
   "chatViewPlacement": "right-sidebar",
-  "hiddenProviderCommands": {}
+  "hiddenProviderCommands": {},
+  "tabBarPosition": "input"
 }
