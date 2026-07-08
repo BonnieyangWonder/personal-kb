@@ -4,19 +4,19 @@
   "title": "Query menu items with multi-food customization",
   "titleGenerationStatus": "success",
   "createdAt": 1783490372353,
-  "updatedAt": 1783493886459,
-  "lastResponseAt": 1783493886459,
+  "updatedAt": 1783495460119,
+  "lastResponseAt": 1783495460119,
   "sessionId": "ea819dc2-b582-46b2-ba34-8af330a427d3",
   "providerState": {
     "providerSessionId": "ea819dc2-b582-46b2-ba34-8af330a427d3"
   },
   "usage": {
     "model": "sonnet[1m]",
-    "inputTokens": 120,
+    "inputTokens": 110,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 189440,
+    "cacheReadInputTokens": 213632,
     "contextWindow": 1000000,
-    "contextTokens": 189560,
-    "percentage": 19
+    "contextTokens": 213742,
+    "percentage": 21
   }
 }
