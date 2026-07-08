@@ -1,0 +1,22 @@
+{
+  "id": "conv-1783490372352-y4yfg1g8w",
+  "providerId": "claude",
+  "title": "Query menu items with multi-food customization",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783490372353,
+  "updatedAt": 1783491842715,
+  "lastResponseAt": 1783491842715,
+  "sessionId": "ea819dc2-b582-46b2-ba34-8af330a427d3",
+  "providerState": {
+    "providerSessionId": "ea819dc2-b582-46b2-ba34-8af330a427d3"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2066,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 134400,
+    "contextWindow": 1000000,
+    "contextTokens": 136466,
+    "percentage": 14
+  }
+}
