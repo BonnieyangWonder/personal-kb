@@ -4,8 +4,8 @@
   "title": "Find recent Jira archive sync conversation",
   "titleGenerationStatus": "success",
   "createdAt": 1783581781269,
-  "updatedAt": 1783581824031,
-  "lastResponseAt": 1783581824031,
+  "updatedAt": 1783583819206,
+  "lastResponseAt": 1783583748180,
   "sessionId": "df0df59e-3e6f-4e3d-906e-a9f44109e3bf",
   "selectedModel": "haiku",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 8659,
-    "cacheReadInputTokens": 32217,
+    "cacheCreationInputTokens": 2538,
+    "cacheReadInputTokens": 58279,
     "contextWindow": 200000,
-    "contextTokens": 40884,
-    "percentage": 20,
+    "contextTokens": 60825,
+    "percentage": 30,
     "contextWindowIsAuthoritative": true
   }
 }

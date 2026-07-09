@@ -4,8 +4,8 @@
   "title": "Conduct RA Analysis",
   "titleGenerationStatus": "success",
   "createdAt": 1783581459385,
-  "updatedAt": 1783581857709,
-  "lastResponseAt": 1783581857709,
+  "updatedAt": 1783584129190,
+  "lastResponseAt": 1783584129190,
   "sessionId": "4198a4b1-f84b-4261-adbe-74f4a90b5800",
   "selectedModel": "haiku",
   "providerState": {
@@ -13,12 +13,12 @@
   },
   "usage": {
     "model": "haiku",
-    "inputTokens": 8,
-    "cacheCreationInputTokens": 298,
-    "cacheReadInputTokens": 56628,
+    "inputTokens": 10,
+    "cacheCreationInputTokens": 44714,
+    "cacheReadInputTokens": 17571,
     "contextWindow": 200000,
-    "contextTokens": 56934,
-    "percentage": 28,
+    "contextTokens": 62295,
+    "percentage": 31,
     "contextWindowIsAuthoritative": true
   }
 }

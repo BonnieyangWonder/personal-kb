@@ -1,0 +1,24 @@
+{
+  "id": "conv-1783583845979-dahw3o1cb",
+  "providerId": "claude",
+  "title": "List this week's conversations",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783583845979,
+  "updatedAt": 1783584211169,
+  "lastResponseAt": 1783584211169,
+  "sessionId": "9ff0af00-3f34-4260-9b88-1b2fbd0d11ae",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "9ff0af00-3f34-4260-9b88-1b2fbd0d11ae"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 268,
+    "cacheReadInputTokens": 35948,
+    "contextWindow": 200000,
+    "contextTokens": 36224,
+    "percentage": 18,
+    "contextWindowIsAuthoritative": true
+  }
+}
