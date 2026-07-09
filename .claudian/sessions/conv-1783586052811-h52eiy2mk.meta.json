@@ -1,0 +1,24 @@
+{
+  "id": "conv-1783586052811-h52eiy2mk",
+  "providerId": "claude",
+  "title": "Query menu items with partial select",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783586052812,
+  "updatedAt": 1783586111354,
+  "lastResponseAt": 1783586111354,
+  "sessionId": "75dcf073-1550-4d06-977f-f85d9c5c1e9f",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "75dcf073-1550-4d06-977f-f85d9c5c1e9f"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 1661,
+    "cacheReadInputTokens": 40734,
+    "contextWindow": 200000,
+    "contextTokens": 42403,
+    "percentage": 21,
+    "contextWindowIsAuthoritative": true
+  }
+}
