@@ -4,8 +4,8 @@
   "title": "Query menu items with partial select",
   "titleGenerationStatus": "success",
   "createdAt": 1783586052812,
-  "updatedAt": 1783590216256,
-  "lastResponseAt": 1783590216256,
+  "updatedAt": 1783591204939,
+  "lastResponseAt": 1783591204939,
   "sessionId": "75dcf073-1550-4d06-977f-f85d9c5c1e9f",
   "selectedModel": "haiku",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 340,
-    "cacheReadInputTokens": 135317,
+    "cacheCreationInputTokens": 814,
+    "cacheReadInputTokens": 138383,
     "contextWindow": 200000,
-    "contextTokens": 135665,
-    "percentage": 68,
+    "contextTokens": 139205,
+    "percentage": 70,
     "contextWindowIsAuthoritative": true
   }
 }
