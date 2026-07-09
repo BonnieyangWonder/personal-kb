@@ -1,0 +1,23 @@
+{
+  "id": "conv-1783581036234-o0wmm8l0h",
+  "providerId": "claude",
+  "title": "批注文件_resized",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1783581036235,
+  "updatedAt": 1783581385840,
+  "lastResponseAt": 1783581291278,
+  "sessionId": "3ad9ce32-d7ab-496f-929c-8a7edfbe0992",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "3ad9ce32-d7ab-496f-929c-8a7edfbe0992"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

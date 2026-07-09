@@ -71,6 +71,11 @@
       "source": "builtin",
       "version": "1.0.0",
       "disabled": false
+    },
+    "knowlery-cli": {
+      "source": "builtin",
+      "version": "1.0.0",
+      "disabled": false
     }
   }
 }

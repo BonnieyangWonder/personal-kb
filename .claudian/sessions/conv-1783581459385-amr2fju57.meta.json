@@ -1,0 +1,24 @@
+{
+  "id": "conv-1783581459385-amr2fju57",
+  "providerId": "claude",
+  "title": "Conduct RA Analysis",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783581459385,
+  "updatedAt": 1783581857709,
+  "lastResponseAt": 1783581857709,
+  "sessionId": "4198a4b1-f84b-4261-adbe-74f4a90b5800",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "4198a4b1-f84b-4261-adbe-74f4a90b5800"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 298,
+    "cacheReadInputTokens": 56628,
+    "contextWindow": 200000,
+    "contextTokens": 56934,
+    "percentage": 28,
+    "contextWindowIsAuthoritative": true
+  }
+}

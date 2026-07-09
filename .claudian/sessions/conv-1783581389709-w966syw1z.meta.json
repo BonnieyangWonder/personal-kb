@@ -1,0 +1,23 @@
+{
+  "id": "conv-1783581389709-w966syw1z",
+  "providerId": "claude",
+  "title": "7月9日 15:16",
+  "createdAt": 1783581389709,
+  "updatedAt": 1783581452801,
+  "lastResponseAt": 1783581401819,
+  "sessionId": "9e58479e-11c3-4bf9-b8e8-eacb4a1769f8",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "9e58479e-11c3-4bf9-b8e8-eacb4a1769f8"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 6426,
+    "cacheCreationInputTokens": 28659,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 1000000,
+    "contextTokens": 35085,
+    "percentage": 4,
+    "contextWindowIsAuthoritative": true
+  }
+}

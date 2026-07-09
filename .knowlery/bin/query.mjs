@@ -3848,7 +3848,9 @@ var PREFIX_MATCH_CREDIT = 0.5;
 var CJK_SPECIFICITY = 2;
 var TIER_FACTOR = { agent: 1.15, bundle: 1.1, user: 1 };
 var ABSTAIN_BODY_FLOOR = 2;
-function runQuery(question, snapshot, k) {
+var ABSTAIN_STRUCT_COVERAGE = 0.5;
+var ABSTAIN_SOFT_COVERAGE = 2 / 3;
+function runQuery(question, snapshot, k, options = {}) {
   const terms = extractQueryTerms(question);
   if (terms.length === 0) {
     return { verdict: "no-confident-match", terms: [], candidates: [] };
@@ -3865,13 +3867,15 @@ function runQuery(question, snapshot, k) {
   }
   applySourceGraphBoost(scored, pageByPath);
   const candidates = scored.filter((candidate) => candidate.score > 0).sort(compareCandidates).slice(0, k);
-  if (shouldAbstain(candidates)) {
-    return { verdict: "no-confident-match", terms: terms.map((term) => term.raw), candidates: [] };
+  const debugCandidates = options.debug ? candidates.map(toDebugCandidate) : void 0;
+  if (shouldAbstain(candidates, terms)) {
+    return { verdict: "no-confident-match", terms: terms.map((term) => term.raw), candidates: [], debugCandidates };
   }
   return {
     verdict: "ok",
     terms: terms.map((term) => term.raw),
-    candidates: candidates.map(toPublicCandidate)
+    candidates: candidates.map(toPublicCandidate),
+    debugCandidates
   };
 }
 function scorePage(page, terms) {
@@ -3892,6 +3896,7 @@ function scorePage(page, terms) {
     evidence: [],
     matchedTerms: base.matchedTerms,
     structuredHits: base.structuredHits,
+    structuredTermCount: base.structuredTermCount,
     descriptionHits: base.descriptionHits,
     bodyScore: base.bodyScore,
     reviewed: page.status === "reviewed",
@@ -3917,6 +3922,7 @@ function scoreBundleEntry(entry, terms, diskPage) {
     evidence: [],
     matchedTerms: base.matchedTerms,
     structuredHits: base.structuredHits,
+    structuredTermCount: base.structuredTermCount,
     descriptionHits: base.descriptionHits,
     bodyScore: base.bodyScore,
     reviewed: false,
@@ -3927,6 +3933,7 @@ function scoreBundleEntry(entry, terms, diskPage) {
 function scoreFields(terms, fields) {
   let score = 0;
   let structuredHits = 0;
+  let structuredTermCount = 0;
   let descriptionHits = 0;
   let bodyScore = 0;
   const matchedTerms = [];
@@ -3945,10 +3952,11 @@ function scoreFields(terms, fields) {
     if (termScore > 0) matchedTerms.push(term.raw);
     score += termScore;
     structuredHits += titleAliasCount + tagBasenameCount + prefixCount;
+    if (titleAliasCount + tagBasenameCount + prefixCount > 0) structuredTermCount += 1;
     descriptionHits += descriptionCount;
     bodyScore += bodyCount * WEIGHT_BODY * specificity;
   }
-  return { score, structuredHits, descriptionHits, bodyScore, matchedTerms };
+  return { score, structuredHits, structuredTermCount, descriptionHits, bodyScore, matchedTerms };
 }
 function countTermIn(term, field) {
   if (term.cjk) return countSubstring(field.lower, term.raw);
@@ -3978,14 +3986,35 @@ function compareCandidates(a, b) {
   if (a.updated !== b.updated) return b.updated.localeCompare(a.updated);
   return a.path.localeCompare(b.path);
 }
-function shouldAbstain(candidates) {
+function termWeight(term) {
+  return term.cjk ? term.raw.length : 1;
+}
+function weightedCoverage(matchedRaw, terms) {
+  const weights = new Map(terms.map((term) => [term.raw, termWeight(term)]));
+  const total = terms.reduce((sum, term) => sum + termWeight(term), 0);
+  if (total === 0) return 0;
+  let matched = 0;
+  for (const raw of new Set(matchedRaw)) {
+    matched += weights.get(raw) ?? 0;
+  }
+  return matched / total;
+}
+function shouldAbstain(candidates, terms) {
   if (candidates.length === 0) return true;
-  const anyStructured = candidates.some(
-    (candidate) => candidate.structuredHits > 0 || candidate.descriptionHits > 0 || candidate.evidence.length > 0
-  );
-  if (anyStructured) return false;
-  const topBodyScore = Math.max(...candidates.map((candidate) => candidate.bodyScore));
-  return topBodyScore < ABSTAIN_BODY_FLOOR;
+  const top = candidates[0];
+  const coverage = weightedCoverage(top.matchedTerms, terms);
+  if (top.structuredTermCount > 0 && coverage >= ABSTAIN_STRUCT_COVERAGE) return false;
+  if (coverage >= ABSTAIN_SOFT_COVERAGE && top.descriptionHits + top.bodyScore >= ABSTAIN_BODY_FLOOR) return false;
+  if (top.matchedTerms.length === 0 && top.evidence.length > 0) return false;
+  return true;
+}
+function toDebugCandidate(candidate) {
+  return {
+    ...toPublicCandidate(candidate),
+    structuredTermCount: candidate.structuredTermCount,
+    descriptionHits: candidate.descriptionHits,
+    bodyScore: candidate.bodyScore
+  };
 }
 function toPublicCandidate(candidate) {
   return {
