@@ -76,6 +76,11 @@
       "source": "builtin",
       "version": "1.0.0",
       "disabled": false
+    },
+    "knowlery-mcp": {
+      "source": "builtin",
+      "version": "1.0.0",
+      "disabled": false
     }
   }
 }

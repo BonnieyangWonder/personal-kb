@@ -80,6 +80,14 @@ Present a structured plan showing **only pages that need changes** (modify or cr
 
 Only after the user explicitly approves (item by item or all at once), execute the changes.
 
+### Step 6: Feed the Cookbook RA Capability Log
+
+After the archive is executed, treat this ticket as a retrospective test case for the Cookbook RA skill (`.claude/skills/my-workflows/cookbook-ra.md`). Skip this step only for clearly trivial tickets (pure copy-edits, one-line label changes) — default to doing it otherwise.
+
+1. **Reverse-engineer the requirement analysis this ticket would have needed**, using the ticket plus what's now documented in CB-full-feature: prior functionality/state (现有功能), impact points (影响点), related/connected features (关联功能), risks (风险), and which analysis dimensions actually mattered (分析维度) — i.e., what would a thorough RA of this ticket have had to cover, now that the real, shipped answer is visible?
+2. **Compare against the current Cookbook RA skill's framework** — its resource registry, escalation signals, and content axes (A: business rule/capability change vs B: item type attribute management). Does this real case reveal something the current framework would miss or handle awkwardly?
+3. **Append findings to the design log, not the skill file**: `A1-RA Rough/2026-07-06_Cookbook RA Skill_设计讨论.md`, under its case-retrospective section (use the entry format documented there). Do not edit `cookbook-ra.md` directly from this step — Bonnie reviews the accumulated log periodically and decides when/how to fold findings into the actual skill.
+
 ## Editing Conventions
 
 ### Change Log Table

@@ -3526,6 +3526,7 @@ function buildPageFromContent(path, rawContent, mtimeMs) {
     type: typeof fm.type === "string" ? fm.type : void 0,
     status: typeof fm.status === "string" ? fm.status : void 0,
     updated: scalarDate(fm.updated),
+    domain: typeof fm.domain === "string" ? fm.domain : void 0,
     description,
     sources: stringArray(fm.sources),
     mtimeMs,

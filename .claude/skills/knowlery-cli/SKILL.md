@@ -15,6 +15,9 @@ at once with per-KB attribution.
 Registry conduct: prefer the `--kb` names the user uses; never `kb add` or
 `kb remove` on your own initiative — the registry is the user's address book.
 
+If you have no shell but Knowlery MCP tools are present, see the knowlery-mcp
+skill — the same operations are one tool call away.
+
 ## Command reference
 
 | Command | What it does | When to use |

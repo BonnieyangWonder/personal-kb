@@ -22,6 +22,9 @@ obsidian deadends         # bonus signal: files with no outgoing links
 obsidian knowlery:stale   # categories 3 and 7 (or: knowlery stale / node .knowlery/bin/query.mjs --stale)
 ```
 
+If the knowlery MCP `stale` tool is present, prefer it for categories 3 and 7 —
+same report, no shell needed.
+
 Filter tool output to the four agent directories. Fall back to manual traversal only
 when none of the tools is available.
 

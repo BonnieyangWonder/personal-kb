@@ -29,7 +29,8 @@ and distill it into structured, cross-referenced knowledge pages.
 ### Incremental Mode (default)
 
 When user runs `/cook` with no arguments, get the scope from the deterministic
-staleness report (first transport available):
+staleness report (first transport available). If the knowlery MCP `stale` tool
+is present, call it with the KB name — it is the same report; otherwise:
 
 ```bash
 obsidian knowlery:stale
