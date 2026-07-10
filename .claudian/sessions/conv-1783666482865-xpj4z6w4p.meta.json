@@ -4,21 +4,21 @@
   "title": "Archive Jira ticket MD-17640",
   "titleGenerationStatus": "success",
   "createdAt": 1783666482865,
-  "updatedAt": 1783667336931,
-  "lastResponseAt": 1783667336931,
+  "updatedAt": 1783668399577,
+  "lastResponseAt": 1783668099033,
   "sessionId": "b17202b1-4c71-4335-9e2b-7e28a903fc24",
-  "selectedModel": "haiku",
+  "selectedModel": "sonnet[1m]",
   "providerState": {
     "providerSessionId": "b17202b1-4c71-4335-9e2b-7e28a903fc24"
   },
   "usage": {
-    "model": "haiku",
-    "inputTokens": 8,
-    "cacheCreationInputTokens": 416,
-    "cacheReadInputTokens": 54392,
-    "contextWindow": 200000,
-    "contextTokens": 54816,
-    "percentage": 27,
+    "model": "sonnet[1m]",
+    "inputTokens": 6345,
+    "cacheCreationInputTokens": 26349,
+    "cacheReadInputTokens": 98612,
+    "contextWindow": 1000000,
+    "contextTokens": 131306,
+    "percentage": 13,
     "contextWindowIsAuthoritative": true
   }
 }

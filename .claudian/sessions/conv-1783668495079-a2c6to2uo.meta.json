@@ -1,0 +1,10 @@
+{
+  "id": "conv-1783668495079-a2c6to2uo",
+  "providerId": "claude",
+  "title": "Archive Jira ticket MD-17640 to CB-full-feature",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783668495079,
+  "updatedAt": 1783668501321,
+  "sessionId": null,
+  "selectedModel": "sonnet[1m]"
+}

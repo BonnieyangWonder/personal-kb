@@ -1,0 +1,24 @@
+{
+  "id": "conv-1783667556316-n1kebd678",
+  "providerId": "claude",
+  "title": "Compare AI models for analysis",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783667556316,
+  "updatedAt": 1783667679431,
+  "lastResponseAt": 1783667616341,
+  "sessionId": "2ba9ed98-4efe-42f1-8265-8b8780718156",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "2ba9ed98-4efe-42f1-8265-8b8780718156"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
+}

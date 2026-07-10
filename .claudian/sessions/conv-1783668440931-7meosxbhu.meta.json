@@ -1,0 +1,24 @@
+{
+  "id": "conv-1783668440931-7meosxbhu",
+  "providerId": "claude",
+  "title": "Archive MD-17640 to CB-full-feature",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783668440931,
+  "updatedAt": 1783668487180,
+  "lastResponseAt": 1783668453737,
+  "sessionId": "7f19d72b-399b-4b8c-944f-55c5175051c1",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "7f19d72b-399b-4b8c-944f-55c5175051c1"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 450,
+    "cacheReadInputTokens": 24682,
+    "contextWindow": 200000,
+    "contextTokens": 25140,
+    "percentage": 13,
+    "contextWindowIsAuthoritative": true
+  }
+}

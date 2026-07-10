@@ -1,0 +1,25 @@
+{
+  "id": "conv-1783667682321-1om9rbdc7",
+  "providerId": "claude",
+  "title": "Begin session",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783667682322,
+  "updatedAt": 1783667711747,
+  "lastResponseAt": 1783667695708,
+  "sessionId": "ead7e360-73ea-4400-8a97-0411e0726a2e",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "ead7e360-73ea-4400-8a97-0411e0726a2e"
+  },
+  "currentNote": "A1-RA Rough/2026-07-06_Cookbook RA Skill_设计讨论.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 2474,
+    "cacheReadInputTokens": 25762,
+    "contextWindow": 200000,
+    "contextTokens": 28244,
+    "percentage": 14,
+    "contextWindowIsAuthoritative": false
+  }
+}

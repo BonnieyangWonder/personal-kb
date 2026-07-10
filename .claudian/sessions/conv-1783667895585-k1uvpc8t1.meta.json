@@ -1,0 +1,24 @@
+{
+  "id": "conv-1783667895585-k1uvpc8t1",
+  "providerId": "claude",
+  "title": "Set default Sonnet for tag sessions",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783667895585,
+  "updatedAt": 1783668274871,
+  "lastResponseAt": 1783668122407,
+  "sessionId": "696e722b-ddc5-4ccb-9038-db78921db5a4",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "696e722b-ddc5-4ccb-9038-db78921db5a4"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 147,
+    "cacheCreationInputTokens": 751,
+    "cacheReadInputTokens": 107938,
+    "contextWindow": 1000000,
+    "contextTokens": 108836,
+    "percentage": 11,
+    "contextWindowIsAuthoritative": true
+  }
+}
