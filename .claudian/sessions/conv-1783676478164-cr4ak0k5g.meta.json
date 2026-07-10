@@ -1,0 +1,24 @@
+{
+  "id": "conv-1783676478164-cr4ak0k5g",
+  "providerId": "claude",
+  "title": "Update knowlery CLI and verify installation path",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783676478165,
+  "updatedAt": 1783676537816,
+  "lastResponseAt": 1783676537816,
+  "sessionId": "74253c49-3f1f-417d-8ff3-533ced9b03a6",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "74253c49-3f1f-417d-8ff3-533ced9b03a6"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 10,
+    "cacheCreationInputTokens": 1956,
+    "cacheReadInputTokens": 25297,
+    "contextWindow": 200000,
+    "contextTokens": 27263,
+    "percentage": 14,
+    "contextWindowIsAuthoritative": true
+  }
+}
