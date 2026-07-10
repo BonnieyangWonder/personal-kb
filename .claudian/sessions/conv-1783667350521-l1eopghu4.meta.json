@@ -4,7 +4,21 @@
   "title": "继续沟通训练需求分析skill的讨论",
   "titleGenerationStatus": "pending",
   "createdAt": 1783667350521,
-  "updatedAt": 1783667350529,
-  "sessionId": null,
-  "selectedModel": "haiku"
+  "updatedAt": 1783667358548,
+  "lastResponseAt": 1783667358548,
+  "sessionId": "52c4a4f6-f209-4c8c-a9d7-53344e12b7d4",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "52c4a4f6-f209-4c8c-a9d7-53344e12b7d4"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 10,
+    "cacheCreationInputTokens": 7103,
+    "cacheReadInputTokens": 17571,
+    "contextWindow": 200000,
+    "contextTokens": 24684,
+    "percentage": 12,
+    "contextWindowIsAuthoritative": true
+  }
 }
