@@ -10,7 +10,7 @@ tags:
 
 # Cookbook RA Skill 设计讨论
 
-> **状态：资源清单已盘点完成，等待 Bonnie 确认清单完整性 + 代码库访问问题，之后可直接起草 skill flow**
+> **状态：资源清单已盘点完成（含未归档 Jira ticket 缺口），等待 Bonnie 确认清单完整性 + 代码库访问问题，之后可直接起草 skill flow**
 > 下次继续时：打开这个笔记，说"继续讨论 RA skill"
 
 ## 背景
@@ -27,9 +27,9 @@ tags:
 |---|------|------|--------|
 | **wonder-cookbook skill** | `.claude/skills/wonder-cookbook/` | 数据/查询层打包入口：18 个 domain 文档 + schema-reference + common-pitfalls，已用 Java 代码库验证字段映射（120+ domain model、60+ service class、100+ API endpoint 已关联） | 需要 SQL 模式、字段语义、代码引用时——优先激活这个 skill，效率最高 |
 | **CB-business** | `Z01-Resource/CB-business/` | 业务规则/产品逻辑层：core/（通用概念）+ features/（具体字段计算逻辑）+ 2 篇跨系统分析。自带 Trigger Topics 路由表 | 需要理解字段计算逻辑/规则边界 |
-| **CB-full-feature** | `Z01-Resource/CB-full-feature/` | UI/功能点粒度详情，Confluence "Cookbook Full Features Detail Requirements" 空间完整镜像（179 页）。惰性加载——从索引页找具体页面 | 需要知道 UI 上具体配置/校验逻辑 |
+| **CB-full-feature** | `Z01-Resource/CB-full-feature/` | UI/功能点粒度详情，Confluence "Cookbook Full Features Detail Requirements" 空间完整镜像（179 页，2026-06-12 抓取）。惰性加载——从索引页找具体页面 | 需要知道 UI 上具体配置/校验逻辑。**注意：抓取时间点之后的内容可能滞后，见下方 Jira 缺口条目** |
 
-**重要发现**：`.claude/skills/wonder-cookbook/{core,domains,cross-system,reference}/` 和 `Z01-Resource/CB-bigquery/` 文件名几乎一一对应，是同一份知识的两种呈现形式。调用 wonder-cookbook skill 通常已足够，不需要重复翻 CB-bigquery 原始文件夹（除非要看 metrics/、saved queries 等 skill 未直接链的部分）。
+**重要发现**：`.claude/skills/wonder-cookbook/{core,domains,cross-system,reference}/` 和 `Z01-Resource/CB-bigquery/` 文件名几乎一一对应，是同一份知识的两种呈现形式。调用 wonder-cookbook skill 通常已足够，不需要重复翻 CB-bigquery 原始文件夹。
 
 ### B. 跨系统 skills（需求涉及 Cookbook 以外系统时按需加载）
 
@@ -50,6 +50,13 @@ tags:
 
 - **BigQuery**（4 datasets, 70+ 表）——验证实际影响面
 - **Jira / Confluence**（`mcp-atlassian`，已确认连接）——原始需求常从这里发起
+- **⚠️ 未归档的近期 Jira ticket（新发现的重要缺口）**：
+  - **范围**：MD 项目，Cookbook Board（board_id=846）。**检查点：已归档至 Sprint 7**（Bonnie 直接确认，非文件推断）——未归档范围是 `MD 2026 Sprint 8` 起到当前 `MD 2026 Sprint 14`（2026-06-29~07-13，进行中）
+  - **规模**：已确认 100+ 张 ticket（分页未翻完，估计大几百张）
+  - **内容主题高度集中于一个进行中的项目：SCC（Supply Chain Catalog）迁移**——WSKU/40\\*/41\\*/88\\* item 与 SCC 的同步、sold status 调整、fulfillment option/PCS 变更（如 MD-17694 "SCC migration main workflow"）
+  - **与案例库的联系**：[[2026-05-21_40_item_number_F-T_suffix_影响评估]] 正是这个 SCC 迁移项目里的一环，证实这是正在进行、规模不小的真实项目，不是孤立历史案例
+  - **查询方式（JQL）**：`project = MD AND sprint in ("MD 2026 Sprint <检查点+1>", ..., "<当前 sprint>")`。**检查点必须用 sprint 号维护，不能用日期**——CB-full-feature 是按 ticket/sprint 增量归档（Bonnie 有空就处理之前 sprint 的内容），归档节奏不规律，文件更新日期反映不出真实进度。检查点是 Bonnie 手动维护的状态（当前 = Sprint 7），skill 不应尝试从文件日期自动推断，每次 RA 前直接问 Bonnie 当前检查点即可
+  - **实践含义**：任何涉及 WSKU/40\\*/41\\*/SCC/fulfillment option/PCS 的新需求，Stage 0 必须查这批 ticket——CB-full-feature/CB-business 对这个领域的"现状"很可能已经过时
 
 ### D. 关键发现：RA 是需求生命线的中间环节，不是孤立 skill
 
@@ -63,19 +70,22 @@ create-jira-ticket → Jira
 biz-req → CB-business/*.md   和/或   archive-jira-to-cb → CB-full-feature/*.md
 ```
 
-- **biz-req**（`.claude/skills/my-workflows/biz-req.md`）：把已讨论/已定案的需求从 Jira/Confluence 整理成 `CB-business/` 的正式业务需求文档。事后归档整理，非事前分析。资源抓取模式值得借鉴：ticket + Confluence 正文 + footer comments + inline comments + child pages + 引用页。输出章节结构（Background→Concept→Solution→Decision Records→Data Flow→Timeline→Open Questions→References）也可借鉴到 RA 模式 2 输出模板。
-- **archive-jira-to-cb**（`.claude/skills/my-workflows/archive-jira-to-cb.md`）：把已完成 ticket 归档进 CB-full-feature UI 文档树。也是事后动作。
+- **biz-req**（`.claude/skills/my-workflows/biz-req.md`）：把已讨论/已定案的需求从 Jira/Confluence 整理成 `CB-business/` 的正式业务需求文档。事后归档整理，非事前分析。资源抓取模式值得借鉴：ticket + Confluence 正文 + footer comments + inline comments + child pages + 引用页。
+- **archive-jira-to-cb**（`.claude/skills/my-workflows/archive-jira-to-cb.md`）：把已完成 ticket 归档进 CB-full-feature UI 文档树。也是事后动作。上面发现的 SCC 迁移 ticket 堆积，正是这个 workflow 的待办积压。
 - **create-jira-ticket**：RA 分析完成后落地开发用。
 
 ### E. 已确认的缺口
 
-1. **团队/owner 联系人图谱**：vault 里没有，只存在于 Confluence"Cookbook system overview"页面。F/T suffix 案例里"要联系 SCC team 的 Brandon/Sadhana"这类知识目前得现查。
-2. **后端代码库访问**：Gluten-Free RA 附录列了具体 Java 类路径，但当前会话没有被授予代码仓库 external directory 权限。wonder-cookbook skill"已用代码库验证"是过去某次会话做的。**待 Bonnie 确认**：以后做 RA 时会给代码仓库路径作为 external directory 吗？还是分析停留在已验证文档层面，未验证字段明确标注"待代码验证"？
+1. **团队/owner 联系人图谱**：vault 里没有，只存在于 Confluence"Cookbook system overview"页面。
+2. **后端代码库访问**：Gluten-Free RA 附录列了具体 Java 类路径，但当前会话没有被授予代码仓库 external directory 权限。**待 Bonnie 确认**：以后做 RA 时会给代码仓库路径作为 external directory 吗？
 3. **wonder-ladle**：已知下游系统，但目前无可用知识。
+4. **未归档 Jira ticket 积压**（见 C）：检查点 = Sprint 7，Sprint 8 起未归档，SCC 迁移主题，100+ 张未同步进 CB-full-feature。**优先级：低**——对当前需求分析影响不大，先记录，后续再完善（比如要不要在 CB-full-feature 里显式记录检查点）。
 
 **待 Bonnie 确认**：
-1. 这份资源清单是否完整？有没有要调整/补充的？
+1. 这份资源清单是否完整？
 2. 代码库访问问题怎么处理？
+
+（SCC 迁移 ticket 积压的处理方式已确认：Bonnie 自己按节奏用 archive-jira-to-cb 增量归档，不是紧急项，RA 时按当前检查点活查即可，不需要额外安排批量归档时间。）
 
 ## 方法论：触发式升级（Stage 0 扫描 → 信号触发 → 决定深度）
 
@@ -86,7 +96,7 @@ biz-req → CB-business/*.md   和/或   archive-jira-to-cb → CB-full-feature/
 | 案例 | 表面看起来像 | 实际展开后 |
 |------|-------------|-----------|
 | [[2026-05-25_Gluten-Free_标签系统推断改人工指定_需求分析]] | 模式 1（改一个字段的来源） | 模式 2：食品安全合规、法律风险、8 个团队协调、分阶段 rollout、回滚方案 |
-| [[2026-05-21_40_item_number_F-T_suffix_影响评估]] | 模式 1（技术命名方案决定） | 模式 2：撞上 SCC 团队 contract 的阻断级冲突、存量数据 rename 生产风险、唯一性逻辑根本矛盾 |
+| [[2026-05-21_40_item_number_F-T_suffix_影响评估]] | 模式 1（技术命名方案决定） | 模式 2：撞上 SCC 团队 contract 的阻断级冲突、存量数据 rename 生产风险、唯一性逻辑根本矛盾。**现已知这是更大的 SCC 迁移项目的一部分** |
 | [[2026-06-24_Wonder_Create_BYO_Customization_Analysis]] | 模式 1（数据分析找规律） | 模式 2：反向挖掘规律、设计全新自动分类规则引擎，关联更大 epic（MD-18146） |
 
 **结论**：复杂度是分析过程中才暴露的，不是需求文本自带的属性。已放弃"按需求措辞自动判断模式"的旧假设。
@@ -108,7 +118,7 @@ biz-req → CB-business/*.md   和/或   archive-jira-to-cb → CB-full-feature/
 Stage 0 · 固定扫描（对照资源清单，成本低）
   → 定位涉及的 feature/object_type/跨系统 skill
   → 查有没有类似机制的现有实现
-  → 查有没有其他系统/团队对这个字段有依赖或 contract
+  → 查有没有其他系统/团队对这个字段有依赖或 contract（含近期未归档 ticket）
   → 查是否涉及存量生产数据
 
   触发任一升级信号？
@@ -148,14 +158,13 @@ Stage 0 · 固定扫描（对照资源清单，成本低）
 
 ## 待 Bonnie 回复的问题
 
-### 3. 分析深度
-- 是否自动跑 BigQuery 做数据影响分析？
-- 还是主要做逻辑推理 + 方案设计？
+### 3. 分析深度（已确认）
+默认做数据影响分析——RA 时自动跑 BigQuery 验证实际影响面（"多少 item/多少 HDR 受影响"），不是只做逻辑推理 + 方案设计。
 
 ### 4. Skill 边界
 - RA 结束是否自动提议创建 Jira ticket？
-- 是否自动加载跨系统子 skill 的知识？
-- 是否要衔接 biz-req / archive-jira-to-cb（新发现的下游 workflow）？
+- 是否自动加载跨系统子 skill 的知识？——**待确认**：助手建议自动加载（Stage 0 判断到相关就直接查，不停下来问），涉及多个系统时开头提一句涉及哪些系统即可，不用逐个确认
+- 是否要衔接 biz-req / archive-jira-to-cb？——**待确认**：助手建议"提醒但不自动执行"（RA 结尾提醒后续可用 biz-req/archive-jira-to-cb，不自动触发）+ 输出格式向 biz-req 模板靠拢方便复用
 
 ### 5. 命名和触发
 - `/ra`？
@@ -170,10 +179,11 @@ Stage 0 · 固定扫描（对照资源清单，成本低）
 |------|------|
 | **核心指导方向** | 模式 1（效率）+ 模式 2（专家方案+风险）双模式，按需求复杂度区分 |
 | **判断机制** | 触发式升级（Stage 0 扫描 + trigger 列表），非预先分类 |
-| **资源清单** | 已盘点完成（见上），待 Bonnie 确认完整性 + 代码库访问问题 |
+| **资源清单** | 已盘点完成（见上，含未归档 Jira ticket 缺口），待 Bonnie 确认完整性 + 代码库访问问题 |
 | **RA 定位** | 需求生命线中间环节：RA → create-jira-ticket → biz-req/archive-jira-to-cb |
+| **分析深度** | 默认做数据影响分析（自动跑 BigQuery），不只是逻辑推理 |
 | 领域知识 | wonder-cookbook skill（含 CB-bigquery 等效内容）+ CB-business + CB-full-feature |
-| 数据源 | 4 BigQuery datasets + Jira/Confluence（mcp-atlassian） |
+| 数据源 | 4 BigQuery datasets + Jira/Confluence（mcp-atlassian）+ MD 2026 Sprint 8 起未归档 ticket（检查点=Sprint 7，SCC 迁移主题） |
 | 输出路径 | `A1-RA Rough/`（待统一 vault 规则里的 A2 拼写） |
 | 关联系统 | Pantry/Orders/Sequencing/Supply Chain/Kitchen Ops/Sporklift/Command Center/Menu Availability/OTR（Ladle 缺口待补） |
 | 语言 | 中英混合（按需求方来源决定） |
