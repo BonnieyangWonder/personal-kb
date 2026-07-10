@@ -3,6 +3,7 @@
 @rules/activity-ledger.md
 @rules/archive-ticket-instruction.md
 @rules/citation-required.md
+@rules/cookbook-ra-workflow.md
 @rules/domain-context.md
 @rules/language-preference.md
 @rules/report-paths.md

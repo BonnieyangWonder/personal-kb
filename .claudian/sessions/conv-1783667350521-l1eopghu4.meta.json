@@ -4,8 +4,8 @@
   "title": "Continue requirements analysis skill training",
   "titleGenerationStatus": "success",
   "createdAt": 1783667350521,
-  "updatedAt": 1783672360806,
-  "lastResponseAt": 1783672360806,
+  "updatedAt": 1783673799979,
+  "lastResponseAt": 1783673799979,
   "sessionId": "52c4a4f6-f209-4c8c-a9d7-53344e12b7d4",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -13,12 +13,12 @@
   },
   "usage": {
     "model": "sonnet[1m]",
-    "inputTokens": 147,
-    "cacheCreationInputTokens": 466,
-    "cacheReadInputTokens": 277064,
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 732,
+    "cacheReadInputTokens": 329475,
     "contextWindow": 1000000,
-    "contextTokens": 277677,
-    "percentage": 28,
+    "contextTokens": 330209,
+    "percentage": 33,
     "contextWindowIsAuthoritative": true
   }
 }

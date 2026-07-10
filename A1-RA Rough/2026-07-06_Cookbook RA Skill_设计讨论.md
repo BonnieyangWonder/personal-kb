@@ -1,6 +1,6 @@
 ---
 date: 2026-07-06
-status: in-progress
+status: done
 type: concept
 tags:
   - cookbook
@@ -10,8 +10,11 @@ tags:
 
 # Cookbook RA Skill 设计讨论
 
-> **状态：资源清单已盘点完成（含未归档 Jira ticket 缺口），等待 Bonnie 确认清单完整性 + 代码库访问问题，之后可直接起草 skill flow**
-> 下次继续时：打开这个笔记，说"继续讨论 RA skill"
+> **状态：✅ 设计讨论完成，skill 已创建**
+> - Skill 内容：`.claude/skills/my-workflows/cookbook-ra.md`
+> - 触发规则：`.claude/rules/cookbook-ra-workflow.md`（已手动加入 CLAUDE.md 的 Knowlery 管理区块——**注意**：这个区块看起来由 Knowlery Obsidian 插件自动维护，本地没装 knowlery CLI 无法验证/触发正规注册流程，手动加的这行如果之后被插件重新生成时覆盖掉，需要重新加回 `.claude/CLAUDE.md`）
+> - 剩余未解决的小缺口（低优先级，见资源清单 E 部分）：团队/owner 联系人图谱、后端代码库访问、wonder-ladle 知识空白
+> - 下次要用：直接说"分析下 XX 需求"或"ra 分析" + 提供 ticket/链接/截图即可触发
 
 ## 背景
 
@@ -148,10 +151,14 @@ Stage 0 · 固定扫描（对照资源清单，成本低）
 
 内容分类轴（A/B）决定去哪些知识源找资料；复杂度轴（模式1/2）决定分析深度，由触发式升级机制判断。
 
-## 现有资源（旧记录，保留）
+## RA 输出规范（已确认）
 
-- **RA 输出路径**：`A1-RA Rough/YYYY-MM-DD_<Topic>_<描述>.md`（注：vault 规则 report-paths.md 写的是 A2，需要在 skill 定稿时统一）
-- **真实 RA 案例库（3 篇，用于校验 skill 设计）**：
+- **位置**：`A1-RA Rough/`（注：vault 规则 report-paths.md 写的是 A2，需要在 skill 定稿时统一）
+- **命名**：`YYYY-MM-DD_<Topic>_<描述>.md`；**若分析基于具体 Jira ticket，文件名必须包含 ticket number**——提议格式 `YYYY-MM-DD_<TICKET-KEY>_<Topic>_<描述>.md`（例：`2026-07-10_MD-17701_Timer支持_需求分析.md`，ticket key 放在日期后、Topic 前，方便按 ticket 扫描/搜索）。**待 Bonnie 确认这个位置是否OK，或者你想放在别的地方（比如放最后）**
+- **必须包含 Reference Linkage 章节**：相关 Jira ticket 链接、Confluence 页面链接、相关的其他 RA 文档/CB-business/CB-full-feature 页面 wikilink——跟 vault 全局的 citation-required 规则保持一致
+- **不衔接 biz-req / archive-jira-to-cb**：RA 只产出分析报告本身，不写入/更新 CB-full-feature 或 CB-business（理由见上方 Q4）
+
+### 真实 RA 案例库（3 篇，用于校验 skill 设计）
   - [[2026-05-25_Gluten-Free_标签系统推断改人工指定_需求分析]]
   - [[2026-05-21_40_item_number_F-T_suffix_影响评估]]
   - [[2026-06-24_Wonder_Create_BYO_Customization_Analysis]]
@@ -162,9 +169,9 @@ Stage 0 · 固定扫描（对照资源清单，成本低）
 默认做数据影响分析——RA 时自动跑 BigQuery 验证实际影响面（"多少 item/多少 HDR 受影响"），不是只做逻辑推理 + 方案设计。
 
 ### 4. Skill 边界
-- RA 结束是否自动提议创建 Jira ticket？
-- 是否自动加载跨系统子 skill 的知识？——**待确认**：助手建议自动加载（Stage 0 判断到相关就直接查，不停下来问），涉及多个系统时开头提一句涉及哪些系统即可，不用逐个确认
-- 是否要衔接 biz-req / archive-jira-to-cb？——**待确认**：助手建议"提醒但不自动执行"（RA 结尾提醒后续可用 biz-req/archive-jira-to-cb，不自动触发）+ 输出格式向 biz-req 模板靠拢方便复用
+- RA 结束是否自动提议创建 Jira ticket？——**待确认**
+- 是否自动加载跨系统子 skill 的知识？——**已确认**：自动加载，Stage 0 判断到相关就直接查，不停下来问；涉及多个系统时开头提一句涉及哪些系统即可
+- 是否要衔接 biz-req / archive-jira-to-cb？——**已确认：不衔接**。RA 只负责产出分析报告，不更新 CB-full-feature / CB-business。**CB-full-feature 只记录已进入开发/已上线的 feature**——RA 阶段的分析还没到那个成熟度，不属于它的范围。后续要不要归档，是 Bonnie 自己另外手动决定、触发 biz-req/archive-jira-to-cb 的事，跟 RA skill 无关
 
 ### 5. 命名和触发
 - `/ra`？
@@ -180,8 +187,10 @@ Stage 0 · 固定扫描（对照资源清单，成本低）
 | **核心指导方向** | 模式 1（效率）+ 模式 2（专家方案+风险）双模式，按需求复杂度区分 |
 | **判断机制** | 触发式升级（Stage 0 扫描 + trigger 列表），非预先分类 |
 | **资源清单** | 已盘点完成（见上，含未归档 Jira ticket 缺口），待 Bonnie 确认完整性 + 代码库访问问题 |
-| **RA 定位** | 需求生命线中间环节：RA → create-jira-ticket → biz-req/archive-jira-to-cb |
+| **RA 定位** | 需求生命线中间环节，但**不自动衔接**：RA 只产出报告，biz-req/archive-jira-to-cb 是 Bonnie 后续手动触发的独立步骤 |
 | **分析深度** | 默认做数据影响分析（自动跑 BigQuery），不只是逻辑推理 |
+| **跨系统知识加载** | 自动加载，不停下来问；涉及多系统时开头提一句涉及哪些系统 |
+| **RA 输出规范** | 位置 `A1-RA Rough/`；命名含 ticket number（若基于具体 ticket，位置待确认）；必须含 Reference Linkage 章节；不写入 CB-full-feature/CB-business |
 | 领域知识 | wonder-cookbook skill（含 CB-bigquery 等效内容）+ CB-business + CB-full-feature |
 | 数据源 | 4 BigQuery datasets + Jira/Confluence（mcp-atlassian）+ MD 2026 Sprint 8 起未归档 ticket（检查点=Sprint 7，SCC 迁移主题） |
 | 输出路径 | `A1-RA Rough/`（待统一 vault 规则里的 A2 拼写） |
