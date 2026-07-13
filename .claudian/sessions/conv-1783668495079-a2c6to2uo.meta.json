@@ -4,8 +4,8 @@
   "title": "Archive Jira ticket MD-17640 to CB-full-feature",
   "titleGenerationStatus": "success",
   "createdAt": 1783668495079,
-  "updatedAt": 1783909880957,
-  "lastResponseAt": 1783909880957,
+  "updatedAt": 1783911121261,
+  "lastResponseAt": 1783911121261,
   "sessionId": "bc6d31bb-a9ba-4b4c-aaf0-af493094dec9",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -1936,12 +1936,12 @@
   },
   "usage": {
     "model": "sonnet[1m]",
-    "inputTokens": 448,
-    "cacheCreationInputTokens": 272441,
-    "cacheReadInputTokens": 0,
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 2018,
+    "cacheReadInputTokens": 292331,
     "contextWindow": 1000000,
-    "contextTokens": 272889,
-    "percentage": 27,
+    "contextTokens": 294351,
+    "percentage": 29,
     "contextWindowIsAuthoritative": true
   }
 }
