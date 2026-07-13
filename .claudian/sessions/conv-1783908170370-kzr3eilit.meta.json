@@ -4,8 +4,8 @@
   "title": "Create Jira ticket to delete prep procedure card",
   "titleGenerationStatus": "success",
   "createdAt": 1783908170371,
-  "updatedAt": 1783908183679,
-  "lastResponseAt": 1783908183679,
+  "updatedAt": 1783909408484,
+  "lastResponseAt": 1783908338701,
   "sessionId": "386fdb8c-6ce8-460b-965f-53d30766d178",
   "selectedModel": "haiku",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 9668,
-    "cacheReadInputTokens": 25145,
+    "cacheCreationInputTokens": 349,
+    "cacheReadInputTokens": 52658,
     "contextWindow": 200000,
-    "contextTokens": 34821,
-    "percentage": 17,
+    "contextTokens": 53015,
+    "percentage": 27,
     "contextWindowIsAuthoritative": true
   }
 }
