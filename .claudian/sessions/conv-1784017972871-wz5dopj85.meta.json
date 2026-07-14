@@ -4,10 +4,10 @@
   "title": "Check item IDs against Google Sheet tabs",
   "titleGenerationStatus": "success",
   "createdAt": 1784017972871,
-  "updatedAt": 1784018825096,
-  "lastResponseAt": 1784018825096,
+  "updatedAt": 1784022995251,
+  "lastResponseAt": 1784022995251,
   "sessionId": "f44d504f-ccf6-4956-b925-681fc13981f5",
-  "selectedModel": "haiku",
+  "selectedModel": "opus[1m]",
   "providerState": {
     "providerSessionId": "f44d504f-ccf6-4956-b925-681fc13981f5",
     "subagentData": {
@@ -68,13 +68,13 @@
     }
   },
   "usage": {
-    "model": "haiku",
-    "inputTokens": 10,
-    "cacheCreationInputTokens": 2803,
-    "cacheReadInputTokens": 38922,
-    "contextWindow": 200000,
-    "contextTokens": 41735,
-    "percentage": 21,
+    "model": "opus[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 37032,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 1000000,
+    "contextTokens": 37034,
+    "percentage": 4,
     "contextWindowIsAuthoritative": true
   }
 }
