@@ -4,8 +4,8 @@
   "title": "Create Jira ticket for Delete Variant feature",
   "titleGenerationStatus": "success",
   "createdAt": 1784012035402,
-  "updatedAt": 1784013392734,
-  "lastResponseAt": 1784013392734,
+  "updatedAt": 1784015479719,
+  "lastResponseAt": 1784015479719,
   "sessionId": "af768185-786d-4110-bedd-ffeafe9fad3c",
   "selectedModel": "haiku",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 5288,
-    "cacheReadInputTokens": 57483,
+    "cacheCreationInputTokens": 2006,
+    "cacheReadInputTokens": 77839,
     "contextWindow": 200000,
-    "contextTokens": 62779,
-    "percentage": 31,
+    "contextTokens": 79853,
+    "percentage": 40,
     "contextWindowIsAuthoritative": true
   }
 }
