@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784017306594-2w2rev9dc",
+  "providerId": "claude",
+  "title": "Explain \"Hosted by Wonder SKUs\" meaning",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784017306594,
+  "updatedAt": 1784017315705,
+  "lastResponseAt": 1784017315705,
+  "sessionId": "6e34ef9d-d48c-4b27-91b4-ac8b7fd5f007",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "6e34ef9d-d48c-4b27-91b4-ac8b7fd5f007"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 10,
+    "cacheCreationInputTokens": 8783,
+    "cacheReadInputTokens": 17471,
+    "contextWindow": 200000,
+    "contextTokens": 26264,
+    "percentage": 13,
+    "contextWindowIsAuthoritative": true
+  }
+}
