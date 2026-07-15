@@ -353,6 +353,72 @@ The `'Edit Packaged SKUs'` permission controls who can modify packaged SKU metad
 
 ---
 
+## IK Dish Type & Wonder Create Packaging Auto-Assignment (9* containers)
+
+> **Scope note**: this section is about **9\* physical containers** (bowls/cups) and the menu-item **IK Dish Type / IK Plating Rule attributes** — distinct from the 88*/7* packaged SKUs above. Kept in this doc because SKILL.md routes all 9* packaging/container questions here.
+> **Sources**: Jira MD-17927 / MD-18063 / MD-18125 + Confluence (*Pre-Placing Dishes for Wonder IK*, *WC × Cookbook Integration Spec*, *IK Eligible Component Configured in Line Build*). Captured 2026-07-15 from ticket/design docs — **not** codebase-validated; re-verify field names before writing SQL.
+
+### ⚠️ Terminology bridge — read before searching
+
+**"IK dish type" and "packaging" are the same concept**: the 9\* container *is* the dish type. The ticket owning the Wonder Create dish-type logic is titled **"Auto Assign _Packaging_ for WC Menu Item" (MD-18063)** — "dish type" is not in its title, only in the body.
+
+| Search for... | You get (wrong) | You want |
+|---|---|---|
+| `"IK dish type"` alone | MD-17927 (attr definition) + MD-18208 / MD-18209 (generic backfill) | — |
+| `"Auto Assign Packaging"`, `"WC packaging"`, `Wonder Create + 9*` | **MD-18063** ✅ | the WC auto-assign logic |
+
+**Rule**: for "how does dish type get set for WC/BYO items", search **packaging** + **Wonder Create / WC / 9\***, not the literal "dish type". Read the Confluence design docs first, then trace to the ticket.
+
+### The 6 dish types + plating rules (MD-17927, Done)
+
+| IK Dish Type | Typical use | IK Plating Rule |
+|---|---|---|
+| 48oz Bowl | large salads/bowls (≥2 greens or >32oz) | Layering |
+| 32oz Bowl | smaller bowls | Center |
+| 30oz Oval | — | Straight |
+| Metal Bowl | wraps; reusable-bowl candidate | Prelap Center |
+| Bellies Bowl | kids meals | Prelap Poke Press |
+| 8oz Cup | sides | — |
+
+IK **pre-places all 6** dish types at startup; physical constraint = **max 2 inserts**.
+
+### Normal item vs Wonder Create item — the KEY difference
+
+- **Normal menu item**: CDT sets IK Dish Type / Plating Rule **manually** (MD-17927).
+- **Wonder Create menu item**: Cookbook **auto-derives & auto-tags** at create/publish (MD-18063), because WC line builds get **no manual review** (Confluence: *IK Eligible Component Configured in Line Build*).
+
+### WC auto-assign logic — MD-18063 (Done)
+
+Problem, verbatim: *"WC Portal ... does not include packaging type information. Cookbook defaults all WC items to a standard bowl, which breaks kitchen execution for dishes with multiple leafy greens or high total weight."*
+
+- **Step 1 — pick 9\* packaging**: influencer picks **item type** only (WC portal doesn't send 9\*; ignored if it does). CDT tags components `Component Type = Green`. **green portions ≥ 2 OR total food weight > 32oz → 48oz bowl; else 32oz bowl.**
+- **Step 2 — derive + auto-tag**: bowls + 48oz → **48oz Bowl / LAYERING**; bowls + 32oz → **32oz Bowl / LAYERING**; wrap → **Metal Bowl / CENTER**. Re-derived when components / non-food items change; used as the **default** in the line build.
+- **Transfer**: WC → Cookbook `/wonder-create/publish` (auto packaging + auto-tag + auto line build) → KDS/IK — IK Dish Type returned at **line-build level**, IK Plating Rule at **sub-step level** (falls back to the menu-item attribute). Consumption gated by the component's **'IK eligible'** flag (MD-17927).
+
+### Known open issues
+
+- **[MD-18125](https://wonder.atlassian.net/browse/MD-18125) (To Do)** — after removing a component's `Component Type: Green` and dropping to <2 greens & <32oz, IK Dish Type should auto-update to "32oz Bowl" but the **update fails**.
+- **"pending dish type issue"** — *6/16 IK Integration Test* **Scenario 11** (main + multiple sides = multiple containers per order); multi-dish-type single order not yet solved.
+- **Reusable (Metal) bowl insert** TBD; team wants a no-deploy way (Fig/Contentful) to add/remove packaging types.
+
+### Data-research relevance (BYO / zero-BOM)
+
+For **BYO bowls with zero required BOM** (ingredients via customization; BOM = `manage_inventory = false` packaging only), the dish type is **NOT** in the BOM — it's inferred from the **Green component count / total weight** rule above. Don't read the container off required BOM. Example: *Royal Greens BYO Greens Bowl* (`8010459`) in [[A2-Data Research/byo-zero-bom-analysis-2026-07-02.md]].
+
+**Where the attribute lives (TO VERIFY):** IK Dish Type / IK Plating Rule are menu-item **attributes** → most likely in `item_versions` attribute/tag JSON (see [../core/tags-categorization.md](../core/tags-categorization.md)). Exact JSON path / field name **not verified** — confirm against a known WC item before writing SQL; do not assume a column name.
+
+### Source tickets (dish-type specific)
+
+| Key | Summary | Status |
+|---|---|---|
+| [MD-17927](https://wonder.atlassian.net/browse/MD-17927) | Defines 6 dish types + 5 plating rules + KDS return contract | Done |
+| [MD-18063](https://wonder.atlassian.net/browse/MD-18063) | **[WC] Auto Assign Packaging for WC Menu Item** — WC auto-assign + auto-tag (titled "packaging", not "dish type") | Done |
+| [MD-18125](https://wonder.atlassian.net/browse/MD-18125) | WC Menu item: updating 'Attribute(IK Dish Type)' value failed | To Do |
+
+**Not** these (generic attribute backfill, common false match): MD-18208 / MD-18209.
+
+---
+
 ## Critical Rules
 
 1. **Always include `deleted = false`** when querying any item data
