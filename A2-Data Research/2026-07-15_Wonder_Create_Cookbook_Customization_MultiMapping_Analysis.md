@@ -1,8 +1,13 @@
-# Cookbook 定制项多映射分析 — Food Component 被多个选项映射
+# Wonder Create — Cookbook 定制项多映射分析 
 
+## Food Component 被多个选项映射的设计问题诊断
+
+**项目**: Wonder Create
 **报告日期**: 2026-07-15
 **数据源**: `wonder-recipe-prod.recipe_v2`（`item_versions` / `menus` / `concepts`）
 **分析对象**: 单个 menu item 的当前 version 内，`MANDATORY_CHOICE` + `OPTIONAL_ADDITION` 两类 customization 选项中，**某个 food component item 被多个选项值（option value）映射**的情况。
+
+**核心问题**: 识别 Cookbook 菜品配置中，同一食材被多个选项映射的模式，区分"真正的重复设计问题"与"正常的组合菜品设计"。
 
 > 表中的 **Version N** 即 Cookbook UI 上的版本号（`item_versions.version_id` 整数），非内部 UUID。
 

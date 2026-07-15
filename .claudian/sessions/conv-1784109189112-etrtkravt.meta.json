@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784109189112-etrtkravt",
+  "providerId": "claude",
+  "title": "Query unmapped customization tasks for 4 brands",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784109189112,
+  "updatedAt": 1784109943969,
+  "lastResponseAt": 1784109943969,
+  "sessionId": "1778fd43-76b6-4b86-b33e-2cd2b749ea1a",
+  "selectedModel": "opus[1m]",
+  "providerState": {
+    "providerSessionId": "1778fd43-76b6-4b86-b33e-2cd2b749ea1a"
+  },
+  "usage": {
+    "model": "opus[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 992,
+    "cacheReadInputTokens": 157775,
+    "contextWindow": 1000000,
+    "contextTokens": 158769,
+    "percentage": 16,
+    "contextWindowIsAuthoritative": true
+  }
+}
