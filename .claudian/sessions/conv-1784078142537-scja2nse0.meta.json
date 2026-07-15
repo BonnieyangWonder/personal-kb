@@ -1,10 +1,10 @@
 {
   "id": "conv-1784078142537-scja2nse0",
   "providerId": "claude",
-  "title": "查1个menu item 1个version里mandatory choice和optional a...",
-  "titleGenerationStatus": "pending",
+  "title": "Find menu items with duplicate component mappings",
+  "titleGenerationStatus": "success",
   "createdAt": 1784078142537,
-  "updatedAt": 1784078142547,
+  "updatedAt": 1784078155851,
   "sessionId": null,
   "selectedModel": "haiku"
 }
