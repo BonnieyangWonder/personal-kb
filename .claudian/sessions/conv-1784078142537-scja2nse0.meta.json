@@ -4,7 +4,21 @@
   "title": "Find menu items with duplicate component mappings",
   "titleGenerationStatus": "success",
   "createdAt": 1784078142537,
-  "updatedAt": 1784078155851,
-  "sessionId": null,
-  "selectedModel": "haiku"
+  "updatedAt": 1784079694268,
+  "lastResponseAt": 1784079608625,
+  "sessionId": "ad2f079a-d969-41bd-a08d-4693eabffa4e",
+  "selectedModel": "opus[1m]",
+  "providerState": {
+    "providerSessionId": "ad2f079a-d969-41bd-a08d-4693eabffa4e"
+  },
+  "usage": {
+    "model": "opus[1m]",
+    "inputTokens": 131,
+    "cacheCreationInputTokens": 2767,
+    "cacheReadInputTokens": 152291,
+    "contextWindow": 1000000,
+    "contextTokens": 155189,
+    "percentage": 16,
+    "contextWindowIsAuthoritative": true
+  }
 }
