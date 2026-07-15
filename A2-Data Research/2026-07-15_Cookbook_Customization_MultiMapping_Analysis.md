@@ -22,14 +22,38 @@
 
 ## 1. 判定逻辑
 
-一个 (menu item, food component) 组合“命中”，当且仅当：在该 menu item 当前 version 的 customization 里，**≥2 个不同的 option value**（`option_value_id`）的 `items[]` 都指向同一个 food component。
+一个 (menu item, food component) 组合”命中”，当且仅当：在该 menu item 当前 version 的 customization 里，**≥2 个不同的 option value**（`option_value_id`）的 `items[]` 都指向同一个 food component。
 
 **数据层级**（3 层）：`item_customization → options[] → option_values[] → items[]`
 - `options[]` = 定制分组（如 “Choose Your Protein”）
 - `option_values[]` = 具体选择项（如 tofu、chicken）← 用户口径里的 “option”
 - `items[]` = 该选择映射到的 food component
 
-**关于“同名跨 option”**：有些命中里两个 option value 显示名相同（如 Yasas “Romaine” 同时在 Choose Your Base 与 Choose Your Toppings；Burger Baby 同款酱同时在 On Burger 与 On The Side），它们是不同的 `option_value_id`，本版按“命中”保留，并在“选择”列标注 _（含同名不同项）_。
+### 重复模式的两种类型
+
+本报告中发现的 “food component 被多个 option value 映射” 有两种截然不同的模式：
+
+| 模式 | 定义 | 特征 | 示例 |
+|------|------|------|------|
+| **真正重复** | 同一食材在多个 **单食材选择项** 中出现 | 无组合选项参与，食材被独立选择多次 | Yasas Bowl：Romaine 同时作为 Base 和 Topping 选择 |
+| **组合引发** | 同一食材在多个 **组合选择项** 中作为成分出现 | 组合选项（如 “Rice & Greens”）导致其成分被重复计数 | Hanu Poke Bowl：Rice 出现在 “Rice & Greens”、”Soba & Rice”、”Sushi Rice” 中（实际上是 3 个组合选项的组成部分） |
+
+**本版数据分析**：
+- **真正重复的 (menu item, food component) 组合**：共 **2 对**（见 §1.1）
+- **含组合选项的命中**：共 **105 对**（需拆分理解）
+
+**关于”同名跨 option”**：有些命中里两个 option value 显示名相同（如 Yasas “Romaine” 同时在 Choose Your Base 与 Choose Your Toppings；Burger Baby 同款酱同时在 On Burger 与 On The Side），它们是不同的 `option_value_id`，本版按”命中”保留，并在”选择”列标注 _（含同名不同项）_。
+
+### 1.1 真正重复的食材（单食材重复，不含组合选项）
+
+**仅 2 个 food component 被多个单映射的 option value 使用**：
+
+| Menu Item | Item Number | Version | Food Component | Food Item Number | 出现在的选择 | 选择所属 Option |
+|-----------|-------------|---------|-----------------|-----------------|-----------|------------|
+| Bowl (BYO), Yasas | 8007403 | 42 | Romaine Lettuce | 4000427 | Romaine（出现 2 次，同名不同项） | Choose Your Base [MANDATORY_CHOICE] + Choose Your Toppings [OPTIONAL_ADDITION] |
+| BYO Poke Bowl, Hanu Poke BOWLDER | 8010473 | 22 | Poke Marinade | 4000742 | Poke Marinade Mixed In · Poke Marinade On the Side | Include Poke Marinade [MANDATORY_CHOICE] |
+
+**结论**：真正的重复非常稀少（仅 2 对）。Hanu Poke 的 Rice、Spring Mix、Soba Noodles 看似被多个选择映射，但实际上是被多个**组合选项**（如 “Rice & Greens”）的 items[] 分别包含，不属于真正重复。
 
 ## 2. 过滤条件
 
@@ -63,11 +87,13 @@
 
 #### Limesalt
 
+⚠️ **本部分所有命中均为"夹带成分"或"组合引发"类型**：Limesalt 的菜品中，某些食材（如 Mexican Three Cheese）被每个 protein 选择自动夹带；或某些蔬菜（Fajita Vegetables、Guacamole）同时在 protein 选择和 toppings 中出现。这些都反映的是**菜品设计中的默认成分**或**同一食材在多个选项中的使用**，而非真正的重复设计问题。
+
 **`[8005007]` Quesadilla (BYO), Limesalt**  ·  Version 46
 
-| food component                 | object_type         | 被N个选择映射 | 映射它的选择（option values）                                                   | 涉及的 option [type]                      |
-| ------------------------------ | ------------------- | :-----: | ----------------------------------------------------------------------- | -------------------------------------- |
-| `4000330` Mexican Three Cheese | HDR_CONSUMABLE_ITEM |    6    | Barbacoa · Carnitas · Cheese Only · Chicken · Shiitake Carnitas · Steak | Choose Your Protein [MANDATORY_CHOICE] |
+| food component                 | object_type         | 被N个选择映射 | 映射它的选择（option values）                                                   | 涉及的 option [type]                      | 重复类型 |
+| ------------------------------ | ------------------- | :-----: | ----------------------------------------------------------------------- | -------------------------------------- | ---|
+| `4000330` Mexican Three Cheese | HDR_CONSUMABLE_ITEM |    6    | Barbacoa · Carnitas · Cheese Only · Chicken · Shiitake Carnitas · Steak | Choose Your Protein [MANDATORY_CHOICE] | ⚠️ 组合引发（每个 protein 选择都内含此奶酪） |
 
 **`[8004637]` Burrito (BYO), Limesalt**  ·  Version 46
 
@@ -101,20 +127,20 @@
 
 **`[8007403]` Bowl (BYO), Yasas**  ·  Version 42
 
-| food component | object_type | 被N个选择映射 | 映射它的选择（option values） | 涉及的 option [type] |
-|---|---|:--:|---|---|
-| `4000427` Romaine Lettuce | HDR_CONSUMABLE_ITEM | 2 | Romaine  _（2 个 option value，含同名不同项）_ | Choose Your Base [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
+| food component | object_type | 被N个选择映射 | 映射它的选择（option values） | 涉及的 option [type] | 重复类型 |
+|---|---|:--:|---|---|---|
+| `4000427` Romaine Lettuce | HDR_CONSUMABLE_ITEM | 2 | Romaine  _（2 个 option value，含同名不同项）_ | Choose Your Base [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] | ✓ 真正重复（用户可在两个不同选项中独立选择 Romaine） |
 
 #### Hanu Poke
 
 **`[8010473]` BYO Poke Bowl, Hanu Poke BOWLDER**  ·  Version 22
 
-| food component | object_type | 被N个选择映射 | 映射它的选择（option values） | 涉及的 option [type] |
-|---|---|:--:|---|---|
-| `4000402` Rice, Poke, FC, 10oz. (Co-Man) HC | HDR_CONSUMABLE_ITEM | 3 | Rice & Greens · Soba Noodles & Rice · Sushi Rice | Choose Your Base [MANDATORY_CHOICE] |
-| `4000470` Spring Mix Lettuce | HDR_CONSUMABLE_ITEM | 3 | Mixed Greens · Rice & Greens · Soba Noodles & Greens | Choose Your Base [MANDATORY_CHOICE] |
-| `4000968` Soba Noodles | HDR_CONSUMABLE_ITEM | 3 | Soba Noodles · Soba Noodles & Greens · Soba Noodles & Rice | Choose Your Base [MANDATORY_CHOICE] |
-| `4000742` Poke Marinade | HDR_CONSUMABLE_ITEM | 2 | Poke Marinade Mixed In · Poke Marinade On the Side | Include Poke Marinade [MANDATORY_CHOICE] |
+| food component | object_type | 被N个选择映射 | 映射它的选择（option values） | 涉及的 option [type] | 重复类型 |
+|---|---|:--:|---|---|---|
+| `4000402` Rice, Poke, FC, 10oz. (Co-Man) HC | HDR_CONSUMABLE_ITEM | 3 | Rice & Greens · Soba Noodles & Rice · Sushi Rice | Choose Your Base [MANDATORY_CHOICE] | ⚠️ 组合引发（3个组合选项均含此食材） |
+| `4000470` Spring Mix Lettuce | HDR_CONSUMABLE_ITEM | 3 | Mixed Greens · Rice & Greens · Soba Noodles & Greens | Choose Your Base [MANDATORY_CHOICE] | ⚠️ 组合引发（3个组合选项均含此食材） |
+| `4000968` Soba Noodles | HDR_CONSUMABLE_ITEM | 3 | Soba Noodles · Soba Noodles & Greens · Soba Noodles & Rice | Choose Your Base [MANDATORY_CHOICE] | ⚠️ 组合引发（3个组合选项均含此食材） |
+| `4000742` Poke Marinade | HDR_CONSUMABLE_ITEM | 2 | Poke Marinade Mixed In · Poke Marinade On the Side | Include Poke Marinade [MANDATORY_CHOICE] | ✓ 真正重复（单食材选择，非组合） |
 
 ---
 
@@ -124,21 +150,32 @@
 
 映射强度分布：**6 个选择映射同一 food** ×4 · **3 个选择** ×4 · **2 个选择** ×99。
 
+### 重复模式的分布
+
+| 模式类型 | 数量 | 组成 |
+|---------|------|------|
+| **真正重复**（单食材重复，不含组合选项） | 2 | Yasas Romaine + Hanu Poke Poke Marinade |
+| **组合引发**（多个组合选项共享食材成分） | 105 | Burger Baby 酱料、Limesalt 奶酪/蔬菜、Hanu Poke 底料等 |
+
+### 模式详解
+
 三类典型模式：
-1. **底料复用（组合选择）** — 如 Hanu BYO Poke Bowl 的 “Choose Your Base”，组合项 “Rice & Greens / Soba & Rice / Sushi Rice” 都指向同一份 Rice。
-2. **同物出现在多个 option** — 如 Burger Baby 同一酱料同时在 “Additional Sauce (On Burger)” 与 “(On The Side)” 两个 option；Yasas “Romaine” 同时是 base 和 topping。
-3. **夹带成分** — 如 Limesalt Quesadilla 每种 protein 选择都夹带 “Mexican Three Cheese”。
+1. **底料复用（组合选择）** — 如 Hanu BYO Poke Bowl 的 “Choose Your Base”，组合项 “Rice & Greens / Soba & Rice / Sushi Rice” 都指向同一份 Rice。**这是组合引发**，而非单食材重复。
+2. **同物出现在多个单项选择** — 如 Burger Baby 同一酱料同时在 “Additional Sauce (On Burger)” 与 “(On The Side)” 两个 option；Yasas “Romaine” 同时是 base 和 topping。**这是真正重复**。
+3. **夹带成分（隐藏在选项中）** — 如 Limesalt Quesadilla 每种 protein 选择都夹带 “Mexican Three Cheese”。这可能是真正重复，也可能是数据模型设计（是否应该在组合选项中处理）的问题。
 
 #### Burger Baby — 30 对 / 11 个 menu item
 
+⚠️ **本部分所有命中均为"组合引发"类型**：Burger Baby 的菜品中，每种酱料（Queso Blanco、Chipotle Mayo 等）在同一菜品中同时出现在 "On Burger" 和 "On The Side" 两个不同的选项组中，但这反映的是**酱料放置位置的选择**（不同 option），而非菜品设计的重复。
+
 **`[8007200]` Bacon Cheeseburger, Burger Baby**  ·  Version 20
 
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] | 重复类型 |
+|---|:--:|---|---|---|
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] | ⚠️ 组合引发（不同位置选项） |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] | ⚠️ 组合引发（不同位置选项） |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] | ⚠️ 组合引发（不同位置选项） |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] | ⚠️ 组合引发（不同位置选项） |
 
 **`[8007201]` Classic Hamburger, Burger Baby**  ·  Version 17
 
@@ -419,11 +456,13 @@
 
 #### Ess-a-Bagel — 9 对 / 8 个 menu item
 
+⚠️ **本部分所有命中均为"组合引发"类型**：Ess-a-Bagel 的菜品中，某些食材在多个 size/slice/toast 选项中出现，反映的是基于不同用户选择（大小、烘烤方式）的变体，而非菜品本身的重复。
+
 **`[8011657]` Bagel, Ess-a-Bagel**  ·  Version 2
 
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4001166` Essa Toaster | 2 | Yes, Sliced · Yes, Toasted | Slice Bagel? [MANDATORY_CHOICE] · Toast Bagel? [MANDATORY_CHOICE] |
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] | 重复类型 |
+|---|:--:|---|---|---|
+| `4001166` Essa Toaster | 2 | Yes, Sliced · Yes, Toasted | Slice Bagel? [MANDATORY_CHOICE] · Toast Bagel? [MANDATORY_CHOICE] | ⚠️ 组合引发（不同烘烤选项） |
 
 **`[8011658]` Bagel & Spread, Ess-a-Bagel**  ·  Version 2
 
@@ -520,6 +559,50 @@
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000427` Romaine Lettuce | 2 | Romaine  _（2 个 option value，含同名不同项）_ | Choose Your Greens [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
+
+---
+
+## 2. 真正重复 vs 组合引发 — 分类总结
+
+### 核心发现
+
+在 Part B 的 **107 个命中组合**中：
+
+| 分类 | 数量 | 特征 | 需要处理 |
+|------|------|------|--------|
+| **真正重复** | 2 | 同一食材在多个独立、单映射的 option value 中出现（用户可独立多次选择） | ⚠️ 需要业务审视：是否符合预期 |
+| **组合引发** | 105 | 同一食材在多个组合选项中作为成分出现，或在不同位置选项中出现 | ✓ 正常设计模式，无需修正 |
+
+### 示例对比
+
+**✓ 组合引发（正常）：**
+```
+Hanu Poke Bowl "Choose Your Base"
+  ├─ "Rice & Greens" → Rice + Spring Mix
+  ├─ "Soba & Greens" → Soba + Spring Mix ← Rice 在两个组合中，但不是用户多次选择
+  └─ "Sushi Rice" → Sushi Rice
+```
+
+**⚠️ 真正重复（需审视）：**
+```
+Yasas Bowl
+  ├─ "Choose Your Base" → "Romaine"
+  └─ "Choose Your Toppings" → "Romaine" ← 用户可在两个不同选项中都选择 Romaine
+```
+
+Burger Baby 的情况介于两者之间：
+```
+Burger Baby Bacon Cheeseburger
+  ├─ "Additional Sauce (On Burger)" → "Queso Blanco"
+  └─ "Additional Sauce (On The Side)" → "Queso Blanco" ← 实际是不同位置，非重复
+```
+
+### 行动建议
+
+1. **真正重复的 2 个案例**（Yasas Romaine、Hanu Poke Poke Marinade）：确认这是否符合菜品设计意图，或是否应该在数据模型中处理
+2. **组合引发的 105 个案例**：大多无需处理，但可以考虑：
+   - Limesalt 的"夹带奶酪"：是否应该隐藏或默认处理
+   - Burger Baby 的"酱料位置"：是否应该合并为一个选项
 
 ---
 
