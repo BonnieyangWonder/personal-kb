@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784080032393-al3zrml3m",
+  "providerId": "claude",
+  "title": "Determine which ingredient counts as protein",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784080032393,
+  "updatedAt": 1784080839975,
+  "lastResponseAt": 1784080839975,
+  "sessionId": "ada87c15-4886-46f8-971b-f8b5e3d63a18",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "ada87c15-4886-46f8-971b-f8b5e3d63a18"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 10,
+    "cacheCreationInputTokens": 1073,
+    "cacheReadInputTokens": 58085,
+    "contextWindow": 200000,
+    "contextTokens": 59168,
+    "percentage": 30,
+    "contextWindowIsAuthoritative": true
+  }
+}

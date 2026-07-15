@@ -4,6 +4,8 @@
 **数据源**: `wonder-recipe-prod.recipe_v2`（`item_versions` / `menus` / `concepts`）
 **分析对象**: 单个 menu item 的当前 version 内，`MANDATORY_CHOICE` + `OPTIONAL_ADDITION` 两类 customization 选项中，**某个 food component item 被多个选项值（option value）映射**的情况。
 
+> 表中的 **Version N** 即 Cookbook UI 上的版本号（`item_versions.version_id` 整数），非内部 UUID。
+
 ---
 
 ## 0. 口径修正说明（相对初版）
@@ -26,6 +28,8 @@
 - `options[]` = 定制分组（如 “Choose Your Protein”）
 - `option_values[]` = 具体选择项（如 tofu、chicken）← 用户口径里的 “option”
 - `items[]` = 该选择映射到的 food component
+
+**关于“同名跨 option”**：有些命中里两个 option value 显示名相同（如 Yasas “Romaine” 同时在 Choose Your Base 与 Choose Your Toppings；Burger Baby 同款酱同时在 On Burger 与 On The Side），它们是不同的 `option_value_id`，本版按“命中”保留，并在“选择”列标注 _（含同名不同项）_。
 
 ## 2. 过滤条件
 
@@ -59,34 +63,34 @@
 
 #### Limesalt
 
-**`[8005007]` Quesadilla (BYO), Limesalt**  ·  version `24c33f47`
+**`[8005007]` Quesadilla (BYO), Limesalt**  ·  Version 46
 
 | food component                 | object_type         | 被N个选择映射 | 映射它的选择（option values）                                                   | 涉及的 option [type]                      |
 | ------------------------------ | ------------------- | :-----: | ----------------------------------------------------------------------- | -------------------------------------- |
 | `4000330` Mexican Three Cheese | HDR_CONSUMABLE_ITEM |    6    | Barbacoa · Carnitas · Cheese Only · Chicken · Shiitake Carnitas · Steak | Choose Your Protein [MANDATORY_CHOICE] |
 
-**`[8004637]` Burrito (BYO), Limesalt**  ·  version `b998c5ca`
-
-| food component                           | object_type         | 被N个选择映射 | 映射它的选择（option values）              | 涉及的 option [type]                                                                 |
-| ---------------------------------------- | ------------------- | :-----: | ---------------------------------- | --------------------------------------------------------------------------------- |
-| `4000550` Guacamole                      | HDR_CONSUMABLE_ITEM |    2    | Guacamole · Veggies + Guac         | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
-| `7000018` Fajita Vegetables (Cooked, 4x) | HDR_RECIPE          |    2    | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
-
-**`[8004638]` Bowl (BYO), Limesalt**  ·  version `4f77a8c3`
+**`[8004637]` Burrito (BYO), Limesalt**  ·  Version 46
 
 | food component | object_type | 被N个选择映射 | 映射它的选择（option values） | 涉及的 option [type] |
 |---|---|:--:|---|---|
 | `4000550` Guacamole | HDR_CONSUMABLE_ITEM | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | HDR_RECIPE | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8005005]` Taco (BYO), Limesalt**  ·  version `5b3a81b9`
+**`[8004638]` Bowl (BYO), Limesalt**  ·  Version 46
 
 | food component | object_type | 被N个选择映射 | 映射它的选择（option values） | 涉及的 option [type] |
 |---|---|:--:|---|---|
 | `4000550` Guacamole | HDR_CONSUMABLE_ITEM | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | HDR_RECIPE | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8005006]` Salad (BYO), Limesalt**  ·  version `2d58b16e`
+**`[8005005]` Taco (BYO), Limesalt**  ·  Version 44
+
+| food component | object_type | 被N个选择映射 | 映射它的选择（option values） | 涉及的 option [type] |
+|---|---|:--:|---|---|
+| `4000550` Guacamole | HDR_CONSUMABLE_ITEM | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
+| `7000018` Fajita Vegetables (Cooked, 4x) | HDR_RECIPE | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
+
+**`[8005006]` Salad (BYO), Limesalt**  ·  Version 46
 
 | food component | object_type | 被N个选择映射 | 映射它的选择（option values） | 涉及的 option [type] |
 |---|---|:--:|---|---|
@@ -95,15 +99,15 @@
 
 #### Yasas
 
-**`[8007403]` Bowl (BYO), Yasas**  ·  version `e8120d81`
+**`[8007403]` Bowl (BYO), Yasas**  ·  Version 42
 
 | food component | object_type | 被N个选择映射 | 映射它的选择（option values） | 涉及的 option [type] |
 |---|---|:--:|---|---|
-| `4000427` Romaine Lettuce | HDR_CONSUMABLE_ITEM | 2 | Romaine  _（2 个 option value，其中含同名不同项）_ | Choose Your Base [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
+| `4000427` Romaine Lettuce | HDR_CONSUMABLE_ITEM | 2 | Romaine  _（2 个 option value，含同名不同项）_ | Choose Your Base [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
 #### Hanu Poke
 
-**`[8010473]` BYO Poke Bowl, Hanu Poke BOWLDER**  ·  version `f5609aa2`
+**`[8010473]` BYO Poke Bowl, Hanu Poke BOWLDER**  ·  Version 22
 
 | food component | object_type | 被N个选择映射 | 映射它的选择（option values） | 涉及的 option [type] |
 |---|---|:--:|---|---|
@@ -127,215 +131,215 @@
 
 #### Burger Baby — 30 对 / 11 个 menu item
 
-**`[8007200]` Bacon Cheeseburger, Burger Baby**
+**`[8007200]` Bacon Cheeseburger, Burger Baby**  ·  Version 20
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
 
-**`[8007201]` Classic Hamburger, Burger Baby**
-
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-
-**`[8007205]` Classic Cheeseburger, Burger Baby**
+**`[8007201]` Classic Hamburger, Burger Baby**  ·  Version 17
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
 
-**`[8007908]` Big Baby, Burger Baby**
-
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-
-**`[8007910]` Double Bacon Cheeseburger, Burger Baby**
+**`[8007205]` Classic Cheeseburger, Burger Baby**  ·  Version 17
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
 
-**`[8011697]` Smashburger Taco, Burger Baby**
-
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Taco) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Taco) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-
-**`[8011699]` Veggie Baby, Burger Baby**
+**`[8007908]` Big Baby, Burger Baby**  ·  Version 16
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
 
-**`[8011700]` Bronco Baby, Burger Baby**
-
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-
-**`[8011702]` Double Veggie Baby, Burger Baby**
+**`[8007910]` Double Bacon Cheeseburger, Burger Baby**  ·  Version 19
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
 
-**`[8011703]` Double Bronco Baby, Burger Baby**
-
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-
-**`[8011705]` Classic Double Burger, Burger Baby**
+**`[8011697]` Smashburger Taco, Burger Baby**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Taco) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Taco) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+
+**`[8011699]` Veggie Baby, Burger Baby**  ·  Version 2
+
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
+|---|:--:|---|---|
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+
+**`[8011700]` Bronco Baby, Burger Baby**  ·  Version 2
+
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
+|---|:--:|---|---|
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+
+**`[8011702]` Double Veggie Baby, Burger Baby**  ·  Version 2
+
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
+|---|:--:|---|---|
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+
+**`[8011703]` Double Bronco Baby, Burger Baby**  ·  Version 2
+
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
+|---|:--:|---|---|
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+
+**`[8011705]` Classic Double Burger, Burger Baby**  ·  Version 2
+
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
+|---|:--:|---|---|
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
 
 #### Burger Baby (Pilot) — 30 对 / 11 个 menu item
 
-**`[8010580]` Bacon Cheeseburger, Burger Baby (Pilot)**
+**`[8010580]` Bacon Cheeseburger, Burger Baby (Pilot)**  ·  Version 16
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
 
-**`[8010581]` Classic Hamburger, Burger Baby (Pilot)**
-
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-
-**`[8010584]` Classic Cheeseburger, Burger Baby (Pilot)**
+**`[8010581]` Classic Hamburger, Burger Baby (Pilot)**  ·  Version 15
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
 
-**`[8010591]` Big Baby, Burger Baby (Pilot)**
-
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-
-**`[8010592]` Double Bacon Cheeseburger, Burger Baby (Pilot)**
+**`[8010584]` Classic Cheeseburger, Burger Baby (Pilot)**  ·  Version 15
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
 
-**`[8011761]` Classic Double Burger, Burger Baby (Pilot)**
-
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-
-**`[8011764]` Bronco Baby, Burger Baby (Pilot)**
+**`[8010591]` Big Baby, Burger Baby (Pilot)**  ·  Version 15
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
 
-**`[8011766]` Smashburger Taco, Burger Baby (Pilot)**
-
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Taco) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On Taco) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
-
-**`[8011780]` Double Bronco Baby, Burger Baby (Pilot)**
+**`[8010592]` Double Bacon Cheeseburger, Burger Baby (Pilot)**  ·  Version 16
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
 
-**`[8011940]` Double Veggie Baby, Burger Baby (Pilot)**
-
-| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
-|---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
-
-**`[8011941]` Veggie Baby, Burger Baby (Pilot)**
+**`[8011761]` Classic Double Burger, Burger Baby (Pilot)**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，其中含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000442` BBQ Hickory Brown Sugar Sauce | 2 | BBQ Sauce  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Burger) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+
+**`[8011764]` Bronco Baby, Burger Baby (Pilot)**  ·  Version 2
+
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
+|---|:--:|---|---|
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+
+**`[8011766]` Smashburger Taco, Burger Baby (Pilot)**  ·  Version 2
+
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
+|---|:--:|---|---|
+| `4000284` Rosarita HC | 2 | Chipotle Mayo  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Taco) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+| `4000996` Avocado Ranch Dressing | 2 | Avocado Ranch  _（2 个 option value，含同名不同项）_ | Additional Sauce (On Taco) [OPTIONAL_ADDITION] · Additional Sauce (On The Side) [OPTIONAL_ADDITION] |
+
+**`[8011780]` Double Bronco Baby, Burger Baby (Pilot)**  ·  Version 2
+
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
+|---|:--:|---|---|
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+
+**`[8011940]` Double Veggie Baby, Burger Baby (Pilot)**  ·  Version 2
+
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
+|---|:--:|---|---|
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
+
+**`[8011941]` Veggie Baby, Burger Baby (Pilot)**  ·  Version 2
+
+| food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
+|---|:--:|---|---|
+| `4000279` Queso Blanco Sauce | 2 | Queso Blanco  _（2 个 option value，含同名不同项）_ | Additional Sauce (On The Side) [OPTIONAL_ADDITION] · Additional Toppings [OPTIONAL_ADDITION] |
 
 #### Limesalt (Jasmine Rice Pilot) — 10 对 / 6 个 menu item
 
-**`[8011565]` Bowl (BYO), Limesalt (Jasmine Rice Pilot)**
+**`[8011565]` Bowl (BYO), Limesalt (Jasmine Rice Pilot)**  ·  Version 1
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000550` Guacamole | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8011570]` Quesadilla (BYO), Limesalt (Jasmine Rice Pilot)**
+**`[8011570]` Quesadilla (BYO), Limesalt (Jasmine Rice Pilot)**  ·  Version 1
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000330` Mexican Three Cheese | 6 | Barbacoa · Carnitas · Cheese Only · Chicken · Spiced Tofu · Steak | Choose Your Protein [MANDATORY_CHOICE] |
 
-**`[8011571]` Salad (BYO), Limesalt (Jasmine Rice Pilot)**
+**`[8011571]` Salad (BYO), Limesalt (Jasmine Rice Pilot)**  ·  Version 1
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000550` Guacamole | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8011572]` Taco (BYO), Limesalt (Jasmine Rice Pilot)**
+**`[8011572]` Taco (BYO), Limesalt (Jasmine Rice Pilot)**  ·  Version 1
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000550` Guacamole | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8011573]` Burrito (BYO), Limesalt (Jasmine Rice Pilot)**
+**`[8011573]` Burrito (BYO), Limesalt (Jasmine Rice Pilot)**  ·  Version 1
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000550` Guacamole | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8011576]` Cheesesteak Quesadilla (BYO), Limesalt (Jasmine Rice Pilot)**
+**`[8011576]` Cheesesteak Quesadilla (BYO), Limesalt (Jasmine Rice Pilot)**  ·  Version 1
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
@@ -343,35 +347,35 @@
 
 #### Limesalt — 9 对 / 5 个 menu item
 
-**`[8004637]` Burrito (BYO), Limesalt**
+**`[8004637]` Burrito (BYO), Limesalt**  ·  Version 46
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000550` Guacamole | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8004638]` Bowl (BYO), Limesalt**
+**`[8004638]` Bowl (BYO), Limesalt**  ·  Version 46
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000550` Guacamole | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8005005]` Taco (BYO), Limesalt**
+**`[8005005]` Taco (BYO), Limesalt**  ·  Version 44
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000550` Guacamole | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8005006]` Salad (BYO), Limesalt**
+**`[8005006]` Salad (BYO), Limesalt**  ·  Version 46
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000550` Guacamole | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8005007]` Quesadilla (BYO), Limesalt**
+**`[8005007]` Quesadilla (BYO), Limesalt**  ·  Version 46
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
@@ -379,34 +383,34 @@
 
 #### Limesalt (Cook & Chill Rice Pilot) — 9 对 / 5 个 menu item
 
-**`[8011831]` Bowl (BYO), Limesalt (Cook & Chill Rice Pilot)**
+**`[8011831]` Bowl (BYO), Limesalt (Cook & Chill Rice Pilot)**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000550` Guacamole | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8011832]` Burrito (BYO), Limesalt (Cook & Chill Rice Pilot)**
+**`[8011832]` Burrito (BYO), Limesalt (Cook & Chill Rice Pilot)**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000550` Guacamole | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8011834]` Quesadilla (BYO), Limesalt (Cook & Chill Rice Pilot)**
+**`[8011834]` Quesadilla (BYO), Limesalt (Cook & Chill Rice Pilot)**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000330` Mexican Three Cheese | 6 | Barbacoa · Carnitas · Cheese Only · Chicken · Shiitake Carnitas · Steak | Choose Your Protein [MANDATORY_CHOICE] |
 
-**`[8011835]` Salad (BYO), Limesalt (Cook & Chill Rice Pilot)**
+**`[8011835]` Salad (BYO), Limesalt (Cook & Chill Rice Pilot)**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000550` Guacamole | 2 | Guacamole · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 | `7000018` Fajita Vegetables (Cooked, 4x) | 2 | Fajita Vegetables · Veggies + Guac | Choose Your Protein [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
-**`[8011836]` Taco (BYO), Limesalt (Cook & Chill Rice Pilot)**
+**`[8011836]` Taco (BYO), Limesalt (Cook & Chill Rice Pilot)**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
@@ -415,50 +419,50 @@
 
 #### Ess-a-Bagel — 9 对 / 8 个 menu item
 
-**`[8011657]` Bagel, Ess-a-Bagel**
+**`[8011657]` Bagel, Ess-a-Bagel**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4001166` Essa Toaster | 2 | Yes, Sliced · Yes, Toasted | Slice Bagel? [MANDATORY_CHOICE] · Toast Bagel? [MANDATORY_CHOICE] |
 
-**`[8011658]` Bagel & Spread, Ess-a-Bagel**
+**`[8011658]` Bagel & Spread, Ess-a-Bagel**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4001032` Jelly (Essa) | 2 | Jelly · Peanut Butter & Jelly | Choose Your Spread [MANDATORY_CHOICE] |
 | `4001033` Peanut Butter (Essa) | 2 | Peanut Butter · Peanut Butter & Jelly | Choose Your Spread [MANDATORY_CHOICE] |
 
-**`[8011721]` Reuben Fusion, Ess-a-Bagel**
+**`[8011721]` Reuben Fusion, Ess-a-Bagel**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4001056` Turkey (Essa) | 2 | Turkey  _（2 个 option value，其中含同名不同项）_ | Add-Ons [OPTIONAL_ADDITION] · Protein Choice [MANDATORY_CHOICE] |
+| `4001056` Turkey (Essa) | 2 | Turkey  _（2 个 option value，含同名不同项）_ | Add-Ons [OPTIONAL_ADDITION] · Protein Choice [MANDATORY_CHOICE] |
 
-**`[8011730]` Tuna Salad By The Pound, Ess-a-Bagel**
+**`[8011730]` Tuna Salad By The Pound, Ess-a-Bagel**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4001066` Tuna Salad (Essa) | 2 | 1/2lb Tuna Salad · 1lb Tuna Salad | Size Choice [MANDATORY_CHOICE] |
 
-**`[8011731]` Chicken Salad By The Pound, Ess-a-Bagel**
+**`[8011731]` Chicken Salad By The Pound, Ess-a-Bagel**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4001105` Chicken Salad (Essa) | 2 | 1/2lb Chicken Salad · 1lb Chicken Salad | Size Choice [MANDATORY_CHOICE] |
 
-**`[8011732]` Whitefish Salad By The Pound, Ess-a-Bagel**
+**`[8011732]` Whitefish Salad By The Pound, Ess-a-Bagel**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4001067` Whitefish Salad (Essa) | 2 | 1/2lb Whitefish Salad · 1lb Whitefish Salad | Size Choice [MANDATORY_CHOICE] |
 
-**`[8011733]` Egg Salad By The Pound, Ess-a-Bagel**
+**`[8011733]` Egg Salad By The Pound, Ess-a-Bagel**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4001106` Egg Salad (Essa) | 2 | 1/2lb Egg Salad · 1lb Egg Salad | Size Choice [MANDATORY_CHOICE] |
 
-**`[8011758]` Espresso, Ess-a-Bagel**
+**`[8011758]` Espresso, Ess-a-Bagel**  ·  Version 1
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
@@ -466,7 +470,7 @@
 
 #### Hanu Poke BOWLDER — 4 对 / 1 个 menu item
 
-**`[8010473]` BYO Poke Bowl, Hanu Poke BOWLDER**
+**`[8010473]` BYO Poke Bowl, Hanu Poke BOWLDER**  ·  Version 22
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
@@ -477,25 +481,25 @@
 
 #### Wing Trip — 4 对 / 4 个 menu item
 
-**`[8011272]` 6pc Classic Wings, Wing Trip**
+**`[8011272]` 6pc Classic Wings, Wing Trip**  ·  Version 5
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000838` Nashville Seasoning | 2 | Hot Honey · Nashville Hot | Choose Your Flavor [MANDATORY_CHOICE] |
 
-**`[8011274]` 12pc Classic Wings, Wing Trip**
+**`[8011274]` 12pc Classic Wings, Wing Trip**  ·  Version 5
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000838` Nashville Seasoning | 2 | Hot Honey · Nashville Hot | Choose Your Flavor [MANDATORY_CHOICE] |
 
-**`[8011275]` 12pc Boneless Wings, Wing Trip**
+**`[8011275]` 12pc Boneless Wings, Wing Trip**  ·  Version 5
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
 | `4000838` Nashville Seasoning | 2 | Hot Honey · Nashville Hot | Choose Your Flavor [MANDATORY_CHOICE] |
 
-**`[8011276]` 6pc Boneless Wings, Wing Trip**
+**`[8011276]` 6pc Boneless Wings, Wing Trip**  ·  Version 5
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
@@ -503,19 +507,19 @@
 
 #### Yasas — 1 对 / 1 个 menu item
 
-**`[8007403]` Bowl (BYO), Yasas**
+**`[8007403]` Bowl (BYO), Yasas**  ·  Version 42
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000427` Romaine Lettuce | 2 | Romaine  _（2 个 option value，其中含同名不同项）_ | Choose Your Base [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
+| `4000427` Romaine Lettuce | 2 | Romaine  _（2 个 option value，含同名不同项）_ | Choose Your Base [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
 #### Yasas (Cook & Chill Rice + Veg Pilot) — 1 对 / 1 个 menu item
 
-**`[8011837]` Bowl (BYO), Yasas (Cook & Chill Rice + Veg Pilot)**
+**`[8011837]` Bowl (BYO), Yasas (Cook & Chill Rice + Veg Pilot)**  ·  Version 2
 
 | food component | 被N个选择映射 | 映射它的选择 | 涉及 option [type] |
 |---|:--:|---|---|
-| `4000427` Romaine Lettuce | 2 | Romaine  _（2 个 option value，其中含同名不同项）_ | Choose Your Greens [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
+| `4000427` Romaine Lettuce | 2 | Romaine  _（2 个 option value，含同名不同项）_ | Choose Your Greens [MANDATORY_CHOICE] · Choose Your Toppings [OPTIONAL_ADDITION] |
 
 ---
 
@@ -544,7 +548,7 @@ brand_items AS (
 ),
 active_menu AS (
   SELECT bi.brand, CAST(iv.item_number AS STRING) AS menu_item_number,
-         iv.name AS menu_item_name, iv._id AS version_id, iv.item_customization
+         iv.name AS menu_item_name, iv.version_id AS version_number, iv.item_customization
   FROM brand_items bi
   JOIN `wonder-recipe-prod.recipe_v2.item_versions` iv
     ON CAST(iv.item_number AS STRING) = bi.item_number
@@ -563,7 +567,7 @@ food_items AS (
   GROUP BY 1
 ),
 cust AS (
-  SELECT am.brand, am.menu_item_number, am.menu_item_name, am.version_id,
+  SELECT am.brand, am.menu_item_number, am.menu_item_name, am.version_number,
          JSON_VALUE(opt, '$.name') AS option_name,
          JSON_VALUE(opt, '$.type') AS option_type,
          JSON_VALUE(ov, '$.id')   AS option_value_id,
@@ -583,7 +587,7 @@ joined AS (
   JOIN food_items fi ON fi.num = c.mapped_item_number
 )
 SELECT
-  brand, menu_item_number, menu_item_name, version_id,
+  brand, menu_item_number, menu_item_name, version_number,
   mapped_item_number AS food_component_number,
   food_name AS food_component_name,
   food_object_type,
@@ -591,7 +595,7 @@ SELECT
   STRING_AGG(DISTINCT option_value_name, ' | ' ORDER BY option_value_name) AS option_value_names,
   STRING_AGG(DISTINCT CONCAT(option_name, ' [', option_type, ']'), ' | ' ORDER BY CONCAT(option_name, ' [', option_type, ']')) AS options_involved
 FROM joined
-GROUP BY brand, menu_item_number, menu_item_name, version_id, food_component_number, food_component_name, food_object_type
+GROUP BY brand, menu_item_number, menu_item_name, version_number, food_component_number, food_component_name, food_object_type
 HAVING COUNT(DISTINCT option_value_id) > 1
 ORDER BY brand, mapped_by_n_option_values DESC, menu_item_number, food_component_number
 ```
@@ -605,4 +609,4 @@ ORDER BY brand, mapped_by_n_option_values DESC, menu_item_number, food_component
 
 ---
 
-_由 Claude 生成于 2026-07-15。数据经修正方法论重跑（food-only、品牌专属 menu、option-value 粒度、排除 Extra）。_
+_由 Claude 生成于 2026-07-15。数据经修正方法论重跑（food-only、品牌专属 menu、option-value 粒度、排除 Extra）。Version 列为 UI 版本号。_

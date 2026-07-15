@@ -4,8 +4,8 @@
   "title": "Find menu items with duplicate component mappings",
   "titleGenerationStatus": "success",
   "createdAt": 1784078142537,
-  "updatedAt": 1784079694268,
-  "lastResponseAt": 1784079608625,
+  "updatedAt": 1784080077926,
+  "lastResponseAt": 1784080077926,
   "sessionId": "ad2f079a-d969-41bd-a08d-4693eabffa4e",
   "selectedModel": "opus[1m]",
   "providerState": {
@@ -13,12 +13,12 @@
   },
   "usage": {
     "model": "opus[1m]",
-    "inputTokens": 131,
-    "cacheCreationInputTokens": 2767,
-    "cacheReadInputTokens": 152291,
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 5612,
+    "cacheReadInputTokens": 163700,
     "contextWindow": 1000000,
-    "contextTokens": 155189,
-    "percentage": 16,
+    "contextTokens": 169314,
+    "percentage": 17,
     "contextWindowIsAuthoritative": true
   }
 }
