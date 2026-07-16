@@ -99,7 +99,7 @@ ORDER BY bl.manage_inventory DESC, component_id;
 | [domains/assembly-instructions.md](domains/assembly-instructions.md) | Assembly after cooking |
 | [domains/nutrition.md](domains/nutrition.md) | Nutrition facts, allergens |
 | [domains/customization.md](domains/customization.md) | Customer choices (MANDATORY_CHOICE, OPTIONAL_ADDITION) |
-| [domains/packaged-skus.md](domains/packaged-skus.md) | Pre-packaged 88*/7* components + **9\* containers / IK dish type ↔ packaging** (same concept; incl. Wonder Create auto-assign, MD-18063), service location, smallware tools |
+| [domains/packaged-skus.md](domains/packaged-skus.md) | Pre-packaged components (88*/7*), service location, smallware tools |
 | [domains/hdr-consumables.md](domains/hdr-consumables.md) | HDR consumables (40*) and WSKUs (41*), the "40 Model" |
 | [domains/cost-pricing.md](domains/cost-pricing.md) | Item costs, menu prices, margins |
 | [domains/units-of-measure.md](domains/units-of-measure.md) | UOM fields, conversions across contexts |
@@ -183,12 +183,6 @@ AND CURRENT_TIMESTAMP() BETWEEN TIMESTAMP(bl.service_start_time) AND TIMESTAMP(b
 **"What are the storage/logistics requirements?"** → [domains/logistics.md](domains/logistics.md)
 
 **"What packaged items (88*/7*) are in this menu item?"** → [domains/packaged-skus.md](domains/packaged-skus.md)
-
-**"What IK dish type does an item get?" / "How is packaging assigned?"** → [domains/packaged-skus.md](domains/packaged-skus.md) (§ IK Dish Type) — note: **"IK dish type" = "packaging"** (same concept, 9* container)
-
-**"How does Wonder Create / WC assign packaging or dish type to its menu items?"** → [domains/packaged-skus.md](domains/packaged-skus.md) (§ IK Dish Type) — auto-inferred from green count / weight (MD-18063); search **"packaging"** not "dish type"
-
-**"What dish type do BYO / zero-BOM bowls get?"** → [domains/packaged-skus.md](domains/packaged-skus.md) (§ IK Dish Type) — NOT in the BOM; inferred from Green components + total weight
 
 **"What 9* non-food packaging/container items are used by these brands?"** → ⭐ **Read `Z01-Resource/CB-bigquery/playbooks/data-research-patterns.md` FIRST** — then [domains/packaged-skus.md](domains/packaged-skus.md)
 
