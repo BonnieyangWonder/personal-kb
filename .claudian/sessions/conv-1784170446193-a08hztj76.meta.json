@@ -4,8 +4,8 @@
   "title": "Analyze SKU modeling issue for pizza crust pack...",
   "titleGenerationStatus": "success",
   "createdAt": 1784170446193,
-  "updatedAt": 1784170611959,
-  "lastResponseAt": 1784170611958,
+  "updatedAt": 1784174037329,
+  "lastResponseAt": 1784174037329,
   "sessionId": "1e6a18f2-17a8-42b0-a0b5-0fb0493b2cc5",
   "selectedModel": "haiku",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 10,
-    "cacheCreationInputTokens": 1634,
-    "cacheReadInputTokens": 66699,
+    "cacheCreationInputTokens": 764,
+    "cacheReadInputTokens": 69330,
     "contextWindow": 200000,
-    "contextTokens": 68343,
-    "percentage": 34,
+    "contextTokens": 70104,
+    "percentage": 35,
     "contextWindowIsAuthoritative": true
   }
 }
