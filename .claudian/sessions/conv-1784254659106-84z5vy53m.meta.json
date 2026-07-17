@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784254659106-84z5vy53m",
+  "providerId": "claude",
+  "title": "Create Jira ticket for Pizza Conveyor Oven config",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784254659106,
+  "updatedAt": 1784254801792,
+  "lastResponseAt": 1784254801792,
+  "sessionId": "9bd27188-0177-4a6f-afcc-cbb614ffc49a",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "9bd27188-0177-4a6f-afcc-cbb614ffc49a"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 790,
+    "cacheReadInputTokens": 45664,
+    "contextWindow": 200000,
+    "contextTokens": 46462,
+    "percentage": 23,
+    "contextWindowIsAuthoritative": true
+  }
+}
