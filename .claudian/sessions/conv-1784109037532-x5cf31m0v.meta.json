@@ -4,8 +4,8 @@
   "title": "Investigate Jira IK dish type handling in Wonde...",
   "titleGenerationStatus": "success",
   "createdAt": 1784109037532,
-  "updatedAt": 1784270555085,
-  "lastResponseAt": 1784270555085,
+  "updatedAt": 1784277401098,
+  "lastResponseAt": 1784277214166,
   "sessionId": "2abcc2c7-632b-4540-9871-c3f6e3bacf3f",
   "selectedModel": "opus[1m]",
   "providerState": {
@@ -399,12 +399,12 @@
   },
   "usage": {
     "model": "opus[1m]",
-    "inputTokens": 0,
-    "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 787,
+    "cacheReadInputTokens": 209106,
     "contextWindow": 1000000,
-    "contextTokens": 0,
-    "percentage": 0,
+    "contextTokens": 209895,
+    "percentage": 21,
     "contextWindowIsAuthoritative": true
   }
 }
