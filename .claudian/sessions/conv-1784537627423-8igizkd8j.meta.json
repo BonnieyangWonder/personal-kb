@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784537627423-8igizkd8j",
+  "providerId": "claude",
+  "title": "Create Jira ticket for SCC cutover batch 5",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784537627423,
+  "updatedAt": 1784537772595,
+  "lastResponseAt": 1784537772595,
+  "sessionId": "c34c17fe-1634-49c1-9a7a-db650de64fe5",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "c34c17fe-1634-49c1-9a7a-db650de64fe5"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 422,
+    "cacheReadInputTokens": 44178,
+    "contextWindow": 200000,
+    "contextTokens": 44608,
+    "percentage": 22,
+    "contextWindowIsAuthoritative": true
+  }
+}
