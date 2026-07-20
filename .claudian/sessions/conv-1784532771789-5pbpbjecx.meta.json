@@ -4,21 +4,21 @@
   "title": "Create Confluence weekly planning page",
   "titleGenerationStatus": "success",
   "createdAt": 1784532771789,
-  "updatedAt": 1784532864641,
-  "lastResponseAt": 1784532864641,
+  "updatedAt": 1784533739591,
+  "lastResponseAt": 1784533739591,
   "sessionId": "dd9f8049-77e4-4932-8ed2-de4eeff05ffd",
-  "selectedModel": "haiku",
+  "selectedModel": "sonnet[1m]",
   "providerState": {
     "providerSessionId": "dd9f8049-77e4-4932-8ed2-de4eeff05ffd"
   },
   "usage": {
-    "model": "haiku",
-    "inputTokens": 8,
-    "cacheCreationInputTokens": 811,
-    "cacheReadInputTokens": 31687,
-    "contextWindow": 200000,
-    "contextTokens": 32506,
-    "percentage": 16,
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 368,
+    "cacheReadInputTokens": 94220,
+    "contextWindow": 1000000,
+    "contextTokens": 94590,
+    "percentage": 9,
     "contextWindowIsAuthoritative": true
   }
 }

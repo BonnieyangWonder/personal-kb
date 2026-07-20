@@ -9,4 +9,5 @@
 @rules/report-paths.md
 @rules/ticket-workflow.md
 @rules/tool-paths.md
+@rules/xm-ny-weekly-planning-workflow.md
 <!-- Knowlery rule imports:end -->
