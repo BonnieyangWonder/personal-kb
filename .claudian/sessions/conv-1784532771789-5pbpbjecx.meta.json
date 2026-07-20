@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784532771789-5pbpbjecx",
+  "providerId": "claude",
+  "title": "Create Confluence weekly planning page",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784532771789,
+  "updatedAt": 1784532864641,
+  "lastResponseAt": 1784532864641,
+  "sessionId": "dd9f8049-77e4-4932-8ed2-de4eeff05ffd",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "dd9f8049-77e4-4932-8ed2-de4eeff05ffd"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 811,
+    "cacheReadInputTokens": 31687,
+    "contextWindow": 200000,
+    "contextTokens": 32506,
+    "percentage": 16,
+    "contextWindowIsAuthoritative": true
+  }
+}
