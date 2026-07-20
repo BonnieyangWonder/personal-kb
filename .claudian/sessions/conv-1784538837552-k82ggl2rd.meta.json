@@ -4,10 +4,10 @@
   "title": "Archive MD-17690 and MD-17820 to CB-Full-Feature",
   "titleGenerationStatus": "success",
   "createdAt": 1784538837552,
-  "updatedAt": 1784543678235,
-  "lastResponseAt": 1784543678235,
+  "updatedAt": 1784545433071,
+  "lastResponseAt": 1784545433071,
   "sessionId": "9d64bebc-bd24-46ae-8fb6-64b59cf3e635",
-  "selectedModel": "haiku",
+  "selectedModel": "sonnet[1m]",
   "providerState": {
     "providerSessionId": "9d64bebc-bd24-46ae-8fb6-64b59cf3e635",
     "subagentData": {
@@ -667,12 +667,13 @@
     }
   },
   "usage": {
-    "model": "haiku",
-    "inputTokens": 10,
-    "cacheCreationInputTokens": 79229,
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 126668,
     "cacheReadInputTokens": 0,
-    "contextWindow": 200000,
-    "contextTokens": 79239,
-    "percentage": 40
+    "contextWindow": 1000000,
+    "contextTokens": 126670,
+    "percentage": 13,
+    "contextWindowIsAuthoritative": true
   }
 }
