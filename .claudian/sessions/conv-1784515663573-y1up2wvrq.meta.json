@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784515663573-y1up2wvrq",
+  "providerId": "claude",
+  "title": "Analyze package item sync to vendor catalog",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784515663574,
+  "updatedAt": 1784515684196,
+  "lastResponseAt": 1784515684196,
+  "sessionId": "b69171a1-4760-40d4-a12c-b8b120b6519e",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "b69171a1-4760-40d4-a12c-b8b120b6519e"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 5901,
+    "cacheReadInputTokens": 25699,
+    "contextWindow": 200000,
+    "contextTokens": 31608,
+    "percentage": 16,
+    "contextWindowIsAuthoritative": true
+  }
+}
