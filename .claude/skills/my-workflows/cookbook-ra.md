@@ -62,6 +62,8 @@ Read everything provided, fully: full ticket body + all comments (not just the s
 
 Always run real BigQuery queries to quantify impact — how many items/HDRs/orders/menus are actually affected. This is a firm default for every RA, not something to skip because the requirement looks simple; logical reasoning alone is not sufficient.
 
+**Read-only, always** — query existing data, never act on a live system to produce new data to analyze. See the hard safety rule in Step 5.
+
 ## Step 3 — Escalation Check (this decides output depth — not the requirement's wording)
 
 Do **not** pre-classify the requirement as simple or complex from how it's phrased — that's unreliable. Three real precedents ([[2026-05-25_Gluten-Free_标签系统推断改人工指定_需求分析]], [[2026-05-21_40_item_number_F-T_suffix_影响评估]], [[2026-06-24_Wonder_Create_BYO_Customization_Analysis]]) all read as simple/bounded on the surface and all escalated once actually investigated. Complexity shows up during analysis, not in the initial ask.
@@ -84,6 +86,8 @@ This check isn't a one-time gate — if a Mode 1 analysis is underway and a sign
 
 ## Step 4 — Write the Report
 
+**Draft first, archive only after Bonnie approves.** Do not call a file-write tool to save the report as the first move. Present the full report content in-chat — same structure and content it would have as a file — and explicitly ask for review. Only after Bonnie confirms it's good (with or without revisions) do you write it to disk per the Output section below. This holds for both modes. The archived file is the final, reviewed record of the analysis, not a place to iterate — treat it as the last step, not a draft dump.
+
 **Mode 1 (Efficiency) output** — lightweight: current state → what changes → checklist of things to verify/watch. No need to force the full Mode 2 structure.
 
 **Mode 2 (Expert) output** — full: background → current system analysis → solution options → data-backed impact analysis → cross-team matrix → roadmap → open decisions → risks/rollback. Use [[2026-05-25_Gluten-Free_标签系统推断改人工指定_需求分析]] as the structural reference.
@@ -97,12 +101,14 @@ A requirement can be both at once.
 
 ## Step 5 — Boundaries (what this skill does not do)
 
+- **Never verify a finding by acting on a live environment.** No publishing, editing, deleting, or otherwise triggering business logic in Cookbook — not in prod, not in any environment tied to the master branch, not "just to see what happens." This holds everywhere in the workflow, especially Step 2's data impact analysis: quantify impact by querying *existing* data (BigQuery `SELECT`, reading Jira/Confluence/docs) and reading *existing* records of what happened (e.g. QA test-case text already written by someone else) — never by performing the action being analyzed yourself. If a claim can't be confirmed from existing data or documentation, say so as an open question rather than going to test it live.
 - **Do not propose creating a Jira ticket.** RA stops at the analysis report.
 - **Do not write into CB-full-feature or CB-business.** CB-full-feature only records features that have shipped; RA-stage analysis isn't there yet. If a requirement here later ships, archiving it (via the separate `archive-jira-to-cb` workflow) or formalizing it (via `biz-req`) is Bonnie's own later, separate, manually-triggered decision — not something this skill chains into.
 
 ## Output
 
-- **Location**: `A1-RA Rough/`
+- **Location**: `A1-RA Rough/` — verified against the actual filesystem: 3 precedent docs already live here, and a sibling `A2-RA Rough/` (mentioned in the generic `report-paths.md` rule) does not exist anywhere in this vault. If `report-paths.md` and this file ever disagree on the Cookbook RA output directory, **this file wins** — it's the more specific instruction and matches what's actually on disk. Don't re-derive this from scratch next time; it's settled.
+- **Do not archive before review.** Write the file only after Bonnie has reviewed the drafted report in-chat and approved it — see Step 4.
 - **Filename** — no date:
   - Ticket-based: `<TICKET-KEY>_<Topic>_<描述>.md` (e.g. `MD-17701_Timer支持_需求分析.md`)
   - Not ticket-based: `<Topic>_<描述>.md`

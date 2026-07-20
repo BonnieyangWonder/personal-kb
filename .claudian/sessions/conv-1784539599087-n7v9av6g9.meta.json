@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784539599087-n7v9av6g9",
+  "providerId": "claude",
+  "title": "Look up Jira ticket for IK-eligible cook step s...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784539599087,
+  "updatedAt": 1784539622974,
+  "lastResponseAt": 1784539622974,
+  "sessionId": "f3921b7f-32f3-4386-a586-f7073799f133",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "f3921b7f-32f3-4386-a586-f7073799f133"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 10427,
+    "cacheReadInputTokens": 28420,
+    "contextWindow": 200000,
+    "contextTokens": 38855,
+    "percentage": 19,
+    "contextWindowIsAuthoritative": true
+  }
+}
