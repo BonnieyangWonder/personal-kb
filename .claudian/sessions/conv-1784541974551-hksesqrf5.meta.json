@@ -4,8 +4,8 @@
   "title": "Find tickets related to IK eligible checkbox logic",
   "titleGenerationStatus": "success",
   "createdAt": 1784541974551,
-  "updatedAt": 1784547152708,
-  "lastResponseAt": 1784547152708,
+  "updatedAt": 1784547366170,
+  "lastResponseAt": 1784547366170,
   "sessionId": "79b0cf19-33cb-4fad-aead-7fe520647c8d",
   "selectedModel": "haiku",
   "providerState": {
@@ -66,11 +66,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 1942,
-    "cacheReadInputTokens": 56358,
+    "cacheCreationInputTokens": 1102,
+    "cacheReadInputTokens": 58899,
     "contextWindow": 200000,
-    "contextTokens": 58308,
-    "percentage": 29,
+    "contextTokens": 60009,
+    "percentage": 30,
     "contextWindowIsAuthoritative": true
   }
 }

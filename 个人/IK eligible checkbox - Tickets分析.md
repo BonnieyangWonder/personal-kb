@@ -66,28 +66,28 @@ tags:
 
 ## ✅ 更新进度追踪
 
-### 已完成更新 (2026-07-20)
-- ✅ **MD-17690** - 已更新
-- ✅ **MD-17820** - 已更新
-- ✅ **MD-17947** - 已更新
-- ✅ **MD-17982** - 已更新
-- ✅ **MD-18130** - 已更新
+### 已完成更新 (2026-07-20) - 5个
+- ✅ **MD-17690** - [已更新] (之前的4个外的tickets之一)
+- ✅ **MD-17820** - [已更新] (之前的4个外的tickets之一)
+- ✅ **MD-17947** - [已更新] (之前的4个外的tickets之一)
+- ✅ **MD-17982** - [已更新] (之前的4个外的tickets之一)
+- ✅ **MD-18130** - IK Support-Component machine eligibility warning and IK step ordering constraint
 
 ### 待更新 (共11个)
-- [ ] MD-17693
-- [ ] MD-17756
-- [ ] MD-17818
-- [ ] MD-17880
-- [ ] MD-17927
-- [ ] MD-18104
-- [ ] MD-18115
-- [ ] MD-18167
-- [ ] MD-18170
-- [ ] MD-18217
-- [ ] MD-18219
-- [ ] MD-18224
-- [ ] MD-18226
-- [ ] MD-18271
+- [ ] **MD-17693** - UI - IK Support - IK Eligible Line Build
+- [ ] **MD-17756** - Send a topic/message to HDR if an ingredient is removed from "Machine Eligible" attribute
+- [ ] **MD-17818** - [Wonder Create] Build General Line Build Agent (ships before WC flow)
+- [ ] **MD-17880** - Map items as machine eligible for IK project
+- [ ] **MD-17927** - IK Plating Rules configuration on menu item
+- [ ] **MD-18104** - Remove Hot Holding Exclusion Logic From Vend Step in Cookbook
+- [ ] **MD-18115** - IK Support-Side Component in Specific Dish Type
+- [ ] **MD-18167** - Configure Minimal Serving Portion Conversion at Component Level
+- [ ] **MD-18170** - Auto-select default IK plating rule when step marked as IK eligible
+- [ ] **MD-18217** - Disable Deletion from Machine Eligible/Wonder Eligible Component
+- [ ] **MD-18219** - Prevent from Tab Machine/Wonder Eligible Attribute to Published Item without Portion Conversion
+- [ ] **MD-18224** - Menu item/non food item detail page: Don't display 'portion conversion' pop up
+- [ ] **MD-18226** - CLONE - Menu item/non food item detail page: Remove validation of 'Portion Conversion missing'
+- [ ] **MD-18271** - Minimal Serving Portion Conversion API support
 
 ---
 

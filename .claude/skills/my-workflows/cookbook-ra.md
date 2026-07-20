@@ -58,6 +58,16 @@ wonder-pantry, wonder-orders, wonder-otr, wonder-sporklift, wonder-supply-chain,
 
 Read everything provided, fully: full ticket body + all comments (not just the summary line), linked Confluence pages (and their child pages / footer / inline comments if linked), screenshots. Don't analyze off a title or a one-line paraphrase.
 
+### Map the Cross-System Blast Radius (always, no exceptions)
+
+A ticket that names one counterparty system (e.g. "VCS wants to change X") is rarely actually a two-party negotiation. Before moving to Step 2, nail down three things — they compound, do all three:
+
+1. **Full consumer graph, not just the named counterparty.** Find every system that reads or writes the same field/entity, not only the one named in the ticket. Check what's downstream of Cookbook directly (via the relevant wonder-* skills and CB-full-feature — Order Grid, ShipHero, Sporklift, Pantry, etc. each have independent sync paths) AND what's downstream of the named counterparty itself (e.g. what reads *from* VCS, not just what VCS reads from Cookbook). Don't stop at the first system named in the ticket — explicitly ask "who else touches this data."
+2. **Which side actually implements the described behavior?** Don't assume the change is symmetric. A counterparty's proposed change ("we'll ignore your updates from now on") may require zero code change on Cookbook's side — the logic can live entirely in their own ingestion layer. Pin this down explicitly: whose code changes, whose doesn't. This directly shapes the answer to "what does Cookbook need to do" — sometimes the honest answer is "supply data to inform their decision, write no code."
+3. **Consistency consequence, given 1 and 2.** Once the consumer graph and the implementation side are both known, work out what happens once the two sides diverge: which systems keep tracking Cookbook's live value, which inherit the counterparty's altered/frozen value, and what breaks — or just looks contradictory — for anyone who ends up comparing the two.
+
+Not a one-time gate — revisit if Step 2's data analysis surfaces a system you hadn't accounted for.
+
 ## Step 2 — Data Impact Analysis (always, no exceptions)
 
 Always run real BigQuery queries to quantify impact — how many items/HDRs/orders/menus are actually affected. This is a firm default for every RA, not something to skip because the requirement looks simple; logical reasoning alone is not sufficient.
@@ -67,6 +77,8 @@ Always run real BigQuery queries to quantify impact — how many items/HDRs/orde
 ## Step 3 — Escalation Check (this decides output depth — not the requirement's wording)
 
 Do **not** pre-classify the requirement as simple or complex from how it's phrased — that's unreliable. Three real precedents ([[2026-05-25_Gluten-Free_标签系统推断改人工指定_需求分析]], [[2026-05-21_40_item_number_F-T_suffix_影响评估]], [[2026-06-24_Wonder_Create_BYO_Customization_Analysis]]) all read as simple/bounded on the surface and all escalated once actually investigated. Complexity shows up during analysis, not in the initial ask.
+
+The first two signals below are often exactly what Step 1's blast-radius mapping surfaces — don't skip straight to eyeballing this table without having actually done that mapping.
 
 After Steps 0–2, check whether any of these signals turned up:
 

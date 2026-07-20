@@ -4,8 +4,8 @@
   "title": "Analyze Cookbook UOM event requirements",
   "titleGenerationStatus": "success",
   "createdAt": 1784513143106,
-  "updatedAt": 1784547220523,
-  "lastResponseAt": 1784547220523,
+  "updatedAt": 1784548706249,
+  "lastResponseAt": 1784547428562,
   "sessionId": "dce9e36d-181b-443f-a723-a1090156bd16",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -13,12 +13,12 @@
   },
   "usage": {
     "model": "sonnet[1m]",
-    "inputTokens": 342,
-    "cacheCreationInputTokens": 39918,
-    "cacheReadInputTokens": 358536,
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 811,
+    "cacheReadInputTokens": 419257,
     "contextWindow": 1000000,
-    "contextTokens": 398796,
-    "percentage": 40,
+    "contextTokens": 420070,
+    "percentage": 42,
     "contextWindowIsAuthoritative": true
   }
 }
