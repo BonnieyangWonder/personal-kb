@@ -1,14 +1,14 @@
 ---
 title: 我的 Skills 清单
 created: 2026-07-17
-updated: 2026-07-17
+updated: 2026-07-20
 tags: [meta, skills, index, 个人]
 ---
 
 # 我的 Skills 清单
 
 > 一份 skill 总览:**有哪些、在哪、个人还是团队、各自做什么**。
-> 专治「分不清哪个是我自己的 skill」。手动维护,最后更新 2026-07-17。
+> 专治「分不清哪个是我自己的 skill」。手动维护,最后更新 2026-07-20。
 
 ## 一眼分类(位置 = 归属)
 
@@ -32,6 +32,7 @@ tags: [meta, skills, index, 个人]
 | **biz-req** | `biz-req.md` | 把 Jira + Confluence 需求编译成业务需求文档,写进 `Z01-Resource/CB-business/` |
 | **sync-ticket-to-confluence** | `sync-ticket-to-confluence.md` | 对比 Jira ticket 与已有 Confluence 页面,给出 diff,确认后更新 Confluence(英文) |
 | **create-jira-ticket** | `create-jira-ticket.md` | 建 Jira ticket(MD 项目、Story)。⚠️ 顶层另有一份同名 `.claude/skills/create-jira-ticket.md`,`ticket-workflow` 规则实际用的是**顶层**那份 |
+| **xm-ny-weekly-planning** | `xm-ny-weekly-planning.md` | 建当周「XM NY Weekly Planning」Confluence 页面(空间 RT,父页面"2026"),正文标题 `Topics`,comment 里艾特 Pratik Busi / Jakob Lewei / Lisa Li / Bonnie。触发:「创建本周的 meeting agenda」「XM NY weekly planning for this week」。⚙️ **已注册 macOS LaunchAgent 每周一 15:00 自动跑**(无需开口),脚本 + 日志在 `~/.xm-ny-weekly-planning/`(`run.log`)。**如果自动没成功,直接说触发词手动建就行** |
 
 ---
 

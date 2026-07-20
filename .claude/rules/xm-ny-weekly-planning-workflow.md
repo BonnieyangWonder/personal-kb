@@ -25,5 +25,5 @@ Usually asked once a week (often Monday), but recognize the intent on whatever d
 
 - Title date is the page-creation date **plus one day** — this direction was corrected once already; do not default to "the day before."
 - Mentions in the footer comment MUST use the Confluence storage-format `<ac:link><ri:user ri:account-id="..." /></ac:link>` macro. Plain markdown `@name` or `[~id]` renders as dead text, not a real mention — this failed once already in practice.
-- Default attendees (Pratik Busi, Jakob Lewei, Lisa Li) are listed with pre-resolved account IDs in the skill file — reuse them, don't re-search unless the user changes the attendee list.
+- Default attendees (Pratik Busi, Jakob Lewei, Lisa Li, Bonnie Yang) are listed with pre-resolved account IDs in the skill file — reuse them, don't re-search unless the user changes the attendee list.
 - Do not write Obsidian vault notes as part of this workflow — it only touches Confluence.
