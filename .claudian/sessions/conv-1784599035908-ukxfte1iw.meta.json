@@ -1,0 +1,10 @@
+{
+  "id": "conv-1784599035908-ukxfte1iw",
+  "providerId": "claude",
+  "title": "Archive Jira tickets to CB-Full-Feature",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784599035908,
+  "updatedAt": 1784599042345,
+  "sessionId": null,
+  "selectedModel": "sonnet[1m]"
+}
