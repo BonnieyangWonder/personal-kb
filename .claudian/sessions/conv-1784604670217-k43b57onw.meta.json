@@ -4,10 +4,10 @@
   "title": "Archive Jira tickets to CB-full-feature",
   "titleGenerationStatus": "success",
   "createdAt": 1784604670217,
-  "updatedAt": 1784606273105,
+  "updatedAt": 1784620892415,
   "lastResponseAt": 1784606273105,
   "sessionId": "76c4bcdb-2212-4d81-bfa4-2c47e88ac04b",
-  "selectedModel": "haiku",
+  "selectedModel": "sonnet[1m]",
   "providerState": {
     "providerSessionId": "76c4bcdb-2212-4d81-bfa4-2c47e88ac04b",
     "subagentData": {
