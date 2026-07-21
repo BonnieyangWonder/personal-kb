@@ -4,7 +4,21 @@
   "title": "Analyze Cookbook support for Confluence require...",
   "titleGenerationStatus": "success",
   "createdAt": 1784622352867,
-  "updatedAt": 1784622360895,
-  "sessionId": null,
-  "selectedModel": "sonnet[1m]"
+  "updatedAt": 1784627906579,
+  "lastResponseAt": 1784627906579,
+  "sessionId": "e0b4d482-27ad-4f1f-9cdf-fcc181511853",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "e0b4d482-27ad-4f1f-9cdf-fcc181511853"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 2950,
+    "cacheReadInputTokens": 232345,
+    "contextWindow": 1000000,
+    "contextTokens": 235297,
+    "percentage": 24,
+    "contextWindowIsAuthoritative": true
+  }
 }
