@@ -107,14 +107,13 @@ After the archive is executed, treat this ticket as a retrospective test case fo
 
 **Trigger: only when the user explicitly confirms the archive is fully complete** for a ticket or batch of tickets. Do not do this automatically right after executing edits, and do not do it per-page as individual pages get approved — wait for the user's final "done" signal for the whole batch.
 
-1. For each archived ticket, fetch its current `description` field and append to the **bottom** (preserving all existing content/formatting):
+1. For each archived ticket, **add a comment** (do NOT modify the `description` field — see rationale below):
 
    `Note: Updated to Obsidian CB Full Feature page`
 
-2. Update via `jira_update_issue`, passing the full existing description plus the appended note (the field is replaced wholesale, not appended server-side — reproduce the original text exactly, character-for-character, then add the note).
-3. If a ticket (e.g. a sub-task) has **no description at all**, do not silently invent one or skip it silently — ask the user how they want it handled.
-4. After updating, tell the user to spot-check the ticket — reproducing a long description verbatim via a tool call carries some risk of a transcription slip, and this is production Jira data, not a draft.
-5. This is a one-line marker on the Jira side so future readers know the ticket's requirements have been folded into CB-full-feature — it is not a substitute for the Change Log entries already added to the CB-full-feature pages themselves.
+2. Use `mcp__mcp-atlassian__jira_add_comment`. A comment is plain text with no structural formatting to preserve, so there is nothing to corrupt.
+3. **Never modify the `description` field for this or any other non-substantive purpose.** `jira_get_issue` converts Jira's native wiki markup (`h2.` headings, `#`/`##`/`###` nested ordered lists, `||...||` tables, `-strikethrough-`) into an approximate, lossy pseudo-Markdown when displaying it to you. Round-tripping that text back through `jira_update_issue` (which parses the input as standard Markdown) does NOT correctly reconstruct the original nesting/tables/headings/bold — this already happened on a real archive (2026-07-21, MD-17690/17820/17947/18130): all multi-level numbering, table structure, and bold styling in the descriptions was flattened/lost. Recovery required pulling the pre-edit raw wiki markup from the issue changelog (`jira_get_issue` with `include=changelog`, read the `from_string` of the `description` field change) and handing it to the user to manually restore in Jira's rich editor — the API round-trip cannot be trusted to fix itself.
+4. This is a one-line marker on the Jira side so future readers know the ticket's requirements have been folded into CB-full-feature — it is not a substitute for the Change Log entries already added to the CB-full-feature pages themselves.
 
 ## Editing Conventions
 
@@ -181,6 +180,7 @@ When a topic spans multiple pages:
 9. **Filling gaps with plausible invention**: a missing detail (a button, a function name, a scope limitation) should be flagged as unconfirmed or omitted, never invented.
 10. **Scope creep beyond the ticket**: don't add "reasonable" product extensions (e.g. a new table column, a new publish-time check) that no ticket description actually asked for.
 11. **Assuming a page's role from its title without reading it**: verify whether a page is a display page or an edit page, and whether it's even the right home for the content, by reading its actual content first.
+12. **Modifying a ticket's `description` field for any reason (e.g. marking it as archived)**: reading it via `jira_get_issue` and writing it back via `jira_update_issue` is a lossy round-trip for nested lists/tables/headings in Jira's native wiki markup — confirmed by a real incident (2026-07-21). Use a comment (`jira_add_comment`) for any post-archive annotation instead; never touch `description` after the initial read.
 
 ## Quick Reference
 
@@ -192,4 +192,4 @@ When a topic spans multiple pages:
 | Edit a page | `Edit` tool with exact `old_string` match |
 | Create a new page | `Write` tool with full content + frontmatter |
 | Search within files | `grep` via Bash |
-| Mark ticket as archived (Step 7, after final confirmation) | `mcp__mcp-atlassian__jira_update_issue` |
+| Mark ticket as archived (Step 7, after final confirmation) | `mcp__mcp-atlassian__jira_add_comment` (never `jira_update_issue` on `description`) |
