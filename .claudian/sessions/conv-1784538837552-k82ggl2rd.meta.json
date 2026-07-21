@@ -4,8 +4,8 @@
   "title": "Archive MD-17690 and MD-17820 to CB-Full-Feature",
   "titleGenerationStatus": "success",
   "createdAt": 1784538837552,
-  "updatedAt": 1784604627076,
-  "lastResponseAt": 1784604627076,
+  "updatedAt": 1784605422992,
+  "lastResponseAt": 1784605422992,
   "sessionId": "9d64bebc-bd24-46ae-8fb6-64b59cf3e635",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -668,12 +668,12 @@
   },
   "usage": {
     "model": "sonnet[1m]",
-    "inputTokens": 147,
-    "cacheCreationInputTokens": 4279,
-    "cacheReadInputTokens": 518861,
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 533905,
+    "cacheReadInputTokens": 0,
     "contextWindow": 1000000,
-    "contextTokens": 523287,
-    "percentage": 52,
+    "contextTokens": 533907,
+    "percentage": 53,
     "contextWindowIsAuthoritative": true
   }
 }
