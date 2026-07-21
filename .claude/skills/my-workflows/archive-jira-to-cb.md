@@ -19,11 +19,24 @@ Archive a Jira ticket's feature requirements into the Cookbook Full Features Det
 
 ### Step 1: Read the Ticket
 
-Fetch the full Jira ticket via Atlassian MCP tools (`jira_get_issue` with `fields=*all`). Capture:
+Fetch the full Jira ticket via Atlassian MCP tools (`jira_get_issue` with `fields=*all`, `include=comments`) **directly yourself** — do not rely on a sub-agent's paraphrased summary for anything that will be written into CB-full-feature. Sub-agent summaries have repeatedly been observed to blend description and comment content indiscriminately, and even to invent plausible-sounding details with no ticket basis at all (a fabricated UI button, a fabricated backend function name). Capture:
 - Summary, description, acceptance criteria
 - All comments (especially implementation summaries and clarifications)
 - Linked Confluence pages or Figma references
 - **Always read the latest ticket description** — it is the authoritative source. Comments may contain outdated discussions.
+
+### Step 1.5: Source Discipline (Critical)
+
+This is the most common failure mode in past archives. Follow strictly:
+
+1. **The `description` field is the source of truth for requirements.** Every requirement documented in CB-full-feature must be traceable to a specific line in a ticket's description. Go through the description **line-by-line, not just the parts that feel most salient** — past archives missed real requirements (an API field-exposure requirement, an attribute-update-propagation rule) sitting in the description the whole time, because analysis jumped straight to the most visually prominent requirement (a UI checkbox) and treated everything else as secondary.
+2. **Comments are supplementary, not authoritative for requirements** — but not all comment content is equal:
+   - A comment describing *actual implemented behavior* from the engineer who built it (e.g. a "What Changed" note naming a real UI position, a real preserved/cleared field behavior) is generally trustworthy and MAY be used, since it reflects what actually shipped.
+   - A comment describing *internal implementation mechanics* (function names, exception types, backend call paths) should almost never be written into CB-full-feature — this is the wrong altitude for a requirements/behavior doc.
+   - When in doubt whether a comment detail is real-implementation vs. speculative, ask the user rather than guessing.
+3. **Never fabricate.** If a plausible-sounding UI affordance, message, or mechanism is not explicitly stated anywhere in the ticket (description OR comment), do not invent it to make the documentation feel "complete." Omit it, or flag it to the user as unconfirmed.
+4. **Do not propose changes beyond what the tickets state.** A page or behavior that seems like a "reasonable product extension" but has no basis in any ticket's description must NOT be added to the archive — flag it separately as a suggestion if worth raising, but keep it out of the CB-full-feature update itself.
+5. **When multiple tickets touch the same feature, the later-released ticket's description wins on conflicts** — but confirm this against actual resolution/release dates, not creation dates.
 
 ### Step 2: Explore the Documentation — Read EVERY Page
 
@@ -54,6 +67,8 @@ Fetch the full Jira ticket via Atlassian MCP tools (`jira_get_issue` with `field
    - A new card → affects Fields & Cards matrix, the card's own detail page, validations, publish flow, copy/version creation, change history, and compare change history
    - A validation rule change → may affect both the validations page and the publish workflow page
    - A field behavior change → may affect the card's detail page and the item grid page
+6. **Never assume a page's scope from its title alone.** Read its full content before deciding it needs a specific field/behavior added. Past archives proposed changes to a page based only on what its name suggested, without ever reading the page — and the assumption was wrong.
+7. **Distinguish display/view pages from create/edit pages.** Editing-time interaction logic (what happens when a field changes, validation triggered on save, activity-switch preserve/clear behavior) belongs on the edit page. A display/view page should only describe the read-only final-state rendering — do not duplicate edit-time behavior there.
 
 **The goal**: after this step, you should have read every page and be able to state — for *each* page — why it does or does not need changes.
 
@@ -87,6 +102,19 @@ After the archive is executed, treat this ticket as a retrospective test case fo
 1. **Reverse-engineer the requirement analysis this ticket would have needed**, using the ticket plus what's now documented in CB-full-feature — what would a thorough RA of this ticket have had to cover, now that the real, shipped answer is visible? Bring whatever analysis lenses are actually relevant to this specific ticket, the way an experienced requirements analyst sizing up a real case would — do not force it into a fixed checklist. Prior functionality/state, impact scope, related/connected features, cross-team dependencies, risks, and which dimensions turned out to matter are common starting points, not a mandatory or exhaustive list.
 2. **Compare against the current Cookbook RA skill's framework** — its resource registry, escalation signals, and content axes (A: business rule/capability change vs B: item type attribute management). Does this real case reveal something the current framework would miss or handle awkwardly?
 3. **Append findings to the design log, not the skill file**: `A1-RA Rough/2026-07-06_Cookbook RA Skill_设计讨论.md`, under its case-retrospective section (use the entry format documented there). Do not edit `cookbook-ra.md` directly from this step — Bonnie reviews the accumulated log periodically and decides when/how to fold findings into the actual skill.
+
+### Step 7: Mark the Ticket as Archived
+
+**Trigger: only when the user explicitly confirms the archive is fully complete** for a ticket or batch of tickets. Do not do this automatically right after executing edits, and do not do it per-page as individual pages get approved — wait for the user's final "done" signal for the whole batch.
+
+1. For each archived ticket, fetch its current `description` field and append to the **bottom** (preserving all existing content/formatting):
+
+   `Note: Updated to Obsidian CB Full Feature page`
+
+2. Update via `jira_update_issue`, passing the full existing description plus the appended note (the field is replaced wholesale, not appended server-side — reproduce the original text exactly, character-for-character, then add the note).
+3. If a ticket (e.g. a sub-task) has **no description at all**, do not silently invent one or skip it silently — ask the user how they want it handled.
+4. After updating, tell the user to spot-check the ticket — reproducing a long description verbatim via a tool call carries some risk of a transcription slip, and this is production Jira data, not a draft.
+5. This is a one-line marker on the Jira side so future readers know the ticket's requirements have been folded into CB-full-feature — it is not a substitute for the Change Log entries already added to the CB-full-feature pages themselves.
 
 ## Editing Conventions
 
@@ -148,6 +176,11 @@ When a topic spans multiple pages:
 4. **Forgetting Change Log tables**: Every modified page gets one at the bottom.
 5. **Modifying unrelated pages**: Only touch pages directly affected by the ticket.
 6. **Editing before approval**: Never modify files until the user explicitly approves the plan.
+7. **Trusting sub-agent paraphrase over the ticket's raw text**: always fetch and read the raw `description` field yourself for anything going into CB-full-feature; sub-agent summaries can blend in comment content or invent details.
+8. **Treating all comment content as equally reliable**: distinguish "engineer describing real shipped behavior" from "internal implementation mechanics" or unconfirmed speculation (see Source Discipline, Step 1.5).
+9. **Filling gaps with plausible invention**: a missing detail (a button, a function name, a scope limitation) should be flagged as unconfirmed or omitted, never invented.
+10. **Scope creep beyond the ticket**: don't add "reasonable" product extensions (e.g. a new table column, a new publish-time check) that no ticket description actually asked for.
+11. **Assuming a page's role from its title without reading it**: verify whether a page is a display page or an edit page, and whether it's even the right home for the content, by reading its actual content first.
 
 ## Quick Reference
 
@@ -159,3 +192,4 @@ When a topic spans multiple pages:
 | Edit a page | `Edit` tool with exact `old_string` match |
 | Create a new page | `Write` tool with full content + frontmatter |
 | Search within files | `grep` via Bash |
+| Mark ticket as archived (Step 7, after final confirmation) | `mcp__mcp-atlassian__jira_update_issue` |
