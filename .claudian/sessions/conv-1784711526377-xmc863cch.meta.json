@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784711526377-xmc863cch",
+  "providerId": "claude",
+  "title": "Reload Obsidian app",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784711526378,
+  "updatedAt": 1784711782287,
+  "lastResponseAt": 1784711597701,
+  "sessionId": "90d1c8e4-ab64-4085-85dd-cfcc50079c0a",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "90d1c8e4-ab64-4085-85dd-cfcc50079c0a"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 10,
+    "cacheCreationInputTokens": 685,
+    "cacheReadInputTokens": 25656,
+    "contextWindow": 200000,
+    "contextTokens": 26351,
+    "percentage": 13,
+    "contextWindowIsAuthoritative": true
+  }
+}
