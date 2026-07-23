@@ -4,8 +4,8 @@
   "title": "帮我查下现在menu item （忽略dormant, expired, draft version...",
   "titleGenerationStatus": "failed",
   "createdAt": 1784771971940,
-  "updatedAt": 1784776682535,
-  "lastResponseAt": 1784776682535,
+  "updatedAt": 1784778104310,
+  "lastResponseAt": 1784778104310,
   "sessionId": "1148a840-4659-47e3-9d3a-c43e24cb1e8d",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -14,10 +14,10 @@
   "usage": {
     "model": "sonnet[1m]",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 860,
-    "cacheReadInputTokens": 265017,
+    "cacheCreationInputTokens": 3952,
+    "cacheReadInputTokens": 266600,
     "contextWindow": 1000000,
-    "contextTokens": 265879,
+    "contextTokens": 270554,
     "percentage": 27,
     "contextWindowIsAuthoritative": true
   }
