@@ -4,8 +4,8 @@
   "title": "Create Jira ticket to remove legacy flag",
   "titleGenerationStatus": "success",
   "createdAt": 1784772513396,
-  "updatedAt": 1784772541422,
-  "lastResponseAt": 1784772541422,
+  "updatedAt": 1784775136003,
+  "lastResponseAt": 1784774511007,
   "sessionId": "e83f9496-e6c7-4ad2-aeac-ee20ce7f96c7",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -13,12 +13,12 @@
   },
   "usage": {
     "model": "sonnet[1m]",
-    "inputTokens": 6929,
-    "cacheCreationInputTokens": 13430,
-    "cacheReadInputTokens": 30710,
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 657,
+    "cacheReadInputTokens": 62757,
     "contextWindow": 1000000,
-    "contextTokens": 51069,
-    "percentage": 5,
+    "contextTokens": 63416,
+    "percentage": 6,
     "contextWindowIsAuthoritative": true
   }
 }
