@@ -1,7 +1,8 @@
-# Menu Item Customization — Max Options 数据分析
+# WC — BYO Customization Configuration Consistency 分析
 
+**项目**: WC (Wonder Create)
 **品牌范围**: Royal Greens、Limesalt、Yasas、Hanu Poke
-**报告日期**: 2026-07-23
+**分析对象**: 设置了 Max Options 的 customization，在 `custom_type`、`max_choices`、`min_choices`、`free_choices` 四个维度上，主 menu item 与其 preset menu item 的配置是否一致
 **数据源**: `wonder-recipe-prod.recipe_v2`（`item_versions` / `menus` / `concepts`）
 
 ## 0. 方法论与过滤条件
@@ -126,7 +127,15 @@
 
 ### 2.1 匹配方式说明
 
-Preset 与其主 item 的 customization option **id 并不相同**（preset 在创建时会为每个 option 生成新的 UUID），因此无法按 `option_id` 匹配，本分析改为按 **option 名称**（如 "Choose Your Main"、"2 Dressings (Served on Side)"）在同一主 item 下做匹配。Preset 数据同样过滤 `effective=true`、`deleted=false`、`item_status != DORMANT`、`version_status = FINAL`、`sold_status = FOR_SALE`。
+Preset 自己的 `item_versions.item_customization` 里，每个 option 的 `id` 是 preset 创建时新生成的 UUID，**与主 item 的 option id 不同**，不能直接按 `option_id` 做跨表 join。
+
+**补充核实**：`item_versions` 表上还有一个已废弃字段 `item_customization_presets`（挂在**主 item** 记录上，非 preset 自己的记录），里面按 **主 item 自己的 option_id** 记录了每个 preset（按名称）具体选中了哪些 `option_value`。这是目前能找到的、唯一一张记录"主 item option ↔ preset"关联关系的结构。核实结果：
+
+- 覆盖率有限：8 个 BYO 主 item 中，只有 **5 个**（8007402、8007403、8010459、8010473、8010492）该字段有数据；较新的 3 个（8004638 Limesalt Bowl、8011814 / 8011818 两个 C&C Pilot 版本）该字段为空，说明这批是在该字段停用之后创建的。
+- 关联到的 option 身份（按 option_id 反查主 item 当前的 option 名称）与本报告用 **option 名称匹配**的方式**完全一致**（如 "Base"、"Toppings"、"2 Dressings (Served on Side)" 等），仅 8010473 一个 option（旧 id `701bd7c4-...`）在当前 option 集合里找不到对应项，推测是历史上被拆分/改名后留下的失效引用（该主 item 目前有 "Choose Your Sauce" + "Extra Sauce" 两个独立 option，早期可能是合并成一个）。
+- **关键限制**：`item_customization_presets` 只记录了每个 preset 选中的 `option_value`（是否选中/是否 in_eligible/default_portion），**不包含** `custom_type` / `max_choices` / `min_choices` / `freemium` 这些设置本身 —— 这些设置只存在于**每个 preset 自己的** `item_versions.item_customization` 里。
+
+**结论**：`item_customization_presets` 证实了本报告"按 option 名称匹配"的关联关系是对的（两种方法在能交叉验证的范围内 100% 一致），但它无法替代本节的差异对比——因为它不携带 Max/Min/Custom Type/Free Choices 这些数值。因此下方差异对比仍然是：**主 item 的 option（来自主 item 自己的 item_customization）× 同名的 preset option（来自 preset 自己的 item_customization）**逐项比较。Preset 数据同样过滤 `effective=true`、`deleted=false`、`item_status != DORMANT`、`version_status = FINAL`、`sold_status = FOR_SALE`。
 
 ### 2.2 覆盖范围
 
@@ -373,3 +382,4 @@ Preset 与其主 item 的 customization option **id 并不相同**（preset 在�
 3. Free Choices（`freemium`）在本品牌范围内，主 item 层面全部未设置；仅在 1 个 preset（Marc Murphy's Crispy Leaf & Feta Salad, Royal Greens PRESET）上被单独设置为 1（主 item 该项为空）。
 4. 只统计了主 item 的 customization option 与"存在同名 option"的 preset 之间的差异；若 preset 引入了主 item 没有的全新 option（本次未发现此类情况），或某个 preset 缺失了主 item 里的某个 option，未计入本次对比范围。
 5. Hanu Poke 的 BYO Poke Bowl（8010473）因 menu 归属被计入 Royal Greens，见 §0.2 特别说明。
+6. `item_versions.item_customization_presets`（已废弃字段，挂在主 item 记录上）为 5/8 个主 item 提供了权威的 option_id 级"主 item option ↔ preset"关联记录，交叉验证了 §2.1 的按名称匹配方法；但该字段不含 `custom_type`/`max_choices`/`min_choices`/`freemium`，无法替代本报告的差异对比，详见 §2.1。
