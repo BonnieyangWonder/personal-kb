@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784771971939-06yfptjt2",
+  "providerId": "claude",
+  "title": "帮我查下现在menu item （忽略dormant, expired, draft version...",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1784771971940,
+  "updatedAt": 1784772853607,
+  "lastResponseAt": 1784772853607,
+  "sessionId": "1148a840-4659-47e3-9d3a-c43e24cb1e8d",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "1148a840-4659-47e3-9d3a-c43e24cb1e8d"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 147,
+    "cacheCreationInputTokens": 780,
+    "cacheReadInputTokens": 204560,
+    "contextWindow": 1000000,
+    "contextTokens": 205487,
+    "percentage": 21,
+    "contextWindowIsAuthoritative": true
+  }
+}
