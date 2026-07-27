@@ -4,8 +4,8 @@
   "title": "Create Jira ticket for W42* item allergen logic",
   "titleGenerationStatus": "success",
   "createdAt": 1785133549847,
-  "updatedAt": 1785133645700,
-  "lastResponseAt": 1785133645700,
+  "updatedAt": 1785146224903,
+  "lastResponseAt": 1785146224903,
   "sessionId": "6e3160e9-32e5-4dcb-8d27-a78f0f11e962",
   "selectedModel": "haiku",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 393,
-    "cacheReadInputTokens": 45859,
+    "cacheCreationInputTokens": 627,
+    "cacheReadInputTokens": 50958,
     "contextWindow": 200000,
-    "contextTokens": 46260,
-    "percentage": 23,
+    "contextTokens": 51593,
+    "percentage": 26,
     "contextWindowIsAuthoritative": true
   }
 }
