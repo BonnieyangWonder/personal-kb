@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785122201894-x18timnzx",
+  "providerId": "claude",
+  "title": "Format table text with numbering or bullets in ...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785122201894,
+  "updatedAt": 1785122342149,
+  "lastResponseAt": 1785122342149,
+  "sessionId": "32bd4b99-226f-4485-825c-954f12dbc8e2",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "32bd4b99-226f-4485-825c-954f12dbc8e2"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 310,
+    "cacheReadInputTokens": 29456,
+    "contextWindow": 200000,
+    "contextTokens": 29774,
+    "percentage": 15,
+    "contextWindowIsAuthoritative": true
+  }
+}

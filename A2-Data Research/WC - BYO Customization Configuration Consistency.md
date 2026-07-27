@@ -373,6 +373,25 @@ Preset 自己的 `item_versions.item_customization` 里，每个 option 的 `id`
 | Grilled Steak & Feta Sandwich (C&C Pilot) (8011878) | max_choices: 1 → None |
 
 
+### 2.6 另一维度：Custom Type 一致、但 Max Options 不一致的情况
+
+在 §2.3 的 102 组不一致里，进一步筛选出 **`custom_type` 相同、仅 `max_choices` 不同**的子集（即选择模式没变，但可选数量上限被调整）：
+
+> **23 组**属于这种情况（占总不一致 102 组的 22.5%，占全部 804 组对比的 2.9%），分布在 5 种模式：
+
+| 品牌 | 主 Item | Customization | Custom Type（一致） | 主 item Min/Max | 差异 Preset 数 | Preset 的 Min/Max |
+|---|---|---|---|---|---|---|
+| Royal Greens | BYO Greens Bowl - Abridged Rail ID (8010492) | Crunchy Toppings | MULTI_SELECT | min=0, max=3 | 14 | min=0, max=2 |
+| Royal Greens | BYO Greens Bowl - Abridged Rail ID (8010492) | 2 Dressings (Served on Side) | MULTI_SELECT | min=2, max=2 | 1（Pesto Parm Bowl AB PRESET, 8010701） | min=1, max=3 |
+| Royal Greens | BYO Greens Bowl - Primary ID (8010459) | 2 Dressings (Served on Side) | MULTI_SELECT | min=2, max=2 | 1（Pesto Parm Bowl PRESET, 8010663） | min=1, max=3 |
+| Royal Greens | BYO Greens Bowl - Primary ID (C&C Pilot) (8011814) | 2 Dressings (Served on Side) | MULTI_SELECT | min=2, max=2 | 1（Pesto Parm Bowl PRESET C&C Pilot, 8011892） | min=2, max=3 |
+| Yasas | Wrap (BYO) (C&C Pilot) (8011818) | Choose Dressing (Served on Side) | SINGLE_SELECT | min=1, max=1 | 3（Za'atar Carrots & Broccoli Pita 8011879、Harissa Chicken Crunch Sandwich 8011876、Grilled Steak & Feta Sandwich 8011878） | min=1, max=None（未设置） |
+
+**观察**：
+- 最大的一类是 "Crunchy Toppings" 在 8010492 上：主 item 允许最多选 3 个，但 14 个 preset 都被**收紧**到最多 2 个 —— custom_type 没变（仍是多选），只是上限被收窄。
+- "Pesto Parm Bowl" 系列（在 3 个不同版本的 BOWLDER 主 item 上都有对应 preset）反而是**放宽**：主 item "2 Dressings" 最多选 2 个，preset 却把上限提到 3。
+- Yasas C&C Pilot 的 3 个 preset 把 "Choose Dressing" 的 `max_choices` 直接清空成 `None`（custom_type 仍是单选，理论上不影响下单功能，但字段设置本身不一致，可能是配置遗漏）。
+
 ---
 
 ## 3. 数据口径与已知局限
