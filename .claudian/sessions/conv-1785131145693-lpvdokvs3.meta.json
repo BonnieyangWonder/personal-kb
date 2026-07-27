@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785131145693-lpvdokvs3",
+  "providerId": "claude",
+  "title": "Check if obsidian-skills plugin is installed",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785131145694,
+  "updatedAt": 1785131215988,
+  "lastResponseAt": 1785131215988,
+  "sessionId": "2c2370ac-a972-4f25-9fe6-0a0e72643929",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "2c2370ac-a972-4f25-9fe6-0a0e72643929"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 283,
+    "cacheReadInputTokens": 34298,
+    "contextWindow": 200000,
+    "contextTokens": 34589,
+    "percentage": 17,
+    "contextWindowIsAuthoritative": true
+  }
+}
