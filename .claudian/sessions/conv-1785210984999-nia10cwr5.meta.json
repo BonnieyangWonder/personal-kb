@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785210984999-nia10cwr5",
+  "providerId": "claude",
+  "title": "看下这个是什么逻辑？select",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1785210985000,
+  "updatedAt": 1785211910901,
+  "lastResponseAt": 1785211910901,
+  "sessionId": "a1dc02ae-7335-46df-bafd-a19e8693fe93",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "a1dc02ae-7335-46df-bafd-a19e8693fe93"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 10,
+    "cacheCreationInputTokens": 30475,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 30485,
+    "percentage": 15,
+    "contextWindowIsAuthoritative": true
+  }
+}
