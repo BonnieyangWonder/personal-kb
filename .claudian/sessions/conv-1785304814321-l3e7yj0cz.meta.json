@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785304814321-l3e7yj0cz",
+  "providerId": "claude",
+  "title": "Find menu item line with hot hold eligible",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785304814322,
+  "updatedAt": 1785306325677,
+  "lastResponseAt": 1785304893458,
+  "sessionId": "98e3e4c1-2172-4822-a27f-01ab7371b4bd",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "98e3e4c1-2172-4822-a27f-01ab7371b4bd"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 1309,
+    "cacheReadInputTokens": 36788,
+    "contextWindow": 200000,
+    "contextTokens": 38105,
+    "percentage": 19,
+    "contextWindowIsAuthoritative": true
+  }
+}
