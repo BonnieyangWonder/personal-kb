@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785320108755-qq3u9diyb",
+  "providerId": "claude",
+  "title": "Create Jira ticket for training card redesign",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785320108755,
+  "updatedAt": 1785320211209,
+  "lastResponseAt": 1785320211209,
+  "sessionId": "edda8752-1428-404e-9d17-11823493584e",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "edda8752-1428-404e-9d17-11823493584e"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 671,
+    "cacheReadInputTokens": 45842,
+    "contextWindow": 200000,
+    "contextTokens": 46521,
+    "percentage": 23,
+    "contextWindowIsAuthoritative": true
+  }
+}
