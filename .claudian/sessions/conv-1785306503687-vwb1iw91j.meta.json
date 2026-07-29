@@ -4,8 +4,8 @@
   "title": "Create Jira ticket for machine eligible validat...",
   "titleGenerationStatus": "success",
   "createdAt": 1785306503687,
-  "updatedAt": 1785306522842,
-  "lastResponseAt": 1785306522842,
+  "updatedAt": 1785306644269,
+  "lastResponseAt": 1785306644269,
   "sessionId": "190775fc-443a-48dc-bb51-5b0af7923b04",
   "selectedModel": "haiku",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 12261,
-    "cacheReadInputTokens": 26226,
+    "cacheCreationInputTokens": 538,
+    "cacheReadInputTokens": 57502,
     "contextWindow": 200000,
-    "contextTokens": 38495,
-    "percentage": 19,
+    "contextTokens": 58048,
+    "percentage": 29,
     "contextWindowIsAuthoritative": true
   }
 }
