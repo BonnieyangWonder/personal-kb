@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785393268135-e6ddvqtr0",
+  "providerId": "claude",
+  "title": "Create Jira ticket for menu-level customization...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785393268136,
+  "updatedAt": 1785393352858,
+  "lastResponseAt": 1785393352858,
+  "sessionId": "21fc97e7-fd9a-4f8b-8a31-7bbd043944a9",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "21fc97e7-fd9a-4f8b-8a31-7bbd043944a9"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 374,
+    "cacheReadInputTokens": 43922,
+    "contextWindow": 200000,
+    "contextTokens": 44304,
+    "percentage": 22,
+    "contextWindowIsAuthoritative": true
+  }
+}
