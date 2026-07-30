@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785404285670-96zhzlacq",
+  "providerId": "claude",
+  "title": "Create Jira ticket for menu item component",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785404285671,
+  "updatedAt": 1785404349690,
+  "lastResponseAt": 1785404349690,
+  "sessionId": "8d4a1139-1044-472f-8062-0376c14784ea",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "8d4a1139-1044-472f-8062-0376c14784ea"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 697,
+    "cacheReadInputTokens": 45243,
+    "contextWindow": 200000,
+    "contextTokens": 45948,
+    "percentage": 23,
+    "contextWindowIsAuthoritative": true
+  }
+}

@@ -10,6 +10,6 @@ When the user says "create ticket", "建 ticket", "new ticket", "create Jira tic
    - Board: [MD Board](https://wonder.atlassian.net/jira/software/c/projects/MD/boards/10)
    - Assignee: bonnieyang@xm.wonder.com
    - Description template: Background → Request → References → Note
-   - Confirm with user if anything is ambiguous BEFORE creating
+   - **Default: Create directly** — unless you are very uncertain about ticket content, create immediately without draft confirmation
 3. **Do NOT**: write Obsidian documents, create vault notes, or do anything other than what the skill prescribes
-4. **If uncertain** about any aspect of the request: ask the user first
+4. **Only ask for clarification** if the requirement is genuinely ambiguous and you cannot reasonably interpret it

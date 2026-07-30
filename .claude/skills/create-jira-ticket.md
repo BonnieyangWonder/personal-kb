@@ -19,12 +19,11 @@ All ticket content MUST be in English — summary, description, acceptance crite
 1. User sends ONE message containing: requirements text + screenshots (pasted inline)
 2. Auto-detect: immediately check clipboard for images — the user pastes screenshots alongside their text; do NOT ask them to send screenshots separately
 3. Analyze: distill the core request, separate background from ask, identify dependencies
-4. Draft the ticket summary and description
-5. Confirm with user if anything is ambiguous
-6. If screenshots detected → save from clipboard, upload as attachments, embed in description
-7. Create the ticket (MCP for skeleton → REST API with ADF for description)
-8. **Link related tickets**: If the user mentions another ticket (e.g., "关联到 CBR-21090", "link to PROJ-123"), create an issue link with type **Relates** (relates to) — unless the user specifies a different link type. Use `jira_create_issue_link` with `link_type: "Relates"` and the new ticket as `inward_issue_key`, the referenced ticket as `outward_issue_key`.
-9. **Verify**: Read the ticket back. If description headings show raw `h2.` text instead of rendered `##` markdown, the ADF update failed — refresh token and retry. Do NOT proceed until headings render correctly.
+4. **Default: Create directly** — unless you are VERY uncertain about ticket content (extremely ambiguous requirements), proceed straight to creation. Only draft and confirm if content interpretation is genuinely unclear.
+5. If screenshots detected → save from clipboard, upload as attachments, embed in description
+6. Create the ticket (MCP for skeleton → REST API with ADF for description)
+7. **Link related tickets**: If the user mentions another ticket (e.g., "关联到 CBR-21090", "link to PROJ-123"), create an issue link with type **Relates** (relates to) — unless the user specifies a different link type. Use `jira_create_issue_link` with `link_type: "Relates"` and the new ticket as `inward_issue_key`, the referenced ticket as `outward_issue_key`.
+8. **Verify**: Read the ticket back. If description headings show raw `h2.` text instead of rendered `##` markdown, the ADF update failed — refresh token and retry. Do NOT proceed until headings render correctly.
 
 ## Execution Strategy (in priority order)
 

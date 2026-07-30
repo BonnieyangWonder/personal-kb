@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785402886040-smbxq39wl",
+  "providerId": "claude",
+  "title": "Create Jira ticket for required customization flag",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785402886040,
+  "updatedAt": 1785403073552,
+  "lastResponseAt": 1785403032723,
+  "sessionId": "19ed0c41-46a7-4638-80e3-e8e8178e83aa",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "19ed0c41-46a7-4638-80e3-e8e8178e83aa"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 678,
+    "cacheReadInputTokens": 45533,
+    "contextWindow": 200000,
+    "contextTokens": 46219,
+    "percentage": 23,
+    "contextWindowIsAuthoritative": true
+  }
+}
