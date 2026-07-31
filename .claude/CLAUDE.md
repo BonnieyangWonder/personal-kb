@@ -7,6 +7,7 @@
 @rules/domain-context.md
 @rules/language-preference.md
 @rules/report-paths.md
+@rules/sediment-cookbook-feature-workflow.md
 @rules/ticket-workflow.md
 @rules/tool-paths.md
 @rules/xm-ny-weekly-planning-workflow.md

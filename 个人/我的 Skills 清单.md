@@ -1,7 +1,7 @@
 ---
 title: 我的 Skills 清单
 created: 2026-07-17
-updated: 2026-07-20
+updated: 2026-07-31
 tags: [meta, skills, index, 个人]
 ---
 
@@ -33,6 +33,7 @@ tags: [meta, skills, index, 个人]
 | **sync-ticket-to-confluence** | `sync-ticket-to-confluence.md` | 对比 Jira ticket 与已有 Confluence 页面,给出 diff,确认后更新 Confluence(英文) |
 | **create-jira-ticket** | `create-jira-ticket.md` | 建 Jira ticket(MD 项目、Story)。⚠️ 顶层另有一份同名 `.claude/skills/create-jira-ticket.md`,`ticket-workflow` 规则实际用的是**顶层**那份 |
 | **xm-ny-weekly-planning** | `xm-ny-weekly-planning.md` | 建当周「XM NY Weekly Planning」Confluence 页面(空间 RT,父页面"2026"),正文标题 `Topics`,comment 里艾特 Pratik Busi / Jakob Lewei / Lisa Li / Bonnie。触发:「创建本周的 meeting agenda」「XM NY weekly planning for this week」。⚙️ **已注册 macOS LaunchAgent 每周一 15:00 自动跑**(无需开口),脚本 + 日志在 `~/.xm-ny-weekly-planning/`(`run.log`)。**如果自动没成功,直接说触发词手动建就行** |
+| **sediment-cookbook-feature-reqs** | `sediment-cookbook-feature-reqs.md` | 沉淀 Cookbook 系统功能/字段的业务需求文档。从 Jira ticket 提取需求 → 组织标准化文档 → 放进 `Z01-Resource/CB-business/features/`(持久化的功能业务需求档案库)。触发:「沉淀业务需求」「生成业务需求」「写业务需求」+[链接/图片/文字]。输出文件名简洁清晰,含范围标记(如 `7*`)避免重名 |
 
 ---
 
