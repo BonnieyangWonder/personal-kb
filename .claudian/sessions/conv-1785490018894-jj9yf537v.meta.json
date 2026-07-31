@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785490018894-jj9yf537v",
+  "providerId": "claude",
+  "title": "Find menu item customization line-build task data",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785490018894,
+  "updatedAt": 1785491019106,
+  "lastResponseAt": 1785491019106,
+  "sessionId": "43c40b3d-f5b7-4d28-9af4-bc6c4cc83bcf",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "43c40b3d-f5b7-4d28-9af4-bc6c4cc83bcf"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 1000,
+    "cacheReadInputTokens": 158020,
+    "contextWindow": 200000,
+    "contextTokens": 159028,
+    "percentage": 80,
+    "contextWindowIsAuthoritative": true
+  }
+}
