@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785476516993-tdcimm47g",
+  "providerId": "claude",
+  "title": "Write business requirement report for MD-18172 ...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785476516993,
+  "updatedAt": 1785476910983,
+  "lastResponseAt": 1785476910983,
+  "sessionId": "f4d2ef0d-8e0c-4e0b-bea4-9d5ae050add1",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "f4d2ef0d-8e0c-4e0b-bea4-9d5ae050add1"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 3242,
+    "cacheReadInputTokens": 42841,
+    "contextWindow": 200000,
+    "contextTokens": 46091,
+    "percentage": 23,
+    "contextWindowIsAuthoritative": true
+  }
+}
