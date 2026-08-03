@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785730062188-v230tfuq3",
+  "providerId": "claude",
+  "title": "Create Jira ticket for menu item line build fix",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785730062188,
+  "updatedAt": 1785730145283,
+  "lastResponseAt": 1785730145283,
+  "sessionId": "787df632-b7dd-49f3-95e9-25fcce7f7327",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "787df632-b7dd-49f3-95e9-25fcce7f7327"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 672,
+    "cacheReadInputTokens": 48940,
+    "contextWindow": 200000,
+    "contextTokens": 49620,
+    "percentage": 25,
+    "contextWindowIsAuthoritative": true
+  }
+}
