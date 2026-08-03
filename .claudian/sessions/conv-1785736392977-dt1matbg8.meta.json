@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785736392977-dt1matbg8",
+  "providerId": "claude",
+  "title": "Check Cookbook hot holding instructions for items",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785736392977,
+  "updatedAt": 1785736499421,
+  "lastResponseAt": 1785736499421,
+  "sessionId": "a323fb2b-81a9-462f-ac6a-e5bad724a159",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "a323fb2b-81a9-462f-ac6a-e5bad724a159"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 255,
+    "cacheReadInputTokens": 55597,
+    "contextWindow": 200000,
+    "contextTokens": 55860,
+    "percentage": 28,
+    "contextWindowIsAuthoritative": true
+  }
+}
