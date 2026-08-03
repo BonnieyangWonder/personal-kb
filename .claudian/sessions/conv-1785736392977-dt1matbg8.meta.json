@@ -4,8 +4,8 @@
   "title": "Check Cookbook hot holding instructions for items",
   "titleGenerationStatus": "success",
   "createdAt": 1785736392977,
-  "updatedAt": 1785736499421,
-  "lastResponseAt": 1785736499421,
+  "updatedAt": 1785737572841,
+  "lastResponseAt": 1785736806558,
   "sessionId": "a323fb2b-81a9-462f-ac6a-e5bad724a159",
   "selectedModel": "haiku",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 255,
-    "cacheReadInputTokens": 55597,
+    "cacheCreationInputTokens": 394,
+    "cacheReadInputTokens": 62262,
     "contextWindow": 200000,
-    "contextTokens": 55860,
-    "percentage": 28,
+    "contextTokens": 62664,
+    "percentage": 31,
     "contextWindowIsAuthoritative": true
   }
 }

@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785737629859-euji88687",
+  "providerId": "claude",
+  "title": "Explain B2B SKU management in supply chain systems",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785737629859,
+  "updatedAt": 1785737732796,
+  "lastResponseAt": 1785737732796,
+  "sessionId": "5ff493d0-bc12-4dd3-8da7-6378632c0744",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "5ff493d0-bc12-4dd3-8da7-6378632c0744"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 2462,
+    "cacheReadInputTokens": 58579,
+    "contextWindow": 200000,
+    "contextTokens": 61049,
+    "percentage": 31,
+    "contextWindowIsAuthoritative": true
+  }
+}
