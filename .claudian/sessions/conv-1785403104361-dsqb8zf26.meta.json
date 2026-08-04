@@ -4,8 +4,8 @@
   "title": "Analyze requirements for Jira ticket MD-18346",
   "titleGenerationStatus": "success",
   "createdAt": 1785403104361,
-  "updatedAt": 1785829295919,
-  "lastResponseAt": 1785829295919,
+  "updatedAt": 1785831081036,
+  "lastResponseAt": 1785831081036,
   "sessionId": "372813e9-772f-434b-b128-2634647c7cb6",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "sonnet[1m]",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 327512,
-    "cacheReadInputTokens": 0,
+    "cacheCreationInputTokens": 9274,
+    "cacheReadInputTokens": 398521,
     "contextWindow": 1000000,
-    "contextTokens": 327514,
-    "percentage": 33,
+    "contextTokens": 407797,
+    "percentage": 41,
     "contextWindowIsAuthoritative": true
   }
 }

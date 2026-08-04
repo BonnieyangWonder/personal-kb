@@ -68,6 +68,19 @@ A ticket that names one counterparty system (e.g. "VCS wants to change X") is ra
 
 Not a one-time gate — revisit if Step 2's data analysis surfaces a system you hadn't accounted for.
 
+### Check New-Field Conflicts Against Config Logic First, Not Live Numbers (when the ask adds a flag/field to an existing schema)
+
+When the ask is "add a new flag/field to an existing configurable entity" (a customization option, an item attribute, etc.) and that entity already has several sibling settings, don't leave "does the new field conflict with the old ones" for later, and don't reach for a hypothetical stock/quantity scenario as the first move. Enumerate every sibling field on the entity as a checklist, then run this test on each pairing before anything else:
+
+**Can the conflict be proven from configuration values alone — counts, booleans, enums — with zero invented live-data numbers?**
+
+- **Yes** → a genuine, provable, save-time error-level validation gap. State it as a pure logical/combinatorial contradiction (e.g. "two mutually-exclusive settings can't both independently hold when the structure only allows one to ever apply").
+- **No** — demonstrating the "risk" required inventing a stock/quantity scenario to make it visible → it's a business-judgment call, not a blockable validation. Say so plainly (training/warning-copy material at best); don't dress it up as a hard rule.
+
+Reasoning bottom-up from an invented numeric scenario as the first move is slow and specifically blind to pure structural conflicts that need no data to see at all — this is the trap on MD-18346: several rounds were spent chasing a hypothetical stock-and-formula scenario before the real conflict (two mutually-exclusive option values both flagged, with a selection cap that made holding both impossible) turned out to need no numbers whatsoever, only a count comparison.
+
+These are two separate failure modes and both need covering: which fields get checked (coverage — enumerate the full sibling list yourself, don't wait for the requester to name candidates) and whether each one is judged correctly (correctness — the config-only test above). Widening the question asked of you only fixes the first.
+
 ## Step 2 — Data Impact Analysis (always, no exceptions)
 
 Always run real BigQuery queries to quantify impact — how many items/HDRs/orders/menus are actually affected. This is a firm default for every RA, not something to skip because the requirement looks simple; logical reasoning alone is not sufficient.
