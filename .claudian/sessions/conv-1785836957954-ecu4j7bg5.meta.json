@@ -4,7 +4,21 @@
   "title": "Extract Jira tickets into sprint-grouped table",
   "titleGenerationStatus": "success",
   "createdAt": 1785836957954,
-  "updatedAt": 1785836962337,
-  "sessionId": null,
-  "selectedModel": "haiku"
+  "updatedAt": 1785837481034,
+  "lastResponseAt": 1785837481034,
+  "sessionId": "b3497289-6248-42f1-a039-1fd5948368f0",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "b3497289-6248-42f1-a039-1fd5948368f0"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 2066,
+    "cacheReadInputTokens": 50491,
+    "contextWindow": 200000,
+    "contextTokens": 52565,
+    "percentage": 26,
+    "contextWindowIsAuthoritative": true
+  }
 }
