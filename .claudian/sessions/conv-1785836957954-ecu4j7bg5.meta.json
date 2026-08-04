@@ -1,0 +1,10 @@
+{
+  "id": "conv-1785836957954-ecu4j7bg5",
+  "providerId": "claude",
+  "title": "帮我读取识别下图片里的ticket信息，按表格的方式列出来给我，按sprint group by s...",
+  "titleGenerationStatus": "pending",
+  "createdAt": 1785836957954,
+  "updatedAt": 1785836957969,
+  "sessionId": null,
+  "selectedModel": "haiku"
+}
