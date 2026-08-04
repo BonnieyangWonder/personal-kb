@@ -1,10 +1,10 @@
 {
   "id": "conv-1785836957954-ecu4j7bg5",
   "providerId": "claude",
-  "title": "帮我读取识别下图片里的ticket信息，按表格的方式列出来给我，按sprint group by s...",
-  "titleGenerationStatus": "pending",
+  "title": "Extract Jira tickets into sprint-grouped table",
+  "titleGenerationStatus": "success",
   "createdAt": 1785836957954,
-  "updatedAt": 1785836957969,
+  "updatedAt": 1785836962337,
   "sessionId": null,
   "selectedModel": "haiku"
 }
