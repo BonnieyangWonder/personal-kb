@@ -4,8 +4,8 @@
   "title": "Archive Jira tickets to CB-full-feature",
   "titleGenerationStatus": "success",
   "createdAt": 1784604670217,
-  "updatedAt": 1785492602682,
-  "lastResponseAt": 1785492602682,
+  "updatedAt": 1785829338588,
+  "lastResponseAt": 1785829338588,
   "sessionId": "76c4bcdb-2212-4d81-bfa4-2c47e88ac04b",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -334,11 +334,11 @@
   "usage": {
     "model": "sonnet[1m]",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 4953,
-    "cacheReadInputTokens": 159417,
+    "cacheCreationInputTokens": 6326,
+    "cacheReadInputTokens": 178731,
     "contextWindow": 1000000,
-    "contextTokens": 164372,
-    "percentage": 16,
+    "contextTokens": 185059,
+    "percentage": 19,
     "contextWindowIsAuthoritative": true
   }
 }
