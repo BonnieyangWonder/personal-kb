@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785919632936-7y2vnkxho",
+  "providerId": "claude",
+  "title": "Check completed requirements from Confluence page",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785919632936,
+  "updatedAt": 1785920264991,
+  "lastResponseAt": 1785920264991,
+  "sessionId": "bd2192c0-b0e4-41c6-886c-d4ecef7f01fa",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "bd2192c0-b0e4-41c6-886c-d4ecef7f01fa"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1218,
+    "cacheReadInputTokens": 218268,
+    "contextWindow": 1000000,
+    "contextTokens": 219488,
+    "percentage": 22,
+    "contextWindowIsAuthoritative": true
+  }
+}
