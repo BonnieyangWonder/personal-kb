@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785915060830-fgsvpdeh7",
+  "providerId": "claude",
+  "title": "Create Jira ticket for scroll-to-top feature",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785915060831,
+  "updatedAt": 1785915153242,
+  "lastResponseAt": 1785915153242,
+  "sessionId": "319a7678-49de-4e26-973e-388ee1455a93",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "319a7678-49de-4e26-973e-388ee1455a93"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 743,
+    "cacheReadInputTokens": 68917,
+    "contextWindow": 1000000,
+    "contextTokens": 69662,
+    "percentage": 7,
+    "contextWindowIsAuthoritative": true
+  }
+}
