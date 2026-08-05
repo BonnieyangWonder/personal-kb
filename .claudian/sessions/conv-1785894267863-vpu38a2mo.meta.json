@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785894267863-vpu38a2mo",
+  "providerId": "claude",
+  "title": "Create Jira ticket per instructions",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785894267863,
+  "updatedAt": 1785894561714,
+  "lastResponseAt": 1785894331858,
+  "sessionId": "4bf92272-3c22-44dc-95f9-df1fbaa73b60",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "4bf92272-3c22-44dc-95f9-df1fbaa73b60"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 911,
+    "cacheReadInputTokens": 48318,
+    "contextWindow": 200000,
+    "contextTokens": 49237,
+    "percentage": 25,
+    "contextWindowIsAuthoritative": true
+  }
+}

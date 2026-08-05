@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785894407218-3b0kmtzd9",
+  "providerId": "claude",
+  "title": "Create Jira ticket for Raw Dough pilot menu issue",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785894407219,
+  "updatedAt": 1785895487983,
+  "lastResponseAt": 1785895487983,
+  "sessionId": "cd959289-d976-4f8a-ba37-886889a664e0",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "cd959289-d976-4f8a-ba37-886889a664e0"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 757,
+    "cacheReadInputTokens": 104450,
+    "contextWindow": 200000,
+    "contextTokens": 105215,
+    "percentage": 53,
+    "contextWindowIsAuthoritative": true
+  }
+}

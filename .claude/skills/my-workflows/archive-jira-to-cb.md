@@ -82,11 +82,15 @@ Map ticket requirements to documentation pages. For each page, determine:
 
 ### Step 4: Present Plan for Review (DO NOT EXECUTE YET)
 
-Present a structured plan showing **only pages that need changes** (modify or create):
+Present a structured plan showing **only pages that need changes** (modify or create), reviewed one item at a time:
 
 - **Before** — the current content (exact excerpt)
-- **After** — the proposed new content
-- **Rationale** — why this change is needed
+- **After** — the proposed new content. **Annotate this line inline with which ticket(s) the change belongs to and a one-line summary of what changed**, e.g.:
+
+  `**修改后**（**MD-17927 + MD-18170** — 把字段从"5选1"重写成"Default/Custom两层结构"；补齐灰置输入框、隐藏下拉框、Default值缺失报错...）：`
+
+  Put the ticket + summary directly on the "After" label itself. Do NOT put it in a separate summary table, and do NOT use inline strikethrough/bold diff markup on the content instead — both were tried in a real review session (2026-08 archive of MD-17927/MD-18170/MD-18115/MD-18104) and rejected by Bonnie: a separate table forces scrolling back and forth between the diff and the summary during item-by-item review; diff-markup on a near-total rewrite ends up bolding most of the block, defeating the purpose. Plain Before/After text blocks, with ticket+summary living in the After label, is the format that actually worked for review.
+- **Rationale** — why this change is needed (can fold into the After annotation instead of a separate line, as long as ticket + summary are both present there)
 
 **Do NOT list pages that need no changes** — they add noise without value for review. If the user asks whether a specific page was checked, answer directly.
 
