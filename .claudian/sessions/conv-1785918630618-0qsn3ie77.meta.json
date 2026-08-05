@@ -1,0 +1,24 @@
+{
+  "id": "conv-1785918630618-0qsn3ie77",
+  "providerId": "claude",
+  "title": "Create Jira ticket for line build validation",
+  "titleGenerationStatus": "success",
+  "createdAt": 1785918630618,
+  "updatedAt": 1785918724406,
+  "lastResponseAt": 1785918724406,
+  "sessionId": "25d74bfd-8e9d-469e-b689-f5dde3f5cdac",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "25d74bfd-8e9d-469e-b689-f5dde3f5cdac"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 781,
+    "cacheReadInputTokens": 50255,
+    "contextWindow": 200000,
+    "contextTokens": 51044,
+    "percentage": 26,
+    "contextWindowIsAuthoritative": true
+  }
+}
