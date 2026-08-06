@@ -2,6 +2,7 @@
 <!-- Knowlery rule imports:start -->
 @rules/activity-ledger.md
 @rules/archive-ticket-instruction.md
+@rules/check-40-item-fulfillment-workflow.md
 @rules/citation-required.md
 @rules/cookbook-ra-workflow.md
 @rules/domain-context.md

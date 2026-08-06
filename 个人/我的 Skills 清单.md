@@ -1,14 +1,14 @@
 ---
 title: 我的 Skills 清单
 created: 2026-07-17
-updated: 2026-07-31
+updated: 2026-08-06
 tags: [meta, skills, index, 个人]
 ---
 
 # 我的 Skills 清单
 
 > 一份 skill 总览:**有哪些、在哪、个人还是团队、各自做什么**。
-> 专治「分不清哪个是我自己的 skill」。手动维护,最后更新 2026-07-20。
+> 专治「分不清哪个是我自己的 skill」。手动维护,最后更新 2026-08-06。
 
 ## 一眼分类(位置 = 归属)
 
@@ -34,6 +34,7 @@ tags: [meta, skills, index, 个人]
 | **create-jira-ticket** | `create-jira-ticket.md` | 建 Jira ticket(MD 项目、Story)。⚠️ 顶层另有一份同名 `.claude/skills/create-jira-ticket.md`,`ticket-workflow` 规则实际用的是**顶层**那份 |
 | **xm-ny-weekly-planning** | `xm-ny-weekly-planning.md` | 建当周「XM NY Weekly Planning」Confluence 页面(空间 RT,父页面"2026"),正文标题 `Topics`,comment 里艾特 Pratik Busi / Jakob Lewei / Lisa Li / Bonnie。触发:「创建本周的 meeting agenda」「XM NY weekly planning for this week」。⚙️ **已注册 macOS LaunchAgent 每周一 15:00 自动跑**(无需开口),脚本 + 日志在 `~/.xm-ny-weekly-planning/`(`run.log`)。**如果自动没成功,直接说触发词手动建就行** |
 | **sediment-cookbook-feature-reqs** | `sediment-cookbook-feature-reqs.md` | 沉淀 Cookbook 系统功能/字段的业务需求文档。从 Jira ticket 提取需求 → 组织标准化文档 → 放进 `Z01-Resource/CB-business/features/`(持久化的功能业务需求档案库)。触发:「沉淀业务需求」「生成业务需求」「写业务需求」+[链接/图片/文字]。输出文件名简洁清晰,含范围标记(如 `7*`)避免重名 |
+| **check-40-item-fulfillment** | `check-40-item-fulfillment.md` | 批量检查一批 40\* item 背后是否有可用 fulfillment option:先按 concept→brand 解析排除掉只被 Happy Tuna/Ess-a-Bagel 使用的正常项,再对被其他品牌用到的项查 40F/40 本身/未cutover时的41 三条兜底路径。默认只在chat里出结果,不主动存报告。触发(按意图识别,不用完整句子/固定说法):「查一下这些40 item有没有fulfillment option」「这些40有没有fulfillment」「这些40正常吗」(在fulfillment/42/41/SCC语境下),或直接甩一批40\*编号也能识别。触发规则单独有一份:`check-40-item-fulfillment-workflow.md`(`.claude/rules/`)。完整方法论见 [[missing fulfillment option 分析方法]](同在个人区) |
 
 ---
 
