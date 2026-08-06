@@ -4,8 +4,8 @@
   "title": "Check 40F item mappings in BigQuery",
   "titleGenerationStatus": "success",
   "createdAt": 1785984767533,
-  "updatedAt": 1785987618553,
-  "lastResponseAt": 1785987618553,
+  "updatedAt": 1785989187886,
+  "lastResponseAt": 1785989187886,
   "sessionId": "886354c8-43fe-498b-ad9d-22ec479240e3",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "sonnet[1m]",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 2011,
-    "cacheReadInputTokens": 234701,
+    "cacheCreationInputTokens": 1119,
+    "cacheReadInputTokens": 281122,
     "contextWindow": 1000000,
-    "contextTokens": 236714,
-    "percentage": 24,
+    "contextTokens": 282243,
+    "percentage": 28,
     "contextWindowIsAuthoritative": true
   }
 }
