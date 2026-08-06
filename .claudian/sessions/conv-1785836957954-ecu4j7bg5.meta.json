@@ -4,8 +4,8 @@
   "title": "Extract Jira tickets into sprint-grouped table",
   "titleGenerationStatus": "success",
   "createdAt": 1785836957954,
-  "updatedAt": 1785991376021,
-  "lastResponseAt": 1785991376021,
+  "updatedAt": 1785992206954,
+  "lastResponseAt": 1785992206954,
   "sessionId": "b3497289-6248-42f1-a039-1fd5948368f0",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "sonnet[1m]",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 7004,
-    "cacheReadInputTokens": 114571,
+    "cacheCreationInputTokens": 11046,
+    "cacheReadInputTokens": 207861,
     "contextWindow": 1000000,
-    "contextTokens": 121577,
-    "percentage": 12,
+    "contextTokens": 218909,
+    "percentage": 22,
     "contextWindowIsAuthoritative": true
   }
 }
