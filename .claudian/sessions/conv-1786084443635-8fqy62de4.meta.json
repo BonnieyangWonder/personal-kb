@@ -1,0 +1,24 @@
+{
+  "id": "conv-1786084443635-8fqy62de4",
+  "providerId": "claude",
+  "title": "Create Jira ticket for nutrition chip display",
+  "titleGenerationStatus": "success",
+  "createdAt": 1786084443635,
+  "updatedAt": 1786085174287,
+  "lastResponseAt": 1786084530214,
+  "sessionId": "ea97fc30-fe98-4309-9f41-36c0ecb9de1b",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "ea97fc30-fe98-4309-9f41-36c0ecb9de1b"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 774,
+    "cacheReadInputTokens": 50243,
+    "contextWindow": 200000,
+    "contextTokens": 51025,
+    "percentage": 26,
+    "contextWindowIsAuthoritative": true
+  }
+}
