@@ -1,0 +1,24 @@
+{
+  "id": "conv-1786072246690-ntb1h5dqi",
+  "providerId": "claude",
+  "title": "Query menu items with duplicate line builds per...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1786072246690,
+  "updatedAt": 1786072968297,
+  "lastResponseAt": 1786072968297,
+  "sessionId": "6d94d14f-7686-4b19-9eea-43503f7ac568",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "6d94d14f-7686-4b19-9eea-43503f7ac568"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1020,
+    "cacheReadInputTokens": 226230,
+    "contextWindow": 1000000,
+    "contextTokens": 227252,
+    "percentage": 23,
+    "contextWindowIsAuthoritative": true
+  }
+}
