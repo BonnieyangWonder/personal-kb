@@ -1,0 +1,24 @@
+{
+  "id": "conv-1786087688079-nxyfftcjy",
+  "providerId": "claude",
+  "title": "Create Jira ticket for SCC 88*/42* SKU ratio issue",
+  "titleGenerationStatus": "success",
+  "createdAt": 1786087688079,
+  "updatedAt": 1786088212531,
+  "lastResponseAt": 1786088212531,
+  "sessionId": "6ea34694-cb32-40a7-9ef9-eb17ae278aad",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "6ea34694-cb32-40a7-9ef9-eb17ae278aad"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 826,
+    "cacheReadInputTokens": 194794,
+    "contextWindow": 1000000,
+    "contextTokens": 195622,
+    "percentage": 20,
+    "contextWindowIsAuthoritative": true
+  }
+}
