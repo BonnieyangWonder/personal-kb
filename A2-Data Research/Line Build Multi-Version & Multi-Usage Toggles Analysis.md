@@ -2,7 +2,7 @@
 
 **目的**：评估 Cookbook Line Build 中 **"Is Multi-usage qty Item"** 和 **"Multi versions vs options"** 两个 toggle 是否可以下线，改用常规（单条）line build 配置替代。
 
-**数据来源**：`secure-recipe-prod.recipe_v2.item_line_builds` / `item_versions` / `effective_items`，essential filter 统一为 `deleted=false AND item_status!='DORMANT' AND effective=true`（对比案例除外，见附录C）。
+**数据来源**：`secure-recipe-prod.recipe_v2.item_line_builds` / `item_versions` / `effective_items`，essential filter 统一为 `deleted=false AND item_status!='DORMANT' AND effective=true`（对比案例除外，见第三节）。
 
 **范围**：全菜单当前 `sold_status IN ('FOR_SALE','SCHEDULED')`、`version_status IN ('FINAL','SCHEDULED')`、非preset的menu item中，两个toggle各自=true的全部item（Is Multi-usage 4个，Multi versions 12个）。
 
@@ -17,7 +17,17 @@
 
 ---
 
-## 一、Multi versions vs options — 全量数据
+## 最终建议
+
+1. **Multi versions vs options**：12个item全部建议下线该toggle，统一迁移为"1条line build + 多个step在同一序号下按option value分流"（技术可行性验证见第三节3.4）。
+2. **Is Multi-usage qty Item**：
+   - 8011482 / 8011483（Smash Burger）：直接关闭toggle，退回常规单line build。
+   - 8006447 / 8010990（Di Fara Pizza）：保留能力，但建议长期用BOM/recipe层的"数量随选中数变化的公式字段"取代目前"手工配N条line build×餐厅覆盖"的方式，从数据模型上根治，而不是简单回退到常规单line build（常规配置解决不了这个聚合逻辑）。
+3. 建议在全菜单范围（不止这16个item）按"绑定的option类型是否为MANDATORY_CHOICE/DISH_PREFERENCE + 各分支cook_time/appliance/step数量是否相同"这个规则做一次全量筛查，识别出所有类似"芝士case"的冗余配置，评估下线两个toggle后的实际收益面。
+
+---
+
+## 一、Multi versions vs options — 详细数据
 
 ### 1.1 12个item绑定的option / customization type / option value
 
@@ -135,7 +145,7 @@ No Cheese分支      step1: 无对应sub-step（跳过这一行）
 
 ---
 
-## 二、Is Multi-usage qty Item — 全量数据
+## 二、Is Multi-usage qty Item — 详细数据
 
 ### 2.1 4个item绑定的option / customization type
 
@@ -184,16 +194,6 @@ Di Fara披萨"Choose Your Toppings"当前可选值（`item_customization`里现�
 | 7（COMPLETE） | Place in Bag | 完全相同 | 完全相同 |
 
 两个档位除了内部line build ID不同外，**没有发现任何用量、appliance、cook time上的差异**——这2个item开启这个toggle没有实际起作用,退回单条常规line build结果完全一致。
-
----
-
-## 三、最终建议
-
-1. **Multi versions vs options**：12个item全部建议下线该toggle，统一迁移为"1条line build + 多个step在同一序号下按option value分流"（[验证过技术可行，见1.4]）。
-2. **Is Multi-usage qty Item**：
-   - 8011482 / 8011483（Smash Burger）：直接关闭toggle，退回常规单line build。
-   - 8006447 / 8010990（Di Fara Pizza）：保留能力，但建议长期用BOM/recipe层的"数量随选中数变化的公式字段"取代目前"手工配N条line build×餐厅覆盖"的方式，从数据模型上根治，而不是简单回退到常规单line build（常规配置解决不了这个聚合逻辑）。
-3. 建议在全菜单范围（不止这16个item）按"绑定的option类型是否为MANDATORY_CHOICE/DISH_PREFERENCE + 各分支cook_time/appliance/step数量是否相同"这个规则做一次全量筛查，识别出所有类似"芝士case"的冗余配置，评估下线两个toggle后的实际收益面。
 
 ---
 

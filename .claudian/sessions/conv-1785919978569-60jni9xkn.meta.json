@@ -4,8 +4,8 @@
   "title": "Query line-build menu items with multi-usage qty",
   "titleGenerationStatus": "success",
   "createdAt": 1785919978569,
-  "updatedAt": 1786072666940,
-  "lastResponseAt": 1786072666940,
+  "updatedAt": 1786082959583,
+  "lastResponseAt": 1786082959583,
   "sessionId": "955d0102-f2b9-4a3e-b2cd-3d91d4a9ea38",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -25,11 +25,11 @@
   "usage": {
     "model": "sonnet[1m]",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 950,
-    "cacheReadInputTokens": 456371,
+    "cacheCreationInputTokens": 12384,
+    "cacheReadInputTokens": 457957,
     "contextWindow": 1000000,
-    "contextTokens": 457323,
-    "percentage": 46,
+    "contextTokens": 470343,
+    "percentage": 47,
     "contextWindowIsAuthoritative": true
   }
 }
