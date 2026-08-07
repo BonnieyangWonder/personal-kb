@@ -4,8 +4,8 @@
   "title": "Query menu items with duplicate line builds per...",
   "titleGenerationStatus": "success",
   "createdAt": 1786072246690,
-  "updatedAt": 1786074220698,
-  "lastResponseAt": 1786074220698,
+  "updatedAt": 1786082035002,
+  "lastResponseAt": 1786082035002,
   "sessionId": "6d94d14f-7686-4b19-9eea-43503f7ac568",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "sonnet[1m]",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 2434,
-    "cacheReadInputTokens": 363954,
+    "cacheCreationInputTokens": 3418,
+    "cacheReadInputTokens": 373983,
     "contextWindow": 1000000,
-    "contextTokens": 366390,
-    "percentage": 37,
+    "contextTokens": 377403,
+    "percentage": 38,
     "contextWindowIsAuthoritative": true
   }
 }
