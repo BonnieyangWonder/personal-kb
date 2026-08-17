@@ -1,14 +1,30 @@
 ---
 title: 我的 Skills 清单
 created: 2026-07-17
-updated: 2026-08-06
+updated: 2026-08-17
 tags: [meta, skills, index, 个人]
 ---
 
 # 我的 Skills 清单
 
 > 一份 skill 总览:**有哪些、在哪、个人还是团队、各自做什么**。
-> 专治「分不清哪个是我自己的 skill」。手动维护,最后更新 2026-08-06。
+> 专治「分不清哪个是我自己的 skill」。手动维护，最后更新 2026-08-17。
+
+## 🚀 快速找 Skill
+
+**我要…** → **用这个 Skill**
+
+- 分析 Cookbook 需求 → **cookbook-ra**（📋 RA 分析）
+- 把 ticket 功能归档 → **archive-jira-to-cb**（📦 归档功能）
+- 生成业务需求文档 → **biz-req** 或 **sediment-cookbook-feature-reqs**（📄 业务需求）
+- 建 Jira ticket → **create-jira-ticket**（🎫 建 Ticket）
+- 同步 Jira 到 Confluence → **sync-ticket-to-confluence**（🔄 同步到 Confluence）
+- 同步 Sprint ticket 清单 → **sync-sprint-tickets-to-obsidian**（🔗 同步 Sprint 清单）
+- 检查 40* item → **check-40-item-fulfillment**（✅ 检查 Item）
+- 创建周会议程 → **xm-ny-weekly-planning**（📅 周会议程）
+- 查 Cookbook 数据 → **wonder-cookbook**（🍳 菜单配方）
+- 查 OTR 绩效 → **wonder-otr**（⏱️ 准时绩效）
+- 查其他业务数据 → 看下方**🔵 团队 Skills**表
 
 ## 一眼分类(位置 = 归属)
 
@@ -25,34 +41,35 @@ tags: [meta, skills, index, 个人]
 
 ## 🟢 个人 Skills —— `.claude/skills/my-workflows/`
 
-| Skill | 文件 | 做什么 |
-|---|---|---|
-| **cookbook-ra** | `cookbook-ra.md` | Cookbook 需求分析(RA):分析需求 → data impact 分析 → 出 RA 报告(到 `A1-RA Rough/`)。会自动编排调用 `wonder-*` 团队 skill。触发:「分析下 XX 需求」「RA 一下」 |
-| **archive-jira-to-cb** | `archive-jira-to-cb.md` | 把 Jira ticket 需求归档进 `Z01-Resource/CB-full-feature/`(已上线功能文档)。触发:「把 ticket 归档到 RA」 |
-| **biz-req** | `biz-req.md` | 把 Jira + Confluence 需求编译成业务需求文档,写进 `Z01-Resource/CB-business/` |
-| **sync-ticket-to-confluence** | `sync-ticket-to-confluence.md` | 对比 Jira ticket 与已有 Confluence 页面,给出 diff,确认后更新 Confluence(英文) |
-| **create-jira-ticket** | `create-jira-ticket.md` | 建 Jira ticket(MD 项目、Story)。⚠️ 顶层另有一份同名 `.claude/skills/create-jira-ticket.md`,`ticket-workflow` 规则实际用的是**顶层**那份 |
-| **xm-ny-weekly-planning** | `xm-ny-weekly-planning.md` | 建当周「XM NY Weekly Planning」Confluence 页面(空间 RT,父页面"2026"),正文标题 `Topics`,comment 里艾特 Pratik Busi / Jakob Lewei / Lisa Li / Bonnie。触发:「创建本周的 meeting agenda」「XM NY weekly planning for this week」。⚙️ **已注册 macOS LaunchAgent 每周一 15:00 自动跑**(无需开口),脚本 + 日志在 `~/.xm-ny-weekly-planning/`(`run.log`)。**如果自动没成功,直接说触发词手动建就行** |
-| **sediment-cookbook-feature-reqs** | `sediment-cookbook-feature-reqs.md` | 沉淀 Cookbook 系统功能/字段的业务需求文档。从 Jira ticket 提取需求 → 组织标准化文档 → 放进 `Z01-Resource/CB-business/features/`(持久化的功能业务需求档案库)。触发:「沉淀业务需求」「生成业务需求」「写业务需求」+[链接/图片/文字]。输出文件名简洁清晰,含范围标记(如 `7*`)避免重名 |
-| **check-40-item-fulfillment** | `check-40-item-fulfillment.md` | 批量检查一批 40\* item 背后是否有可用 fulfillment option:先按 concept→brand 解析排除掉只被 Happy Tuna/Ess-a-Bagel 使用的正常项,再对被其他品牌用到的项查 40F/40 本身/未cutover时的41 三条兜底路径。默认只在chat里出结果,不主动存报告。触发(按意图识别,不用完整句子/固定说法):「查一下这些40 item有没有fulfillment option」「这些40有没有fulfillment」「这些40正常吗」(在fulfillment/42/41/SCC语境下),或直接甩一批40\*编号也能识别。触发规则单独有一份:`check-40-item-fulfillment-workflow.md`(`.claude/rules/`)。完整方法论见 [[missing fulfillment option 分析方法]](同在个人区) |
+| 一眼看出 | Skill | 文件 | 做什么 |
+|---|---|---|---|
+| 📋 RA 分析 | **cookbook-ra** | `cookbook-ra.md` | 分析 Cookbook 需求 → 数据影响分析 → 生成 RA 报告。触发:「分析下 XX 需求」「RA 一下」 |
+| 📦 归档功能 | **archive-jira-to-cb** | `archive-jira-to-cb.md` | 把 Jira ticket 需求归档进 CB-full-feature（已上线功能文档）。触发:「把 ticket 归档到 RA」 |
+| 📄 业务需求 | **biz-req** | `biz-req.md` | 编译 Jira/Confluence 需求为业务需求文档，写进 CB-business |
+| 🔄 同步到 Confluence | **sync-ticket-to-confluence** | `sync-ticket-to-confluence.md` | 对比 Jira ticket vs Confluence 页面，给出 diff，确认后更新 Confluence（英文） |
+| 🎫 建 Ticket | **create-jira-ticket** | `create-jira-ticket.md` | 建 Jira ticket（MD 项目、Story）。⚠️ 注意：顶层有同名文件 `.claude/skills/create-jira-ticket.md`，规则用的是**顶层**那份 |
+| 📅 周会议程 | **xm-ny-weekly-planning** | `xm-ny-weekly-planning.md` | 建当周「XM NY Weekly Planning」Confluence 页面（RT 空间）。⚙️ **每周一 15:00 自动运行**，也可手动触发 |
+| 🏗️ 业务需求 | **sediment-cookbook-feature-reqs** | `sediment-cookbook-feature-reqs.md` | 沉淀 Cookbook 功能/字段的业务需求文档到 CB-business/features 存档库。触发:「沉淀业务需求」+[链接/图片/文字] |
+| ✅ 检查 Item | **check-40-item-fulfillment** | `check-40-item-fulfillment.md` | 批量检查 40* item 背后是否有可用 fulfillment option。按 concept→brand 排除正常项，查 40F/40/41 兜底路径。触发:「查一下这些40有没有fulfillment」或直接甩编号 |
+| 🔗 同步 Sprint 清单 | **sync-sprint-tickets-to-obsidian** | `sync-sprint-tickets-to-obsidian.md` | 从 Jira 拉取 Sprint ticket，自动更新 [[个人/ticket 归档]]。**保留你的"是否归档"标记不覆盖**。触发:「把 Sprint 16 同步到 ticket 归档」 |
 
 ---
 
 ## 🔵 团队 Skills —— `.claude/skills/wonder-<name>/`
 
-| Skill | 做什么 |
-|---|---|
-| **wonder-cookbook** | Cookbook recipe / BOM 系统:菜品配方、必选 vs 可选组件、菜单可用性逻辑 |
-| **wonder-command-center** | Command Center 拆单(Splitter):为什么某 item 被分到某个 order |
-| **wonder-kitchen-ops** | 厨房运营:batching 资格、fryer batching、BOM↔linebuild↔sequencing 关系 |
-| **wonder-menu-availability** | HDR 菜单可用性(`active_menu_v2` 现行 / `active_menu` 旧版) |
-| **wonder-orders** | 订单 / 销售数据(`hdr_orders`、`order_items`、满意度、渠道、准时率) |
-| **wonder-otr** | On-Time Rate 绩效 + 根因分析,出分层领导层报告。触发:「generate WBR summary」「weekly OTR report」 |
-| **wonder-pantry** | 门店(HDR)库存:waste、盘点、库存移动、slacking、hot holding、可用性 |
-| **wonder-sequencing** | 厨房排序系统(sequencing optimizer、batch group、holdback) |
-| **wonder-sporklift** | Sporklift 仓储(ShipHero 3PL 库存台账、快照、PO 履约、批次/效期) |
-| **wonder-supply-chain** | POMS 采购订单系统(PO、采购计划、shipments;含表结构 schema) |
-| **wonder-ladle** | ⚠️ WIP / 空 —— 已知缺口,涉及 Ladle 时需明确说明,别静默跳过 |
+| 一眼看出 | Skill | 做什么 |
+|---|---|---|
+| 🍳 菜单配方 | **wonder-cookbook** | Cookbook recipe/BOM 系统：菜品配方、组件结构、菜单可用性逻辑 |
+| 📦 拆单逻辑 | **wonder-command-center** | Command Center 拆单系统：分析 item 为什么被分到某个 order |
+| 👨‍🍳 厨房运营 | **wonder-kitchen-ops** | 厨房作业：batching 资格、fryer batching、BOM↔linebuild↔sequencing 关系 |
+| 📋 菜单可用性 | **wonder-menu-availability** | HDR 菜单可用性：active_menu_v2（现行）/ active_menu（旧版） |
+| 📊 订单销售 | **wonder-orders** | 订单/销售数据：hdr_orders、order_items、满意度、渠道、准时率 |
+| ⏱️ 准时绩效 | **wonder-otr** | On-Time Rate 绩效 + 根因分析，生成分层报告。触发:「generate WBR summary」 |
+| 📦 门店库存 | **wonder-pantry** | HDR 库存管理：waste、盘点、库存移动、slacking、hot holding、可用性 |
+| 🔀 厨房排序 | **wonder-sequencing** | Sequencing optimizer：批次分组、holdback、排序逻辑 |
+| 🏭 3PL 仓储 | **wonder-sporklift** | Sporklift 仓储系统：ShipHero 库存台账、PO 履约、批次、效期 |
+| 📮 采购系统 | **wonder-supply-chain** | POMS 采购订单：PO、采购计划、shipments、表结构 schema |
+| ⚠️ 缺口 | **wonder-ladle** | **WIP / 空** —— 已知缺口，涉及 Ladle 时请明确说明 |
 
 ---
 
