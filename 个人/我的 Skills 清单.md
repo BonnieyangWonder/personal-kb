@@ -14,6 +14,7 @@ tags: [meta, skills, index, 个人]
 
 **我要…** → **用这个 Skill**
 
+- 补充需求关联清单 → **add-requirement-dependency**（🔗 需求关联）
 - 分析 Cookbook 需求 → **cookbook-ra**（📋 RA 分析）
 - 把 ticket 功能归档 → **archive-jira-to-cb**（📦 归档功能）
 - 生成业务需求文档 → **biz-req** 或 **sediment-cookbook-feature-reqs**（📄 业务需求）
@@ -43,6 +44,7 @@ tags: [meta, skills, index, 个人]
 
 | 一眼看出 | Skill | 文件 | 做什么 |
 |---|---|---|---|
+| 🔗 需求关联 | **add-requirement-dependency** | `add-requirement-dependency.md` | 快速补充 [[个人/需求关联清单.md]]，记录需求间的隐含依赖和影响范围。RA 前预防遗漏。触发:「发现新关联」或直接补充信息 |
 | 📋 RA 分析 | **cookbook-ra** | `cookbook-ra.md` | 分析 Cookbook 需求 → 数据影响分析 → 生成 RA 报告。触发:「分析下 XX 需求」「RA 一下」 |
 | 📦 归档功能 | **archive-jira-to-cb** | `archive-jira-to-cb.md` | 把 Jira ticket 需求归档进 CB-full-feature（已上线功能文档）。触发:「把 ticket 归档到 RA」 |
 | 📄 业务需求 | **biz-req** | `biz-req.md` | 编译 Jira/Confluence 需求为业务需求文档，写进 CB-business |
