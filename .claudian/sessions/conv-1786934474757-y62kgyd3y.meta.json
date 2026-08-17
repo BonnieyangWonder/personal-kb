@@ -4,21 +4,21 @@
   "title": "Check for Jira ticket archive skill",
   "titleGenerationStatus": "success",
   "createdAt": 1786934474758,
-  "updatedAt": 1786935644494,
-  "lastResponseAt": 1786935644494,
+  "updatedAt": 1786938540424,
+  "lastResponseAt": 1786937922645,
   "sessionId": "8d17485a-9bd1-45a4-8eb2-b7cf0eb11920",
-  "selectedModel": "haiku",
+  "selectedModel": "sonnet[1m]",
   "providerState": {
     "providerSessionId": "8d17485a-9bd1-45a4-8eb2-b7cf0eb11920"
   },
   "usage": {
-    "model": "haiku",
+    "model": "sonnet[1m]",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 2015,
-    "cacheReadInputTokens": 78120,
+    "cacheCreationInputTokens": 392,
+    "cacheReadInputTokens": 107285,
     "contextWindow": 200000,
-    "contextTokens": 80143,
-    "percentage": 40,
+    "contextTokens": 107685,
+    "percentage": 54,
     "contextWindowIsAuthoritative": true
   }
 }

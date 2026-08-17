@@ -1,7 +1,7 @@
 # Ticket 归档跟踪
 
 ## Sprint 信息
-- **MD 2026 Sprint 16**：27 Jul - 10 Aug 2026（进行中，21 个工作项，已按 Jira 实时状态同步于 2026-08-06）
+- **MD 2026 Sprint 16**：27 Jul - 10 Aug 2026（已结束，21 个工作项，已按 Jira 实时状态同步于 2026-08-17）
 - **MD 2026 Sprint 15**：13 Jul - 27 Jul 2026（已结束，21 个工作项，不含 Sub-task 与已取消项）
 - **MD 2026 Sprint 14**：29 Jun - 13 Jul 2026（已结束，29 个工作项，不含 Sub-task 与已取消项）
 - **MD 2026 Sprint 13**：16 Jun - 30 Jun 2026（已结束，19 个工作项，不含 Sub-task 与已取消项）
@@ -17,33 +17,35 @@
 
 ## MD 2026 Sprint 16
 
+27 Jul - 10 Aug 2026（已结束，21 个工作项，已按 Jira 实时状态同步于 2026-08-17）
+
 | # | Ticket | 标题 | 状态 | 链接 | 是否归档 |
 |---|--------|------|------|------|------|
 | 1 | MD-18084 | Tech UI - Refactor: rewrite AddComponent & AddGuestPackage with antd Form | In QA | https://wonder.atlassian.net/browse/MD-18084 | 是 |
 | 2 | MD-18183 | Make Customization Option price nullable in recipe-service-v2 responses | Done | https://wonder.atlassian.net/browse/MD-18183 |  |
 | 3 | MD-18252 | Wonder Create Customizations Support - menu item creation | In QA | https://wonder.atlassian.net/browse/MD-18252 |  |
-| 4 | MD-18259 | Wonder Create Customizations Support - line build creation | In QA | https://wonder.atlassian.net/browse/MD-18259 |  |
-| 5 | MD-18285 | Provide Options to Wonder Create (bigquery table) | In UAT | https://wonder.atlassian.net/browse/MD-18285 |  |
+| 4 | MD-18259 | Wonder Create Customizations Support - line build creation | Done | https://wonder.atlassian.net/browse/MD-18259 |  |
+| 5 | MD-18285 | Provide Options to Wonder Create (bigquery table) | Done | https://wonder.atlassian.net/browse/MD-18285 |  |
 | 6 | MD-18299 | manual data reset support | Done | https://wonder.atlassian.net/browse/MD-18299 |  |
 | 7 | MD-18307 | (Merch) Price Scheduling for Customizations | Done | https://wonder.atlassian.net/browse/MD-18307 |  |
 | 8 | MD-18312 | Enable to Search Cooking Group Tagged on Task | Done | https://wonder.atlassian.net/browse/MD-18312 |  |
 | 9 | MD-18316 | Remove "Enable non-40 item" Flag and Add Validation Restricting Component/Customization Search to 40/70/90 Items | Done | https://wonder.atlassian.net/browse/MD-18316 |  |
 | 10 | MD-18317 | [Tech] - add Amplitude for all functionalities | Done | https://wonder.atlassian.net/browse/MD-18317 |  |
-| 11 | MD-18321 | MD 2026 Sprint 16 Testing Bugs for Feature Development | To Do | https://wonder.atlassian.net/browse/MD-18321 | 是 |
+| 11 | MD-18321 | MD 2026 Sprint 16 Testing Bugs for Feature Development | Done | https://wonder.atlassian.net/browse/MD-18321 | 是 |
 | 12 | MD-18323 | Reduce the backup frequency for dev and uat atlas | Done | https://wonder.atlassian.net/browse/MD-18323 |  |
 | 13 | MD-18325 | Tech - optimize data reset flow, reduce memory usage. | Done | https://wonder.atlassian.net/browse/MD-18325 | 是 |
-| 14 | MD-18326 | Enable to Inherit Nutrition/Cost for W42* Items from W42*F | READY FOR UAT | https://wonder.atlassian.net/browse/MD-18326 |  |
-| 15 | MD-18327 | Take the Linked WSKU Nutrition/Cost in Priority for 40* Item Not 40*F | In QA | https://wonder.atlassian.net/browse/MD-18327 |  |
+| 14 | MD-18326 | Enable to Inherit Nutrition/Cost for W42* Items from W42*F | Done | https://wonder.atlassian.net/browse/MD-18326 |  |
+| 15 | MD-18327 | Take the Linked WSKU Nutrition/Cost in Priority for 40* Item Not 40*F | Done | https://wonder.atlassian.net/browse/MD-18327 |  |
 | 16 | MD-18329 | Remediate frontend Snyk vulnerabilities (5 issues, 2026-07-28 scan) | Done | https://wonder.atlassian.net/browse/MD-18329 | 是 |
 | 17 | MD-18331 | Remove 41* and 42* items from item_information table which is synced to CK | Done | https://wonder.atlassian.net/browse/MD-18331 |  |
-| 18 | MD-18333 | Enable to View Hot Hold Step Info in Line Build without Edit Hot Hold Permission | In UAT | https://wonder.atlassian.net/browse/MD-18333 |  |
+| 18 | MD-18333 | Enable to View Hot Hold Step Info in Line Build without Edit Hot Hold Permission | Done | https://wonder.atlassian.net/browse/MD-18333 |  |
 | 19 | MD-18334 | Update validation for minimal serving portion in Wonder Create | Done | https://wonder.atlassian.net/browse/MD-18334 |  |
-| 20 | MD-18341 | Allow Mark Whole Customization Group to Ineligible | In Progress | https://wonder.atlassian.net/browse/MD-18341 |  |
-| 21 | MD-18368 | Make Wrap/Burrito bread options mutually exclusive in BYO presets | To Do | https://wonder.atlassian.net/browse/MD-18368 |  |
+| 20 | MD-18341 | Allow Mark Whole Customization Group to Ineligible | In QA | https://wonder.atlassian.net/browse/MD-18341 |  |
+| 21 | MD-18368 | Make Wrap/Burrito bread options mutually exclusive in BYO presets | In QA | https://wonder.atlassian.net/browse/MD-18368 |  |
 
 ### Sprint 16 统计
 - **总工作项数**：21 个（Jira 实时数据，不含 Sub-task）
-- **状态分布**：Done 11 个 / In QA 4 个 / In UAT 2 个 / To Do 2 个 / READY FOR UAT 1 个 / In Progress 1 个
+- **状态分布**：Done 17 个 / In QA 4 个
 - **已归档**：4 个（MD-18084, MD-18321, MD-18325, MD-18329）
 
 #### 已移出 Sprint 16（保留归档记录）
