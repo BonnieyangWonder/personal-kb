@@ -1,0 +1,24 @@
+{
+  "id": "conv-1786954335746-e0dlmjvju",
+  "providerId": "claude",
+  "title": "Analyze Cookbook support for drone delivery MVP",
+  "titleGenerationStatus": "success",
+  "createdAt": 1786954335746,
+  "updatedAt": 1786955011063,
+  "lastResponseAt": 1786955011063,
+  "sessionId": "d6af76d2-4d1b-40ea-9772-7f074cbbc4e7",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "d6af76d2-4d1b-40ea-9772-7f074cbbc4e7"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1833,
+    "cacheReadInputTokens": 98850,
+    "contextWindow": 1000000,
+    "contextTokens": 100685,
+    "percentage": 10,
+    "contextWindowIsAuthoritative": true
+  }
+}
