@@ -4,8 +4,8 @@
   "title": "Create requirements checklist for cost sync to ERP",
   "titleGenerationStatus": "success",
   "createdAt": 1786939672529,
-  "updatedAt": 1786941588610,
-  "lastResponseAt": 1786941588610,
+  "updatedAt": 1786951570266,
+  "lastResponseAt": 1786951570266,
   "sessionId": "7b835e68-efdf-43e2-bb0f-af58424ed06d",
   "selectedModel": "haiku",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 318,
-    "cacheReadInputTokens": 51727,
+    "cacheCreationInputTokens": 1006,
+    "cacheReadInputTokens": 53816,
     "contextWindow": 200000,
-    "contextTokens": 52053,
-    "percentage": 26,
+    "contextTokens": 54830,
+    "percentage": 27,
     "contextWindowIsAuthoritative": true
   }
 }
