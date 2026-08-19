@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787128979848-z6p4wzyn6",
+  "providerId": "claude",
+  "title": "Create Jira ticket for Wonder Create template c...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787128979848,
+  "updatedAt": 1787129079869,
+  "lastResponseAt": 1787129079869,
+  "sessionId": "63872e48-ba81-4461-bcc1-8ca866da6810",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "63872e48-ba81-4461-bcc1-8ca866da6810"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 908,
+    "cacheReadInputTokens": 59448,
+    "contextWindow": 200000,
+    "contextTokens": 60364,
+    "percentage": 30,
+    "contextWindowIsAuthoritative": true
+  }
+}
