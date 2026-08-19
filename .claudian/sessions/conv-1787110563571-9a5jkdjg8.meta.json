@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787110563571-9a5jkdjg8",
+  "providerId": "claude",
+  "title": "Reconnect MCP server connection",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787110563571,
+  "updatedAt": 1787110663479,
+  "lastResponseAt": 1787110663479,
+  "sessionId": "71bf88c7-17b0-4e32-ac07-a1b947b74e5d",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "71bf88c7-17b0-4e32-ac07-a1b947b74e5d"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 9936,
+    "cacheReadInputTokens": 47979,
+    "contextWindow": 1000000,
+    "contextTokens": 57917,
+    "percentage": 6,
+    "contextWindowIsAuthoritative": true
+  }
+}
