@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787124698738-rr42x7s10",
+  "providerId": "claude",
+  "title": "Create Jira ticket for line build label field",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787124698738,
+  "updatedAt": 1787124776857,
+  "lastResponseAt": 1787124776857,
+  "sessionId": "4c2c4e12-126e-4eaf-b4ee-210bddbde066",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "4c2c4e12-126e-4eaf-b4ee-210bddbde066"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 851,
+    "cacheReadInputTokens": 50146,
+    "contextWindow": 200000,
+    "contextTokens": 51005,
+    "percentage": 26,
+    "contextWindowIsAuthoritative": true
+  }
+}

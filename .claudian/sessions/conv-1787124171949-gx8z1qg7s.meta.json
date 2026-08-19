@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787124171949-gx8z1qg7s",
+  "providerId": "claude",
+  "title": "Compare two item number lists for overlaps",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787124171949,
+  "updatedAt": 1787124595478,
+  "lastResponseAt": 1787124214653,
+  "sessionId": "7902080d-a1b5-43f8-9a73-e1a200323e4a",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "7902080d-a1b5-43f8-9a73-e1a200323e4a"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 5587,
+    "cacheReadInputTokens": 44703,
+    "contextWindow": 1000000,
+    "contextTokens": 50292,
+    "percentage": 5,
+    "contextWindowIsAuthoritative": true
+  }
+}

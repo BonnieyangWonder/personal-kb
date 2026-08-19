@@ -4,8 +4,8 @@
   "title": "Reconnect MCP server connection",
   "titleGenerationStatus": "success",
   "createdAt": 1787110563571,
-  "updatedAt": 1787119279183,
-  "lastResponseAt": 1787119279183,
+  "updatedAt": 1787124643968,
+  "lastResponseAt": 1787124643968,
   "sessionId": "71bf88c7-17b0-4e32-ac07-a1b947b74e5d",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -14,10 +14,10 @@
   "usage": {
     "model": "sonnet[1m]",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 9936,
-    "cacheReadInputTokens": 47979,
+    "cacheCreationInputTokens": 59308,
+    "cacheReadInputTokens": 0,
     "contextWindow": 1000000,
-    "contextTokens": 57917,
+    "contextTokens": 59310,
     "percentage": 6,
     "contextWindowIsAuthoritative": true
   }
