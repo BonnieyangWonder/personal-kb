@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787122999421-q1co62yqg",
+  "providerId": "claude",
+  "title": "Create Jira ticket for 9* item accounting fields",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787122999421,
+  "updatedAt": 1787123102716,
+  "lastResponseAt": 1787123102716,
+  "sessionId": "bbd80898-f2db-4ce8-be5d-af8c9fc375f5",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "bbd80898-f2db-4ce8-be5d-af8c9fc375f5"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 690,
+    "cacheReadInputTokens": 67706,
+    "contextWindow": 1000000,
+    "contextTokens": 68398,
+    "percentage": 7,
+    "contextWindowIsAuthoritative": true
+  }
+}
