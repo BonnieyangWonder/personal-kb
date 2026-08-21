@@ -4,8 +4,8 @@
   "title": "Add item name column to Vendor SKU spreadsheet",
   "titleGenerationStatus": "success",
   "createdAt": 1787283984451,
-  "updatedAt": 1787284795187,
-  "lastResponseAt": 1787284795187,
+  "updatedAt": 1787291185521,
+  "lastResponseAt": 1787291185521,
   "sessionId": "511ffe9d-e59c-4b5c-8605-1e28447f8949",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -14,10 +14,10 @@
   "usage": {
     "model": "sonnet[1m]",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 717,
-    "cacheReadInputTokens": 90158,
+    "cacheCreationInputTokens": 755,
+    "cacheReadInputTokens": 93399,
     "contextWindow": 1000000,
-    "contextTokens": 90877,
+    "contextTokens": 94156,
     "percentage": 9,
     "contextWindowIsAuthoritative": true
   }
