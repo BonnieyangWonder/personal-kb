@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787292373808-lohftrcue",
+  "providerId": "claude",
+  "title": "Check 40 items usage in menu/7* BOM & customiza...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787292373809,
+  "updatedAt": 1787292734321,
+  "lastResponseAt": 1787292734321,
+  "sessionId": "ab64f573-f505-4717-82ae-9670eeb342c4",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "ab64f573-f505-4717-82ae-9670eeb342c4"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1058,
+    "cacheReadInputTokens": 153205,
+    "contextWindow": 1000000,
+    "contextTokens": 154265,
+    "percentage": 15,
+    "contextWindowIsAuthoritative": true
+  }
+}

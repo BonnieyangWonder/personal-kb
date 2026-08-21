@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787292947149-kkfkc0ew3",
+  "providerId": "claude",
+  "title": "Update MD-18478 with IKC SCC cutover details",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787292947149,
+  "updatedAt": 1787293018619,
+  "lastResponseAt": 1787293018619,
+  "sessionId": "58a34ff3-a3f4-4bbb-bbc3-a8618551866d",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "58a34ff3-a3f4-4bbb-bbc3-a8618551866d"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 472,
+    "cacheReadInputTokens": 59745,
+    "contextWindow": 200000,
+    "contextTokens": 60225,
+    "percentage": 30,
+    "contextWindowIsAuthoritative": true
+  }
+}
