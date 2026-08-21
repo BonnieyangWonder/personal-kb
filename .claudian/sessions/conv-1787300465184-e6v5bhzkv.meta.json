@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787300465184-e6v5bhzkv",
+  "providerId": "claude",
+  "title": "Check 88 items against local CSV inventory",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787300465184,
+  "updatedAt": 1787300658424,
+  "lastResponseAt": 1787300658424,
+  "sessionId": "2f17cd4e-cd44-422e-972b-02215c83c51d",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "2f17cd4e-cd44-422e-972b-02215c83c51d"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 869,
+    "cacheReadInputTokens": 39877,
+    "contextWindow": 200000,
+    "contextTokens": 40754,
+    "percentage": 20,
+    "contextWindowIsAuthoritative": true
+  }
+}

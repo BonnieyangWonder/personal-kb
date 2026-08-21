@@ -4,8 +4,8 @@
   "title": "Check 40 items usage in menu/7* BOM & customiza...",
   "titleGenerationStatus": "success",
   "createdAt": 1787292373809,
-  "updatedAt": 1787298831248,
-  "lastResponseAt": 1787298831248,
+  "updatedAt": 1787300458046,
+  "lastResponseAt": 1787300458046,
   "sessionId": "ab64f573-f505-4717-82ae-9670eeb342c4",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "sonnet[1m]",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 812,
-    "cacheReadInputTokens": 193617,
+    "cacheCreationInputTokens": 995,
+    "cacheReadInputTokens": 207479,
     "contextWindow": 1000000,
-    "contextTokens": 194431,
-    "percentage": 19,
+    "contextTokens": 208476,
+    "percentage": 21,
     "contextWindowIsAuthoritative": true
   }
 }
