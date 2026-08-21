@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787283984451-4qi11nt3n",
+  "providerId": "claude",
+  "title": "Add item name column to Vendor SKU spreadsheet",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787283984451,
+  "updatedAt": 1787284106236,
+  "lastResponseAt": 1787284106236,
+  "sessionId": "511ffe9d-e59c-4b5c-8605-1e28447f8949",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "511ffe9d-e59c-4b5c-8605-1e28447f8949"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 947,
+    "cacheReadInputTokens": 87973,
+    "contextWindow": 1000000,
+    "contextTokens": 88922,
+    "percentage": 9,
+    "contextWindowIsAuthoritative": true
+  }
+}
