@@ -4,8 +4,8 @@
   "title": "Check 88 items against local CSV inventory",
   "titleGenerationStatus": "success",
   "createdAt": 1787300465184,
-  "updatedAt": 1787300658424,
-  "lastResponseAt": 1787300658424,
+  "updatedAt": 1787302918051,
+  "lastResponseAt": 1787302901485,
   "sessionId": "2f17cd4e-cd44-422e-972b-02215c83c51d",
   "selectedModel": "haiku",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "haiku",
     "inputTokens": 8,
-    "cacheCreationInputTokens": 869,
-    "cacheReadInputTokens": 39877,
+    "cacheCreationInputTokens": 609,
+    "cacheReadInputTokens": 42625,
     "contextWindow": 200000,
-    "contextTokens": 40754,
-    "percentage": 20,
+    "contextTokens": 43242,
+    "percentage": 22,
     "contextWindowIsAuthoritative": true
   }
 }
