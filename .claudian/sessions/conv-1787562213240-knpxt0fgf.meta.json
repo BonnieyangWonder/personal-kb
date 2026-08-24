@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787562213240-knpxt0fgf",
+  "providerId": "claude",
+  "title": "Check 40 item usage in menu items/HDR recipes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787562213240,
+  "updatedAt": 1787563738555,
+  "lastResponseAt": 1787563738555,
+  "sessionId": "54d854ab-8e00-4ebf-831c-7374faa90e26",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "54d854ab-8e00-4ebf-831c-7374faa90e26"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 688,
+    "cacheReadInputTokens": 134199,
+    "contextWindow": 1000000,
+    "contextTokens": 134889,
+    "percentage": 13,
+    "contextWindowIsAuthoritative": true
+  }
+}
