@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787538480233-os8oexfmz",
+  "providerId": "claude",
+  "title": "Update MD-18482 ticket description on dietary tags",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787538480234,
+  "updatedAt": 1787538513154,
+  "lastResponseAt": 1787538513154,
+  "sessionId": "b5cb03b0-4816-4a98-b3cd-7affb5d420bc",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "b5cb03b0-4816-4a98-b3cd-7affb5d420bc"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 1169,
+    "cacheReadInputTokens": 34436,
+    "contextWindow": 200000,
+    "contextTokens": 35613,
+    "percentage": 18,
+    "contextWindowIsAuthoritative": true
+  }
+}
