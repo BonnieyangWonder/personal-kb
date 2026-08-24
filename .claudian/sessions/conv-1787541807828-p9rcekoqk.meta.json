@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787541807828-p9rcekoqk",
+  "providerId": "claude",
+  "title": "Create Jira ticket for auto dormant 40/41/88 logic",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787541807829,
+  "updatedAt": 1787541860730,
+  "lastResponseAt": 1787541860730,
+  "sessionId": "d3956684-44d9-4162-94e0-be5f63a69434",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "d3956684-44d9-4162-94e0-be5f63a69434"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 617,
+    "cacheReadInputTokens": 48827,
+    "contextWindow": 200000,
+    "contextTokens": 49452,
+    "percentage": 25,
+    "contextWindowIsAuthoritative": true
+  }
+}

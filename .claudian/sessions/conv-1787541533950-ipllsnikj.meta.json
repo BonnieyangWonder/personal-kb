@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787541533950-ipllsnikj",
+  "providerId": "claude",
+  "title": "Create Jira ticket for variant draft validation",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787541533951,
+  "updatedAt": 1787541609751,
+  "lastResponseAt": 1787541609751,
+  "sessionId": "4239a4b0-7453-4a6b-a824-0128d60be5ff",
+  "selectedModel": "haiku",
+  "providerState": {
+    "providerSessionId": "4239a4b0-7453-4a6b-a824-0128d60be5ff"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 609,
+    "cacheReadInputTokens": 51249,
+    "contextWindow": 200000,
+    "contextTokens": 51866,
+    "percentage": 26,
+    "contextWindowIsAuthoritative": true
+  }
+}
