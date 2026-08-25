@@ -4,8 +4,8 @@
   "title": "Check 40 item usage in menu items/HDR recipes",
   "titleGenerationStatus": "success",
   "createdAt": 1787562213240,
-  "updatedAt": 1787631752745,
-  "lastResponseAt": 1787631752745,
+  "updatedAt": 1787637152698,
+  "lastResponseAt": 1787637152698,
   "sessionId": "54d854ab-8e00-4ebf-831c-7374faa90e26",
   "selectedModel": "sonnet[1m]",
   "providerState": {
@@ -131,11 +131,11 @@
   "usage": {
     "model": "sonnet[1m]",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 589,
-    "cacheReadInputTokens": 372160,
+    "cacheCreationInputTokens": 551,
+    "cacheReadInputTokens": 410162,
     "contextWindow": 1000000,
-    "contextTokens": 372751,
-    "percentage": 37,
+    "contextTokens": 410715,
+    "percentage": 41,
     "contextWindowIsAuthoritative": true
   }
 }
