@@ -12,9 +12,10 @@
 2. **B2B 88**（原始 42 个，B2B/Wonder Works 内部用途）：**41/42 有有效用法，1 个（4001177）完全无用法**。`B2B 88 usages` sheet 后续又并入了 37 个 **Wonder Works 品牌**的 menu item（这些原本是通过其他 40 item 从 "Not sold 40" 批次里查出来的，因为品牌是 Wonder Works 才移到这个 sheet ——详见下方"数据质量修正与后续调整"），所以该 sheet 现在合计 **90 条用法记录，78 个去重后的 menu item，涉及 67 个不同的 40 item**（其中 26 个不属于原始 42 个 B2B 88 批次）。若只看原始 42 个批次本身：41/42 有效，全部走 BOM 路径，全部 `sold_status = NOT_SOLD`。其中有部分用法来自还在 `DRAFT`/`R&D` 状态的测试品项（如 "Wonder Works EGAM"、"AREAS"、"(COPY)" 系列）——因为本次过滤条件只排除 DORMANT/EXPIRED/preset，不排除 DRAFT，所以这些草稿也算"有用法"；这一点和之前 [[40 Item SCC Cutover Status]] 报告里 B2B 段落（额外排除了 DRAFT）的口径不同，见下方"与既有报告的口径差异"。
 3. **Not sold 40**（原始 405 个，数据质量修正后为 **408 个** —— 见下方专门章节）：**165/408（约 40%）有有效用法**，共 345 条用法记录，落在 **177 个去重后的 usage item 上（170 个 menu item + 7 个 HDR recipe item）**。**243 个（约 60%）完全查不到任何非 dormant/过期/preset 的用法**，是本批里最值得关注的清理候选。
 4. **Not sold 40 → 7 个 HDR recipe item 的反查**：这 7 个 HDR recipe item（7000017/7000019/7000024/7000025/7000026/7000120/7000132）本身又被谁用——**6/7 有下游用法**（15 条记录，全部落在 8 个去重后的 menu item 上，**没有再出现 HDR recipe → HDR recipe 的嵌套用法**），**7000026（BBQ Brisket Burnt Ends (Cooked) Limesalt HDR）完全查不到任何用法**。命中的用法里有 10/15 条还处于 `DRAFT`/`R&D`，只有 5 条是 `FINAL`/`ACTIVE`。
-5. **`Menu／7 Dormant Confirmation` 汇总确认清单**（原名 `Menu Item Dormant Confirmation`；跨 `for sale & scheduled 40 usages` + `Not sold 40 usages` + `Not sold 40 hdr recipe usages` 三个 sheet，按 item number 去重，不含 B2B 88）：**159 个去重后的 item（152 个 menu item + 7 个 7\* HDR recipe item，两者已合并进同一张确认清单，第一列改名为 `menu item/7*`）**，105 个 `ACTIVE` + 54 个 `R&D`。补充了最近 90 天人工编辑核查：**89/159（约 56%）在最近 90 天内被人工编辑过**，其中 8 个标注为 "Wonder Create item"（通过 Wonder Create 工具批量创建发布，而非纯手工编辑）。两个原本判定"已从 Cookbook 彻底删除"的 item（8012010、8012021，"TO DELETE" 命名）已由 Bonnie 从清单里手动移除，不再需要走确认流程。
-6. **`B2B 88 Dormant Confirmation` 确认清单**：镜像 `B2B 88 usages` sheet 去重后的 **78 个 menu item**，格式与上面一致，独立于 `Menu／7 Dormant Confirmation` 之外，供业务方专门确认 Wonder Works/B2B 相关品项。
-7. **`No usage 40 items` 零用法清单**：跨 `B2B 88`（1 个）+ `Not sold 40`（原 243 个）合计原本 244 个 40 item 完全无用法；**其中 29 个 40 item 自身的 `40 item status` 已经是 `DORMANT`（已经下线，不需要再走"能否 dormant"确认）**，Bonnie 复核后已从清单里删除这 29 条，清单收敛到 **215 个**（189 `ACTIVE` + 26 `R&D`）。剩余 215 个里 **21 个（约 10%）** 有人工编辑记录，但多为属性清理/草稿信息更新，真正"发布新版本"级别的编辑很少——整体仍是相对安全的清理候选池。
+5. **`Menu_7 Dormant Confirmation` 汇总确认清单**（原名 `Menu Item Dormant Confirmation`；跨 `for sale & scheduled 40 usages` + `Not sold 40 usages` + `Not sold 40 hdr recipe usages` 三个 sheet，按 item number 去重，不含 B2B 88）：**159 个去重后的 item（152 个 menu item + 7 个 7\* HDR recipe item，两者已合并进同一张确认清单，第一列改名为 `menu item/7*`）**，105 个 `ACTIVE` + 54 个 `R&D`。补充了最近 90 天人工编辑核查：**89/159（约 56%）在最近 90 天内被人工编辑过**，其中 8 个标注为 "Wonder Create item"（通过 Wonder Create 工具批量创建发布，而非纯手工编辑）。两个原本判定"已从 Cookbook 彻底删除"的 item（8012010、8012021，"TO DELETE" 命名）已由 Bonnie 从清单里手动移除，不再需要走确认流程。
+6. **`B2B 88 Dormant Confirmation` 确认清单**：镜像 `B2B 88 usages` sheet 去重后的 **78 个 menu item**，格式与上面一致，独立于 `Menu_7 Dormant Confirmation` 之外，供业务方专门确认 Wonder Works/B2B 相关品项。
+7. **`No usage 40 items` 零用法清单**：跨 `B2B 88`（1 个）+ `Not sold 40`（原 243 个）合计原本 244 个 40 item 完全无用法；**其中 29 个 40 item 自身的 `40 item status` 已经是 `DORMANT`（已经下线，不需要再走"能否 dormant"确认）**，Bonnie 复核后已从清单里删除这 29 条，清单收敛到 215 个。后续建 `Has usage 40 items` sheet 时又发现 **3 个之前被漏掉的真实零用法 item**（`4000052F`、`4000892`、`4001283`，详见下方"用法数据时效性"章节），补进清单后最终 **218 个**（189 `ACTIVE` + 26 `R&D` + 3 个新补充）。里面 **21 个（约 10%）** 有人工编辑记录，但多为属性清理/草稿信息更新，真正"发布新版本"级别的编辑很少——整体仍是相对安全的清理候选池。
+8. **`Has usage 40 items` 有用法清单（新增）**：把 `for salescheduled 40`（11 个）+ `Not sold 40`（408 个，两批有 2 个重叠：4000642、4000862）合并去重后，剔除已在 `No usage 40 items` 里的、再剔除 40 item 自身 `item_status = DORMANT` 的，剩 174 个候选，实时重新查用法后确认 **171 个仍有有效用法**，新增一列 `referenced menu/hdr recipe item(s)` 展示具体是哪些 menu item / 7\* item 在用（同样过滤 dormant/过期版本/preset）。这次重新查询顺带发现了 3 个"曾经有用法、现在没有了"的真实数据变化，见下一节。
 
 ---
 
@@ -47,9 +48,23 @@
 
 ---
 
+## ⚠️ 用法数据时效性——"曾经有用法"不等于"现在还有用法"
+
+建 `Has usage 40 items` sheet 时用实时查询重新核查了 174 个候选 40 item 的用法，其中 **3 个之前记录过有用法，这次重新查发现已经变成零用法**——不是查询逻辑问题，是 Cookbook 里的真实数据在这段时间内发生了变化：
+
+| 40 item | 之前的用法 | 现状 |
+|---|---|---|
+| `4000892`（Buffalo Sauce） | 被 8012010、8012021（"TO DELETE" 命名的两个 menu item）通过 customization 引用 | 这两个 menu item **已经从 `item_versions` 彻底删除**（不是标记删除，是查无记录），用法随之消失 |
+| `4001283`（Chipotle Aioli） | 被 8012126（"Chipotle Aioli, Might Quinn's"）的 BOM 引用 | 8012126 还在（R&D/DRAFT），但**最近有人把 BOM 里的这个组件换成了 `4000284`**，4001283 不再是它的 BOM 组件 |
+| `4000052F`（Lemon Chess Pie Slice [FZN]） | 从未被正式核查过（此前不属于任何一批统计范围） | 这次一并核查，确认本来就是零用法 |
+
+这 3 个已经补进 `No usage 40 items` sheet（215 → **218**）。**启示**：任何"用法核查"类分析都有时效性，Cookbook 的 BOM/customization 配置、以及 menu item 本身是否存在，都可能在核查之后继续变化——如果距离上次核查已经过了一段时间，或者要拿这份清单做真正的下线决策，建议重新跑一次实时查询，不要直接信任旧结果。
+
+---
+
 ## Excel 交付物
 
-`~/Downloads/Uncutover 40s.xlsx` 现在共 **10 个 sheet**（原始 3 个 `for salescheduled 40` / `B2B 88` / `Not sold 40` 保持不变，新增 7 个）：
+`~/Downloads/Uncutover 40s.xlsx` 现在共 **11 个 sheet**（原始 3 个 `for salescheduled 40` / `B2B 88` / `Not sold 40` 保持不变，新增 8 个）：
 
 | Sheet | 内容 | 当前行数 |
 |---|---|---|
@@ -57,15 +72,18 @@
 | `B2B 88 usages` | `B2B 88`（42 个）+ 后续并入的 37 个 Wonder Works menu item 的用法明细 | 90 |
 | `Not sold 40 usages` | `Not sold 40`（修正后 408 个）的用法明细 | 345 |
 | `Not sold 40 hdr recipe usages` | 反查 `Not sold 40 usages` 命中的 7 个 HDR recipe item | 15（+ Bonnie 手动加的 1 条备注行） |
-| `Menu／7 Dormant Confirmation` | 跨批次去重后的 menu item + 7\* HDR recipe item 待确认清单（原 `Menu Item Dormant Confirmation`，后并入了原 `HDR Recipe Dormant Confirmation` 的 7 行并删除了那个独立 sheet），含 90 天编辑核查 | 159 |
+| `Menu_7 Dormant Confirmation` | 跨批次去重后的 menu item + 7\* HDR recipe item 待确认清单（原 `Menu Item Dormant Confirmation`，后并入了原 `HDR Recipe Dormant Confirmation` 的 7 行并删除了那个独立 sheet），含 90 天编辑核查 | 159 |
 | `B2B 88 Dormant Confirmation` | `B2B 88 usages` 去重后的 menu item 待确认清单 | 78 |
-| `No usage 40 items` | 跨 `B2B 88` + `Not sold 40` 的零用法 40 item 清单，含 90 天编辑核查（已剔除 29 个自身已是 `DORMANT` 的记录） | 215 |
+| `No usage 40 items` | 跨 `B2B 88` + `Not sold 40` 的零用法 40 item 清单，含 90 天编辑核查（已剔除 29 个自身已是 `DORMANT` 的记录，后又补入 3 个重新核查发现的零用法 item） | 218 |
+| `Has usage 40 items`（新增） | `for salescheduled 40` + `Not sold 40` 合并去重、剔除零用法与自身 DORMANT 后，171 个仍有效用法的 40 item，含 `referenced menu/hdr recipe item(s)` 列和 90 天编辑核查 | 171 |
 
 用法明细类 sheet 列结构统一为：`40 item number（或 hdr recipe item number）, usage item number, usage item name, item status, sold status, version, version status, used in BOM/customization, customization type, customization name, option name`。
 
-确认清单类 sheet（`Menu／7 Dormant Confirmation` / `B2B 88 Dormant Confirmation`）列结构：`menu item/7*`（`Menu／7 Dormant Confirmation` 专属，`B2B 88 Dormant Confirmation` 仍是 `menu item number`）`, menu item name, item status, sold status, version, version status, referenced 40/hdr recipe item(s), source sheet(s), [Note,] edited in last 90 days?, last edited by, last edited date, last edit detail (within 90 days), confirm OK to dormant?, comments`。`confirm OK to dormant?` 和 `comments` 留空，供业务方手动确认。`referenced 40/hdr recipe item(s)` 对 menu item 行表示"这个 menu item 用了哪些 40/7\* item"，对 7\* HDR recipe item 行则表示"这个 7\* item 自己用了哪些 `Not sold 40` 的 40 item"——两种含义的方向不同，读的时候按行的 item 类型区分。
+确认清单类 sheet（`Menu_7 Dormant Confirmation` / `B2B 88 Dormant Confirmation`）列结构：`menu item/7*`（`Menu_7 Dormant Confirmation` 专属，`B2B 88 Dormant Confirmation` 仍是 `menu item number`）`, menu item name, item status, sold status, version, version status, referenced 40/hdr recipe item(s), source sheet(s), [Note,] edited in last 90 days?, last edited by, last edited date, last edit detail (within 90 days), confirm OK to dormant?, comments`。`confirm OK to dormant?` 和 `comments` 留空，供业务方手动确认。`referenced 40/hdr recipe item(s)` 对 menu item 行表示"这个 menu item 用了哪些 40/7\* item"，对 7\* HDR recipe item 行则表示"这个 7\* item 自己用了哪些 `Not sold 40` 的 40 item"——两种含义的方向不同，读的时候按行的 item 类型区分。
 
 `No usage 40 items` 列结构：`40 item number, 40 item name, 40 item status, 40 sold status, 40 version status, source batch, edited in last 90 days?, last edited by, last edited date, last edit detail (within 90 days)`。
+
+`Has usage 40 items` 列结构：`40 item number, 40 item name, 40 item status, 40 sold status, 40 version status, referenced menu/hdr recipe item(s), source batch, edited in last 90 days?, last edited by, last edited date, last edit detail (within 90 days)`——比 `No usage 40 items` 多了 `referenced menu/hdr recipe item(s)` 这一列（插在 `source batch` 左边），列出具体是哪些 usage item number 在用这个 40 item。
 
 > 注：Bonnie 已手动编辑过这个文件多次（调整过用法明细 sheet 的列顺序、给 `Not sold 40 hdr recipe usages` 加了一列 "Bonnie Noted" 并写了备注、移除了两个已确认删除的 menu item、把 `HDR Recipe Dormant Confirmation` 并入 `Menu Item Dormant Confirmation` 并改名改列名、删除了 `No usage 40 items` 里 29 条自身已 DORMANT 的记录），本报告的行数/列结构以当前文件实际状态为准。
 
@@ -115,7 +133,7 @@
 
 其中 21 个（约 10%）在最近 90 天内有人工编辑记录（详见 `No usage 40 items` sheet 的 `edited in last 90 days?` 等列），多为属性清理（`Updated: Attributes`）或系统营养重算触发，真正"发布新版本"级别的很少（如 4001272/4001273/4001310/4001311 这几个 `ACTIVE`/`FINAL` 状态的例外）。
 
-### 4. Not sold 40 → HDR recipe item 反查（7 个，明细现已并入 `Menu／7 Dormant Confirmation` sheet）
+### 4. Not sold 40 → HDR recipe item 反查（7 个，明细现已并入 `Menu_7 Dormant Confirmation` sheet）
 
 以上第 3 节命中的 7 个 HDR recipe item，反过来查谁用了它们（同样 non-dormant + 非过期版本 + 非 preset）：
 
@@ -133,9 +151,9 @@
 - 10/15 条命中还处于 `DRAFT`/`R&D`（BOWLDER / Rice Pilot 系列测试品项），只有 5 条是 `FINAL`/`ACTIVE`。
 - **7000026** 在 BOM 和 customization 路径下都查无引用，是这批 HDR recipe item 里唯一"完全无人使用"的。
 - Bonnie 后来在 `Not sold 40 hdr recipe usages` sheet 里手动给 `7000132` 加了一条 "no usage" 备注行（与上面查到的 2 条真实用法记录并存）——保留原样未做改动，如果这条备注实际指向的是 7000026 而非 7000132 的笔误，需要 Bonnie 自己确认。
-- 这 7 个 item 本身"是否可以 dormant"的确认，连同它们各自引用了哪些 `Not sold 40` 40 item，现在统一记录在第 5 节的 `Menu／7 Dormant Confirmation` sheet 里（不再单独建 `HDR Recipe Dormant Confirmation` sheet）。
+- 这 7 个 item 本身"是否可以 dormant"的确认，连同它们各自引用了哪些 `Not sold 40` 40 item，现在统一记录在第 5 节的 `Menu_7 Dormant Confirmation` sheet 里（不再单独建 `HDR Recipe Dormant Confirmation` sheet）。
 
-### 5. Menu／7 Dormant Confirmation（159 个去重后的 item：152 menu item + 7 个 7\* HDR recipe item）
+### 5. Menu_7 Dormant Confirmation（159 个去重后的 item：152 menu item + 7 个 7\* HDR recipe item）
 
 原名 `Menu Item Dormant Confirmation`，第一列已改名为 `menu item/7*`。汇总来源：`for sale & scheduled 40 usages` + `Not sold 40 usages`（其中 7 个 HDR recipe item 本身，即第 4 节命中的那 7 个，作为独立行并入本表而非当作 menu item）+ `Not sold 40 hdr recipe usages`，按 item number 去重。
 
@@ -148,11 +166,20 @@
 
 ### 6. B2B 88 Dormant Confirmation（78 个去重后的 menu item）
 
-数据源：`B2B 88 usages` sheet（含原始 42 个 B2B 88 批次 + 后续并入的 37 个 Wonder Works menu item）去重后的结果，格式与 `Menu／7 Dormant Confirmation` 一致但独立成表，方便业务方专门针对 Wonder Works/B2B 品项做确认。
+数据源：`B2B 88 usages` sheet（含原始 42 个 B2B 88 批次 + 后续并入的 37 个 Wonder Works menu item）去重后的结果，格式与 `Menu_7 Dormant Confirmation` 一致但独立成表，方便业务方专门针对 Wonder Works/B2B 品项做确认。
 
-### 7. No usage 40 items（215 个，原 244 个）
+### 7. No usage 40 items（218 个，原 244 个）
 
-见第 3 节的完整清单。**29 个自身 `40 item status = DORMANT` 的记录已被移除**（清单见第 3 节末尾），因为这些 40 item 本来就已经下线，不需要再走"能否 dormant"的确认流程。剩余 215 个（189 `ACTIVE` + 26 `R&D`）里有 21 个最近 90 天有人工编辑记录，但详情显示多为草稿信息整理、属性标签更新或系统营养重算触发（`Updated: Attributes`、`Recalculated: Nutrition`），真正代表"仍在积极推进上线"的很少——整体上这批仍是相对安全的清理候选池，个别有 `Published: This Version` 记录的（4001272/4001273/4001310/4001311）建议单独确认。
+见第 3 节的完整清单。**29 个自身 `40 item status = DORMANT` 的记录已被移除**（清单见第 3 节末尾），因为这些 40 item 本来就已经下线，不需要再走"能否 dormant"的确认流程；后续建 `Has usage 40 items` sheet 时重新核查又发现 **3 个之前记录有用法、现在实际零用法** 的 item（`4000052F`、`4000892`、`4001283`，原因见"用法数据时效性"章节），已补进本清单。剩余 218 个（189 `ACTIVE` + 26 `R&D` + 3 个新补充）里有约 21+ 个最近 90 天有人工编辑记录，但详情显示多为草稿信息整理、属性标签更新或系统营养重算触发（`Updated: Attributes`、`Recalculated: Nutrition`），真正代表"仍在积极推进上线"的很少——整体上这批仍是相对安全的清理候选池，个别有 `Published: This Version` 记录的（4001272/4001273/4001310/4001311）建议单独确认。
+
+### 8. Has usage 40 items（171 个，新增）
+
+汇总来源：`for salescheduled 40`（11 个）+ `Not sold 40`（408 个，两批之间有 2 个重叠：4000642、4000862，同一个 40 item 同时出现在两个原始批次里），合并去重后剔除已在 `No usage 40 items` 里的、再剔除自身 `item_status = DORMANT` 的，剩 174 个，实时重新查询 BOM/customization 用法（同一套非 dormant/非过期版本/非 preset 过滤条件）后确认 **171 个仍有效用法**（3 个查出零用法，转入第 7 节）。
+
+- `referenced menu/hdr recipe item(s)` 列展示每个 40 item 具体被哪些 menu item 或 7\* HDR recipe item（usage item number）引用，一个 40 item 可能对应多个。
+- `source batch` 标注来自 `for salescheduled 40`、`Not sold 40`，还是两者都有（如 4000642、4000862 这两个重叠项）。
+- 部分 40 item 自身的 `sold_status`/`item_status` 在这次实时查询中和原始 tracker sheet 记录的不一样（例如 `4000052` 原始记录是 `FOR_SALE`，实时查询显示已经变成 `NOT_SOLD`）——本 sheet 用的是**当前实时数据**，如果要对照最初立项时的状态，需要回看原始的 `for salescheduled 40`/`Not sold 40` sheet。
+- 53/171 有最近 90 天人工编辑记录。
 
 ---
 
@@ -249,7 +276,8 @@ ORDER BY cnt DESC;
 - 只读 BigQuery 分析，未修改任何 Cookbook 数据。
 - Excel 文件除新增/更新上述 sheet 外，未改动原有 3 个原始 sheet 的内容；Bonnie 对文件的手动编辑（列顺序、备注列、删除已确认无效的行、合并/改名 sheet、删除已 DORMANT 记录）均已在本次更新中保留，未被覆盖。
 - 这次分析沉淀出的两个通用坑（40\* "F" 后缀陷阱、`is_system_action` 不可靠）已写入 [[Z01-Resource/CB-bigquery/playbooks/data-research-patterns.md]] §13–14 和 [[.claude/skills/wonder-cookbook/domains/hdr-consumables.md]]，并沉淀成了一个可复用的个人 skill：`.claude/skills/my-workflows/check-40-item-dormant-candidacy.md`。
-- Excel 从最初的 3 个原始 sheet 逐步演进到目前 **10 个 sheet**（含合并/精简后的结果）：`HDR Recipe Dormant Confirmation` 曾短暂作为独立 sheet 存在，后按 Bonnie 要求并入 `Menu Item Dormant Confirmation` 并整体改名为 `Menu／7 Dormant Confirmation`（Excel 的 sheet 名不允许 `/` 和 `*` 字符，用全角斜杠 `／` 替代、并去掉了 `*`，列头本身仍保留真实的 `menu item/7*`）。
+- Excel 从最初的 3 个原始 sheet 逐步演进到目前 **11 个 sheet**（含合并/精简/新增后的结果）：`HDR Recipe Dormant Confirmation` 曾短暂作为独立 sheet 存在，后并入 `Menu Item Dormant Confirmation`。改名时 Excel 的 sheet 名不允许 `/` 和 `*` 字符，最初用全角斜杠 `／` 替代、去掉了 `*`；但期间这个文件被重新打开保存过一次，`／` 又被 Excel 自动转成了下划线 `_`，**当前真实 sheet 名是 `Menu_7 Dormant Confirmation`**——如果之后又发现名字变了，大概率是 Excel 保存时自己做的字符归一化，不是数据丢失，以文件里的实际名字为准。列头本身没有这个字符限制，仍是真实的 `menu item/7*`。
+- 合并操作中途曾被撤销过一次（`Menu Item Dormant Confirmation` / `HDR Recipe Dormant Confirmation` 变回两个独立 sheet，原因不明，可能是文件在这之间被重新编辑/恢复过），后按 Bonnie 要求重新合并了一遍。如果发现 sheet 数量或结构和本报告描述的不一致，说明文件在生成本报告之后又被手动改动过，建议先跟 Bonnie 确认最新意图，而不是直接假设报告有误。
 
 ---
-*生成时间：2026-08-24 | 更新时间：2026-08-25（补充 Dormant Confirmation / No usage 清单、90天编辑核查、F 后缀数据质量修正、HDR Recipe Dormant Confirmation 并入 Menu／7 Dormant Confirmation、No usage 40 items 剔除已 DORMANT 记录）| 数据源：`~/Downloads/Uncutover 40s.xlsx` + `secure-recipe-prod.recipe_v2.item_versions` + `wonder-recipe-prod.mongo_batch_recipe_v2.item_version_change_logs`*
+*生成时间：2026-08-24 | 更新时间：2026-08-25（补充 Dormant Confirmation / No usage 清单、90天编辑核查、F 后缀数据质量修正、新增 Has usage 40 items sheet 及用法数据时效性发现、Menu_7 Dormant Confirmation 合并重做）| 数据源：`~/Downloads/Uncutover 40s.xlsx` + `secure-recipe-prod.recipe_v2.item_versions` + `wonder-recipe-prod.mongo_batch_recipe_v2.item_version_change_logs`*
