@@ -44,6 +44,26 @@ The 40 Model establishes a clean separation between:
 
 ---
 
+## ⚠️ Trailing "F" Suffix = Frozen Variant, a REAL Distinct Item Number
+
+Some 40* item numbers end in a literal `F` character (e.g., `4001271F`, `4001260F`, `4001286F`). **This is NOT a typo, an annotation, or a footnote marker — it is part of the actual `item_number` string**, denoting the frozen (FZN) variant of that consumable.
+
+**Confirmed by direct query** (2026-08): `4001260` and `4001260F` are two completely separate, real, currently-effective items — `4001260` = "Fried Shrimp (U21/25)" (`SCHEDULED`), `4001260F` = "Fried Shrimp (U21/25) [FZN]" (`NOT_SOLD`). Some bases only have the `F` variant with no bare counterpart at all (e.g. `4001271`/`4001299` bare do not exist — only `4001271F`/`4001299F` are real). Others have **both** a bare item and an `F` item as two independent real records (e.g. `4001183`/`4001183F`, `4001286`/`4001286F`, `4001296`/`4001296F`).
+
+**Do NOT strip the `F` suffix when normalizing/deduping a list of 40* item numbers.** Doing so silently causes one of two failure modes:
+1. If a bare sibling exists, the `F` item gets merged into it as a "duplicate" and is dropped from tracking entirely — its own BOM/customization usage is never checked.
+2. If no bare sibling exists, the query runs against a fabricated/wrong bare number that may not exist, or worse, may coincidentally match a real-but-unrelated item — producing a plausible-looking but incorrect result.
+
+**Correct approach**: treat the full string (including any trailing letter) as the literal `item_number` for every query (`WHERE item_number = '4001271F'`, not `'4001271'`). If a source spreadsheet/list has ambiguous formatting (e.g. `4001271F` vs `4001271.0`), verify with a direct existence check on BOTH the bare and suffixed form before assuming they're the same item:
+
+```sql
+SELECT item_number, name, item_status, sold_status, effective, deleted
+FROM `secure-recipe-prod.recipe_v2.item_versions`
+WHERE item_number IN ('4001271', '4001271F');
+```
+
+---
+
 ## The 40 Model Explained
 
 ### Stockable vs Consumable
@@ -328,6 +348,7 @@ WHERE iv.is_consumable_inventory = true
 5. **Pantry tracks all WSKUs** - inventory aggregates across all linked pack sizes
 6. **Ladle uses active WSKU only** - ordering routes through the active 41*
 7. **41* items are NOT synced to ERP** - they exist only in Cookbook/PCS
+8. **Never strip a trailing "F" from a 40\* item number** - it marks a real, distinct frozen-variant item, not an annotation; querying the bare number instead silently drops or misidentifies the item (see "Trailing F Suffix" section above)
 
 ---
 
