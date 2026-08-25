@@ -1,0 +1,24 @@
+{
+  "id": "conv-1787654626129-yqlgluvr2",
+  "providerId": "claude",
+  "title": "Find single line build examples for Multi versi...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1787654626129,
+  "updatedAt": 1787656936453,
+  "lastResponseAt": 1787656936453,
+  "sessionId": "73e73c90-00c7-41e1-9be8-a768ba41e551",
+  "selectedModel": "sonnet[1m]",
+  "providerState": {
+    "providerSessionId": "73e73c90-00c7-41e1-9be8-a768ba41e551"
+  },
+  "usage": {
+    "model": "sonnet[1m]",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 183250,
+    "contextWindow": 1000000,
+    "contextTokens": 183252,
+    "percentage": 18,
+    "contextWindowIsAuthoritative": true
+  }
+}
