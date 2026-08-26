@@ -1,6 +1,7 @@
 @../KNOWLEDGE.md
 <!-- Knowlery rule imports:start -->
 @rules/activity-ledger.md
+@rules/add-requirement-dependency-workflow.md
 @rules/archive-ticket-instruction.md
 @rules/check-40-item-dormant-candidacy-workflow.md
 @rules/check-40-item-fulfillment-workflow.md
